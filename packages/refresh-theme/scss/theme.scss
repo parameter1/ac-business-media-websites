@@ -278,6 +278,13 @@ $theme-related-content-border-color: #dee2e6;
   $self: &;
   &__items {
     text-transform: none;
+    &--tertiary {
+      #{ $self }__icon + #{ $self }__label {
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
+      }
+    }
   }
 
   &--primary,
