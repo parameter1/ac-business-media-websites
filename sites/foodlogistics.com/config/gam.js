@@ -41,7 +41,7 @@ module.exports = {
       },
     },
     {
-      alias: 'technology',
+      alias: 'software-technology',
       map: {
         lb1: 'technology/lb1',
         'lb-sticky-bottom': 'technology/lb1',
@@ -106,16 +106,16 @@ module.exports = {
       },
     },
     {
-      alias: 'safety/risk-compliance',
+      alias: 'safety-security/risk-compliance',
       map: {
-        lb1: 'safety/risk-compliance/lb1',
-        'lb-sticky-bottom': 'safety/risk-compliance/lb1',
-        rail1: 'safety/risk-compliance/rail1',
-        rail2: 'safety/risk-compliance/rail1',
-        'infinite-rail': 'safety/risk-compliance/rail1',
-        'infinite-interstitial': 'safety/risk-compliance/rail1',
-        'in-content': 'safety/risk-compliance/rail1',
-        reskin: 'safety/risk-compliance/reskin',
+        lb1: 'risk-compliance/lb1',
+        'lb-sticky-bottom': 'risk-compliance/lb1',
+        rail1: 'risk-compliance/rail1',
+        rail2: 'risk-compliance/rail1',
+        'infinite-rail': 'risk-compliance/rail1',
+        'infinite-interstitial': 'risk-compliance/rail1',
+        'in-content': 'risk-compliance/rail1',
+        reskin: 'risk-compliance/reskin',
       },
     },
     {
