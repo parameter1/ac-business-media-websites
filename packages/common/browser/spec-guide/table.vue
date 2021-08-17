@@ -400,13 +400,10 @@ export default {
         // from unkeyed rows to keyed rows by column header
         const unKeyed = get(json, 'values');
         const sheetKeys = unKeyed.shift().map(v => v.toLowerCase().replace(/\s+|[,()/]/g, ''));
-        let rows = unKeyed.map((row) => {
-          const keyedRow = {};
-          sheetKeys.forEach((key, index) => {
-            keyedRow[key] = row[index];
-          });
-          return keyedRow;
-        });
+        let rows = unKeyed.map(row => sheetKeys.reduce((obj, key, index) => ({
+          ...obj,
+          [key]: row[index],
+        }), {}));
 
         // Format/simplify the raw data.
         this.rows = isArray(rows) ? rows.map((row) => {
