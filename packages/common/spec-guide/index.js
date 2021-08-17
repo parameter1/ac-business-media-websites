@@ -11,7 +11,7 @@ module.exports = (app) => {
       const json = await response.json();
       res.send(json);
     } catch (error) {
-      res.send(error);
+      res.status(500).send(error);
     }
   }));
 };
