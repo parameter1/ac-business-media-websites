@@ -392,7 +392,7 @@ export default {
       try {
         const { sheetSrc } = this;
         if (!sheetSrc) throw new Error('No data source was provided.');
-        const res = await fetch(sheetSrc);
+        const res = await fetch(`/__spec-guide?src=${encodeURIComponent(sheetSrc)}`);
         if (!res.ok) throw new Error('Network error encountered when retrieving data.');
         const json = await res.json();
 
