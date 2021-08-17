@@ -10,7 +10,7 @@ module.exports = {
     src: 'https://img.oemoffhighway.com/files/base/acbm/ooh/image/static/pump.png',
   },
   downloadLink: '/20839221',
-  sheetSrc: 'https://spreadsheets.google.com/feeds/list/10EKomL-SVMZ4imnCaoO86t48T7ngVaopWXie04AveUo/5/public/values?alt=json',
+  sheetSrc: 'https://content-sheets.googleapis.com/v4/spreadsheets/10EKomL-SVMZ4imnCaoO86t48T7ngVaopWXie04AveUo/values/Pump-2016',
   measures: {
     metric: { label: 'Metric' },
     standard: { label: 'Standard' },
