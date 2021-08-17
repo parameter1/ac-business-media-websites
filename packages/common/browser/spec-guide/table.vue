@@ -396,7 +396,8 @@ export default {
         if (!res.ok) throw new Error('Network error encountered when retrieving data.');
         const json = await res.json();
 
-        // Added google API v4 from v3 support to have set data from unkeyed rows to keyed rows by column header
+        // Added google API v4 from v3 support to have set data
+        // from unkeyed rows to keyed rows by column header
         const unKeyed = get(json, 'values');
         const sheetKeys = unKeyed.shift().map(v => v.toLowerCase().replace(/\s+|[,()/]/g, ''));
         let rows = unKeyed.map((row) => {
