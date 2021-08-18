@@ -23,6 +23,7 @@ x-env-defaults: &env
   # @todo the recaptcha values should be removed (?) once contact-us is moved to core.
   RECAPTCHA_SITE_KEY: ${RECAPTCHA_SITE_KEY-(unset)}
   RECAPTCHA_SECRET_KEY: ${RECAPTCHA_SECRET_KEY-(unset)}
+  SPEC_GUIDE_DOCS_API_KEY: ${SPEC_GUIDE_DOCS_API_KEY-(unset)}
   # @todo the sendgrid values should be removed once the @parameter1/base-cms-mailer service is created.
   SENDGRID_API_KEY: ${SENDGRID_API_KEY-(unset)}
   SENDGRID_DEV_TO: contact@parameter1.com

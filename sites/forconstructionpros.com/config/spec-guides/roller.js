@@ -20,7 +20,7 @@ module.exports = {
     src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/tandem-roller.jpg',
   },
   downloadLink: '/20973242',
-  sheetSrc: 'https://spreadsheets.google.com/feeds/list/1BtttRyP7IT3IkpYZ7_paT3o_LJhtijyRBmODO0V2I9I/1/public/values?alt=json',
+  sheetSrc: 'https://content-sheets.googleapis.com/v4/spreadsheets/1BtttRyP7IT3IkpYZ7_paT3o_LJhtijyRBmODO0V2I9I/values/Sheet1',
   columns: {
     manufacturer: {
       label: 'Manufacturer',

@@ -379,7 +379,7 @@ export default {
     },
 
     getSourceValue(row, key) {
-      return get(row, `gsx$${key}.$t`);
+      return get(row, key);
     },
 
     /**
@@ -392,10 +392,18 @@ export default {
       try {
         const { sheetSrc } = this;
         if (!sheetSrc) throw new Error('No data source was provided.');
-        const res = await fetch(sheetSrc);
+        const res = await fetch(`/__spec-guide?src=${encodeURIComponent(sheetSrc)}`);
         if (!res.ok) throw new Error('Network error encountered when retrieving data.');
         const json = await res.json();
-        let rows = get(json, 'feed.entry');
+
+        // Added google API v4 from v3 support to have set data
+        // from unkeyed rows to keyed rows by column header
+        const unKeyed = get(json, 'values');
+        const sheetKeys = unKeyed.shift().map(v => v.toLowerCase().replace(/\s+|[,()/]/g, ''));
+        let rows = unKeyed.map(row => sheetKeys.reduce((obj, key, index) => ({
+          ...obj,
+          [key]: row[index],
+        }), {}));
 
         // Format/simplify the raw data.
         this.rows = isArray(rows) ? rows.map((row) => {

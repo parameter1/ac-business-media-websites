@@ -12,8 +12,7 @@ module.exports = {
     src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/skidsteerlarge.jpg',
   },
   downloadLink: '/21563130',
-  sheetSrc: 'https://spreadsheets.google.com/feeds/list/12TC912nI227058ho8_zrLwYYzp7P2T7zZDCXO0ZTSZw/1/public/values?alt=json',
-
+  sheetSrc: 'https://content-sheets.googleapis.com/v4/spreadsheets/12TC912nI227058ho8_zrLwYYzp7P2T7zZDCXO0ZTSZw/values/Sheet1',
   columns: {
     manufacturer: {
       label: 'Manufacturer',

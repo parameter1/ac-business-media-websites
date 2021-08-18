@@ -12,7 +12,7 @@ module.exports = {
     src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/backhoe.png',
   },
   downloadLink: '/21036185',
-  sheetSrc: 'https://spreadsheets.google.com/feeds/list/1ylNVqjRuvRu9_JUgyOuWSPXeGn6FkIw7McjFdZzdv0M/1/public/values?alt=json',
+  sheetSrc: 'https://content-sheets.googleapis.com/v4/spreadsheets/1ylNVqjRuvRu9_JUgyOuWSPXeGn6FkIw7McjFdZzdv0M/values/Backhoe-2019',
   columns: {
     company: {
       label: 'Company',
