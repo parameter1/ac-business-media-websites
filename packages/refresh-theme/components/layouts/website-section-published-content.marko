@@ -54,11 +54,13 @@ $ delete loadMoreParams.queryFragment;
       $ if (pageSuffix) section.name += pageSuffix;
       <marko-web-page-wrapper>
         <@section>
-          <marko-web-gam-display-ad
-            id="gpt-ad-lb1"
-            slots=adSlots({ aliases })
-            modifiers=["max-width-970", "center"]
-          />
+          <if(!['premium-content'].includes(alias))>
+            <marko-web-gam-display-ad
+              id="gpt-ad-lb1"
+              slots=adSlots({ aliases })
+              modifiers=["max-width-970", "center"]
+            />
+         </if>
         </@section>
         <@section>
           <div class="row">
@@ -105,11 +107,13 @@ $ delete loadMoreParams.queryFragment;
               </refresh-theme-latest-content-load-more-block>
             </div>
             <aside class="col-lg-4 page-rail">
-              <marko-web-gam-display-ad
-                id="gpt-ad-rail-infinite"
-                modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
-                slots=adSlots({ aliases })
-              />
+              <if(!['premium-content'].includes(alias))>
+                <marko-web-gam-display-ad
+                  id="gpt-ad-rail-infinite"
+                  modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
+                  slots=adSlots({ aliases })
+                />
+              </if>
             </aside>
           </div>
         </@section>
