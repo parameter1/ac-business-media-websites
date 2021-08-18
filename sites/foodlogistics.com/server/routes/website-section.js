@@ -73,6 +73,10 @@ module.exports = (app) => {
     template: feed,
     queryFragment,
   }));
+  app.get('/:alias(premium-content)', withWebsiteSection({
+    template: feed,
+    queryFragment,
+  }));
   app.get('/:alias([a-z0-9-/]+)', withWebsiteSection({
     template: section,
     queryFragment,
