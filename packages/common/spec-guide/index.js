@@ -1,7 +1,7 @@
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const fetch = require('node-fetch');
+const { SPEC_GUIDE_DOCS_API_KEY } = require('../env');
 
-const { SPEC_GUIDE_DOCS_API_KEY } = process.env;
 module.exports = (app) => {
   app.use('/__spec-guide', asyncRoute(async (req, res) => {
     const { src } = req.query;
