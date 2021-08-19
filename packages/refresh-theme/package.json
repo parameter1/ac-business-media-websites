@@ -39,7 +39,6 @@
     "@parameter1/omeda-graphql-client-express": "^0.2.3",
     "algoliasearch": "^4.8.3",
     "cheerio": "^1.0.0-rc.3",
-    "dd-trace": "^0.25.1",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "newrelic": "^5.11.0",
