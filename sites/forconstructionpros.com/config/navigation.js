@@ -17,7 +17,7 @@ const resources = [
   { href: '/events', label: 'Events' },
   { href: '/podcasts', label: 'Podcasts' },
   { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
-  { href: '/covid-19', label: 'COVID-19' },
+  { href: '/infrastructure', label: 'Infrastructure' },
 ];
 
 const tertiaryItems = [
@@ -195,7 +195,7 @@ module.exports = {
         { href: '/podcasts', label: 'Podcasts' },
         { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
         { href: '/webinars', label: 'Webinars' },
-        { href: '/covid-19', label: 'COVID-19' },
+        { href: '/infrastructure', label: 'Infrastructure' },
       ],
     },
     {
