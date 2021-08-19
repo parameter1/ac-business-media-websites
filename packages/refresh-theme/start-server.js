@@ -1,4 +1,3 @@
-require('./datadog');
 const newrelic = require('newrelic');
 const { startServer } = require('@parameter1/base-cms-marko-web');
 const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');

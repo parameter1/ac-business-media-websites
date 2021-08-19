@@ -74,7 +74,7 @@ module.exports = {
     enabled: true,
     directSend: true,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
-    sendFrom: 'Supply & Demand Chain Executive <noreply@baseplatform.io>',
+    sendFrom: 'Supply & Demand Chain Executive <noreply@parameter1.com>',
     logo: 'https://img.sdcexec.com/files/base/acbm/sdce/image/static/logo/site_logo_og.png?h=60&auto=format,compress&q=70',
     bgColor: '#ec131c',
   },

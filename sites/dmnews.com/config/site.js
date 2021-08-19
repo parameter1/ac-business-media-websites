@@ -62,7 +62,7 @@ module.exports = {
     enabled: true,
     directSend: true,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
-    sendFrom: 'DMNews.com <noreply@baseplatform.io>',
+    sendFrom: 'DMNews.com <noreply@parameter1.com>',
     logo: 'https://img.dmnews.com/files/base/acbm/static/DMNLogoWhite.png?h=60&auto=format,compress&q=70',
     bgColor: '#28ace2',
   },

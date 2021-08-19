@@ -15,8 +15,6 @@ x-node-defaults: &node
 x-env-defaults: &env
   NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}
   NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
-  DD_TRACE_ENABLED: ${DD_TRACE_ENABLED-0}
-  DD_SERVICE: ${DD_SERVICE-@ac-business-media/websites}
   NODE_ENV: development
   OMEDA_APP_ID: ${OMEDA_APP_ID-(unset)}
   OMEDA_INPUT_ID: ${OMEDA_INPUT_ID-(unset)}
@@ -26,12 +24,12 @@ x-env-defaults: &env
   SPEC_GUIDE_DOCS_API_KEY: ${SPEC_GUIDE_DOCS_API_KEY-(unset)}
   # @todo the sendgrid values should be removed once the @parameter1/base-cms-mailer service is created.
   SENDGRID_API_KEY: ${SENDGRID_API_KEY-(unset)}
-  SENDGRID_DEV_TO: contact@parameter1.com
+  SENDGRID_DEV_TO: ${SENDGRID_DEV_TO-support@parameter1.com}
   YARN_CACHE_FOLDER: /.yarn-cache
   IDENTITYX_API_TOKEN: ${IDENTITYX_API_TOKEN-(unset)}
-  ALGOLIA_API_KEY: ${ALGOLIA_API_KEY}
-  ALGOLIA_APP_ID: ${ALGOLIA_APP_ID}
-  ALGOLIA_DEFAULT_INDEX: ${ALGOLIA_DEFAULT_INDEX}
+  ALGOLIA_API_KEY: ${ALGOLIA_API_KEY-(unset)}
+  ALGOLIA_APP_ID: ${ALGOLIA_APP_ID-(unset)}
+  ALGOLIA_DEFAULT_INDEX: ${ALGOLIA_DEFAULT_INDEX-(unset)}
 
 x-env-tauron: &env-tauron
   GRAPHQL_URI: ${GRAPHQL_URI-https://tauron.graphql.base.parameter1.com}
