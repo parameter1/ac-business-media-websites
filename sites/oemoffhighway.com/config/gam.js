@@ -105,5 +105,18 @@ module.exports = {
         reskin: 'ifpe-conexpo/reskin',
       },
     },
+    {
+      alias: 'minexpo-2021',
+      map: {
+        lb1: 'minexpo-2021/lb1',
+        'lb-sticky-bottom': 'minexpo-2021/lb1',
+        rail1: 'minexpo-2021/rail1',
+        rail2: 'minexpo-2021/rail1',
+        'infinite-rail': 'minexpo-2021/rail1',
+        'infinite-interstitial': 'minexpo-2021/rail1',
+        'in-content': 'minexpo-2021/rail1',
+        reskin: 'minexpo-2021/reskin',
+      },
+    },
   ],
 };
