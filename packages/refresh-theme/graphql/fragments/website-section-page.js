@@ -6,6 +6,7 @@ fragment WebsiteSectionPageFragment on WebsiteSection {
   name
   fullName
   description
+  labels
   hierarchy {
     id
     alias
