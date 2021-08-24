@@ -12,7 +12,7 @@ module.exports = {
     src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/excavator.jpg',
   },
   downloadLink: '/21009138',
-  sheetSrc: 'https://spreadsheets.google.com/feeds/list/1LYU3btf5iNzaBdONjMvZmK7KiEDxSUofUR6fvJGxU2Q/1/public/values?alt=json',
+  sheetSrc: 'https://content-sheets.googleapis.com/v4/spreadsheets/1LYU3btf5iNzaBdONjMvZmK7KiEDxSUofUR6fvJGxU2Q/values/Excavator-2016',
   columns: {
     company: {
       label: 'Company',

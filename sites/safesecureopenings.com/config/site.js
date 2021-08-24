@@ -71,7 +71,7 @@ module.exports = {
     enabled: true,
     directSend: true,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
-    sendFrom: 'Safe & Secure Openings <noreply@baseplatform.io>',
+    sendFrom: 'Safe & Secure Openings <noreply@parameter1.com>',
     logo: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress&q=70',
     bgColor: '#164f77',
   },

@@ -10,7 +10,7 @@ module.exports = {
     src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/asphalt-paver.jpg',
   },
   downloadLink: '/21036185',
-  sheetSrc: 'https://spreadsheets.google.com/feeds/list/1Lx2srmVT5OTFf9y1TZjpCRnYFGWNlDp7J_eDzznuL8M/1/public/values?alt=json',
+  sheetSrc: 'https://content-sheets.googleapis.com/v4/spreadsheets/1Lx2srmVT5OTFf9y1TZjpCRnYFGWNlDp7J_eDzznuL8M/values/Sheet1',
   columns: {
     manufacturer: {
       label: 'Manufacturer',

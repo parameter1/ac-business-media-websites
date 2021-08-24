@@ -1,9 +1,9 @@
-require('./datadog');
 const newrelic = require('newrelic');
 const { startServer } = require('@parameter1/base-cms-marko-web');
 const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
 const cleanResponse = require('@parameter1/base-cms-marko-core/middleware/clean-marko-response');
 const contactUsHandler = require('@ac-business-media/package-common/contact-us');
+const specGuideHandler = require('@ac-business-media/package-common/spec-guide');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const omedaGraphQL = require('@parameter1/omeda-graphql-client-express');
 
@@ -22,6 +22,8 @@ const routes = siteRoutes => (app) => {
   loadInquiry(app);
   // Handle contact submissions on /__contact-us
   contactUsHandler(app);
+  // Handle spec-guide sheet request on /__spec-guide?src=${sheetSrc}
+  specGuideHandler(app);
   // Load site routes.
   siteRoutes(app);
 };
