@@ -52,8 +52,8 @@ $ delete loadMoreParams.queryFragment;
     <marko-web-resolve-page|{ data: section, resolved }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
       $ const disallowAds = getAsArray(section, "labels").includes("Premium Content");
-      $ const fullColumn = "col-lg-12 infinite-scroll-target";
-      $ const twoThirdsColumn = "col-lg-8 infinite-scroll-target";
+      $ const fullColumn = ["col-lg-12", "infinite-scroll-target"];
+      $ const twoThirdsColumn = ["col-lg-8", "infinite-scroll-target"];
       $ const layoutClass = disallowAds ? fullColumn : twoThirdsColumn;
       $ if (pageSuffix) section.name += pageSuffix;
       <marko-web-page-wrapper>
