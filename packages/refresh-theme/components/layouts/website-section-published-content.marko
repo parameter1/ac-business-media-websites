@@ -1,5 +1,5 @@
 import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
-import { getAsObject } from "@parameter1/base-cms-object-path";
+import { getAsObject, getAsArray } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import latestQueryFragment from "../../graphql/fragments/content-latest";
 
@@ -51,14 +51,20 @@ $ delete loadMoreParams.queryFragment;
 
     <marko-web-resolve-page|{ data: section, resolved }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
+      $ const disallowAds = getAsArray(section, "labels").includes("Premium Content");
+      $ const fullColumn = ["col-lg-12", "infinite-scroll-target"];
+      $ const twoThirdsColumn = ["col-lg-8", "infinite-scroll-target"];
+      $ const layoutClass = disallowAds ? fullColumn : twoThirdsColumn;
       $ if (pageSuffix) section.name += pageSuffix;
       <marko-web-page-wrapper>
         <@section>
-          <marko-web-gam-display-ad
-            id="gpt-ad-lb1"
-            slots=adSlots({ aliases })
-            modifiers=["max-width-970", "center"]
-          />
+          <if(!disallowAds)>
+            <marko-web-gam-display-ad
+              id="gpt-ad-lb1"
+              slots=adSlots({ aliases })
+              modifiers=["max-width-970", "center"]
+            />
+         </if>
         </@section>
         <@section>
           <div class="row">
@@ -84,33 +90,37 @@ $ delete loadMoreParams.queryFragment;
         </@section>
         <@section>
           <div class="row">
-            <div class="col-lg-8 infinite-scroll-target">
-              <marko-web-query|{ nodes }|
-                name=query.name
-                params=initialParams
-              >
-                <refresh-theme-latest-content-list-flow nodes=nodes with-header=false />
-              </marko-web-query>
-
-              <refresh-theme-latest-content-load-more-block max-pages=4>
-                <@query
+              <div class=layoutClass>
+                <marko-web-query|{ nodes }|
                   name=query.name
-                  params=loadMoreParams
-                />
-                <@page for="website-section" id=id />
-                <@adunit
-                  ...GAM.getAdUnit({ name: "infinite-interstitial" })
-                  modifiers=["max-width-300", "margin-auto-x"]
-                />
-              </refresh-theme-latest-content-load-more-block>
-            </div>
-            <aside class="col-lg-4 page-rail">
-              <marko-web-gam-display-ad
-                id="gpt-ad-rail-infinite"
-                modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
-                slots=adSlots({ aliases })
-              />
-            </aside>
+                  params=initialParams
+                >
+                  <refresh-theme-latest-content-list-flow nodes=nodes with-header=false />
+                </marko-web-query>
+
+                <refresh-theme-latest-content-load-more-block max-pages=4>
+                  <@query
+                    name=query.name
+                    params=loadMoreParams
+                  />
+                  <@page for="website-section" id=id />
+                  <if(!disallowAds)>
+                    <@adunit
+                      ...GAM.getAdUnit({ name: "infinite-interstitial" })
+                      modifiers=["max-width-300", "margin-auto-x"]
+                    />
+                  </if>
+                </refresh-theme-latest-content-load-more-block>
+              </div>
+              <if(!disallowAds)>
+                <aside class="col-lg-4 page-rail">
+                  <marko-web-gam-display-ad
+                    id="gpt-ad-rail-infinite"
+                    modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
+                    slots=adSlots({ aliases })
+                  />
+                </aside>
+              </if>
           </div>
         </@section>
       </marko-web-page-wrapper>

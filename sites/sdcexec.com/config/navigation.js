@@ -16,6 +16,7 @@ const resources = [
   { href: '/blogs', label: 'Expert Columns' },
   { href: '/webinars', label: 'Webinars' },
   { href: '/podcast', label: 'Podcasts' },
+  { href: '/premium-content', label: 'Premium Content' },
   { href: 'https://sdcexec.tradepub.com/?pt=dir&page=sdcexec', label: 'Sponsored Research', target: '_blank' },
   { href: 'http://www.supplychainnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
   { href: '/contact-us', label: 'Contact Us' },
