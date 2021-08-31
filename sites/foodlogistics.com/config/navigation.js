@@ -178,9 +178,9 @@ module.exports = {
       tertiary: { items: tertiaryItems },
       primary: {
         items: [
-          { href: '/podcasts/link', label: 'L.I.N.K' },
+          { href: 'https://cms.megaphone.fm/channel/supplychain', label: 'L.I.N.K', target: '_blank' },
           { href: '/videos/link-live', label: 'L.I.N.K LIVE' },
-          { href: '/podcasts/link-educate', label: 'L.I.N.K Educate' },
+          { href: 'https://cms.megaphone.fm/channel/linkeducate', label: 'L.I.N.K Educate', target: '_blank' },
         ],
       },
     },
@@ -190,9 +190,9 @@ module.exports = {
       tertiary: { items: tertiaryItems },
       primary: {
         items: [
-          { href: '/podcasts/link', label: 'L.I.N.K' },
+          { href: 'https://cms.megaphone.fm/channel/supplychain', label: 'L.I.N.K', target: '_blank' },
           { href: '/videos/link-live', label: 'L.I.N.K LIVE' },
-          { href: '/podcasts/link-educate', label: 'L.I.N.K Educate' },
+          { href: 'https://cms.megaphone.fm/channel/linkeducate', label: 'L.I.N.K Educate', target: '_blank' },
           { href: '/videos', label: 'Videos' },
           { href: '/videos/transportation-chain', label: 'Transportation Chain' },
           { href: '/awards', label: 'Awards' },
