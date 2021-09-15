@@ -21,6 +21,7 @@ module.exports = {
         label: 'GreenApps',
         target: '_blank',
       },
+      { href: '/expert-columns', label: 'Expert Columns' },
     ],
   },
   tertiary: {
@@ -79,6 +80,7 @@ module.exports = {
           label: 'GreenApps',
           target: '_blank',
         },
+        { href: '/expert-columns', label: 'Expert Columns' },
         // { href: '/specguide', label: 'Spec Guide' },
       ],
     },
