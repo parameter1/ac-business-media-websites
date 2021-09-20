@@ -1,6 +1,6 @@
 {
   "name": "@ac-business-media/dmnews.com",
-  "version": "1.30.8",
+  "version": "1.30.11",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/sites/dmnews.com",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "test": "yarn lint && yarn compile && yarn build"
   },
   "dependencies": {
-    "@ac-business-media/refresh-theme": "^1.30.8",
+    "@ac-business-media/refresh-theme": "^1.30.11",
     "@parameter1/base-cms-marko-core": "^2.37.2",
     "@parameter1/base-cms-marko-web": "^2.38.0",
     "@parameter1/base-cms-object-path": "^2.22.2",
