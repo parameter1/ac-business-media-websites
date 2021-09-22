@@ -26,7 +26,7 @@ module.exports = {
       },
     },
     {
-      alias: 'lawn-care-renovation',
+      alias: 'lawn-care',
       map: {
         lb1: 'lawn-care-renovation/lb1',
         rail1: 'lawn-care-renovation/rail1',
@@ -62,7 +62,7 @@ module.exports = {
       },
     },
     {
-      alias: 'snow-ice-management',
+      alias: 'snowpro',
       map: {
         lb1: 'snow-ice-management/lb1',
         rail1: 'snow-ice-management/rail1',
