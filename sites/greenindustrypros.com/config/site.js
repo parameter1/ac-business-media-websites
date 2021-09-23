@@ -73,7 +73,7 @@ module.exports = {
   inquiry: {
     enabled: true,
     directSend: true,
-    sendTo: 'requestmoreinfo@acbusinessmedia.com',
+    sendTo: 'requestmoreinfogip@acbusinessmedia.com',
     sendFrom: 'GreenIndustryPros.com <noreply@parameter1.com>',
     logo: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress&q=70',
     bgColor: '#164f77',
