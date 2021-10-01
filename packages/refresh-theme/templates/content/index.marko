@@ -3,6 +3,8 @@ import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import { getAsObject, getAsArray, get } from "@parameter1/base-cms-object-path";
 import queryFragment from "../../graphql/fragments/content-list";
 import getContentPreview from "../../utils/get-content-preview";
+import buildContentStructuredData from "../../utils/build-content-structured-data";
+import contentStructuredDataQueryFragment from "../../graphql/fragments/content-structured-data"
 
 $ const { site, GAM, algoliaConfig, req } = out.global;
 $ const showCompanySectionFilter = (algoliaConfig
@@ -33,7 +35,12 @@ $ const isShortForm = ["contact"].includes(type) ? true : false;
 $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) ? true : false;
 
 <!-- @todo change recommended to be more from company on product pages -->
-<marko-web-content-page-layout id=id type=type>
+<marko-web-content-page-layout
+  id=id
+  type=type
+  build-structured-data=buildContentStructuredData
+  structured-data-query-fragment=contentStructuredDataQueryFragment
+>
   <@head>
     <marko-web-gtm-content-context|{ context }| id=id>
       <marko-web-gtm-push data=context />
