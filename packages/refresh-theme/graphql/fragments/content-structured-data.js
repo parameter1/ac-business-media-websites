@@ -10,6 +10,10 @@ fragment WebsiteContentStructuredDataFragment on Content {
     canonicalUrl
     noIndex
   }
+  primarySection {
+    id
+    name
+  }
   published
   updated
   metadata {
