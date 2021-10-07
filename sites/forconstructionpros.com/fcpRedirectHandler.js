@@ -1,3 +1,5 @@
+const cufv1 = require('@ac-business-media/refresh-theme/redirect-handler-cufv1');
+
 const redirectCompany = [
   { to: '/10112949', from: '/10071780' },
   { to: '/12097978', from: '/10075370' },
@@ -323,5 +325,5 @@ module.exports = ({ from }) => {
   if (redirectCompany.find(pair => pair.from === from)) {
     return { to: redirectCompany.find(pair => pair.from === from).to };
   }
-  return null;
+  return cufv1('update.forconstructionpros.com');
 };
