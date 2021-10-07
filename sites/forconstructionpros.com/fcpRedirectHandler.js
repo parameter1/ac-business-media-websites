@@ -322,8 +322,9 @@ const redirectCompany = [
 ];
 
 module.exports = ({ from }) => {
-  if (redirectCompany.find(pair => pair.from === from)) {
-    return { to: redirectCompany.find(pair => pair.from === from).to };
+  const { to } = redirectCompany.find(pair => (new RegExp(`${pair.from}`)).test(from));
+  if (to) {
+    return { to };
   }
   return cufv1('update.forconstructionpros.com');
 };
