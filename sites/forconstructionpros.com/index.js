@@ -1,6 +1,6 @@
 const { set } = require('@parameter1/base-cms-object-path');
 const startServer = require('@ac-business-media/refresh-theme/start-server');
-const cufv1 = require('@ac-business-media/refresh-theme/redirect-handler-cufv1');
+const redirectHandler = require('@ac-business-media/refresh-theme/redirect-handler-fcp');
 const algolia = require('@ac-business-media/refresh-theme/middleware/algolia');
 
 const routes = require('./server/routes');
@@ -25,5 +25,5 @@ module.exports = startServer({
     set(app.locals, 'algoliaConfig', algoliaConfig);
     app.use(algolia(algoliaConfig));
   },
-  redirectHandler: cufv1('update.forconstructionpros.com'),
+  redirectHandler,
 }).then(() => log('Website started!')).catch(e => setImmediate(() => { throw e; }));
