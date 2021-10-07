@@ -1,11 +1,12 @@
 const { set } = require('@parameter1/base-cms-object-path');
 const startServer = require('@ac-business-media/refresh-theme/start-server');
-const redirectHandler = require('@ac-business-media/refresh-theme/redirect-handler-fcp');
+const cufv1 = require('@ac-business-media/refresh-theme/redirect-handler-cufv1');
 const algolia = require('@ac-business-media/refresh-theme/middleware/algolia');
 
 const routes = require('./server/routes');
 const siteConfig = require('./config/site');
 const coreConfig = require('./config/core');
+const companyRedirectHandler = require('./companyRedirectHandler');
 
 const { env } = process;
 const { log } = console;
@@ -25,5 +26,10 @@ module.exports = startServer({
     set(app.locals, 'algoliaConfig', algoliaConfig);
     app.use(algolia(algoliaConfig));
   },
-  redirectHandler,
+  redirectHandler: () => {
+    if (cufv1('update.forconstructionpros.com')) {
+      return cufv1('update.forconstructionpros.com');
+    }
+    return companyRedirectHandler;
+  },
 }).then(() => log('Website started!')).catch(e => setImmediate(() => { throw e; }));

@@ -1,4 +1,4 @@
-module.exports = [
+const redirectCompany = [
   { to: '/10112949', from: '/10071780' },
   { to: '/12097978', from: '/10075370' },
   { to: '/12032031', from: '/11368218' },
@@ -318,3 +318,10 @@ module.exports = [
   { to: '/10112733', from: '/11655435' },
   { to: '/10857827', from: '/12099424' },
 ];
+
+module.exports = ({ from }) => {
+  if (redirectCompany.find(pair => pair.from === from)) {
+    return { to: redirectCompany.find(pair => pair.from === from).to };
+  }
+  return null;
+};
