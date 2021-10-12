@@ -45,7 +45,7 @@ $ delete loadMoreParams.queryFragment;
       $ const disallowAds = getAsArray(section, "labels").includes("Premium Content");
       <if(!disallowAds)>
         <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
-        </if>
+      </if>
     </marko-web-resolve-page>
   </@above-container>
   <@page>
