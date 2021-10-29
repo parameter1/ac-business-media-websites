@@ -26,55 +26,50 @@ const getPublishedISOString = (node) => {
   return published ? (new Date(published)).toISOString() : undefined;
 };
 
-const getUpdatedISOString = (node) => {
-  const { updated } = node;
-  return updated ? (new Date(updated)).toISOString() : undefined;
-};
-
 module.exports = (node) => {
+  const publishedISOString = node.published ? (new Date(node.published)).toISOString() : undefined;
+  const updatedISOString = node.updated ? (new Date(node.updated)).toISOString() : undefined;
   const siteUrl = get(node, 'siteContext.url');
   const canonicalUrl = get(node, 'siteContext.canonicalUrl');
+
+  const defaultStruturedData = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': get(node, 'siteContext.canonicalUrl'),
+    },
+    headline: get(node, 'metadata.title'),
+    name: get(node, 'metadata.title'),
+    ...(get(node, 'metadata.description') && { description: get(node, 'metadata.description') }),
+    ...(get(node, 'metadata.image.src') && { thumbnailUrl: get(node, 'metadata.image.src') }),
+    ...(getImages(node) && { image: getImages(node) }),
+    datePublished: publishedISOString,
+    dateModified: updatedISOString,
+    articleSection: get(node, 'primarySection.name'),
+    url: canonicalUrl,
+    ...(siteUrl !== canonicalUrl && { url: siteUrl, isBasedOn: canonicalUrl }),
+    ...(getAuthor(node) && { author: getAuthor(node) }),
+    ...(getCreators(node).length && { creator: getCreators(node) }),
+    ...(getKeywords(node).length && { keywords: getKeywords(node) }),
+  };
+
   if (node.type === 'video') {
     const structuredData = JSON.stringify({
+      ...defaultStruturedData,
       '@context': 'https://schema.org',
       '@type': 'VideoObject',
-      name: get(node, 'metadata.title'),
-      headline: get(node, 'metadata.title'),
-      description: get(node, 'metadata.description'),
-      thumbnailUrl: get(node, 'metadata.image.src'),
       uploadDate: getPublishedISOString(node),
-      author: getAuthor(node),
       embedUrl: get(node, 'embedSrc'),
-      articleSection: get(node, 'primarySection.name'),
-      url: canonicalUrl,
-      ...(siteUrl !== canonicalUrl && { url: siteUrl, isBasedOn: canonicalUrl }),
-      ...(getCreators(node).length && { creator: getCreators(node) }),
-      ...(getKeywords(node).length && { keywords: getKeywords(node) }),
     });
     return structuredData;
   }
 
   const structuredData = JSON.stringify({
+    ...defaultStruturedData,
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': get(node, 'siteContext.canonicalUrl'),
-    },
-    name: get(node, 'metadata.title'),
-    headline: get(node, 'metadata.title'),
-    description: get(node, 'metadata.description'),
     image: getImages(node),
-    datePublished: getPublishedISOString(node),
-    ...(getUpdatedISOString(node) !== getPublishedISOString(node) && {
-      dateModified: getUpdatedISOString(node),
-    }),
-    url: canonicalUrl,
-    ...(siteUrl !== canonicalUrl && { url: siteUrl, isBasedOn: canonicalUrl }),
-    thumbnailUrl: get(node, 'metadata.image.src'),
-    articleSection: get(node, 'primarySection.name'),
-    ...(getCreators(node).length && { creator: getCreators(node) }),
-    ...(getKeywords(node).length && { keywords: getKeywords(node) }),
   });
   return structuredData;
 };
