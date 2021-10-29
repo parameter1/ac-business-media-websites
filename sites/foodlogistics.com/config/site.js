@@ -20,15 +20,15 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=45&auto=format,compress&q=70',
+      src: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=45&auto=format,compress',
       srcset: [
-        'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=90&auto=format,compress&q=70 2x',
+        'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=90&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=60&auto=format,compress&q=70',
+      src: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=60&auto=format,compress',
       srcset: [
-        'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=120&auto=format,compress&q=70 2x',
+        'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=120&auto=format,compress 2x',
       ],
     },
   },
@@ -66,7 +66,7 @@ module.exports = {
   contactUs: {
     branding: {
       bgColor: '#1a93f9',
-      logo: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=60&auto=format,compress&q=70',
+      logo: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=60&auto=format,compress',
     },
     to: 'jsage@acbusinessmedia.com',
   },
@@ -75,7 +75,7 @@ module.exports = {
     directSend: true,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
     sendFrom: 'Food Logistics <noreply@parameter1.com>',
-    logo: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=60&auto=format,compress&q=70',
+    logo: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=60&auto=format,compress',
     bgColor: '#1a93f9',
   },
   leaders: {
@@ -84,7 +84,7 @@ module.exports = {
     alias: 'leaders/2020',
     calloutValue: 'Leading Providers',
     header: {
-      imgSrc: 'https://img.foodlogistics.com/files/base/acbm/sdce/image/static/sdc-leaders.png?h=85&auto=format,compress&q=70',
+      imgSrc: 'https://img.foodlogistics.com/files/base/acbm/sdce/image/static/sdc-leaders.png?h=85&auto=format,compress',
     },
   },
 };

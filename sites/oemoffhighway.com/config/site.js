@@ -22,15 +22,15 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=45&auto=format,compress&q=70',
+      src: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=45&auto=format,compress',
       srcset: [
-        'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=90&auto=format,compress&q=70 2x',
+        'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=90&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress&q=70',
+      src: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress',
       srcset: [
-        'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=120&auto=format,compress&q=70 2x',
+        'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=120&auto=format,compress 2x',
       ],
     },
   },
@@ -67,7 +67,7 @@ module.exports = {
   contactUs: {
     branding: {
       bgColor: '#ed1c24',
-      logo: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress&q=70',
+      logo: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress',
     },
     to: 'jsage@acbusinessmedia.com',
   },
@@ -76,7 +76,7 @@ module.exports = {
     directSend: true,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
     sendFrom: 'OEM Off-Highway <noreply@parameter1.com>',
-    logo: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress&q=70',
+    logo: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress',
     bgColor: '#ed1c24',
   },
 };
