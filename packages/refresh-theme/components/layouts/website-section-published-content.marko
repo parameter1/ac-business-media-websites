@@ -42,7 +42,10 @@ $ delete loadMoreParams.queryFragment;
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       <refresh-theme-parsely-website-section section=section />
       $ const aliases = hierarchyAliases(section);
-      <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
+      $ const disallowAds = getAsArray(section, "labels").includes("Premium Content");
+      <if(!disallowAds)>
+        <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
+      </if>
     </marko-web-resolve-page>
   </@above-container>
   <@page>

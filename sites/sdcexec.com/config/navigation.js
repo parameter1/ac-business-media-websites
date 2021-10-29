@@ -17,7 +17,6 @@ const resources = [
   { href: '/webinars', label: 'Webinars' },
   { href: '/podcast', label: 'Podcasts' },
   { href: '/premium-content', label: 'Premium Content' },
-  { href: 'https://sdcexec.tradepub.com/?pt=dir&page=sdcexec', label: 'Sponsored Research', target: '_blank' },
   { href: 'http://www.supplychainnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
   { href: '/contact-us', label: 'Contact Us' },
 
@@ -226,7 +225,6 @@ module.exports = {
       items: [
         { href: '/magazine', label: 'Magazines' },
         { href: '/awards', label: 'Awards' },
-        { href: 'https://sdcexec.tradepub.com/?pt=dir&page=sdcexec', label: 'Sponsored Research', target: '_blank' },
         { href: '/case-studies', label: 'Case Studies' },
         { href: '/modex', label: 'MODEX' },
         { href: '/events', label: 'Events' },
