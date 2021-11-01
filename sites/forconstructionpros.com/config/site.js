@@ -22,15 +22,15 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress&q=70',
+      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress',
       srcset: [
-        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=90&auto=format,compress&q=70 2x',
+        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=90&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress&q=70',
+      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress',
       srcset: [
-        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=90&auto=format,compress&q=70 2x',
+        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=90&auto=format,compress 2x',
       ],
     },
   },
@@ -67,7 +67,7 @@ module.exports = {
   contactUs: {
     branding: {
       bgColor: '#000',
-      logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress&q=70',
+      logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress',
     },
     to: 'support@forconstructionpros.com',
   },
@@ -76,7 +76,7 @@ module.exports = {
     directSend: true,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
     sendFrom: 'ForConstructionPros.com <noreply@parameter1.com>',
-    logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress&q=70&bg=000000&pad=5',
+    logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000',
   },
   leaders: {
@@ -85,7 +85,7 @@ module.exports = {
     alias: 'leaders/2021',
     calloutValue: 'Leading Companies',
     header: {
-      imgSrc: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/fcp-leaders.jpeg?h=85&auto=format,compress&q=70',
+      imgSrc: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/fcp-leaders.jpeg?h=85&auto=format,compress',
     },
   },
   sectionSearchIds: [
