@@ -1,5 +1,7 @@
 import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
 import { get } from "@parameter1/base-cms-object-path";
+import buildContentStructuredData from "../../utils/build-content-structured-data";
+import contentStructuredDataQueryFragment from "../../graphql/fragments/content-structured-data"
 
 $ const { GAM, site } = out.global;
 $ const { id, type, pageNode } = data;
@@ -9,7 +11,12 @@ $ const displayInquiry = (content) => {
   return false;
 };
 
-<marko-web-content-page-layout id=id type=type>
+<marko-web-content-page-layout
+  id=id
+  type=type
+  build-structured-data=buildContentStructuredData
+  structured-data-query-fragment=contentStructuredDataQueryFragment
+>
   <@head>
     <marko-web-gtm-content-context|{ context }| id=id>
       <marko-web-gtm-push data=context />
