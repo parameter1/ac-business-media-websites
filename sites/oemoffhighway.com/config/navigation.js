@@ -76,6 +76,7 @@ module.exports = {
         { href: '/videos', label: 'Videos' },
         { href: '/media-center', label: 'Media Center' },
         { href: '/podcasts', label: 'Podcasts' },
+        { href: '/premium-content', label: 'Premium Content' },
         { href: '/specguide', label: 'Spec Guides' },
         { href: '/media-center/whitepapers-ebooks', label: 'White Papers & eBooks' },
         { href: '/webinars', label: 'Webinars' },

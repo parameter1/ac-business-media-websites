@@ -20,15 +20,15 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=45&auto=format,compress&q=70',
+      src: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=45&auto=format,compress',
       srcset: [
-        'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=90&auto=format,compress&q=70 2x',
+        'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=90&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress&q=70',
+      src: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress',
       srcset: [
-        'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=120&auto=format,compress&q=70 2x',
+        'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=120&auto=format,compress 2x',
       ],
     },
   },
@@ -63,7 +63,7 @@ module.exports = {
   contactUs: {
     branding: {
       bgColor: '#164f77',
-      logo: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress&q=70',
+      logo: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress',
     },
     to: 'jsage@acbusinessmedia.com',
   },
@@ -72,7 +72,7 @@ module.exports = {
     directSend: true,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
     sendFrom: 'Safe & Secure Openings <noreply@parameter1.com>',
-    logo: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress&q=70',
+    logo: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress',
     bgColor: '#164f77',
   },
 };

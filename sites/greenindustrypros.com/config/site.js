@@ -20,15 +20,15 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=45&auto=format,compress&q=70',
+      src: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=45&auto=format,compress',
       srcset: [
-        'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=90&auto=format,compress&q=70 2x',
+        'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=90&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress&q=70',
+      src: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress',
       srcset: [
-        'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=120&auto=format,compress&q=70 2x',
+        'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=120&auto=format,compress 2x',
       ],
     },
   },
@@ -66,7 +66,7 @@ module.exports = {
   contactUs: {
     branding: {
       bgColor: '#164f77',
-      logo: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress&q=70',
+      logo: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress',
     },
     to: 'jsage@acbusinessmedia.com',
   },
@@ -75,7 +75,7 @@ module.exports = {
     directSend: true,
     sendTo: 'requestmoreinfogip@acbusinessmedia.com',
     sendFrom: 'GreenIndustryPros.com <noreply@parameter1.com>',
-    logo: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress&q=70',
+    logo: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress',
     bgColor: '#164f77',
   },
 };

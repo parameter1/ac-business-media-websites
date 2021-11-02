@@ -231,6 +231,7 @@ module.exports = {
         { href: '/webinars', label: 'Webinars' },
         { href: 'http://www.supplychainlearningcenter.com/', label: 'Learning Center', target: '_blank' },
         { href: '/podcasts', label: 'Podcasts' },
+        { href: '/premium-content', label: 'Premium Content' },
         { href: '/videos', label: 'Videos' },
         { href: '/blogs', label: 'Expert Columnists' },
         { href: '/multimedia', label: 'Multimedia' },
