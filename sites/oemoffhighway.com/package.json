@@ -17,15 +17,15 @@
   "dependencies": {
     "@ac-business-media/package-directory": "^1.30.5",
     "@ac-business-media/refresh-theme": "^1.30.11",
-    "@parameter1/base-cms-marko-core": "^2.37.2",
-    "@parameter1/base-cms-marko-web": "^2.38.0",
-    "@parameter1/base-cms-marko-web-gam": "^2.22.2",
-    "@parameter1/base-cms-marko-web-gtm": "^2.22.2",
-    "@parameter1/base-cms-marko-web-p1-events": "^2.39.2",
-    "@parameter1/base-cms-marko-web-theme-default": "^2.30.0",
-    "@parameter1/base-cms-object-path": "^2.22.2",
+    "@parameter1/base-cms-marko-core": "^2.46.0",
+    "@parameter1/base-cms-marko-web": "^2.50.0",
+    "@parameter1/base-cms-marko-web-gam": "^2.48.1",
+    "@parameter1/base-cms-marko-web-gtm": "^2.48.1",
+    "@parameter1/base-cms-marko-web-p1-events": "^2.48.1",
+    "@parameter1/base-cms-marko-web-theme-default": "^2.46.3",
+    "@parameter1/base-cms-object-path": "^2.45.0",
     "@parameter1/base-cms-utils": "^2.22.2",
-    "@parameter1/base-cms-web-cli": "^2.38.0",
+    "@parameter1/base-cms-web-cli": "^2.50.0",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
   }
