@@ -15,6 +15,7 @@ module.exports = {
   identityX,
   events,
   company: 'AC Business Media, LLC',
+  showCompanySectionFilters: true,
   p1events: {
     tenant: 'acbm',
     enabled: true,
