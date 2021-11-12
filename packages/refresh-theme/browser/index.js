@@ -11,8 +11,8 @@ import PhotoSwipe from '@parameter1/base-cms-marko-web-photoswipe/browser';
 import RevealAd from '@parameter1/base-cms-marko-web-reveal-ad/browser';
 import Radix from '@parameter1/base-cms-marko-web-radix/browser';
 import P1Events from '@parameter1/base-cms-marko-web-p1-events/browser';
+import OmedaIdentityX from '@parameter1/base-cms-marko-web-omeda-identity-x/browser';
 
-const OmedaRapidIdentityX = () => import(/* webpackChunkName: "refresh-theme-rapid-identify" */ '@parameter1/base-cms-marko-web-omeda-identity-x/browser/rapid-identify.vue');
 
 export default (Browser) => {
   DefaultTheme(Browser);
@@ -28,14 +28,5 @@ export default (Browser) => {
   Radix(Browser);
   IdentityX(Browser);
   P1Events(Browser);
-
-  Browser.register('OmedaRapidIdentityX', OmedaRapidIdentityX, {
-    on: {
-      'encrypted-id-found': (encryptedId) => {
-        if (encryptedId && window.p1events) {
-          window.p1events('setIdentity', `omeda.hcl.customer*${encryptedId}~encrypted`);
-        }
-      },
-    },
-  });
+  OmedaIdentityX(Browser);
 };
