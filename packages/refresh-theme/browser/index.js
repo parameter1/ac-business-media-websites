@@ -2,7 +2,6 @@ import DefaultTheme from '@parameter1/base-cms-marko-web-theme-default/browser';
 import GTM from '@parameter1/base-cms-marko-web-gtm/browser';
 import GAM from '@parameter1/base-cms-marko-web-gam/browser';
 import GCSE from '@parameter1/base-cms-marko-web-gcse/browser';
-import IdentityX from '@parameter1/base-cms-marko-web-identity-x/browser';
 import Inquiry from '@parameter1/base-cms-marko-web-inquiry/browser';
 import Leaders from '@parameter1/base-cms-marko-web-leaders/browser';
 import Common from '@ac-business-media/package-common/browser';
@@ -41,7 +40,6 @@ export default (Browser) => {
   PhotoSwipe(Browser);
   RevealAd(Browser);
   Radix(Browser);
-  IdentityX(Browser);
   P1Events(Browser);
   OmedaIdentityX(Browser);
 };
