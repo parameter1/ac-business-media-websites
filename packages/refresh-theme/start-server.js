@@ -1,12 +1,11 @@
 const newrelic = require('newrelic');
 const { startServer } = require('@parameter1/base-cms-marko-web');
 const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
-const cleanResponse = require('@parameter1/base-cms-marko-core/middleware/clean-marko-response');
 const contactUsHandler = require('@ac-business-media/package-common/contact-us');
 const companySearchHandler = require('@ac-business-media/package-common/company-search');
 const specGuideHandler = require('@ac-business-media/package-common/spec-guide');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
-const omedaGraphQL = require('@parameter1/omeda-graphql-client-express');
+const omedaIdentityX = require('@parameter1/base-cms-marko-web-omeda-identity-x');
 
 const sharedRedirectHandler = require('./redirect-handler');
 
@@ -17,6 +16,7 @@ const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
 const omedaConfig = require('./config/omeda');
+const idxRouteTemplates = require('./templates/user');
 
 const routes = siteRoutes => (app) => {
   // Handle submissions on /__inquiry
@@ -56,25 +56,22 @@ module.exports = (options = {}) => {
         set(app.locals, 'specGuides', specGuideConfig);
       }
 
-      // Use Omeda middleware
-      app.use(omedaGraphQL({
-        uri: 'https://graphql.omeda.parameter1.com/',
+      // Setup IdentityX + Omeda
+      const idxConfig = getAsObject(options, 'siteConfig.identityX');
+      omedaIdentityX(app, {
         brandKey: omedaConfig.brandKey,
         appId: omedaConfig.appId,
         inputId: omedaConfig.inputId,
-      }));
-
-      // Setup IdentityX.
-      const identityXConfig = get(options, 'siteConfig.identityX');
-      set(app.locals, 'identityX', identityXConfig);
+        rapidIdentProductId: get(omedaConfig, 'rapidIdentification.productId'),
+        idxConfig,
+        idxRouteTemplates,
+      });
 
       // Force set all date formats.
       app.use((req, res, next) => {
         set(app.locals, 'markoCoreDate.format', 'MMMM D, YYYY');
         next();
       });
-      // Clean all response bodies.
-      app.use(cleanResponse());
     },
     redirectHandler: async (redirectOps) => {
       if (typeof redirectHandler === 'function') {
