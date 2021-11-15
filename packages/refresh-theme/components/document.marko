@@ -66,6 +66,8 @@ $ const isRadixEnabled = Boolean(radix.enabled && radix.appId);
     <marko-web-gam-targeting key-values=gamKeyValues />
   </@head>
   <@above-container>
+    <marko-web-browser-component name="OmedaIdentityXRapidIdentify" />
+
     <!-- Leaders -->
     <marko-web-leaders-p1events-tracker />
     <marko-web-leaders-gtm-tracker />
@@ -92,6 +94,5 @@ $ const isRadixEnabled = Boolean(radix.enabled && radix.appId);
   </@below-container>
   <@below-wrapper>
     <marko-web-deferred-script-loader-load />
-    <marko-web-browser-component name="OmedaRapidIdentityX" />
   </@below-wrapper>
 </marko-web-document>
