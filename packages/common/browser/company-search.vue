@@ -1,7 +1,9 @@
 <template>
   <div ref="companySearch" class="company-search">
     <autocomplete
-      :search="searchDebounced"
+      ref="autocomplete"
+      :search="searchCompanies"
+      :class="errorClass"
       placeholder="Search Companies..."
       aria-label="Search Companies..."
       :get-result-value="getResultValue"
@@ -16,29 +18,15 @@ import Autocomplete from '@trevoreyre/autocomplete-vue';
 
 const path = '/__company-search?searchQuery=';
 
-const searchCompanies = (input) => {
-  const url = `${path}${encodeURI(input)}`;
-  return new Promise((resolve) => {
-    if (input.length < 3) {
-      resolve([]);
-    } else {
-      fetch(url)
-        .then(response => response.json())
-        .then((data) => {
-          resolve(data.nodes);
-        });
-    }
-  });
-};
-
 export default {
   inject: ['EventBus'],
   components: { Autocomplete },
 
+  data: () => ({
+    errorClass: '',
+  }),
+
   methods: {
-    searchDebounced(input) {
-      return searchCompanies(input);
-    },
     // We want to display the title
     getResultValue(result) {
       return result.shortName;
@@ -46,10 +34,35 @@ export default {
     // Open the selected article in
     // a new window
     handleSubmit(result) {
+      // Handle when the result is an error or missing context link
+      if (!result.siteContext || !result.siteContext.path) {
+        this.$refs.autocomplete.value = '';
+        return;
+      }
+
       this.emitAction();
       window.location.href = result.siteContext.path;
     },
-
+    async searchCompanies(input) {
+      this.errorClass = '';
+      const url = `${path}${encodeURI(input)}`;
+      if (input.length < 3) {
+        return [];
+      }
+      const res = await fetch(url);
+      const json = await res.json();
+      if (!res.ok) {
+        const errorMessage = json.message || res.statusText;
+        const errorNode = {
+          id: 'error',
+          shortName: `ERROR: ${errorMessage}`,
+        };
+        // Instead of `throw new Error(errorNode);` return message as result
+        this.errorClass = 'errors';
+        return [errorNode];
+      }
+      return json.nodes;
+    },
     emitAction() {
       const payload = {
         category: 'Content Header Search',
