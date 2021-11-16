@@ -31,8 +31,7 @@ export default {
     getResultValue(result) {
       return result.shortName;
     },
-    // Open the selected article in
-    // a new window
+    // Open the selected company in a new window
     handleSubmit(result) {
       // Handle when the result is an error or missing context link
       if (!result.siteContext || !result.siteContext.path) {
@@ -43,25 +42,28 @@ export default {
       this.emitAction();
       window.location.href = result.siteContext.path;
     },
-    async searchCompanies(input) {
+    searchCompanies(input) {
       this.errorClass = '';
-      const url = `${path}${encodeURI(input)}`;
       if (input.length < 3) {
         return [];
       }
-      const res = await fetch(url);
-      const json = await res.json();
-      if (!res.ok) {
-        const errorMessage = json.message || res.statusText;
-        const errorNode = {
+      return this.getCompanyResults(input);
+    },
+    async getCompanyResults(input) {
+      try {
+        const url = `${path}${encodeURI(input)}`;
+        const res = await fetch(url);
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || res.statusText);
+        return json.nodes;
+      } catch (error) {
+        const errorNodes = [{
           id: 'error',
-          shortName: `ERROR: ${errorMessage}`,
-        };
-        // Instead of `throw new Error(errorNode);` return message as result
+          shortName: error.message,
+        }];
         this.errorClass = 'errors';
-        return [errorNode];
+        return errorNodes;
       }
-      return json.nodes;
     },
     emitAction() {
       const payload = {
