@@ -3,7 +3,8 @@ import { get } from "@parameter1/base-cms-object-path";
 import buildContentStructuredData from "../../utils/build-content-structured-data";
 import contentStructuredDataQueryFragment from "../../graphql/fragments/content-structured-data"
 
-$ const { GAM, site } = out.global;
+$ const { GAM, site, config } = out.global;
+$ const { websiteContext } = config;
 $ const { id, type, pageNode } = data;
 $ const displayInquiry = (content) => {
   if (site.get("inquiry.enabled") === false) return false;
@@ -80,19 +81,32 @@ $ const displayInquiry = (content) => {
             <@list class="mb-block" />
             <@query-params include-content-types=["Article", "Blog", "News"] />
           </refresh-theme-company-content-list-block>
+          <if(["53c95f4a1784f8066eb2c86a","53c960451784f8066eb2c8a4"].includes(websiteContext.id))>
+            <refresh-theme-company-content-list-block company-id=id>
+              <@header>Videos & Resources</@header>
+              <@list class="mb-block" />
+              <@query-params include-content-types=["Video", "Whitepaper", "Webinar", "Document", "MediaGallery", "Podcast"] />
+            </refresh-theme-company-content-list-block>
 
-          <refresh-theme-company-content-list-block company-id=id>
-            <@header>Products & Press Releases</@header>
-            <@list class="mb-block" />
-            <@query-params include-content-types=["Product", "PressRelease"] />
-          </refresh-theme-company-content-list-block>
+            <refresh-theme-company-content-list-block company-id=id>
+              <@header>Products & Press Releases</@header>
+              <@list class="mb-block" />
+              <@query-params include-content-types=["Product", "PressRelease"] />
+            </refresh-theme-company-content-list-block>
+          </if>
+          <else>
+            <refresh-theme-company-content-list-block company-id=id>
+              <@header>Products & Press Releases</@header>
+              <@list class="mb-block" />
+              <@query-params include-content-types=["Product", "PressRelease"] />
+            </refresh-theme-company-content-list-block>
 
-          <refresh-theme-company-content-list-block company-id=id>
-            <@header>Videos & Resources</@header>
-            <@list class="mb-block" />
-            <@query-params include-content-types=["Video", "Whitepaper", "Webinar", "Document", "MediaGallery", "Podcast"] />
-          </refresh-theme-company-content-list-block>
-
+            <refresh-theme-company-content-list-block company-id=id>
+              <@header>Videos & Resources</@header>
+              <@list class="mb-block" />
+              <@query-params include-content-types=["Video", "Whitepaper", "Webinar", "Document", "MediaGallery", "Podcast"] />
+            </refresh-theme-company-content-list-block>
+          </else>
         </div>
 
         <div class="col-lg-4 mb-block page-rail">
