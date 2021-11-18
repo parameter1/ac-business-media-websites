@@ -70,7 +70,7 @@ module.exports = (app) => {
     template: equipmentMarketOutlook,
     queryFragment,
   }));
-  app.get('/:alias(premium-content)', withWebsiteSection({
+  app.get('/:alias(premium-content|volvo-penta-challenge-everything)', withWebsiteSection({
     template: feed,
     queryFragment,
   }));
