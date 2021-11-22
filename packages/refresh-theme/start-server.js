@@ -2,6 +2,7 @@ const newrelic = require('newrelic');
 const { startServer } = require('@parameter1/base-cms-marko-web');
 const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
 const contactUsHandler = require('@ac-business-media/package-common/contact-us');
+const companySearchHandler = require('@ac-business-media/package-common/company-search');
 const specGuideHandler = require('@ac-business-media/package-common/spec-guide');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const omedaIdentityX = require('@parameter1/base-cms-marko-web-omeda-identity-x');
@@ -22,6 +23,8 @@ const routes = siteRoutes => (app) => {
   loadInquiry(app);
   // Handle contact submissions on /__contact-us
   contactUsHandler(app);
+  // Handle spec-guide sheet request on /__company-search?searchQuery=CompanyName
+  companySearchHandler(app);
   // Handle spec-guide sheet request on /__spec-guide?src=${sheetSrc}
   specGuideHandler(app);
   // Load site routes.

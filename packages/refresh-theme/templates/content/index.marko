@@ -6,10 +6,8 @@ import getContentPreview from "../../utils/get-content-preview";
 import buildContentStructuredData from "../../utils/build-content-structured-data";
 import contentStructuredDataQueryFragment from "../../graphql/fragments/content-structured-data"
 
-$ const { site, GAM, algoliaConfig, req } = out.global;
-$ const showCompanySectionFilter = (algoliaConfig
-  && getAsArray(site, "config.sectionSearchIds").length !== 0
-);
+$ const { site, GAM, req } = out.global;
+$ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
 $ const { id, type, pageNode } = data;
 
 $ const adSlots = ({ aliases }) => ({
