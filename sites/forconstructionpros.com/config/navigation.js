@@ -30,7 +30,7 @@ const tertiaryItems = [
   },
   {
     href: 'https://acbusiness.dragonforms.com/loading.do?omedasite=FCP_prefs_ProgReg',
-    label: 'Newsletter',
+    label: 'FCP Newsletter',
     icon: 'mail',
     forceLabel: true,
     target: '_blank',
