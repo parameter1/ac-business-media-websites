@@ -66,7 +66,7 @@ module.exports = {
         { href: '/lawn-care', label: 'Lawn Care' },
         { href: '/mowing-maintenance', label: 'Mowing & Maintenance' },
         { href: '/tree-ornamental', label: 'Tree & Ornamental' },
-        { href: '/snowpro', label: 'https://img.greenindustrypros.com/files/base/acbm/static/logo/snow-pro-logo.png' },
+        { href: '/snowpro', label: `<img src=${snowProLogoSrc} />` },
       ],
     },
     {
