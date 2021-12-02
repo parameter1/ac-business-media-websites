@@ -1,11 +1,15 @@
+const snowProLogoSrc = 'https://img.greenindustrypros.com/files/base/acbm/gip/image/static/logo/snow-pro-logo.png?h=30&auto=format';
+
 module.exports = {
   primary: {
     items: [
-      { href: '/mowing-maintenance', label: 'Mowing & Maintenance' },
-      { href: '/lawn-care', label: 'Lawn Care' },
+      { href: '/business-management', label: 'Business Management' },
       { href: '/design-installation', label: 'Design & Installation' },
       { href: '/irrigation-water-management', label: 'Irrigation & Water' },
-      { href: '/snowpro', label: 'SnowPro' },
+      { href: '/lawn-care', label: 'Lawn Care' },
+      { href: '/mowing-maintenance', label: 'Mowing & Maintenance' },
+      { href: '/tree-ornamental', label: 'Tree & Ornamental' },
+      { href: '/snowpro', label: `<img src=${snowProLogoSrc} />` },
     ],
   },
   secondary: {
@@ -56,11 +60,13 @@ module.exports = {
     {
       label: 'Topics',
       items: [
-        { href: '/mowing-maintenance', label: 'Mowing & Maintenance' },
-        { href: '/lawn-care', label: 'Lawn Care' },
+        { href: '/business-management', label: 'Business Management' },
         { href: '/design-installation', label: 'Design & Installation' },
         { href: '/irrigation-water-management', label: 'Irrigation & Water' },
-        { href: '/snowpro', label: 'SnowPro' },
+        { href: '/lawn-care', label: 'Lawn Care' },
+        { href: '/mowing-maintenance', label: 'Mowing & Maintenance' },
+        { href: '/tree-ornamental', label: 'Tree & Ornamental' },
+        { href: '/snowpro', label: 'https://img.greenindustrypros.com/files/base/acbm/static/logo/snow-pro-logo.png' },
       ],
     },
     {
