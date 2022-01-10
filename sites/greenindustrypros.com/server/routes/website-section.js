@@ -7,6 +7,7 @@ const queryFragment = require('@ac-business-media/refresh-theme/graphql/fragment
 const leadersFragment = require('@ac-business-media/refresh-theme/graphql/fragments/leaders-section');
 const leaders = require('@ac-business-media/refresh-theme/templates/website-section/leaders');
 const feed = require('@ac-business-media/refresh-theme/templates/website-section/feed');
+const awards = require('@ac-business-media/refresh-theme/templates/website-section/awards');
 
 const directory = require('../templates/website-section/directory');
 
@@ -21,6 +22,14 @@ module.exports = (app) => {
   }));
   app.get('/:alias(contact-us)', withWebsiteSection({
     template: contactUs,
+    queryFragment,
+  }));
+  app.get('/:alias(awards/*)', withWebsiteSection({
+    template: feed,
+    queryFragment,
+  }));
+  app.get('/:alias(awards)', withWebsiteSection({
+    template: awards,
     queryFragment,
   }));
   app.get('/:alias(podcasts)', withWebsiteSection({
