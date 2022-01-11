@@ -1,0 +1,150 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+import { getAsObject, getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import latestQueryFragment from "@ac-business-media/refresh-theme/graphql/fragments/content-latest";
+
+$ const { GAM } = out.global;
+
+$ const {
+  id,
+  alias,
+  name,
+  pageNode,
+  pageSuffix
+} = input;
+
+$ const adSlots = ({ aliases }) => ({
+  "gpt-ad-lb1": GAM.getAdUnit({ name: "lb1", aliases }),
+  "gpt-ad-rail-infinite": GAM.getAdUnit({ name: "infinite-rail", aliases }),
+});
+
+$ const limit = 12;
+$ const skip = 0;
+$ const queryName = "website-scheduled-content";
+
+$ const initialParams = { sectionId: id, limit, skip, queryFragment: latestQueryFragment };
+$ const loadMoreParams = { ...initialParams, skip: skip + limit };
+
+<marko-web-website-section-page-layout id=id alias=alias name=name>
+  <@head>
+    <marko-web-gtm-website-section-context|{ context }| alias=alias>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-website-section-context>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-gam-slots slots=adSlots({ aliases }) />
+      <marko-web-p1-events-track-website-section node=section />
+    </marko-web-resolve-page>
+  </@head>
+  <@above-container>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <refresh-theme-parsely-website-section section=section />
+      $ const aliases = hierarchyAliases(section);
+      $ const disallowAds = getAsArray(section, "labels").includes("Premium Content");
+      <if(!disallowAds)>
+        <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
+      </if>
+    </marko-web-resolve-page>
+  </@above-container>
+  <@page>
+    <!-- Refresh sticky, right-rail infinite scroll ad -->
+    <marko-web-gam-refresh-ad on="load-more-in-view" slot-id="gpt-ad-rail-infinite" />
+
+    <marko-web-resolve-page|{ data: section, resolved }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      $ const disallowAds = getAsArray(section, "labels").includes("Premium Content");
+      $ const fullColumn = ["col-lg-12", "infinite-scroll-target"];
+      $ const twoThirdsColumn = ["col-lg-8", "infinite-scroll-target"];
+      $ const layoutClass = disallowAds ? fullColumn : twoThirdsColumn;
+      $ if (pageSuffix) section.name += pageSuffix;
+      <marko-web-page-wrapper>
+        <@section>
+          <if(!disallowAds)>
+            <marko-web-gam-display-ad
+              id="gpt-ad-lb1"
+              slots=adSlots({ aliases })
+              modifiers=["max-width-970", "center"]
+            />
+         </if>
+        </@section>
+        <@section>
+          <div class="row">
+          <if(resolved.get("logo.src"))>
+            <div class="col-lg-8">
+              <marko-web-website-section-name tag="h1" class="page-wrapper__title" obj=section />
+              <marko-web-website-section-description class="page-wrapper__deck" obj=section />
+            </div>
+            <div class="col-lg-4">
+              <marko-web-page-image
+                obj={ src: resolved.get("logo.src"), alt: `${name} Logo` }
+                fluid=true
+              />
+            </div>
+          </if>
+          <else>
+            <div class="col-lg-12">
+              <marko-web-website-section-name tag="h1" class="page-wrapper__title" obj=section />
+              <marko-web-website-section-description class="page-wrapper__deck" obj=section />
+            </div>
+          </else>
+          </div>
+        </@section>
+        <@section>
+          <div class="row">
+            <div class="col-lg-12">
+              <div itemscope itemtype="VideoObject - Schema.org Type">
+                <meta itemprop="uploadDate" content="Thu May 28 2020 00:00:00 GMT-0500 (Central Daylight Time)"/>
+                <meta itemprop="name" content="Is Construction on the Path to Recovery?"/>
+                <meta itemprop="description" content="Data shows some areas of construction are continuing to decline, but with many states opening back up will construction start to recover? Plus more industry news on this week&#39;s edition of Construction News Tracker."/>
+                <meta itemprop="duration" content="P0Y0M0DT0H6M39S" />
+                <meta itemprop="thumbnailUrl" content="https://content.jwplatform.com/thumbs/PFVMOBJp-1920.jpg"/>
+                <meta itemprop="contentUrl" content="https://content.jwplatform.com/videos/PFVMOBJp-mWTTf3nz.mp4"/>
+                <script src="https://cdn.jwplayer.com/players/PFVMOBJp-KjhFKLD2.js"></script>
+              </div>
+            </div>
+          </div>
+        </@section>
+        <@section>
+          <div class="row">
+              <div class=layoutClass>
+                <marko-web-query|{ nodes }|
+                  name=queryName
+                  params=initialParams
+                >
+                  <refresh-theme-latest-content-list-flow nodes=nodes with-header=false />
+                </marko-web-query>
+
+                <refresh-theme-latest-content-load-more-block max-pages=4>
+                  <@query
+                    name=queryName
+                    params=loadMoreParams
+                  />
+                  <@page for="website-section" id=id />
+                  <if(!disallowAds)>
+                    <@adunit
+                      ...GAM.getAdUnit({ name: "infinite-interstitial" })
+                      modifiers=["max-width-300", "margin-auto-x"]
+                    />
+                  </if>
+                </refresh-theme-latest-content-load-more-block>
+              </div>
+              <if(!disallowAds)>
+                <aside class="col-lg-4 page-rail">
+                  <marko-web-gam-display-ad
+                    id="gpt-ad-rail-infinite"
+                    modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
+                    slots=adSlots({ aliases })
+                  />
+                </aside>
+              </if>
+          </div>
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+  <@foot>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <refresh-theme-fixed-ad-bottom aliases=hierarchyAliases(section) />
+    </marko-web-resolve-page>
+  </@foot>
+</marko-web-website-section-page-layout>

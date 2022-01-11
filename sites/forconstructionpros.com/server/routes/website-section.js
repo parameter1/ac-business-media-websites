@@ -10,6 +10,7 @@ const queryFragment = require('@ac-business-media/refresh-theme/graphql/fragment
 const leadersFragment = require('@ac-business-media/refresh-theme/graphql/fragments/leaders-section');
 const leaders = require('@ac-business-media/refresh-theme/templates/website-section/leaders');
 
+const onSiteSeries = require('../templates/website-section/on-site-series');
 const economics = require('../templates/website-section/economics');
 const directory = require('../templates/website-section/directory');
 
@@ -56,6 +57,10 @@ module.exports = (app) => {
   }));
   app.get('/:alias(premium-content)', withWebsiteSection({
     template: feed,
+    queryFragment,
+  }));
+  app.get('/:alias(profit-matters/on-site-series)', withWebsiteSection({
+    template: onSiteSeries,
     queryFragment,
   }));
   app.get('/:alias([a-z0-9-/]+)', withWebsiteSection({
