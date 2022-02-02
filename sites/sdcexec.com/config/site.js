@@ -61,6 +61,7 @@ module.exports = {
     userName: 'acbm',
   },
   magazines: {
+    publicationIds: ['53c9604b1784f8066eb2c8b9'],
     description: '',
   },
   contactUs: {
@@ -87,5 +88,4 @@ module.exports = {
       imgSrc: 'https://img.sdcexec.com/files/base/acbm/sdce/image/static/sdc-leaders.png?h=85&auto=format,compress',
     },
   },
-  publicationIds: ['53c9604b1784f8066eb2c8b9'],
 };
