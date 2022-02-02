@@ -2,7 +2,7 @@ import publicationListFragment from "../../graphql/fragments/magazine-publicatio
 import { get } from "@parameter1/base-cms-object-path";
 
 $ const { site } = out.global
-$ const publicationIds = get(site, 'config.publicationIds');
+$ const publicationIds = get(site, 'config.magazine.publicationIds');
 
 <marko-web-query|{ nodes }| name="magazine-publications" params={ queryFragment: publicationListFragment, publicationIds }>
   <for|publication| of=nodes>
