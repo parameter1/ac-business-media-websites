@@ -61,6 +61,7 @@ module.exports = {
     userName: 'acbm',
   },
   magazines: {
+    publicationIds: ['53c95f861784f8066eb2c882'],
     description: '',
   },
   contactUs: {

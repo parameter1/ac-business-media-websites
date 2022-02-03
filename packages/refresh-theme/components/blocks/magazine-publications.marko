@@ -1,6 +1,10 @@
 import publicationListFragment from "../../graphql/fragments/magazine-publication-list";
+import { get } from "@parameter1/base-cms-object-path";
 
-<marko-web-query|{ nodes }| name="magazine-publications" params={ queryFragmet: publicationListFragment }>
+$ const { site } = out.global
+$ const publicationIds = get(site, 'config.magazines.publicationIds');
+
+<marko-web-query|{ nodes }| name="magazine-publications" params={ queryFragment: publicationListFragment, publicationIds }>
   <for|publication| of=nodes>
     <marko-web-query|{ node: latestIssue }| name="magazine-latest-issue" params={ publicationId: publication.id }>
       <default-theme-magazine-publication-card-block publication-id=publication.id issue-id=latestIssue.id>
