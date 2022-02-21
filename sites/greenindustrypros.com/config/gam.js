@@ -14,6 +14,18 @@ module.exports = {
       },
     },
     {
+      alias: 'business-management',
+      map: {
+        lb1: 'business-management/lb1',
+        rail1: 'business-management/rail1',
+        rail2: 'business-management/rail1',
+        'infinite-rail': 'business-management/rail1',
+        'infinite-interstitial': 'business-management/rail1',
+        'in-content': 'business-management/rail1',
+        reskin: 'business-management/reskin',
+      },
+    },
+    {
       alias: 'mowing-maintenance',
       map: {
         lb1: 'mowing-maintenance/lb1',
@@ -59,6 +71,18 @@ module.exports = {
         'infinite-interstitial': 'irrigation-water-management/rail1',
         'in-content': 'irrigation-water-management/rail1',
         reskin: 'irrigation-water-management/reskin',
+      },
+    },
+    {
+      alias: 'tree-ornamental',
+      map: {
+        lb1: 'tree-ornamental/lb1',
+        rail1: 'tree-ornamental/rail1',
+        rail2: 'tree-ornamental/rail1',
+        'infinite-rail': 'tree-ornamental/rail1',
+        'infinite-interstitial': 'tree-ornamental/rail1',
+        'in-content': 'tree-ornamental/rail1',
+        reskin: 'tree-ornamental/reskin',
       },
     },
     {
