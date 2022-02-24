@@ -63,6 +63,16 @@ module.exports = (app) => {
     template: onSiteSeries,
     queryFragment,
   }));
+  app.get('/:alias(expert-columns)', withWebsiteSection({
+    template: feed,
+    queryFragment,
+    context: ({ section: s }) => ({
+      query: {
+        name: 'website-optioned-content',
+        params: { sectionId: s.id, optionName: 'Pinned', limit: 12 },
+      },
+    }),
+  }));
   app.get('/:alias([a-z0-9-/]+)', withWebsiteSection({
     template: section,
     queryFragment,

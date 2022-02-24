@@ -8,6 +8,7 @@ const leadersFragment = require('@ac-business-media/refresh-theme/graphql/fragme
 const leaders = require('@ac-business-media/refresh-theme/templates/website-section/leaders');
 const feed = require('@ac-business-media/refresh-theme/templates/website-section/feed');
 const awards = require('@ac-business-media/refresh-theme/templates/website-section/awards');
+const webinars = require('@ac-business-media/refresh-theme/templates/website-section/webinars');
 
 const directory = require('../templates/website-section/directory');
 
@@ -52,6 +53,10 @@ module.exports = (app) => {
   }));
   app.get('/:alias(premium-content)', withWebsiteSection({
     template: feed,
+    queryFragment,
+  }));
+  app.get('/:alias(webinars)', withWebsiteSection({
+    template: webinars,
     queryFragment,
   }));
   app.get('/:alias([a-z0-9-/]+)', withWebsiteSection({
