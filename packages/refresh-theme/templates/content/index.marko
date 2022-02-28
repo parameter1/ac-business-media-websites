@@ -112,7 +112,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 <@section name=section.name hierarchy=section.hierarchy />
               </refresh-theme-content-section-logo>
 
-              <if(displaySocialShare)>
+              <!-- <if(displaySocialShare)>
                 <marko-web-social-sharing
                   path=content.siteContext.path
                   providers=["email", "facebook", "linkedin", "twitter"]
@@ -120,7 +120,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                   description=content.teaser
                   media=get(content, "primaryImage.src")
                 />
-              </if>
+              </if> -->
             </div>
           </div>
         </@section>
