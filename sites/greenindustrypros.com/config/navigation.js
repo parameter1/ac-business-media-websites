@@ -81,7 +81,7 @@ module.exports = {
         { href: 'https://cms.megaphone.fm/channel/grassroots?selected=ACBMI1756535736', target: '_blank', label: 'Podcast' },
         { href: '/expert-columns', label: 'Expert Columns' },
         { href: '/awards', label: 'Awards' },
-        // { href: '/specguide', label: 'Spec Guide' },
+        { href: '/webinars', label: 'Webinars' },
       ],
     },
     {
