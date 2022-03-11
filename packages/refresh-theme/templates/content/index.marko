@@ -6,7 +6,16 @@ import getContentPreview from "../../utils/get-content-preview";
 import buildContentStructuredData from "../../utils/build-content-structured-data";
 import contentStructuredDataQueryFragment from "../../graphql/fragments/content-structured-data"
 
-$ const { site, GAM, req } = out.global;
+$ const { site, GAM, req, contentMeterState } = out.global;
+// @todo move to util to be used in other contnet layouts
+$ const getRestrictByContentMeter = () => {
+  if (!contentMeterState) return false;
+  if (!contentMeterState.isLoggedIn && !contentMeterState.displayGate) return false;
+  if (contentMeterState.isLoggedIn && !contentMeterState.requiresUserInput) return false;
+  return true;
+}
+$ const restrictByContentMeter = getRestrictByContentMeter();
+
 $ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
 $ const { id, type, pageNode } = data;
 
@@ -172,7 +181,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 </marko-web-link>
               </if>
               <default-theme-content-contact-details obj=content />
-              $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired");
+              $ const requiresRegistration = (restrictByContentMeter) ? true : get(content, "userRegistration.isCurrentlyRequired");
               $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
               <marko-web-identity-x-access|context|
                 enabled=requiresRegistration
