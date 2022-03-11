@@ -189,6 +189,7 @@ $pswp__root-z-index: $theme-site-header-z-index + 1 !default;
 @import "../../node_modules/@ac-business-media/package-common/scss/section-search";
 @import "./leaders";
 @import "./company-page";
+@import "./content-meter";
 
 $theme-related-content-bg-color: #f8f9fa;
 $theme-related-content-border-color: #dee2e6;
