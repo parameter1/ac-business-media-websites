@@ -70,6 +70,16 @@ module.exports = (app) => {
     template: equipmentMarketOutlook,
     queryFragment,
   }));
+  app.get('/:alias(expert-columns)', withWebsiteSection({
+    template: feed,
+    queryFragment,
+    context: ({ section: s }) => ({
+      query: {
+        name: 'website-optioned-content',
+        params: { sectionId: s.id, optionName: 'Pinned', limit: 12 },
+      },
+    }),
+  }));
   app.get('/:alias(premium-content|volvo-penta-challenge-everything)', withWebsiteSection({
     template: feed,
     queryFragment,
