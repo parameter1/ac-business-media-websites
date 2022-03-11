@@ -9,6 +9,7 @@ const webinars = require('@ac-business-media/refresh-theme/templates/website-sec
 const queryFragment = require('@ac-business-media/refresh-theme/graphql/fragments/website-section-page');
 const leadersFragment = require('@ac-business-media/refresh-theme/graphql/fragments/leaders-section');
 const leaders = require('@ac-business-media/refresh-theme/templates/website-section/leaders');
+const awards = require('@ac-business-media/refresh-theme/templates/website-section/awards');
 
 const onSiteSeries = require('../templates/website-section/on-site-series');
 const economics = require('../templates/website-section/economics');
@@ -72,6 +73,14 @@ module.exports = (app) => {
         params: { sectionId: s.id, optionName: 'Pinned', limit: 12 },
       },
     }),
+  }));
+  app.get('/:alias(awards/*)', withWebsiteSection({
+    template: feed,
+    queryFragment,
+  }));
+  app.get('/:alias(awards)', withWebsiteSection({
+    template: awards,
+    queryFragment,
   }));
   app.get('/:alias([a-z0-9-/]+)', withWebsiteSection({
     template: section,
