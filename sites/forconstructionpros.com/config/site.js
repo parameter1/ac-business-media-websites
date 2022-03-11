@@ -1,4 +1,5 @@
 const navigation = require('./navigation');
+const contentMeter = require('./content-meter');
 const gam = require('./gam');
 const nativeX = require('./native-x');
 const specGuides = require('./spec-guides');
@@ -7,6 +8,7 @@ const identityX = require('./identity-x');
 const events = require('./events');
 
 module.exports = {
+  contentMeter,
   gam,
   nativeX,
   dragonForms,
