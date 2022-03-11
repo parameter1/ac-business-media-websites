@@ -17,5 +17,5 @@ module.exports = {
   // ],
   // 30 days to milliseconds
   timeframe: 30 * 24 * 60 * 60 * 1000,
-  displayOverlay: true,
+  displayOverlay: false,
 };
