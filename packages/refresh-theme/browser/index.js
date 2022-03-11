@@ -12,6 +12,9 @@ import Radix from '@parameter1/base-cms-marko-web-radix/browser';
 import P1Events from '@parameter1/base-cms-marko-web-p1-events/browser';
 import OmedaIdentityX from '@parameter1/base-cms-marko-web-omeda-identity-x/browser';
 
+const RefreshThemeMenuToggleButton = () => import(/* webpackChunkName: "refresh-theme-menu-toggle-button" */ './menu-toggle-button.vue');
+
+
 const setP1EventsIdentity = ({ p1events, brandKey, encryptedId }) => {
   if (!p1events || !brandKey || !encryptedId) return;
   p1events('setIdentity', `omeda.${brandKey}.customer*${encryptedId}~encrypted`);
@@ -42,4 +45,6 @@ export default (Browser) => {
   Radix(Browser);
   P1Events(Browser);
   OmedaIdentityX(Browser);
+
+  Browser.register('RefreshThemeMenuToggleButton', RefreshThemeMenuToggleButton);
 };

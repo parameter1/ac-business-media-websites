@@ -41,6 +41,9 @@
   "<refresh-theme-contextual-header>": {
     "template": "./site-header/contextual.marko"
   },
+  "<refresh-theme-content-meter-block>": {
+    "template": "./blocks/content-meter.marko"
+  },
   "<refresh-theme-content-section-logo>": {
     "template": "./content-section-logo.marko",
     "<section>": {
@@ -48,5 +51,8 @@
       "@hierarchy": "array"
     },
     "<image>": {}
+  },
+  "<refresh-theme-menu-toggle-button>": {
+    "template": "./menu-toggle-button.marko"
   }
 }
