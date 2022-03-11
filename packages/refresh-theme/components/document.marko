@@ -2,7 +2,12 @@ import prefetch from "../prefetch";
 import parseIdentityId from "../utils/parse-sapience-identity";
 import omedaConfig from "../config/omeda";
 
-$ const { site, req, nativeX } = out.global;
+$ const {
+  site,
+  req,
+  nativeX,
+  contentMeterState,
+} = out.global;
 
 $ const radix = site.getAsObject("radix");
 $ const isRadixEnabled = Boolean(radix.enabled && radix.appId);
@@ -87,6 +92,9 @@ $ const isRadixEnabled = Boolean(radix.enabled && radix.appId);
   </@above-container>
   <@below-container>
     <${input.belowContainer} />
+    <if(contentMeterState && !contentMeterState.isLoggedIn)>
+      <refresh-theme-content-meter-block content-meter-state=contentMeterState />
+    </if>
     <default-theme-site-footer />
     <if(isRadixEnabled)>
       <marko-web-radix-identity-detector app-id=radix.appId url=radix.url />
