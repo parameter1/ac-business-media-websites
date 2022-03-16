@@ -967,3 +967,11 @@ $theme-related-content-border-color: #dee2e6;
     }
   }
 }
+
+.content-page-preview-overlay {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  margin-top: -100px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 100%);
+}
