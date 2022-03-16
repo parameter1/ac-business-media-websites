@@ -18,6 +18,7 @@ module.exports = {
     enabled: true,
     cookieDomain: process.env.NODE_ENV === 'production' ? 'sdcexec.com' : '',
   },
+  forceContentGate: process.env.FORCE_CONTENT_GATE === 'true' || false,
   logos: {
     navbar: {
       src: 'https://img.sdcexec.com/files/base/acbm/sdce/image/static/logo/site_logo_og.png?h=45&auto=format,compress',
