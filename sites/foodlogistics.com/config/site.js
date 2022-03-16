@@ -18,6 +18,7 @@ module.exports = {
     enabled: true,
     cookieDomain: process.env.NODE_ENV === 'production' ? 'foodlogistics.com' : '',
   },
+  forceContentGate: process.env.FORCE_CONTENT_GATE === 'true' || false,
   logos: {
     navbar: {
       src: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=45&auto=format,compress',
