@@ -11,7 +11,7 @@ module.exports = (app) => {
     template: company,
     queryFragment: companyQueryFragment,
   }));
-  app.get('/*?:id(\\d{8})*', withContent({
+  app.get('/*?:id(\\d{8})*', userState(), withContent({
     template: content,
     queryFragment,
   }));
