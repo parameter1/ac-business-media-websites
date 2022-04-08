@@ -1,4 +1,5 @@
 const { withContent } = require('@parameter1/base-cms-marko-web/middleware');
+const userState = require('@ac-business-media/refresh-theme/middleware/user-state');
 const content = require('@ac-business-media/refresh-theme/templates/content');
 // const contact = require('@ac-business-media/refresh-theme/templates/content/contact');
 const company = require('@ac-business-media/refresh-theme/templates/content/company');
@@ -11,7 +12,7 @@ module.exports = (app) => {
     template: company,
     queryFragment: companyQueryFragment,
   }));
-  app.get('/*?:id(\\d{8})*', withContent({
+  app.get('/*?:id(\\d{8})*', userState(), withContent({
     template: content,
     queryFragment,
   }));
