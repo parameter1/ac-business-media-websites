@@ -80,6 +80,7 @@ module.exports = {
         { href: '/media-center/whitepapers-ebooks', label: 'White Papers & eBooks' },
         { href: '/webinars', label: 'Webinars' },
         { href: '/expert-columns', label: 'Expert Columns' },
+        { href: '/awards', label: 'Awards' },
       ],
     },
     {
