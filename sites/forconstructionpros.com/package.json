@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@ac-business-media/package-directory": "^1.34.0",
+    "@ac-business-media/package-leaders": "^1.34.0",
     "@ac-business-media/refresh-theme": "^1.34.0",
     "@parameter1/base-cms-marko-core": "^2.80.0",
     "@parameter1/base-cms-marko-web": "^2.81.0",
