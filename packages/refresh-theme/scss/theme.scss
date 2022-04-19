@@ -979,3 +979,21 @@ $theme-related-content-border-color: #dee2e6;
   margin-top: -150px;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 100%);
 }
+
+.page-wrapper {
+  &--contact-us {
+    .node {
+      @include media-breakpoint-up(md) {
+        @include make-col(6);
+      }
+      &__title {
+        margin-top: map-get($spacers, block);
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .page-contact-details__section {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -3,13 +3,14 @@ import { getAsObject } from "@parameter1/base-cms-object-path";
 $ const content = getAsObject(input, "node");
 $ const primaryImage = getAsObject(content, "primaryImage");
 
-<marko-web-node image-position="left" flush-x=true>
+<marko-web-node image-position="center" flush-x=true>
   <@image
     src=primaryImage.src
     alt=primaryImage.alt
     fluid=false
-    ar=null
-    width=150
+    ar='3:2'
+    width=320
+    isLogo=primaryImage.isLogo
     link={ href: content.canonicalPath }
     use-placeholder=false
   />
