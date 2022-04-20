@@ -12,6 +12,7 @@ const whitepapers = require('@ac-business-media/refresh-theme/templates/website-
 const queryFragment = require('@ac-business-media/refresh-theme/graphql/fragments/website-section-page');
 const leadersFragment = require('@ac-business-media/refresh-theme/graphql/fragments/leaders-section');
 const leaders = require('@ac-business-media/refresh-theme/templates/website-section/leaders');
+const awards = require('@ac-business-media/refresh-theme/templates/website-section/awards');
 
 const equipmentMarketOutlook = require('../templates/website-section/market-analysis/equipment-market-outlook');
 const directory = require('../templates/website-section/directory');
@@ -82,6 +83,14 @@ module.exports = (app) => {
   }));
   app.get('/:alias(premium-content|volvo-penta-challenge-everything)', withWebsiteSection({
     template: feed,
+    queryFragment,
+  }));
+  app.get('/:alias(awards/*)', withWebsiteSection({
+    template: feed,
+    queryFragment,
+  }));
+  app.get('/:alias(awards)', withWebsiteSection({
+    template: awards,
     queryFragment,
   }));
   app.get('/:alias([a-z0-9-/]+)', withWebsiteSection({

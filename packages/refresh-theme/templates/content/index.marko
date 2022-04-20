@@ -6,7 +6,7 @@ import getContentPreview from "../../utils/get-content-preview";
 import buildContentStructuredData from "../../utils/build-content-structured-data";
 import contentStructuredDataQueryFragment from "../../graphql/fragments/content-structured-data"
 
-$ const { site, GAM, req } = out.global;
+$ const { site, GAM, req, userState } = out.global;
 $ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
 $ const { id, type, pageNode } = data;
 
@@ -41,7 +41,8 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
 >
   <@head>
     <marko-web-gtm-content-context|{ context }| id=id>
-      <marko-web-gtm-push data=context />
+      $ const ctx = { ...context, userState };
+      <marko-web-gtm-push data=ctx />
     </marko-web-gtm-content-context>
     <marko-web-gam-targeting key-values={ cont_id: id, cont_type: type } />
     <marko-web-resolve-page|{ data: content }| node=pageNode>
@@ -259,6 +260,9 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 id="omeda-content-newsletter-block"
                 class="omeda-personalization"
               />
+
+              <div id="credspark-container" />
+
             </default-theme-page-contents>
             <aside class="col-lg-4 page-rail">
               <marko-web-gam-display-ad

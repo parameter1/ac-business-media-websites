@@ -60,6 +60,7 @@ module.exports = (options = {}) => {
       const idxConfig = getAsObject(options, 'siteConfig.identityX');
       omedaIdentityX(app, {
         brandKey: omedaConfig.brandKey,
+        clientKey: omedaConfig.clientKey,
         appId: omedaConfig.appId,
         inputId: omedaConfig.inputId,
         rapidIdentProductId: get(omedaConfig, 'rapidIdentification.productId'),
