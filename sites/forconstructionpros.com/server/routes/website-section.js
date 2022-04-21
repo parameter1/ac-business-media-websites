@@ -12,7 +12,6 @@ const leaders = require('@ac-business-media/refresh-theme/templates/website-sect
 const awards = require('@ac-business-media/refresh-theme/templates/website-section/awards');
 
 const onSiteSeries = require('../templates/website-section/on-site-series');
-const economics = require('../templates/website-section/economics');
 const directory = require('../templates/website-section/directory');
 
 module.exports = (app) => {
@@ -42,10 +41,6 @@ module.exports = (app) => {
   }));
   app.get('/:alias(webinars)', withWebsiteSection({
     template: webinars,
-    queryFragment,
-  }));
-  app.get('/:alias(economics)', withWebsiteSection({
-    template: economics,
     queryFragment,
   }));
   app.get('/:alias(directory)', withWebsiteSection({
