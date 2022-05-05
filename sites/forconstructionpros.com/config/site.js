@@ -1,19 +1,22 @@
-const navigation = require('./navigation');
-const gam = require('./gam');
-const nativeX = require('./native-x');
-const specGuides = require('./spec-guides');
 const dragonForms = require('./dragon-forms');
-const identityX = require('./identity-x');
 const events = require('./events');
+const gam = require('./gam');
+const identityX = require('./identity-x');
+const nativeX = require('./native-x');
+const navigation = require('./navigation');
+const omeda = require('./omeda');
 
 module.exports = {
-  gam,
-  nativeX,
+  // module configs
   dragonForms,
-  navigation,
-  specGuides,
-  identityX,
   events,
+  gam,
+  identityX,
+  nativeX,
+  navigation,
+  omeda,
+
+  // theme configs
   company: 'AC Business Media, LLC',
   showCompanySectionFilters: true,
   p1events: {
