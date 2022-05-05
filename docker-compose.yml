@@ -42,6 +42,7 @@ x-env-development: &env-development
   SITEMAPS_URI: ${SITEMAPS_URI-http://host.docker.internal:10009}
 
 x-site-command: &site-cmd
+  <<: *node
   entrypoint: ["node_modules/.bin/basecms-website"]
   command: ["dev", "index.js"]
 
@@ -64,97 +65,102 @@ services:
       <<: *env
 
   gip:
-    <<: *node
     <<: *site-cmd
     working_dir: /root/sites/greenindustrypros.com
     environment:
-      <<: *env
-      <<: *env-tauron
+      <<: [*env, *env-tauron]
       PORT: 80
       EXPOSED_PORT: 9710
       LIVERELOAD_PORT: 19710
       TENANT_KEY: acbm_gip
       SITE_ID: 53c95fdd1784f8066eb2c891
+      OMEDA_INPUT_ID: ${GIP_OMEDA_INPUT_ID-(unset)}
+      HOST: www-acbm-gip.dev.parameter1.com
+    hostname: www-acbm-gip.dev.parameter1.com
     ports:
       - "9710:80"
       - "19710:19710"
 
   sdc:
-    <<: *node
     <<: *site-cmd
     working_dir: /root/sites/sdcexec.com
     environment:
-      <<: *env
-      <<: *env-tauron
+      <<: [*env, *env-tauron]
       PORT: 80
       EXPOSED_PORT: 9711
       LIVERELOAD_PORT: 19711
       TENANT_KEY: acbm_scn
       SITE_ID: 53c960451784f8066eb2c8a4
+      OMEDA_INPUT_ID: ${SDC_OMEDA_INPUT_ID-(unset)}
+      HOST: www-acbm-sdc.dev.parameter1.com
+    hostname: www-acbm-sdc.dev.parameter1.com
     ports:
       - "9711:80"
       - "19711:19711"
-
   fl:
-    <<: *node
     <<: *site-cmd
     working_dir: /root/sites/foodlogistics.com
     environment:
-      <<: *env
-      <<: *env-tauron
+      <<: [*env, *env-tauron]
       PORT: 80
       EXPOSED_PORT: 9713
       LIVERELOAD_PORT: 19713
       TENANT_KEY: acbm_scn
       SITE_ID: 53c95f4a1784f8066eb2c86a
+      OMEDA_INPUT_ID: ${FL_OMEDA_INPUT_ID-(unset)}
+      HOST: www-acbm-fl.dev.parameter1.com
+    hostname: www-acbm-fl.dev.parameter1.com
     ports:
       - "9713:80"
       - "19713:19713"
 
   oem:
-    <<: *node
     <<: *site-cmd
     working_dir: /root/sites/oemoffhighway.com
     environment:
-      <<: *env
-      <<: *env-tauron
+      <<: [*env, *env-tauron]
       PORT: 80
       EXPOSED_PORT: 9714
       LIVERELOAD_PORT: 19714
       TENANT_KEY: acbm_ooh
       SITE_ID: 54b5a261c99db54158ed0fc9
+      OMEDA_INPUT_ID: ${OEM_OMEDA_INPUT_ID-(unset)}
+      HOST: www-acbm-oem.dev.parameter1.com
+    hostname: www-acbm-oem.dev.parameter1.com
     ports:
       - "9714:80"
       - "19714:19714"
 
   fcp:
-    <<: *node
     <<: *site-cmd
     working_dir: /root/sites/forconstructionpros.com
     environment:
-      <<: *env
-      <<: *env-tauron
+      <<: [*env, *env-tauron]
       PORT: 80
       EXPOSED_PORT: 9716
       LIVERELOAD_PORT: 19716
       TENANT_KEY: acbm_fcp
       SITE_ID: 53ca8d671784f8066eb2c949
+      OMEDA_INPUT_ID: ${FCP_OMEDA_INPUT_ID-(unset)}
+      HOST: www-acbm-fcp.dev.parameter1.com
+    hostname: www-acbm-fcp.dev.parameter1.com
     ports:
       - "9716:80"
       - "19716:19716"
 
-  safesecureopenings.com:
-    <<: *node
+  sso:
     <<: *site-cmd
     working_dir: /root/sites/safesecureopenings.com
     environment:
-      <<: *env
-      <<: *env-tauron
+      <<: [*env, *env-tauron]
       PORT: 80
       EXPOSED_PORT: 9718
       LIVERELOAD_PORT: 19718
       TENANT_KEY: acbm_fcp
       SITE_ID: 5f09fe3771f65a24008b456e
+      OMEDA_INPUT_ID: ${SSO_OMEDA_INPUT_ID-(unset)}
+      HOST: www-acbm-sso.dev.parameter1.com
+    hostname: www-acbm-sso.dev.parameter1.com
     ports:
       - "9718:80"
       - "19718:19718"
