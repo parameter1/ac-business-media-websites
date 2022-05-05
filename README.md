@@ -1,112 +1,68 @@
-# BaseCMS Websites for Endeavor Business Media
-This monorepo contains the codebase for websites managed by Endeavor Business Media. All sites within this repository utilize the [@parameter1/base-cmss](https://github.com/parameter1/base-cms) packages, most notably the `marko-web` and `web-cli`.
+BaseCMS Websites for AC Business Media
+===
+This monorepo contains the codebase for websites managed by AC Business Media. All sites within this repository utilize the [@parameter1/base-cms](https://github.com/parameter1/base-cms) packages, most notably `marko-web` and `web-cli`.
 
-#### Copy Method
-If you wish to use an existing site as a starting point,begin by creating a new branch and then copy the site directory (recursively) to the new site name:
-```bash
-cp -R sites/sitetocopy sites/mynewsite
+## Requirements
+To use this repository, you must have a NodeJS 10.24 environment or Docker Compose (v1.29.0+) (preferred).
+
+### Environment variables
+The following categories identify the required environment values for this project. Unless specified, these values can be customized by creating a `.env` file at the root of the project and specifying the value in the standard INI format:
+```
+FOO=bar
 ```
 
-This is a good time for the first commit, as you can then commit each change below individually (helps with code review later).
+#### Required, all environments
+These environment variables must be specified to boot the project. Default values for these are specified in the docker compose service definitions.
 
-Next, update the following files:
-```diff
-# /docker-compose.yml
-# Be sure to increment ports to unused values
-+  my-new-site:
-+    <<: *node
-+    <<: *site-cmd
-+    working_dir: /root/sites/mynewsite
-+    environment:
-+      <<: *env
-+      <<: *env-clustername-staging
-+      PORT: 80
-+      EXPOSED_PORT: 9711
-+      LIVERELOAD_PORT: 19711
-+      TENANT_KEY: mynewsite_key
-+      CDN_IMAGE_HOSTNAME: img.mynewsite.com
-+      CDN_ASSET_HOSTNAME: cdn.mynewsite.com
-+    ports:
-+      - "9711:80"
-+      - "19711:19711"
+- `NODE_ENV`
+- `TENANT_KEY`
+- `SITE_ID`
+- `GRAPHQL_URI`
+
+#### Required, production env only
+These values are required in the production environment and can be faked for local development. Default values for these are faked in the docker compose service definitions.
+
+- `OMEDA_APP_ID`
+- `OMEDA_INPUT_ID`
+- `NEW_RELIC_LICENSE_KEY`
+
+#### Optional, feature-specific
+
+- `NEW_RELIC_ENABLED`
+- `OMEDA_APP_ID`
+- `OMEDA_INPUT_ID`
+- `RECAPTCHA_SITE_KEY`
+- `RECAPTCHA_SECRET_KEY`
+- `SPEC_GUIDE_DOCS_API_KEY`
+- `SENDGRID_API_KEY`
+- `SENDGRID_DEV_TO`
+- `IDENTITYX_API_TOKEN`
+- `BASE_BROWSE_GRAPHQL_URI`
+- `OEMBED_URI`
+- `RSS_URI`
+- `SITEMAPS_URI`
+
+# Developing
+
+## Docker Compose
+
+To get started, execute the `./scripts/yarn.sh` file to install this projects dependencies. Once complete, use the relevant docker-compose service name with the Docker compose `up` command:
+
+```sh
+docker compose up fl
+docker compose up fcp
+docker compose up gip
+docker compose up oem
+docker compose up sso
+docker compose up sdc
 ```
 
-```diff
-# /travis.yml
-+    - stage: deploy
-+      name: My New Site
-+      script: deploy/index.js mynewsite clustername
-+      install: skip
+## Native Node.JS
+To use in a native node environment, run `yarn` from the project root, then use the `dev` command of the `basecms-website` CLI from the site folder:
+```sh
+yarn install --pure-lockfile
+cd sites/foodlogistics.com
+./node_modules/.bin/basecms-website dev index.js
 ```
 
-```diff
-# /sites/mynewsite/package.json
--  "name": "@base-cms-websites/sitetocopy",
-+  "name": "@base-cms-websites/mynewsite",
--  "author": "John Doe <johndoe@gmail.com>",
-+  "author": "Jack Smith <jacksmith@gmail.com>",
--  "repository": "https://github.com/base-cms-websites/your-repository/tree/master/sites/sitetocopy",
-+  "repository": "https://github.com/base-cms-websites/your-repository/tree/master/sites/mynewsite",
-```
-
-```diff
-# /sites/mynewsite/config/core.js
--  siteName: 'Site to Copy',
-+  siteName: 'My New Site',
-```
-
-```diff
-# /sites/mynewsite/config/gam.js
--  const config = new GAMConfiguration('###########', { basePath: 'OLD' });
-+  const config = new GAMConfiguration('###########', { basePath: 'NEW' });
-
-# Add/Remove setAliasAdUnits values as needed
-```
-
-```diff
-# /sites/mynewsite/config/gcse.js
--  const config = new GCSEConfiguration('#####################:aaaaaaaaaaa');
-+  const config = new GCSEConfiguration('#####################:bbbbbbbbbbb');
-```
-
-```diff
-# /sites/mynewsite/config/native-x.js
-# Add/Remove setAliasPlacements values as needed
-# Note - ID values for card, list1, and list2 should all use card ID
-```
-
-```diff
-# /sites/mynewsite/config/navigation.js
-# Update values as needed
-```
-
-```diff
-# /sites/mynewsite/config/site.js
-# Update values as needed
-```
-
-```diff
-# /sites/mynewsite/server/styles/index.scss
-# Update values as needed
-```
-
-```diff
-# /sites/mynewsite/server/public/robots.txt
-+  Disallow: /
--  Sitemap: https://www.sitetocopy.com/sitemap.xml
-+  Sitemap: https://www.mynewsite.com/sitemap.xml
--  Sitemap: https://www.sitetocopy.com/sitemap-google-news.xml
-+  Sitemap: https://www.mynewsite.com/sitemap-google-news.xml
-```
-
-```diff
-# /sites/mynewsite/server/templates/subscribe/index.marko
-# Update subscribe URL (found in old /sites/mynewsite/config/site.js)
-```
-
-```diff
-# /sites/mynewsite/server/public
-# Replace all icon files
-```
-
-When copying sites, ensure that unused components, templates, and routes are not copied inadvertently.
+Note the default values currently specified for each service within the docker-compose file -- these values must be present within your `env` in order to successfully boot the project!
