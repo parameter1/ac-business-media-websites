@@ -3,12 +3,27 @@ const newrelic = require('newrelic');
 
 module.exports = ({
   appId,
-  requiredServerFields,
-  requiredClientFields,
+  hiddenFields = [
+    'organizationTitle',
+  ],
+  requiredServerFields = [
+    'givenName',
+    'familyName',
+    'organization',
+    'regionCode',
+    'countryCode',
+    'postalCode',
+  ],
+  requiredClientFields = [
+    'regionCode',
+    'countryCode',
+    'postalCode',
+  ],
 } = {}) => {
   const config = new IdentityXConfiguration({
     appId,
     apiToken: process.env.IDENTITYX_API_TOKEN,
+    hiddenFields,
     requiredServerFields,
     requiredClientFields,
     onHookError: newrelic.noticeError.bind(newrelic),

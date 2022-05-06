@@ -15,7 +15,6 @@ const buildNativeXConfig = require('./native-x/build-config');
 const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
-const omedaConfig = require('./config/omeda');
 const idxRouteTemplates = require('./templates/user');
 
 const routes = siteRoutes => (app) => {
@@ -34,6 +33,8 @@ const routes = siteRoutes => (app) => {
 module.exports = (options = {}) => {
   const { onStart, redirectHandler } = options;
   const gamConfig = get(options, 'siteConfig.gam');
+  const idxConfig = getAsObject(options, 'siteConfig.identityX');
+  const omedaConfig = getAsObject(options, 'siteConfig.omeda');
   const nativeXConfig = getAsObject(options, 'siteConfig.nativeX');
   const specGuideConfig = getAsObject(options, 'siteConfig.specGuides');
   return startServer({
@@ -57,13 +58,14 @@ module.exports = (options = {}) => {
       }
 
       // Setup IdentityX + Omeda
-      const idxConfig = getAsObject(options, 'siteConfig.identityX');
       omedaIdentityX(app, {
-        brandKey: omedaConfig.brandKey,
         clientKey: omedaConfig.clientKey,
+        brandKey: omedaConfig.brandKey,
         appId: omedaConfig.appId,
         inputId: omedaConfig.inputId,
         rapidIdentProductId: get(omedaConfig, 'rapidIdentification.productId'),
+        omedaPromoCodeDefault: omedaConfig.promoCodeDefault,
+        omedaPromoCodeCookieName: omedaConfig.promoCodeCookieName,
         idxConfig,
         idxRouteTemplates,
       });

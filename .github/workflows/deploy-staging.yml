@@ -36,11 +36,9 @@ jobs:
         namespace:
           - staging-websites-tauron
         site:
-          # - dmnews.com
           - foodlogistics.com
           - forconstructionpros.com
           - greenindustrypros.com
-          # - mixequipmentmag.com
           - oemoffhighway.com
           - safesecureopenings.com
           - sdcexec.com
