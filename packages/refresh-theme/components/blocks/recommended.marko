@@ -25,7 +25,7 @@ $ const params = {
   </refresh-theme-content-card-deck-flow>
   </if>
   <else>
-  $ const excludeContentIds = [...nodes.map((node) => node.id)];
+  $ const excludeContentIds = nodes.map((node) => node.id);
   $ if (input.contentId) excludeContentIds.push(input.contentId);
   $ const homeParams = {
   ...params,
