@@ -31,7 +31,9 @@
       "@name": "string",
       "@aliases": "array"
     },
-    "@skip": "number"
+    "@skip": "number",
+    "@section-alias": "string",
+    "@content-id": "number"
   },
   "<refresh-theme-related-content-block>": {
     "template": "./related-content.marko",

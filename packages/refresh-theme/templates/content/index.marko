@@ -303,7 +303,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
 
         <if(displayRecommended)>
           <@section modifiers=["card-deck"]>
-            <refresh-theme-recommended-block>
+            <refresh-theme-recommended-block section-alias=get(content, "primarySection.alias") content-id=id>
               <@native-x indexes=[2] name="default" aliases=aliases />
             </refresh-theme-recommended-block>
           </@section>
