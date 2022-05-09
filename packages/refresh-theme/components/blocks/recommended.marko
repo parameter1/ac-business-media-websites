@@ -25,11 +25,13 @@ $ const params = {
   </refresh-theme-content-card-deck-flow>
   </if>
   <else>
+  $ const excludeContentIds = [...nodes.map((node) => node.id)];
+  $ if (input.contentId) excludeContentIds.push(input.contentId);
   $ const homeParams = {
   ...params,
   sectionAlias: "home",
   limit: 3 - nodes.length,
-  excludeContentIds: [input.contentId, ...nodes.map((node) => node.id)]
+  excludeContentIds
 }
   <marko-web-query|{ nodes: homeSectionNodes }| name="website-scheduled-content" params=homeParams>
     $ nodes.push(...homeSectionNodes)
