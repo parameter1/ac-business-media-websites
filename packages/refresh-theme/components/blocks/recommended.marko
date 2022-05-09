@@ -11,14 +11,31 @@ $ const params = {
   limit: 3,
   skip: input.skip,
   requiresImage: true,
+  ...(input.contentId && { excludeContentIds: [input.contentId] }),
   queryFragment,
 };
 
-<marko-web-query|{ nodes }| name="website-scheduled-content" params=params>
-  <marko-web-node-list>
+<marko-web-query|{ nodes }| name="website-scheduled-content" params=params collapsible=false>
+  <marko-web-node-list collapsible=false>
     <@header modifiers=["padding-y"]>Recommended</@header>
   </marko-web-node-list>
+  <if(nodes.length === 3)>
   <refresh-theme-content-card-deck-flow nodes=nodes>
     <@native-x ...getAsObject(input, "nativeX") />
   </refresh-theme-content-card-deck-flow>
+  </if>
+  <else>
+  $ const homeParams = {
+  ...params,
+  sectionAlias: "home",
+  limit: 3 - nodes.length,
+  excludeContentIds: [input.contentId, ...nodes.map((node) => node.id)]
+}
+  <marko-web-query|{ nodes: homeSectionNodes }| name="website-scheduled-content" params=homeParams>
+    $ nodes.push(...homeSectionNodes)
+    <refresh-theme-content-card-deck-flow nodes=nodes>
+      <@native-x ...getAsObject(input, "nativeX") />
+    </refresh-theme-content-card-deck-flow>
+  </marko-web-query>
+  </else>
 </marko-web-query>
