@@ -1,8 +1,12 @@
-import { getAsObject } from "@parameter1/base-cms-object-path";
+import { getAsObject, get } from "@parameter1/base-cms-object-path";
 import queryFragment from "../../graphql/fragments/content-list";
+$ const { config } = out.global;
+
+$ const useSectionAlias = ["53ca8d671784f8066eb2c949"].includes(get(config, 'websiteContext.id')) && input.sectionAlias;
+$ const sectionAlias =  useSectionAlias ? input.sectionAlias : "home"
 
 $ const params = {
-  sectionAlias: "home",
+  sectionAlias,
   optionName: "Recommended",
   limit: 3,
   skip: input.skip,
