@@ -109,54 +109,33 @@ $ const adSlots = ({ aliases }) => ({
               </div>
             </div>
           </@section>
-
-          <@section>
-            <div class="row">
-              <div class="col-lg-8">
-                <marko-web-query|{ nodes }|
-                  name="all-published-content"
-                  params={ excludeContentTypes, limit: 6, requiresImage: true, queryFragment }
-                >
-                  <refresh-theme-latest-content-list-flow nodes=nodes with-header=true />
-                </marko-web-query>
-              </div>
-              <aside class="col-lg-4 page-rail">
-                <refresh-theme-follow-us-block />
-
-                <marko-web-gam-display-ad
-                  id="gpt-ad-rail1"
-                  modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
-                  slots=adSlots({ aliases })
-                />
-              </aside>
-            </div>
-          </@section>
         </if>
-        <else>
-          <@section>
-            <div class="row">
-              <div class="col-lg-8">
-                <marko-web-query|{ nodes }|
-                  name="all-published-content"
-                  params={ excludeContentTypes, limit: 6, requiresImage: true, queryFragment }
-                >
-                  <refresh-theme-latest-content-list-flow nodes=nodes with-header=true />
-                </marko-web-query>
-              </div>
-              <aside class="col-lg-4 page-rail">
-                <refresh-theme-follow-us-block />
 
-                <refresh-theme-newsletter-signup-block modifiers=["margin-top"] />
-
-                <marko-web-gam-display-ad
-                  id="gpt-ad-rail1"
-                  modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
-                  slots=adSlots({ aliases })
-                />
-              </aside>
+        <@section>
+          <div class="row">
+            <div class="col-lg-8">
+              <marko-web-query|{ nodes }|
+                name="all-published-content"
+                params={ excludeContentTypes, limit: 6, requiresImage: true, queryFragment }
+              >
+                <refresh-theme-latest-content-list-flow nodes=nodes with-header=true />
+              </marko-web-query>
             </div>
-          </@section>
-        </else>
+            <aside class="col-lg-4 page-rail">
+              <refresh-theme-follow-us-block />
+
+              <if(!site.get("leaders.enabled"))>
+                <refresh-theme-newsletter-signup-block modifiers=["margin-top"] />
+              </if>
+
+              <marko-web-gam-display-ad
+                id="gpt-ad-rail1"
+                modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
+                slots=adSlots({ aliases })
+              />
+            </aside>
+          </div>
+        </@section>
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
   </@page>
