@@ -86,7 +86,7 @@ module.exports = {
     bgColor: '#1a93f9',
   },
   leaders: {
-    enabled: true,
+    enabled: false,
     title: 'Food Logistics Leaders',
     alias: 'leaders/2020',
     calloutValue: 'Leading Providers',

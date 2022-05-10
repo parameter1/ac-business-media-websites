@@ -9,16 +9,10 @@ const webinars = require('@ac-business-media/refresh-theme/templates/website-sec
 const whitepapers = require('@ac-business-media/refresh-theme/templates/website-section/whitepapers');
 const contactUs = require('@ac-business-media/refresh-theme/templates/website-section/contact-us');
 const queryFragment = require('@ac-business-media/refresh-theme/graphql/fragments/website-section-page');
-const leadersFragment = require('@ac-business-media/refresh-theme/graphql/fragments/leaders-section');
-const leaders = require('@ac-business-media/refresh-theme/templates/website-section/leaders');
 
 const directory = require('../templates/website-section/directory');
 
 module.exports = (app) => {
-  app.get('/:alias(leaders)', withWebsiteSection({
-    template: leaders,
-    queryFragment: leadersFragment,
-  }));
   app.get('/:alias(directory)', withWebsiteSection({
     template: directory,
     queryFragment,

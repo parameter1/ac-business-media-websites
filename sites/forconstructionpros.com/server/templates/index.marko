@@ -119,6 +119,8 @@ $ const adSlots = ({ aliases }) => ({
             <aside class="col-lg-4 page-rail">
               <refresh-theme-follow-us-block />
 
+              <refresh-theme-newsletter-signup-block modifiers=["margin-top"] />
+
               <marko-web-gam-display-ad
                 id="gpt-ad-rail1"
                 modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
@@ -139,19 +141,6 @@ $ const adSlots = ({ aliases }) => ({
       <marko-web-resolve-page|{ data: section, resolved }| node=pageNode>
         $ const aliases = hierarchyAliases(section);
         <marko-web-page-wrapper>
-          <if(site.get("leaders.enabled"))>
-            <@section>
-              <div class="row">
-                <div class="col-lg-8 mb-block">
-                  <leaders-home-page />
-                </div>
-                <div class="col-lg-4 mb-block">
-                  <refresh-theme-newsletter-signup-block modifiers=["margin-top"] />
-                </div>
-              </div>
-            </@section>
-          </if>
-
           <@section>
             <div class="row">
               <div class="col">
