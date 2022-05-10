@@ -12,7 +12,7 @@ const feeds = ({ from }) => {
 
 const ids = ({ from }) => {
   const match = Object.keys(redirectIds).find(id => new RegExp(id).test(from));
-  return match && { to: redirectIds[match] };
+  return match && { to: `/${redirectIds[match]}` };
 };
 
 module.exports = ({ from }) => [
