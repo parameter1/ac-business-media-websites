@@ -1,3 +1,4 @@
+const specGuides = require('./spec-guides');
 const dragonForms = require('./dragon-forms');
 const events = require('./events');
 const gam = require('./gam');
@@ -8,6 +9,7 @@ const omeda = require('./omeda');
 
 module.exports = {
   // module configs
+  specGuides,
   dragonForms,
   events,
   gam,
