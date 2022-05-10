@@ -85,4 +85,13 @@ module.exports = {
     logo: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=60&auto=format,compress',
     bgColor: '#1a93f9',
   },
+  leaders: {
+    enabled: false,
+    title: 'Food Logistics Leaders',
+    alias: 'leaders/2020',
+    calloutValue: 'Leading Providers',
+    header: {
+      imgSrc: 'https://img.foodlogistics.com/files/base/acbm/sdce/image/static/sdc-leaders.png?h=85&auto=format,compress',
+    },
+  },
 };
