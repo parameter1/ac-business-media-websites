@@ -85,13 +85,4 @@ module.exports = {
     logo: 'https://img.sdcexec.com/files/base/acbm/sdce/image/static/logo/site_logo_og.png?h=60&auto=format,compress',
     bgColor: '#ec131c',
   },
-  leaders: {
-    enabled: true,
-    title: 'Supply Chain Leaders',
-    alias: 'leaders/2020',
-    calloutValue: 'Leading Companies',
-    header: {
-      imgSrc: 'https://img.sdcexec.com/files/base/acbm/sdce/image/static/sdc-leaders.png?h=85&auto=format,compress',
-    },
-  },
 };
