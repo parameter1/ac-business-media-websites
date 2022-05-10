@@ -124,6 +124,10 @@ $ const adSlots = ({ aliases }) => ({
             <aside class="col-lg-4 page-rail">
               <refresh-theme-follow-us-block />
 
+              <if(!site.get("leaders.enabled"))>
+                <refresh-theme-newsletter-signup-block modifiers=["margin-top"] />
+              </if>
+
               <marko-web-gam-display-ad
                 id="gpt-ad-rail1"
                 modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
