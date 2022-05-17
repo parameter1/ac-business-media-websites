@@ -17,8 +17,8 @@ const resources = [
   { href: '/events', label: 'Events' },
   { href: '/podcasts', label: 'Podcasts' },
   { href: '/premium-content', label: 'Premium Content' },
+  { href: '/webinars', label: 'Webinars' },
   { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
-  { href: '/infrastructure', label: 'Infrastructure' },
 ];
 
 const tertiaryItems = [
