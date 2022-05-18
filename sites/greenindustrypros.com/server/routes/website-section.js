@@ -9,6 +9,7 @@ const leaders = require('@ac-business-media/refresh-theme/templates/website-sect
 const feed = require('@ac-business-media/refresh-theme/templates/website-section/feed');
 const awards = require('@ac-business-media/refresh-theme/templates/website-section/awards');
 const webinars = require('@ac-business-media/refresh-theme/templates/website-section/webinars');
+const events = require('@ac-business-media/refresh-theme/templates/website-section/events');
 
 const directory = require('../templates/website-section/directory');
 
@@ -57,6 +58,10 @@ module.exports = (app) => {
   }));
   app.get('/:alias(webinars)', withWebsiteSection({
     template: webinars,
+    queryFragment,
+  }));
+  app.get('/:alias(events)', withWebsiteSection({
+    template: events,
     queryFragment,
   }));
   app.get('/:alias([a-z0-9-/]+)', withWebsiteSection({
