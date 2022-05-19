@@ -79,7 +79,7 @@ module.exports = {
   },
   inquiry: {
     enabled: true,
-    directSend: true,
+    directSend: false,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
     sendFrom: 'Supply & Demand Chain Executive <noreply@parameter1.com>',
     logo: 'https://img.sdcexec.com/files/base/acbm/sdce/image/static/logo/site_logo_og.png?h=60&auto=format,compress',
