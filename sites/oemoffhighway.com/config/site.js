@@ -78,7 +78,7 @@ module.exports = {
   },
   inquiry: {
     enabled: true,
-    directSend: true,
+    directSend: false,
     sendTo: 'requestmoreinfooem@acbusinessmedia.com',
     sendFrom: 'OEM Off-Highway <noreply@parameter1.com>',
     logo: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress',

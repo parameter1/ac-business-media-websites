@@ -79,7 +79,7 @@ module.exports = {
   },
   inquiry: {
     enabled: true,
-    directSend: true,
+    directSend: false,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
     sendFrom: 'Food Logistics <noreply@parameter1.com>',
     logo: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=60&auto=format,compress',
