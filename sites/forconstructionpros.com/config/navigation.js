@@ -169,6 +169,7 @@ module.exports = {
           { href: '/profit-matters?contentTypes=Webinar', label: 'Webinars' },
           { href: '/profit-matters?contentTypes=Video', label: 'Videos' },
           { href: '/profit-matters?contentTypes=Article', label: 'Articles' },
+          { href: '/profit-matters/on-site-series', label: 'Contractor’s Site Report' },
         ],
       },
     },
