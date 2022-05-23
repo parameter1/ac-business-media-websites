@@ -12,12 +12,11 @@ $ const {
   page-node=pageNode
 >
   <@query
-    name="all-published-content"
+    name="website-scheduled-content"
     params={
-      contentTypes: ["Webinar"],
+      includeContentTypes: ["Webinar"],
       limit: 12,
-      sortField: "startDate",
-      sortOrder: "desc",
+      sort: { field: "startDate", order: "desc" },
     }
   />
 </refresh-theme-website-section-published-content-layout>

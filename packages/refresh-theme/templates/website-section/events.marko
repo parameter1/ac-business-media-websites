@@ -13,13 +13,12 @@ $ const now = Date.now();
   page-node=pageNode
 >
   <@query
-    name="all-published-content"
+    name="website-scheduled-content"
     params={
-      contentTypes: ["Event"],
+      includeContentTypes: ["Event"],
       limit: 12,
       endingAfter: now,
-      sortField: "startDate",
-      sortOrder: "asc",
+      sort: { field: "startDate", order: "asc" }
     }
   />
 </refresh-theme-website-section-published-content-layout>
