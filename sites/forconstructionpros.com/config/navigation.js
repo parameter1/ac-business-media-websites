@@ -195,6 +195,10 @@ module.exports = {
         { href: '/business', label: 'Business' },
         { href: '/construction-technology', label: 'Technology' },
         { href: '/profit-matters', label: 'Profit Matters' },
+        { href: '/infrastructure', label: 'Infrastructure' },
+        { href: '/new-equipment', label: 'New Equipment' },
+        { href: '/latest-news', label: 'Construction News' },
+        { href: '/sustainability', label: 'Sustainability' },
       ],
     },
     {
@@ -210,7 +214,6 @@ module.exports = {
         { href: '/premium-content', label: 'Premium Content' },
         { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
         { href: '/webinars', label: 'Webinars' },
-        { href: '/infrastructure', label: 'Infrastructure' },
         { href: '/expert-columns', label: 'Expert Columns' },
         { href: '/awards', label: 'Awards' },
         { href: '/whitepapers', label: 'Whitepapers' },
