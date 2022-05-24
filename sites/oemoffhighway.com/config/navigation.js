@@ -7,13 +7,14 @@ module.exports = {
       { href: '/electronics', label: 'Electronics' },
       { href: '/operator-cab', label: 'Operator Cab' },
       { href: '/engineering-manufacturing', label: 'Engineering & Manufacturing' },
+      { href: '/trends', label: 'Trends' },
     ],
   },
   secondary: {
     items: [
       { href: '/market-analysis', label: 'Market Analysis' },
       { href: '/specguide', label: 'Spec Guides' },
-      { href: '/trends', label: 'Trends' },
+      { href: '/webinars', label: 'Webinars' },
       { href: '/videos', label: 'Videos' },
       { href: 'https://cms.megaphone.fm/channel/oemupdate?selected=ACBMI3051469857', label: 'Podcast', target: '_blank' },
       { href: '/events', label: 'Events' },
@@ -64,13 +65,13 @@ module.exports = {
         { href: '/electronics', label: 'Electronics' },
         { href: '/operator-cab', label: 'Operator Cab' },
         { href: '/engineering-manufacturing', label: 'Engineering & Manufacturing' },
+        { href: '/trends', label: 'Trends' },
       ],
     },
     {
       label: 'Resources',
       items: [
         { href: '/market-analysis', label: 'Market Analysis' },
-        { href: '/trends', label: 'Trends' },
         { href: '/events', label: 'Industry Events' },
         { href: '/videos', label: 'Videos' },
         { href: '/media-center', label: 'Media Center' },
