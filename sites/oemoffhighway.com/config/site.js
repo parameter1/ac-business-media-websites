@@ -70,6 +70,14 @@ module.exports = {
     description: '',
   },
   contactUs: {
+    notificationDefaults: {
+      branding: {
+        bgColor: '#ed1c24',
+        logo: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress',
+      },
+      to: 'jsage@acbusinessmedia.com',
+      from: 'OEM Off-Highway <noreply@oemoffhighway.com>',
+    },
     branding: {
       bgColor: '#ed1c24',
       logo: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress',
