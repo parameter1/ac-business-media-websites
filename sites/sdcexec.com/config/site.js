@@ -71,6 +71,14 @@ module.exports = {
     description: '',
   },
   contactUs: {
+    notificationDefaults: {
+      branding: {
+        bgColor: '#ec131c',
+        logo: 'https://img.sdcexec.com/files/base/acbm/sdce/image/static/logo/site_logo_og.png?h=60&auto=format,compress',
+      },
+      to: 'jsage@acbusinessmedia.com',
+      from: 'Supply and Demand Chain Executive <noreply@foodlogistics.com>',
+    },
     branding: {
       bgColor: '#ec131c',
       logo: 'https://img.sdcexec.com/files/base/acbm/sdce/image/static/logo/site_logo_og.png?h=60&auto=format,compress',

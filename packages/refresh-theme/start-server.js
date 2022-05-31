@@ -1,7 +1,7 @@
 const newrelic = require('newrelic');
 const { startServer } = require('@parameter1/base-cms-marko-web');
 const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
-const contactUsHandler = require('@ac-business-media/package-common/contact-us');
+const contactUsHandler = require('@parameter1/base-cms-marko-web-contact-us');
 const companySearchHandler = require('@ac-business-media/package-common/company-search');
 const specGuideHandler = require('@ac-business-media/package-common/spec-guide');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
