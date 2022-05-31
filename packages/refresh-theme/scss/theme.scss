@@ -978,3 +978,14 @@ $theme-related-content-border-color: #dee2e6;
   margin-top: -150px;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 100%);
 }
+
+.contact-us-form {
+  &__header {
+    @include theme-card-header();
+    padding-bottom: 0;
+  }
+  &__submit {
+    width: 100%;
+    margin-bottom: map-get($spacers, block);
+  }
+}
