@@ -17,6 +17,7 @@ const components = require('./components');
 const fragments = require('./fragments');
 const idxRouteTemplates = require('./templates/user');
 
+const defaultContentGatingHandler = () => false;
 const routes = siteRoutes => (app) => {
   // Handle submissions on /__inquiry
   loadInquiry(app);
@@ -37,6 +38,7 @@ module.exports = (options = {}) => {
   const omedaConfig = getAsObject(options, 'siteConfig.omeda');
   const nativeXConfig = getAsObject(options, 'siteConfig.nativeX');
   const specGuideConfig = getAsObject(options, 'siteConfig.specGuides');
+  const contentGatingHanlder = options.contentGatingHandler || defaultContentGatingHandler;
   return startServer({
     ...options,
     routes: routes(options.routes),
@@ -44,6 +46,7 @@ module.exports = (options = {}) => {
     components: options.components || components,
     fragments: options.fragments || fragments,
     onStart: async (app) => {
+      set(app.locals, 'contentGatingHanlder', contentGatingHanlder);
       if (typeof onStart === 'function') await onStart(app);
       app.set('trust proxy', 'loopback, linklocal, uniquelocal');
       // Setup GAM.

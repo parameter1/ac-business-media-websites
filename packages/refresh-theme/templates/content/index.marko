@@ -6,7 +6,14 @@ import getContentPreview from "../../utils/get-content-preview";
 import buildContentStructuredData from "../../utils/build-content-structured-data";
 import contentStructuredDataQueryFragment from "../../graphql/fragments/content-structured-data"
 
-$ const { site, GAM, req, userState } = out.global;
+$ const {
+  site,
+  GAM,
+  req,
+  userState,
+  contentGatingHandler
+} = out.global;
+
 $ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
 $ const { id, type, pageNode } = data;
 
@@ -173,7 +180,8 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 </marko-web-link>
               </if>
               <default-theme-content-contact-details obj=content />
-              $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired") || site.get('forceContentGate');
+
+              $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired") || contentGatingHandler(content);
               $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
               <marko-web-identity-x-access|context|
                 enabled=requiresRegistration
