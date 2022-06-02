@@ -1,7 +1,6 @@
 const olyticsCookie = require('@parameter1/base-cms-marko-web-omeda/olytics/customer-cookie');
 
 module.exports = ({ content, req }) => {
-  // const currentEncId = olyticsCookie.parseFrom(req);
   const incomingEncId = olyticsCookie.clean(req.query.oly_enc_id);
 
   if (incomingEncId) return false;
