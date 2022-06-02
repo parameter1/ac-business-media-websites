@@ -1,5 +1,10 @@
+const olyticsCookie = require('@parameter1/base-cms-marko-web-omeda/olytics/customer-cookie');
 
-module.exports = (content) => {
+module.exports = ({ content, req }) => {
+  const incomingEncId = olyticsCookie.clean(req.query.oly_enc_id);
+
+  if (incomingEncId) return false;
+
   // Do not gate if gating surveyId is set
   if (content.gating && content.gating.surveyId) return false;
 
