@@ -1,5 +1,7 @@
+module.exports = ({ content, olyEncId }) => {
+  // If there is an associated olyEncId skip as they are considered identitfied.
+  if (olyEncId) return false;
 
-module.exports = (content) => {
   // Do not gate if gating surveyId is set
   if (content.gating && content.gating.surveyId) return false;
 

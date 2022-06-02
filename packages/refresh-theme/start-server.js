@@ -31,6 +31,12 @@ const routes = siteRoutes => (app) => {
   siteRoutes(app);
 };
 
+const getId = (value) => {
+  if (!value) return null;
+  const trimmed = `${value}`.trim();
+  return /^[a-z0-9]{15}$/i.test(trimmed) ? trimmed : null;
+};
+
 module.exports = (options = {}) => {
   const { onStart, redirectHandler } = options;
   const gamConfig = get(options, 'siteConfig.gam');
@@ -38,7 +44,7 @@ module.exports = (options = {}) => {
   const omedaConfig = getAsObject(options, 'siteConfig.omeda');
   const nativeXConfig = getAsObject(options, 'siteConfig.nativeX');
   const specGuideConfig = getAsObject(options, 'siteConfig.specGuides');
-  const contentGatingHanlder = options.contentGatingHandler || defaultContentGatingHandler;
+  const contentGatingHandler = options.contentGatingHandler || defaultContentGatingHandler;
   return startServer({
     ...options,
     routes: routes(options.routes),
@@ -46,8 +52,23 @@ module.exports = (options = {}) => {
     components: options.components || components,
     fragments: options.fragments || fragments,
     onStart: async (app) => {
-      set(app.locals, 'contentGatingHanlder', contentGatingHanlder);
+      set(app.locals, 'contentGatingHandler', contentGatingHandler);
       if (typeof onStart === 'function') await onStart(app);
+
+      // Look for and set global for olyEncId off query params or by cookie
+      app.use((req, res, next) => {
+        const {
+          query,
+          cookies,
+        } = req;
+
+        const idFromQuery = getId(query.oly_enc_id);
+        const idFromCookie = cookies.oly_enc_id ? getId(cookies.oly_enc_id.replace(/^"/, '').replace(/"$/, '')) : undefined;
+        const olyEncId = idFromQuery || idFromCookie;
+        set(app.locals, 'olyEncId', olyEncId);
+        next();
+      });
+
       app.set('trust proxy', 'loopback, linklocal, uniquelocal');
       // Setup GAM.
       if (gamConfig) {
