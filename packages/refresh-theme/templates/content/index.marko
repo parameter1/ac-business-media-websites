@@ -12,7 +12,6 @@ $ const {
   req,
   userState,
   contentGatingHandler,
-  olyEncId,
 } = out.global;
 
 $ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
@@ -182,7 +181,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
               </if>
               <default-theme-content-contact-details obj=content />
 
-              $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired") || contentGatingHandler({ content, olyEncId });
+              $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired") || contentGatingHandler({ content, req: out.global.req });
               $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
               <marko-web-identity-x-access|context|
                 enabled=requiresRegistration

@@ -1,6 +1,10 @@
-module.exports = ({ content, olyEncId }) => {
-  // If there is an associated olyEncId skip as they are considered identitfied.
-  if (olyEncId) return false;
+const olyticsCookie = require('@parameter1/base-cms-marko-web-omeda/olytics/customer-cookie');
+
+module.exports = ({ content, req }) => {
+  // const currentEncId = olyticsCookie.parseFrom(req);
+  const incomingEncId = olyticsCookie.clean(req.query.oly_enc_id);
+
+  if (incomingEncId) return false;
 
   // Do not gate if gating surveyId is set
   if (content.gating && content.gating.surveyId) return false;
