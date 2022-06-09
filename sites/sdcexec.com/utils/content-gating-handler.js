@@ -12,6 +12,7 @@ module.exports = ({ content, req }) => {
   const typesToGate = [
     'article',
     'blog',
+    'document',
     'whitepaper',
   ];
   if (typesToGate.includes(content.type)) return true;
