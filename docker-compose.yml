@@ -18,6 +18,7 @@ x-env-defaults: &env
   NODE_ENV: development
   OMEDA_APP_ID: ${OMEDA_APP_ID-(unset)}
   OMEDA_INPUT_ID: ${OMEDA_INPUT_ID-(unset)}
+  OMEDA_GRAPHQL_URI: ${OMEDA_GRAPHQL_URI-https://graphql.omeda.parameter1.com}
   # @todo the recaptcha values should be removed (?) once contact-us is moved to core.
   RECAPTCHA_V3_SITE_KEY: ${RECAPTCHA_V3_SITE_KEY-}
   RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY-}
