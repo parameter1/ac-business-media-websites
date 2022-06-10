@@ -58,6 +58,7 @@ fragment ContentPageFragment on Content {
     surveyId
   }
   userRegistration {
+    bypassGating
     isCurrentlyRequired
     accessLevels
   }

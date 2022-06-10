@@ -8,10 +8,14 @@ module.exports = ({ content, req }) => {
   // Do not gate if gating surveyId is set
   if (content.gating && content.gating.surveyId) return false;
 
+  // Do not gate if bypass flag is enabled
+  if (content.userRegistration.bypassGating) return false;
+
   // Gate the following content types only.
   const typesToGate = [
     'article',
     'blog',
+    'document',
     'whitepaper',
   ];
   if (typesToGate.includes(content.type)) return true;
