@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@parameter1/base-cms-marko-core": "^2.80.0",
-    "@parameter1/base-cms-marko-web": "^2.92.0",
+    "@parameter1/base-cms-marko-web": "^2.95.0",
     "@parameter1/base-cms-marko-web-icons": "^2.46.3",
-    "@parameter1/base-cms-marko-web-leaders": "^2.91.0",
+    "@parameter1/base-cms-marko-web-leaders": "^2.95.0",
     "@parameter1/base-cms-object-path": "^2.75.1",
     "graphql-tag": "^2.10.1",
     "object-path": "^0.11.4"
