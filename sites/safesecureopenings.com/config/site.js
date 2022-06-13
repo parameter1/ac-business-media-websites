@@ -88,4 +88,5 @@ module.exports = {
     logo: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress',
     bgColor: '#164f77',
   },
+  publishedContentMultisite: false,
 };
