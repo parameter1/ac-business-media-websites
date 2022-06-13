@@ -1,9 +1,13 @@
+$ const { site } = out.global;
 $ const {
   id,
   alias,
   name,
   pageNode
 } = data;
+$ const now = Date.now();
+
+$ const withSite = site.get('publishedContentMultisite') ? !site.get('publishedContentMultisite') : false;
 
 <refresh-theme-website-section-published-content-layout
   id=id
@@ -18,6 +22,7 @@ $ const {
       limit: 12,
       sortField: "startDate",
       sortOrder: "desc",
+      withSite
     }
   />
 </refresh-theme-website-section-published-content-layout>
