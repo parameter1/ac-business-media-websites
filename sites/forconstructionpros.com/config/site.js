@@ -110,4 +110,5 @@ module.exports = {
     54330, // Equipment
     54468, // Pavement Maintenance
   ],
+  publishedContentMultisite: false,
 };
