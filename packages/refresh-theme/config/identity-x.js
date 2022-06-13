@@ -10,9 +10,7 @@ module.exports = ({
     'givenName',
     'familyName',
     'organization',
-    'regionCode',
     'countryCode',
-    'postalCode',
   ],
   requiredClientFields = [
     'regionCode',
