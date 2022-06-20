@@ -8,6 +8,7 @@ const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const omedaIdentityX = require('@parameter1/base-cms-marko-web-omeda-identity-x');
 
 const sharedRedirectHandler = require('./redirect-handler');
+const omedaIdentityXHooks = require('./omeda-identity-x/hooks');
 
 const buildGAMConfig = require('./gam/build-config');
 const buildNativeXConfig = require('./native-x/build-config');
@@ -73,6 +74,9 @@ module.exports = (options = {}) => {
         idxConfig,
         idxRouteTemplates,
       });
+
+      // Custom Omeda+IdentityX hooks
+      omedaIdentityXHooks({ app, omedaConfig, idxConfig });
 
       // Force set all date formats.
       app.use((req, res, next) => {

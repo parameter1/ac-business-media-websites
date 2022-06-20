@@ -1,5 +1,5 @@
 const configure = require('@ac-business-media/refresh-theme/config/omeda');
 
 module.exports = configure({
-  rapidIdentification: { productId: 15448 },
+  rapidIdentification: { productId: 15356 },
 });
