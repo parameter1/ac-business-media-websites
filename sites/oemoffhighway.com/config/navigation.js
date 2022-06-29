@@ -8,11 +8,12 @@ module.exports = {
       { href: '/operator-cab', label: 'Operator Cab' },
       { href: '/engineering-manufacturing', label: 'Engineering & Manufacturing' },
       { href: '/trends', label: 'Trends' },
+      { href: '/market-analysis', label: 'Market Analysis' },
     ],
   },
   secondary: {
     items: [
-      { href: '/market-analysis', label: 'Market Analysis' },
+      { href: '/premium-content', label: 'Premium Content' },
       { href: '/specguide', label: 'Spec Guides' },
       { href: '/webinars', label: 'Webinars' },
       { href: '/videos', label: 'Videos' },
