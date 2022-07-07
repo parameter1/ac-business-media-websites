@@ -107,3 +107,31 @@ $leaders-accent-color: #212121;
     }
   }
 }
+
+.row > .section-title {
+  @each $section, $color in $website-section-colors {
+    &--#{$section} {
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
+      &::before {
+        font-size: 50px;
+        font-weight: 100;
+        color: $color;
+        content: "|  ";
+      }
+    }
+  }
+  &--rental {
+    padding-top: 20px;
+  }
+}
+
+.row > .page-image {
+  &--section-logo {
+    padding: 10px;
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+  }
+}
