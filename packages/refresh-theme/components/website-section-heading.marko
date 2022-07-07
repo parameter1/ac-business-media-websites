@@ -1,5 +1,7 @@
 import { getAsArray, getAsObject, get } from "@parameter1/base-cms-object-path";
 
+$ const { site } = out.global;
+
 $ const section = getAsObject(input, "section");
 $ const hierarchy = getAsArray(section, "hierarchy");
 
@@ -12,7 +14,9 @@ $ for (let i = 0; i < hierarchy.length; i += 1) {
 
 $ const parentAlias = section.alias.replace(/\/.+/, '');
 
-<if(logo)>
+$ const useSectionLogos = get(site, "config.useSectionLogos");
+
+<if(logo && useSectionLogos)>
   $ const obj = { ...logo, alt: `${section.name} Logo` };
   <marko-web-page-image
     width=125
