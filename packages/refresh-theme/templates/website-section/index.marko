@@ -70,11 +70,11 @@ $ const adSlots = ({ aliases }) => ({
         $ const aliases = hierarchyAliases(section);
         <marko-web-page-wrapper modifiers=["no-bottom-padding"]>
           <@section>
-            <marko-web-node-list collapsible=false>
-              <@header tag="h1" modifiers=["website-section-title", section.alias]>
-                <marko-web-website-section-name tag=null obj=section />
-              </@header>
-            </marko-web-node-list>
+            <div class="row">
+              <refresh-theme-website-section-heading>
+                <@section name=section.name hierarchy=section.hierarchy alias=section.alias />
+              </refresh-theme-website-section-heading>
+            </div>
             <div class="row">
               <div class="col">
                 <marko-web-query|{ nodes }|
