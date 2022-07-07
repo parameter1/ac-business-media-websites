@@ -10,6 +10,8 @@ $ for (let i = 0; i < hierarchy.length; i += 1) {
   if (get(item, "logo.src")) logo = get(item, "logo");
 }
 
+$ const parentAlias = section.alias.replace(/\/.+/, '');
+
 <if(logo)>
   $ const obj = { ...logo, alt: `${section.name} Logo` };
   <marko-web-page-image
@@ -19,11 +21,11 @@ $ for (let i = 0; i < hierarchy.length; i += 1) {
     ...input.image
     obj=obj
   />
-  <marko-web-website-section-name class=`node-list__header--website-section-title section-title--${section.alias.replace(/\/.+/, '')}` tag="h1" obj=section />
+  <marko-web-website-section-name class=`node-list__header--website-section-title section-title--${parentAlias}` tag="h1" obj=section />
 </if>
 <else>
   <marko-web-node-list collapsible=false>
-    <@header tag="h1" modifiers=["website-section-title", `${section.alias.replace(/\/.+/, '')}`]>
+    <@header tag="h1" modifiers=["website-section-title", parentAlias]>
       <marko-web-website-section-name tag=null obj=section />
     </@header>
   </marko-web-node-list>
