@@ -13,10 +13,18 @@ $ for (let i = 0; i < hierarchy.length; i += 1) {
 <if(logo)>
   $ const obj = { ...logo, alt: `${section.name} Logo` };
   <marko-web-page-image
-    width=150
+    width=125
     fluid=false
     modifiers=["section-logo"]
     ...input.image
     obj=obj
   />
+  <marko-web-website-section-name class=`node-list__header--website-section-title section-title--${section.alias.replace(/\/.+/, '')}` tag="h1" obj=section />
 </if>
+<else>
+  <marko-web-node-list collapsible=false>
+    <@header tag="h1" modifiers=["website-section-title", `${section.alias.replace(/\/.+/, '')}`]>
+      <marko-web-website-section-name tag=null obj=section />
+    </@header>
+  </marko-web-node-list>
+</else>
