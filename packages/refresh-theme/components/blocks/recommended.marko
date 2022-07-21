@@ -6,7 +6,7 @@ $ const { config } = out.global;
 $ const siteIds = ["53ca8d671784f8066eb2c949", "53c95fdd1784f8066eb2c891"];
 $ const useSectionAlias = siteIds.includes(get(config, 'websiteContext.id')) && input.sectionAlias;
 // Use the "top-level channel" alias for pulling Recommended
-$ const sectionAlias =  useSectionAlias ? input.sectionAlias.replace(/\/.+/g, '') : "home"
+$ const sectionAlias =  useSectionAlias ? input.sectionAlias : "home"
 
 $ const params = {
   sectionAlias,
