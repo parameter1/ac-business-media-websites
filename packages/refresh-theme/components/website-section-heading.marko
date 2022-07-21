@@ -3,21 +3,13 @@ import { getAsArray, getAsObject, get } from "@parameter1/base-cms-object-path";
 $ const { site } = out.global;
 
 $ const section = getAsObject(input, "section");
-$ const hierarchy = getAsArray(section, "hierarchy");
-
-$ let logo;
-$ for (let i = 0; i < hierarchy.length; i += 1) {
-  if (logo) break;
-  const item = hierarchy[i];
-  if (get(item, "logo.src")) logo = get(item, "logo");
-}
-
-$ const parentAlias = section.alias.replace(/\/.+/, '');
+$ const channel = getAsArray(section, "hierarchy")[0];
+$ const { alias, logo } = channel;
 
 $ const useSectionLogos = get(site, "config.useSectionLogos");
 
 <if(logo && useSectionLogos)>
-  $ const obj = { ...logo, alt: `${section.name} Logo` };
+  $ const obj = { ...logo, alt: `${channel.name} Logo` };
   <marko-web-page-image
     width=125
     fluid=false
@@ -25,11 +17,11 @@ $ const useSectionLogos = get(site, "config.useSectionLogos");
     ...input.image
     obj=obj
   />
-  <marko-web-website-section-name class=`node-list__header--website-section-title section-title--${parentAlias}` tag="h1" obj=section />
+  <marko-web-website-section-name class=`node-list__header--website-section-title section-title section-title--${alias}` tag="h1" obj=section />
 </if>
 <else>
   <marko-web-node-list collapsible=false>
-    <@header tag="h1" modifiers=["website-section-title", parentAlias]>
+    <@header tag="h1" modifiers=["website-section-title", alias]>
       <marko-web-website-section-name tag=null obj=section />
     </@header>
   </marko-web-node-list>
