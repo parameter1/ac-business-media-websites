@@ -43,10 +43,43 @@ module.exports = {
   socialMediaLinks: [
     { provider: 'facebook', href: 'https://www.facebook.com/ForConstructionPros', target: '_blank' },
     { provider: 'twitter', href: 'https://www.twitter.com/4ConstructnPros', target: '_blank' },
+    { provider: 'instagram', href: 'https://www.instagram.com/4constructionpros/', target: '_blank' },
     { provider: 'linkedin', href: 'https://www.linkedin.com/company/forconstructionpros', target: '_blank' },
     { provider: 'youtube', href: 'https://www.youtube.com/user/ForConstructionPros', target: '_blank' },
     { provider: 'flipboard', href: 'https://flipboard.com/@FCPnews', target: '_blank' },
   ],
+  socialMediaLinksByChannel: {
+    asphalt: [
+      { provider: 'facebook', href: 'https://www.facebook.com/Asphalt.Contractor', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/AsphaltContrctr', target: '_blank' },
+      { provider: 'instagram', href: 'https://www.instagram.com/asphaltcontractor', target: '_blank' },
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/asphalt-contractor-magazine', target: '_blank' },
+    ],
+    concrete: [
+      { provider: 'facebook', href: 'https://www.facebook.com/concretecontractor', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/concreteinsider', target: '_blank' },
+      { provider: 'instagram', href: 'https://instagram.com/concretecontractor', target: '_blank' },
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/concrete-contractor-magazine', target: '_blank' },
+    ],
+    equipment: [
+      { provider: 'facebook', href: 'https://www.facebook.com/EquipmentToday', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/EquipmentToday', target: '_blank' },
+      { provider: 'instagram', href: 'https://www.instagram.com/equipmenttoday', target: '_blank' },
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/equipment-today-magazine-official', target: '_blank' },
+    ],
+    'pavement-maintenance': [
+      { provider: 'facebook', href: 'https://www.facebook.com/PavementMagazine', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/PavementMag', target: '_blank' },
+      { provider: 'instagram', href: 'https://www.instagram.com/pavementmagazine', target: '_blank' },
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/pavement-maintenance-reconstruction-magazine', target: '_blank' },
+    ],
+    rental: [
+      { provider: 'facebook', href: 'https://www.facebook.com/RentalMagazine', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/RentalPNI', target: '_blank' },
+      { provider: 'instagram', href: 'https://www.instagram.com/rentalpni', target: '_blank' },
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/rental-magazine', target: '_blank' },
+    ],
+  },
   radix: {
     enabled: true,
     url: 'https://radix.base.parameter1.com',
