@@ -144,4 +144,5 @@ module.exports = {
     54468, // Pavement Maintenance
   ],
   publishedContentMultisite: false,
+  useSectionLogos: true,
 };

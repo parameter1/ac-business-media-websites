@@ -115,20 +115,6 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 </default-theme-page-dates>
                 <default-theme-content-attribution obj=content />
               </div>
-
-              <refresh-theme-content-section-logo>
-                <@section name=section.name hierarchy=section.hierarchy />
-              </refresh-theme-content-section-logo>
-
-              <!-- <if(displaySocialShare)>
-                <marko-web-social-sharing
-                  path=content.siteContext.path
-                  providers=["email", "facebook", "linkedin", "twitter"]
-                  title=content.name
-                  description=content.teaser
-                  media=get(content, "primaryImage.src")
-                />
-              </if> -->
             </div>
           </div>
         </@section>
