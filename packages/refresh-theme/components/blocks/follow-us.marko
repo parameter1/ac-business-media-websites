@@ -8,13 +8,14 @@ $ const socialMediaLinksByChannel = site.getAsObject("socialMediaLinksByChannel"
 $ const channelsWithLinks = Array.isArray(aliases) ? aliases.filter((v) => Object.keys(socialMediaLinksByChannel).includes(v)) : [];
 $ const channelForSocialLinks = channelsWithLinks.length ? channelsWithLinks[0] : null;
 $ const socialMediaLinksForChannel = channelForSocialLinks ? socialMediaLinksByChannel[channelForSocialLinks] : null;
-$ const items = socialMediaLinksForChannel ? socialMediaLinksForChannel : site.getAsArray("socialMediaLinks");
+$ const items = socialMediaLinksForChannel && socialMediaLinksForChannel.providers ? socialMediaLinksForChannel.providers : site.getAsArray("socialMediaLinks");
+$ const title = socialMediaLinksForChannel &&  socialMediaLinksForChannel.title ? socialMediaLinksForChannel.title : "Follow Us";
 $ const blockName = "follow-us";
 
 <if(items.length)>
   <marko-web-block name=blockName>
     <marko-web-node-list collapsible=false>
-      <@header modifiers=["padding-y"]>Follow Us</@header>
+      <@header modifiers=["padding-y"]>${title}</@header>
     </marko-web-node-list>
     <marko-web-element name="icons" block-name=blockName>
       <for|item| of=items>
