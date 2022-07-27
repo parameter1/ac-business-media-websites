@@ -45,6 +45,14 @@ module.exports = {
     { provider: 'flipboard', href: 'https://flipboard.com/@GreenIndustry', target: '_blank' },
     { provider: 'youtube', href: 'https://www.youtube.com/c/greenindustrypros', target: '_blank' },
   ],
+  socialMediaLinksByChannel: {
+    snowpro: [
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/snowpro-magazine/', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/SnowProMagazine', target: '_blank' },
+      { provider: 'facebook', href: 'https://www.facebook.com/snowpromagazine', target: '_blank' },
+      { provider: 'instagram', href: 'https://www.instagram.com/snowpromagazine/', target: '_blank' },
+    ]
+  },
   radix: {
     enabled: true,
     url: 'https://radix.base.parameter1.com',
