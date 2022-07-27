@@ -51,7 +51,7 @@ module.exports = {
       { provider: 'twitter', href: 'https://twitter.com/SnowProMagazine', target: '_blank' },
       { provider: 'facebook', href: 'https://www.facebook.com/snowpromagazine', target: '_blank' },
       { provider: 'instagram', href: 'https://www.instagram.com/snowpromagazine/', target: '_blank' },
-    ]
+    ],
   },
   radix: {
     enabled: true,
