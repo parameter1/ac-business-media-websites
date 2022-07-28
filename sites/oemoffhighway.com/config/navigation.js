@@ -14,7 +14,7 @@ module.exports = {
   secondary: {
     items: [
       { href: '/premium-content', label: 'Premium Content' },
-      { href: '/specguide', label: 'Spec Guides' },
+      { href: 'https://ironpros.com', label: 'IronPros.com', target: '_blank' },
       { href: '/webinars', label: 'Webinars' },
       { href: '/videos', label: 'Videos' },
       { href: 'https://cms.megaphone.fm/channel/oemupdate?selected=ACBMI3051469857', label: 'Podcast', target: '_blank' },
