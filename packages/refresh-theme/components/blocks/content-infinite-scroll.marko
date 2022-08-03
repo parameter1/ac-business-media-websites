@@ -28,7 +28,13 @@ $ const createAttrs = () => {
     return {
       header: `More from ${name}`,
       queryName: "all-author-content",
-      queryParams: { contactId: id, limit, skip, queryFragment },
+      queryParams: {
+        contactId: id,
+        limit,
+        skip,
+        withSite: false,
+        queryFragment
+      },
     };
   }
   if (type === "webinar") {
