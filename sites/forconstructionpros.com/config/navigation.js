@@ -11,7 +11,7 @@ const channels = [
 
 const resources = [
   { href: '/directory', label: 'New Equipment Directory' },
-  { href: 'https://ironpros.com', label: 'IronPros.com', target: '_blank' },
+  { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
   { href: '/videos', label: 'Video Network' },
   { href: '/magazine', label: 'Magazines' },
   { href: '/events', label: 'Events' },
@@ -206,6 +206,7 @@ module.exports = {
       items: [
         { href: '/directory', label: 'New Equipment Directory' },
         { href: '/asphalt-industry-directory', label: 'Asphalt Industry Directory' },
+        { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
         { href: '/specguide', label: 'Spec Guides' },
         { href: '/video', label: 'Video Network' },
         { href: '/magazine', label: 'Magazine' },
