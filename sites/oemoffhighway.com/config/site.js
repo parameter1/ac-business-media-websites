@@ -2,10 +2,10 @@ const specGuides = require('./spec-guides');
 const dragonForms = require('./dragon-forms');
 const events = require('./events');
 const gam = require('./gam');
-const identityX = require('./identity-x');
 const nativeX = require('./native-x');
 const navigation = require('./navigation');
-const omeda = require('./omeda');
+const identityX = require('./identity-x');
+const omedaIdentityX = require('./omeda-identity-x');
 
 module.exports = {
   // module configs
@@ -13,11 +13,10 @@ module.exports = {
   dragonForms,
   events,
   gam,
-  identityX,
   nativeX,
   navigation,
-  omeda,
-
+  identityX,
+  omedaIdentityX,
   // theme configs
   company: 'AC Business Media, LLC',
   p1events: {
