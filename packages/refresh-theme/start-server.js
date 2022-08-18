@@ -63,17 +63,9 @@ module.exports = (options = {}) => {
       }
 
       // Setup IdentityX + Omeda
-      omedaIdentityX(app, {
-        clientKey: omedaConfig.clientKey,
-        brandKey: omedaConfig.brandKey,
-        appId: omedaConfig.appId,
-        inputId: omedaConfig.inputId,
-        rapidIdentProductId: get(omedaConfig, 'rapidIdentification.productId'),
-        omedaPromoCodeDefault: omedaConfig.promoCodeDefault,
-        omedaPromoCodeCookieName: omedaConfig.promoCodeCookieName,
-        idxConfig,
-        idxRouteTemplates,
-      });
+
+      const omedaIdentityXConfig = getAsObject(options, 'siteConfig.omedaIdentityX');
+      omedaIdentityX(app, { ...omedaIdentityXConfig, idxRouteTemplates });
 
       // Custom Omeda+IdentityX hooks
       omedaIdentityXHooks({ app, omedaConfig, idxConfig });
