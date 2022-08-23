@@ -19,7 +19,9 @@ $theme-site-header-breakpoints: (
 );
 
 // Site Section Colors
-$website-section-colors: ();
+$website-section-colors: (
+  snowpro: #000
+);
 
 @import "../../node_modules/@ac-business-media/refresh-theme/scss/theme";
 
@@ -30,6 +32,31 @@ $website-section-colors: ();
     #{ $self } {
       &__link--active {
         color: $primary;
+      }
+    }
+  }
+}
+
+.website-section-header {
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 0;
+
+  & .page-image--section-logo {
+    width: 135px;
+    padding-right: 10px;
+  }
+
+  & > .section-title {
+    @each $section, $color in $website-section-colors {
+      &--#{$section} {
+        @media (max-width: 768px) {
+          font-size: 20px;
+        }
+        padding-left: 10px;
+        margin-bottom: 0;
+
+        border-left: solid $color 4px;
       }
     }
   }
