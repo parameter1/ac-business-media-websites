@@ -99,4 +99,5 @@ module.exports = {
     logo: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress',
     bgColor: '#164f77',
   },
+  useSectionLogos: true,
 };
