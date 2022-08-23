@@ -4,7 +4,11 @@ module.exports = ({
   rapidIdentProductId,
   websiteBehaviorAttributeId,
   // Passed through, if specified.
-  appendPromoCodeToHook = [],
+  appendPromoCodeToHook = [
+    { hook: 'onLoginLinkSent', promoCode: 'Parameter1' },
+    { hook: 'onAuthenticationSuccess', promoCode: 'P1Verified' },
+    { hook: 'onUserProfileUpdate', promoCode: 'P1FullProfile' },
+  ],
   appendBehaviorToHook = [],
   appendDemographicToHook = [],
 }) => ({
