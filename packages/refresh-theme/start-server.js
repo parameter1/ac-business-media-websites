@@ -16,6 +16,7 @@ const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
 const idxRouteTemplates = require('./templates/user');
+const idxNavItems = require('./config/identity-x-nav');
 
 const defaultContentGatingHandler = () => false;
 const routes = siteRoutes => (app) => {
@@ -61,6 +62,7 @@ module.exports = (options = {}) => {
 
       const omedaIdentityXConfig = getAsObject(options, 'siteConfig.omedaIdentityX');
       omedaIdentityX(app, { ...omedaIdentityXConfig, idxRouteTemplates });
+      idxNavItems({ site: app.locals.site });
 
       // Force set all date formats.
       app.use((req, res, next) => {
