@@ -16,6 +16,9 @@ module.exports = {
   nativeX,
   navigation,
   identityX,
+  idxNavItems: {
+    enable: false,
+  },
   omedaIdentityX,
   // theme configs
   company: 'AC Business Media, LLC',
