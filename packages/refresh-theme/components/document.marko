@@ -81,8 +81,11 @@ $ const isRadixEnabled = Boolean(radix.enabled && radix.appId);
     <if(isRadixEnabled)>
       <marko-web-radix-inquiry-listener app-id=radix.appId url=radix.url submission-field-ids=radix.submissionFieldIds />
     </if>
-    <refresh-theme-contextual-header />
-    <default-theme-site-menu />
+    <marko-web-identity-x-context|{ hasUser, isEnabled }|>
+      <refresh-theme-contextual-header reg-enabled=isEnabled has-user=hasUser />
+
+      <default-theme-site-menu reg-enabled=isEnabled has-user=hasUser  />
+    </marko-web-identity-x-context>
     <${input.aboveContainer} />
   </@above-container>
   <@below-container>
