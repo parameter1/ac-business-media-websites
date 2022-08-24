@@ -16,7 +16,7 @@ module.exports = {
   identityX,
   omedaIdentityX,
   idxNavItems: {
-    enabled: true,
+    enable: true,
   },
   // theme configs
   company: 'AC Business Media, LLC',
