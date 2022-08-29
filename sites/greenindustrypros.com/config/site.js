@@ -1,3 +1,4 @@
+const omeda = require('@ac-business-media/refresh-theme/config/omeda');
 const dragonForms = require('./dragon-forms');
 const events = require('./events');
 const gam = require('./gam');
@@ -13,6 +14,7 @@ module.exports = {
   gam,
   nativeX,
   navigation,
+  omeda: omeda({}),
   identityX,
   omedaIdentityX,
   idxNavItems: {
