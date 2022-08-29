@@ -24,7 +24,7 @@ $ const isRadixEnabled = Boolean(radix.enabled && radix.appId);
       on="load"
       request-frame=true
       target-tag="body"
-      identity-query-builder=`var id = query.oly_enc_id; if (id) { return 'omeda.${omedaConfig.brandKey}.customer*' + id + '~encoded'; };`;
+      identity-query-builder=`var id = query.oly_enc_id; if (id && /^[A-Z0-9]{15}$/.test(id)) { return 'omeda.${omedaConfig.brandKey}.customer*' + id + '~encoded'; };`
     />
     <!-- <refresh-theme-gam-media-fuse id=site.get("mediaFuse.id") /> -->
     <marko-web-gam-init
