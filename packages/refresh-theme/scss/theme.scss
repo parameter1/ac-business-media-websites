@@ -290,6 +290,9 @@ $theme-related-content-border-color: #dee2e6;
           display: none;
         }
       }
+      #{ $self }__item--user + #{ $self }__item--user {
+        display: none;
+      }
     }
   }
 
@@ -309,6 +312,33 @@ $theme-related-content-border-color: #dee2e6;
       #{ $self } {
         &__link--active[href*="#{$section}"] {
           color: $color;
+        }
+      }
+    }
+  }
+}
+
+.site-menu {
+  &__link {
+    &[href*="user/login"] {
+      .marko-web-icon--person {
+        svg {
+          fill: $theme-site-navbar-menu-link-color;
+        }
+       &::after {
+          content: "Login";
+          margin-left: .25rem;
+        }
+      }
+    }
+    &[href*="user/profile"] {
+      .marko-web-icon--person {
+        svg {
+          fill: $theme-site-navbar-menu-link-color;
+        }
+        &::after {
+          content: "Manage Profile";
+          margin-left: .25rem;
         }
       }
     }

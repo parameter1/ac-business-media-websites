@@ -37,7 +37,7 @@ $ const userInputTitle = defaultValue(input.userInputTitle, "Complete your profi
       </marko-web-element>
 
       <marko-web-element name="form-wrapper" block-name=blockName>
-        <marko-web-identity-x-form-login />
+        <marko-web-identity-x-form-login source="contentGate" />
       </marko-web-element>
     </else>
   </if>
@@ -47,7 +47,7 @@ $ const userInputTitle = defaultValue(input.userInputTitle, "Complete your profi
     </marko-web-element>
 
     <marko-web-element name="form-wrapper" block-name=blockName>
-      <marko-web-identity-x-form-profile reload-page-on-submit=true />
+      <marko-web-identity-x-form-profile reload-page-on-submit=true login-source="contentGate"/>
     </marko-web-element>
   </else-if>
 </marko-web-block>

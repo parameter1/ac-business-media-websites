@@ -8,7 +8,6 @@ const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const omedaIdentityX = require('@parameter1/base-cms-marko-web-omeda-identity-x');
 
 const sharedRedirectHandler = require('./redirect-handler');
-const omedaIdentityXHooks = require('./omeda-identity-x/hooks');
 
 const buildGAMConfig = require('./gam/build-config');
 const buildNativeXConfig = require('./native-x/build-config');
@@ -17,6 +16,7 @@ const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
 const idxRouteTemplates = require('./templates/user');
+const idxNavItems = require('./config/identity-x-nav');
 
 const defaultContentGatingHandler = () => false;
 const routes = siteRoutes => (app) => {
@@ -35,8 +35,6 @@ const routes = siteRoutes => (app) => {
 module.exports = (options = {}) => {
   const { onStart, redirectHandler } = options;
   const gamConfig = get(options, 'siteConfig.gam');
-  const idxConfig = getAsObject(options, 'siteConfig.identityX');
-  const omedaConfig = getAsObject(options, 'siteConfig.omeda');
   const nativeXConfig = getAsObject(options, 'siteConfig.nativeX');
   const specGuideConfig = getAsObject(options, 'siteConfig.specGuides');
   const contentGatingHandler = options.contentGatingHandler || defaultContentGatingHandler;
@@ -62,21 +60,9 @@ module.exports = (options = {}) => {
         set(app.locals, 'specGuides', specGuideConfig);
       }
 
-      // Setup IdentityX + Omeda
-      omedaIdentityX(app, {
-        clientKey: omedaConfig.clientKey,
-        brandKey: omedaConfig.brandKey,
-        appId: omedaConfig.appId,
-        inputId: omedaConfig.inputId,
-        rapidIdentProductId: get(omedaConfig, 'rapidIdentification.productId'),
-        omedaPromoCodeDefault: omedaConfig.promoCodeDefault,
-        omedaPromoCodeCookieName: omedaConfig.promoCodeCookieName,
-        idxConfig,
-        idxRouteTemplates,
-      });
-
-      // Custom Omeda+IdentityX hooks
-      omedaIdentityXHooks({ app, omedaConfig, idxConfig });
+      const omedaIdentityXConfig = getAsObject(options, 'siteConfig.omedaIdentityX');
+      omedaIdentityX(app, { ...omedaIdentityXConfig, idxRouteTemplates });
+      idxNavItems({ site: app.locals.site });
 
       // Force set all date formats.
       app.use((req, res, next) => {
