@@ -1,7 +1,7 @@
 import queryFragment from "../../graphql/fragments/most-read-block";
 
 <marko-web-query|{ nodes }|
-  name="all-published-content"
+  name="website-scheduled-content"
   params={ excludeContentTypes: ["Contact", "Company", "Promotion"], limit: 6, queryFragment }
 >
   <refresh-theme-content-list-flow
