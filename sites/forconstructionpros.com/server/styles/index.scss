@@ -28,6 +28,7 @@ $website-section-colors: (
   pavement-maintenance: #f26522,
   profit-matters: #e9a422,
   equipment-management: #98002e,
+  ironpros: #c2933f,
 );
 
 $theme-site-navbar-primary-font-size: 14px !default;
@@ -104,6 +105,31 @@ $leaders-accent-color: #212121;
     }
     &--tertiary {
       font-size: 13px;
+    }
+  }
+}
+
+.website-section-header {
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 0;
+
+  & .page-image--section-logo {
+    width: 135px;
+    padding-right: 10px;
+  }
+
+  & > .section-title {
+    @each $section, $color in $website-section-colors {
+      &--#{$section} {
+        @media (max-width: 768px) {
+          font-size: 20px;
+        }
+        padding-left: 10px;
+        margin-bottom: 0;
+
+        border-left: solid $color 4px;
+      }
     }
   }
 }

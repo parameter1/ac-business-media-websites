@@ -6,7 +6,14 @@ import getContentPreview from "../../utils/get-content-preview";
 import buildContentStructuredData from "../../utils/build-content-structured-data";
 import contentStructuredDataQueryFragment from "../../graphql/fragments/content-structured-data"
 
-$ const { site, GAM, req, userState } = out.global;
+$ const {
+  site,
+  GAM,
+  req,
+  userState,
+  contentGatingHandler,
+} = out.global;
+
 $ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
 $ const { id, type, pageNode } = data;
 
@@ -108,20 +115,6 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 </default-theme-page-dates>
                 <default-theme-content-attribution obj=content />
               </div>
-
-              <refresh-theme-content-section-logo>
-                <@section name=section.name hierarchy=section.hierarchy />
-              </refresh-theme-content-section-logo>
-
-              <!-- <if(displaySocialShare)>
-                <marko-web-social-sharing
-                  path=content.siteContext.path
-                  providers=["email", "facebook", "linkedin", "twitter"]
-                  title=content.name
-                  description=content.teaser
-                  media=get(content, "primaryImage.src")
-                />
-              </if> -->
             </div>
           </div>
         </@section>
@@ -173,7 +166,8 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 </marko-web-link>
               </if>
               <default-theme-content-contact-details obj=content />
-              $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired") || site.get('forceContentGate');
+
+              $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired") || contentGatingHandler({ content, req });
               $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
               <marko-web-identity-x-access|context|
                 enabled=requiresRegistration
@@ -303,7 +297,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
 
         <if(displayRecommended)>
           <@section modifiers=["card-deck"]>
-            <refresh-theme-recommended-block section-alias=get(content, "primarySection.alias") content-id=id>
+            <refresh-theme-recommended-block section-alias=aliases[aliases.length - 1] content-id=id>
               <@native-x indexes=[2] name="default" aliases=aliases />
             </refresh-theme-recommended-block>
           </@section>

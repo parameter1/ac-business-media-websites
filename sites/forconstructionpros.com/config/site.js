@@ -1,11 +1,12 @@
+const omeda = require('@ac-business-media/refresh-theme/config/omeda');
 const specGuides = require('./spec-guides');
 const dragonForms = require('./dragon-forms');
 const events = require('./events');
 const gam = require('./gam');
-const identityX = require('./identity-x');
 const nativeX = require('./native-x');
 const navigation = require('./navigation');
-const omeda = require('./omeda');
+const identityX = require('./identity-x');
+const omedaIdentityX = require('./omeda-identity-x');
 
 module.exports = {
   // module configs
@@ -13,11 +14,14 @@ module.exports = {
   dragonForms,
   events,
   gam,
-  identityX,
   nativeX,
   navigation,
-  omeda,
-
+  identityX,
+  omeda: omeda({}),
+  idxNavItems: {
+    enable: false,
+  },
+  omedaIdentityX,
   // theme configs
   company: 'AC Business Media, LLC',
   showCompanySectionFilters: true,
@@ -43,10 +47,43 @@ module.exports = {
   socialMediaLinks: [
     { provider: 'facebook', href: 'https://www.facebook.com/ForConstructionPros', target: '_blank' },
     { provider: 'twitter', href: 'https://www.twitter.com/4ConstructnPros', target: '_blank' },
+    { provider: 'instagram', href: 'https://www.instagram.com/4constructionpros/', target: '_blank' },
     { provider: 'linkedin', href: 'https://www.linkedin.com/company/forconstructionpros', target: '_blank' },
     { provider: 'youtube', href: 'https://www.youtube.com/user/ForConstructionPros', target: '_blank' },
     { provider: 'flipboard', href: 'https://flipboard.com/@FCPnews', target: '_blank' },
   ],
+  socialMediaLinksByChannel: {
+    asphalt: [
+      { provider: 'facebook', href: 'https://www.facebook.com/Asphalt.Contractor', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/AsphaltContrctr', target: '_blank' },
+      { provider: 'instagram', href: 'https://www.instagram.com/asphaltcontractor', target: '_blank' },
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/asphalt-contractor-magazine', target: '_blank' },
+    ],
+    concrete: [
+      { provider: 'facebook', href: 'https://www.facebook.com/concretecontractor', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/concreteinsider', target: '_blank' },
+      { provider: 'instagram', href: 'https://instagram.com/concretecontractor', target: '_blank' },
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/concrete-contractor-magazine', target: '_blank' },
+    ],
+    equipment: [
+      { provider: 'facebook', href: 'https://www.facebook.com/EquipmentToday', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/EquipmentToday', target: '_blank' },
+      { provider: 'instagram', href: 'https://www.instagram.com/equipmenttoday', target: '_blank' },
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/equipment-today-magazine-official', target: '_blank' },
+    ],
+    'pavement-maintenance': [
+      { provider: 'facebook', href: 'https://www.facebook.com/PavementMagazine', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/PavementMag', target: '_blank' },
+      { provider: 'instagram', href: 'https://www.instagram.com/pavementmagazine', target: '_blank' },
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/pavement-maintenance-reconstruction-magazine', target: '_blank' },
+    ],
+    rental: [
+      { provider: 'facebook', href: 'https://www.facebook.com/RentalMagazine', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/RentalPNI', target: '_blank' },
+      { provider: 'instagram', href: 'https://www.instagram.com/rentalpni', target: '_blank' },
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/rental-magazine', target: '_blank' },
+    ],
+  },
   radix: {
     enabled: true,
     url: 'https://radix.base.parameter1.com',
@@ -71,6 +108,14 @@ module.exports = {
     description: '',
   },
   contactUs: {
+    notificationDefaults: {
+      branding: {
+        bgColor: '#000',
+        logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress',
+      },
+      to: 'support@forconstructionpros.com',
+      from: 'For Construction Pros <noreply@forconstructionpros.com>',
+    },
     branding: {
       bgColor: '#000',
       logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress',
@@ -102,4 +147,6 @@ module.exports = {
     54330, // Equipment
     54468, // Pavement Maintenance
   ],
+  publishedContentMultisite: false,
+  useSectionLogos: true,
 };

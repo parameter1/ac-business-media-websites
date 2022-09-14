@@ -2,7 +2,13 @@ import { asObject } from "@parameter1/base-cms-utils";
 
 $ const { site } = out.global;
 
-$ const items = site.getAsArray("socialMediaLinks");
+$ const { aliases } = input;
+
+$ const socialMediaLinksByChannel = site.getAsObject("socialMediaLinksByChannel");
+$ const channelsWithLinks = Array.isArray(aliases) ? aliases.filter((v) => Object.keys(socialMediaLinksByChannel).includes(v)) : [];
+$ const channelForSocialLinks = channelsWithLinks.length ? channelsWithLinks[0] : null;
+$ const socialMediaLinksForChannel = channelForSocialLinks ? socialMediaLinksByChannel[channelForSocialLinks] : null;
+$ const items = socialMediaLinksForChannel ? socialMediaLinksForChannel : site.getAsArray("socialMediaLinks");
 $ const blockName = "follow-us";
 
 <if(items.length)>

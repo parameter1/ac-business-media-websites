@@ -181,8 +181,7 @@ $pswp__root-z-index: $theme-site-header-z-index + 1 !default;
 @import "../../node_modules/@parameter1/base-cms-marko-web-gam/scss/fixed-ad-bottom";
 @import "../../node_modules/@parameter1/base-cms-marko-web-social-sharing/scss/buttons";
 @import "../../node_modules/@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
-// @todo this should be removed once contact us is in core
-@import "../../node_modules/@ac-business-media/package-common/scss/contact-us-form";
+
 @import "../../node_modules/@ac-business-media/package-common/scss/directory";
 @import "../../node_modules/@ac-business-media/package-common/scss/spec-guide";
 @import "../../node_modules/@ac-business-media/package-common/scss/company-search";
@@ -291,6 +290,9 @@ $theme-related-content-border-color: #dee2e6;
           display: none;
         }
       }
+      #{ $self }__item--user + #{ $self }__item--user {
+        display: none;
+      }
     }
   }
 
@@ -310,6 +312,33 @@ $theme-related-content-border-color: #dee2e6;
       #{ $self } {
         &__link--active[href*="#{$section}"] {
           color: $color;
+        }
+      }
+    }
+  }
+}
+
+.site-menu {
+  &__link {
+    &[href*="user/login"] {
+      .marko-web-icon--person {
+        svg {
+          fill: $theme-site-navbar-menu-link-color;
+        }
+       &::after {
+          content: "Login";
+          margin-left: .25rem;
+        }
+      }
+    }
+    &[href*="user/profile"] {
+      .marko-web-icon--person {
+        svg {
+          fill: $theme-site-navbar-menu-link-color;
+        }
+        &::after {
+          content: "Manage Profile";
+          margin-left: .25rem;
         }
       }
     }
@@ -978,4 +1007,15 @@ $theme-related-content-border-color: #dee2e6;
   height: 150px;
   margin-top: -150px;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 100%);
+}
+
+.contact-us-form {
+  &__header {
+    @include theme-card-header();
+    padding-bottom: 0;
+  }
+  &__submit {
+    width: 100%;
+    margin-bottom: map-get($spacers, block);
+  }
 }

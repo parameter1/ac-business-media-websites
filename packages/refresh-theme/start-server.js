@@ -1,7 +1,7 @@
 const newrelic = require('newrelic');
 const { startServer } = require('@parameter1/base-cms-marko-web');
 const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
-const contactUsHandler = require('@ac-business-media/package-common/contact-us');
+const contactUsHandler = require('@parameter1/base-cms-marko-web-contact-us');
 const companySearchHandler = require('@ac-business-media/package-common/company-search');
 const specGuideHandler = require('@ac-business-media/package-common/spec-guide');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
@@ -16,7 +16,9 @@ const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
 const idxRouteTemplates = require('./templates/user');
+const idxNavItems = require('./config/identity-x-nav');
 
+const defaultContentGatingHandler = () => false;
 const routes = siteRoutes => (app) => {
   // Handle submissions on /__inquiry
   loadInquiry(app);
@@ -33,10 +35,9 @@ const routes = siteRoutes => (app) => {
 module.exports = (options = {}) => {
   const { onStart, redirectHandler } = options;
   const gamConfig = get(options, 'siteConfig.gam');
-  const idxConfig = getAsObject(options, 'siteConfig.identityX');
-  const omedaConfig = getAsObject(options, 'siteConfig.omeda');
   const nativeXConfig = getAsObject(options, 'siteConfig.nativeX');
   const specGuideConfig = getAsObject(options, 'siteConfig.specGuides');
+  const contentGatingHandler = options.contentGatingHandler || defaultContentGatingHandler;
   return startServer({
     ...options,
     routes: routes(options.routes),
@@ -44,7 +45,9 @@ module.exports = (options = {}) => {
     components: options.components || components,
     fragments: options.fragments || fragments,
     onStart: async (app) => {
+      set(app.locals, 'contentGatingHandler', contentGatingHandler);
       if (typeof onStart === 'function') await onStart(app);
+
       app.set('trust proxy', 'loopback, linklocal, uniquelocal');
       // Setup GAM.
       if (gamConfig) {
@@ -57,18 +60,9 @@ module.exports = (options = {}) => {
         set(app.locals, 'specGuides', specGuideConfig);
       }
 
-      // Setup IdentityX + Omeda
-      omedaIdentityX(app, {
-        clientKey: omedaConfig.clientKey,
-        brandKey: omedaConfig.brandKey,
-        appId: omedaConfig.appId,
-        inputId: omedaConfig.inputId,
-        rapidIdentProductId: get(omedaConfig, 'rapidIdentification.productId'),
-        omedaPromoCodeDefault: omedaConfig.promoCodeDefault,
-        omedaPromoCodeCookieName: omedaConfig.promoCodeCookieName,
-        idxConfig,
-        idxRouteTemplates,
-      });
+      const omedaIdentityXConfig = getAsObject(options, 'siteConfig.omedaIdentityX');
+      omedaIdentityX(app, { ...omedaIdentityXConfig, idxRouteTemplates });
+      idxNavItems({ site: app.locals.site });
 
       // Force set all date formats.
       app.use((req, res, next) => {

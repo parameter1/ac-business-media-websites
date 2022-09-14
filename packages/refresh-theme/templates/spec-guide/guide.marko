@@ -1,6 +1,6 @@
 import { get, getAsArray } from "@parameter1/base-cms-object-path";
 
-$ const { GAM, specGuides } = out.global;
+$ const { GAM, specGuides, userState } = out.global;
 $ const type = "spec-guide";
 $ const { title, description, alias } = data;
 
@@ -11,10 +11,18 @@ $ const adSlots = () => ({
   "gpt-ad-lb1": GAM.getAdUnit({ name: "lb1" }),
 });
 
-<marko-web-default-page-layout type=type title=title description=description>
+<marko-web-default-page-layout type=type title=config.title description=config.description>
   <@head>
     <marko-web-gtm-default-context|{ context }| type=type>
-      <marko-web-gtm-push data=context />
+      $ const ctx = {
+        ...context,
+        page_type: "static-page",
+        static_page: {
+          title: config.title
+        },
+        userState,
+      };
+      <marko-web-gtm-push data=ctx />
     </marko-web-gtm-default-context>
     <marko-web-gam-slots slots=adSlots() />
   </@head>

@@ -1,4 +1,5 @@
 import DefaultTheme from '@parameter1/base-cms-marko-web-theme-default/browser';
+import ContactUs from '@parameter1/base-cms-marko-web-contact-us/browser';
 import GTM from '@parameter1/base-cms-marko-web-gtm/browser';
 import GAM from '@parameter1/base-cms-marko-web-gam/browser';
 import GCSE from '@parameter1/base-cms-marko-web-gcse/browser';
@@ -30,6 +31,7 @@ export default (Browser) => {
   });
 
   DefaultTheme(Browser);
+  ContactUs(Browser);
   Leaders(Browser);
   GTM(Browser);
   GAM(Browser);

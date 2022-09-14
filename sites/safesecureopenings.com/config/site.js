@@ -1,21 +1,22 @@
+const omeda = require('@ac-business-media/refresh-theme/config/omeda');
 const dragonForms = require('./dragon-forms');
 const events = require('./events');
 const gam = require('./gam');
-const identityX = require('./identity-x');
 const nativeX = require('./native-x');
 const navigation = require('./navigation');
-const omeda = require('./omeda');
+const identityX = require('./identity-x');
+const omedaIdentityX = require('./omeda-identity-x');
 
 module.exports = {
   // module configs
   dragonForms,
   events,
   gam,
-  identityX,
   nativeX,
   navigation,
-  omeda,
-
+  omeda: omeda({}),
+  identityX,
+  omedaIdentityX,
   // theme configs
   company: 'AC Business Media, LLC',
   p1events: {
@@ -66,6 +67,14 @@ module.exports = {
     description: '',
   },
   contactUs: {
+    notificationDefaults: {
+      branding: {
+        bgColor: '#164f77',
+        logo: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress',
+      },
+      to: 'jsage@acbusinessmedia.com',
+      from: 'Safe & Secure Openings <noreply@safesecureopenings.com>',
+    },
     branding: {
       bgColor: '#164f77',
       logo: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress',
@@ -80,4 +89,5 @@ module.exports = {
     logo: 'https://img.safesecureopenings.com/files/base/acbm/fcp/image/static/sso/Logo-Final.png?h=60&auto=format,compress',
     bgColor: '#164f77',
   },
+  publishedContentMultisite: false,
 };

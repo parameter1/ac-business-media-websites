@@ -11,7 +11,7 @@ const channels = [
 
 const resources = [
   { href: '/directory', label: 'New Equipment Directory' },
-  { href: '/specguide', label: 'Spec Guides' },
+  { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
   { href: '/videos', label: 'Video Network' },
   { href: '/magazine', label: 'Magazines' },
   { href: '/events', label: 'Events' },
@@ -195,6 +195,10 @@ module.exports = {
         { href: '/business', label: 'Business' },
         { href: '/construction-technology', label: 'Technology' },
         { href: '/profit-matters', label: 'Profit Matters' },
+        { href: '/infrastructure', label: 'Infrastructure' },
+        { href: '/new-equipment', label: 'New Equipment' },
+        { href: '/latest-news', label: 'Construction News' },
+        { href: '/sustainability', label: 'Sustainability' },
       ],
     },
     {
@@ -202,6 +206,7 @@ module.exports = {
       items: [
         { href: '/directory', label: 'New Equipment Directory' },
         { href: '/asphalt-industry-directory', label: 'Asphalt Industry Directory' },
+        { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
         { href: '/specguide', label: 'Spec Guides' },
         { href: '/video', label: 'Video Network' },
         { href: '/magazine', label: 'Magazine' },
@@ -210,7 +215,6 @@ module.exports = {
         { href: '/premium-content', label: 'Premium Content' },
         { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
         { href: '/webinars', label: 'Webinars' },
-        { href: '/infrastructure', label: 'Infrastructure' },
         { href: '/expert-columns', label: 'Expert Columns' },
         { href: '/awards', label: 'Awards' },
         { href: '/whitepapers', label: 'Whitepapers' },

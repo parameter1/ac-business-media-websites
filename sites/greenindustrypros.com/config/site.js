@@ -1,21 +1,25 @@
+const omeda = require('@ac-business-media/refresh-theme/config/omeda');
 const dragonForms = require('./dragon-forms');
 const events = require('./events');
 const gam = require('./gam');
-const identityX = require('./identity-x');
 const nativeX = require('./native-x');
 const navigation = require('./navigation');
-const omeda = require('./omeda');
+const identityX = require('./identity-x');
+const omedaIdentityX = require('./omeda-identity-x');
 
 module.exports = {
   // module configs
   dragonForms,
   events,
   gam,
-  identityX,
   nativeX,
   navigation,
-  omeda,
-
+  omeda: omeda({}),
+  identityX,
+  omedaIdentityX,
+  idxNavItems: {
+    enable: false,
+  },
   // theme configs
   company: 'AC Business Media, LLC',
   p1events: {
@@ -45,6 +49,14 @@ module.exports = {
     { provider: 'flipboard', href: 'https://flipboard.com/@GreenIndustry', target: '_blank' },
     { provider: 'youtube', href: 'https://www.youtube.com/c/greenindustrypros', target: '_blank' },
   ],
+  socialMediaLinksByChannel: {
+    snowpro: [
+      { provider: 'linkedin', href: 'https://www.linkedin.com/company/snowpro-magazine/', target: '_blank' },
+      { provider: 'twitter', href: 'https://twitter.com/SnowProMagazine', target: '_blank' },
+      { provider: 'facebook', href: 'https://www.facebook.com/snowpromagazine', target: '_blank' },
+      { provider: 'instagram', href: 'https://www.instagram.com/snowpromagazine/', target: '_blank' },
+    ],
+  },
   radix: {
     enabled: true,
     url: 'https://radix.base.parameter1.com',
@@ -69,6 +81,14 @@ module.exports = {
     description: '',
   },
   contactUs: {
+    notificationDefaults: {
+      branding: {
+        bgColor: '#164f77',
+        logo: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress',
+      },
+      to: 'jsage@acbusinessmedia.com',
+      from: 'Green Industry Pros <noreply@greenindustrypros.com>',
+    },
     branding: {
       bgColor: '#164f77',
       logo: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress',
@@ -83,4 +103,5 @@ module.exports = {
     logo: 'https://img.greenindustrypros.com/files/base/acbm/static/GIP_Logo2013_Reverse.png?h=60&auto=format,compress',
     bgColor: '#164f77',
   },
+  useSectionLogos: true,
 };

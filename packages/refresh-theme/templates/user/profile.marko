@@ -14,7 +14,9 @@ $ const description = `Complete your ${config.siteName()} user profile`;
     <marko-web-page-wrapper>
       <@section>
         <h1 class="page-wrapper__title">${description}</h1>
-        <marko-web-identity-x-form-profile />
+        <marko-web-identity-x-form-profile
+          additional-event-data={ promoCode: "P1FullProfile" }
+        />
       </@section>
     </marko-web-page-wrapper>
   </@page>

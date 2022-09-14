@@ -18,7 +18,7 @@ module.exports = {
       { href: '/contact-us', label: 'Contact Us' },
       { href: '/magazine', label: 'Magazine' },
       { href: '/advertise', label: 'Advertise' },
-      { href: '/directory', label: 'Directory' },
+      { href: '/webinars', label: 'Webinars' },
       { href: 'https://cms.megaphone.fm/channel/grassroots?selected=ACBMI1756535736', target: '_blank', label: 'Podcast' },
       { href: '/premium-content', label: 'Premium Content' },
       { href: '/videos', label: 'Videos' },
@@ -83,6 +83,7 @@ module.exports = {
         { href: '/awards', label: 'Awards' },
         { href: '/webinars', label: 'Webinars' },
         { href: '/events', label: 'Events' },
+        { href: '/directory', label: 'Directory' },
       ],
     },
     {

@@ -1,11 +1,12 @@
+const omeda = require('@ac-business-media/refresh-theme/config/omeda');
 const specGuides = require('./spec-guides');
 const dragonForms = require('./dragon-forms');
 const events = require('./events');
 const gam = require('./gam');
-const identityX = require('./identity-x');
 const nativeX = require('./native-x');
 const navigation = require('./navigation');
-const omeda = require('./omeda');
+const identityX = require('./identity-x');
+const omedaIdentityX = require('./omeda-identity-x');
 
 module.exports = {
   // module configs
@@ -13,11 +14,14 @@ module.exports = {
   dragonForms,
   events,
   gam,
-  identityX,
   nativeX,
   navigation,
-  omeda,
-
+  omeda: omeda({}),
+  identityX,
+  omedaIdentityX,
+  idxNavItems: {
+    enable: false,
+  },
   // theme configs
   company: 'AC Business Media, LLC',
   p1events: {
@@ -70,6 +74,14 @@ module.exports = {
     description: '',
   },
   contactUs: {
+    notificationDefaults: {
+      branding: {
+        bgColor: '#ed1c24',
+        logo: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress',
+      },
+      to: 'jsage@acbusinessmedia.com',
+      from: 'OEM Off-Highway <noreply@oemoffhighway.com>',
+    },
     branding: {
       bgColor: '#ed1c24',
       logo: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress',

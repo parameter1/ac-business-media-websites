@@ -41,11 +41,12 @@
   "<refresh-theme-contextual-header>": {
     "template": "./site-header/contextual.marko"
   },
-  "<refresh-theme-content-section-logo>": {
-    "template": "./content-section-logo.marko",
+  "<refresh-theme-website-section-heading>": {
+    "template": "./website-section-heading.marko",
     "<section>": {
       "@name": "string",
-      "@hierarchy": "array"
+      "@hierarchy": "array",
+      "@alias": "string"
     },
     "<image>": {}
   }
