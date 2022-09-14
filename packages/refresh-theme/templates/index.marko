@@ -115,7 +115,7 @@ $ const adSlots = ({ aliases }) => ({
           <div class="row">
             <div class="col-lg-8">
               <marko-web-query|{ nodes }|
-                name="all-published-content"
+                name="website-scheduled-content"
                 params={ excludeContentTypes, limit: 6, requiresImage: true, queryFragment }
               >
                 <refresh-theme-latest-content-list-flow nodes=nodes with-header=true />
@@ -172,7 +172,7 @@ $ const adSlots = ({ aliases }) => ({
             <div class="row">
               <div class="col-lg-8 infinite-scroll-target">
                 <marko-web-query|{ nodes }|
-                  name="all-published-content"
+                  name="website-scheduled-content"
                   params={ excludeContentTypes, limit: 12, skip: 6, requiresImage: true, queryFragment: latestQueryFragment }
                 >
                   <refresh-theme-latest-content-list-flow nodes=nodes with-header=false>
@@ -182,7 +182,7 @@ $ const adSlots = ({ aliases }) => ({
 
                 <refresh-theme-latest-content-load-more-block max-pages=1>
                   <@query
-                    name="all-published-content"
+                    name="website-scheduled-content"
                     params={ excludeContentTypes, limit: 12, skip: 18, requiresImage: true }
                   />
                   <@page for="website-section" id=id />
