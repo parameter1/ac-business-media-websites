@@ -40,12 +40,11 @@ $ const createAttrs = () => {
   if (type === "webinar") {
     return {
       header: "More Webinars",
-      queryName: "all-published-content",
+      queryName: "website-scheduled-content",
       queryParams: {
-        contentTypes: ["Webinar"],
+        includeContentTypes: ["Webinar"],
         excludeContentIds: [id],
-        sortField: "startDate",
-        sortOrder: "desc",
+        sort: { field: "startDate", order: "desc", },
         limit,
         skip,
         queryFragment },
@@ -54,12 +53,11 @@ $ const createAttrs = () => {
   if (type === "event") {
     return {
       header: "More Events",
-      queryName: "all-published-content",
+      queryName: "website-scheduled-content",
       queryParams: {
-        contentTypes: ["Event"],
+        includeContentTypes: ["Event"],
         endingAfter: now,
-        sortField: "startDate",
-        sortOrder: "asc",
+        sort: { field: "startDate", order: "asc", },
         limit,
         skip,
         queryFragment },
