@@ -1,5 +1,4 @@
 const sharedPublicFiles = require('@ac-business-media/refresh-theme/routes/public-files');
-const asphaltIndustryDirectory = require('./asphalt-industry-directory');
 const content = require('./content');
 const dynamicPages = require('./dynamic-page');
 const home = require('./home');
@@ -20,9 +19,6 @@ module.exports = (app) => {
 
   // Spec Guides
   specGuides(app);
-
-  // Asphalt Industry Directory
-  asphaltIndustryDirectory(app);
 
   // Dynamic Pages
   dynamicPages(app);
