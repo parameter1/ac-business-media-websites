@@ -1,6 +1,6 @@
 {
   "name": "@ac-business-media/safesecureopenings.com",
-  "version": "1.40.0",
+  "version": "1.40.3",
   "author": "Brandon Krigbaum <brandonbk@gmail.com>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/sites/safesecureopenings.com",
   "license": "MIT",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@ac-business-media/package-directory": "^1.40.0",
-    "@ac-business-media/refresh-theme": "^1.40.0",
+    "@ac-business-media/refresh-theme": "^1.40.3",
     "@parameter1/base-cms-marko-core": "^3.0.0",
     "@parameter1/base-cms-marko-web": "^3.0.0",
     "@parameter1/base-cms-object-path": "^3.0.0",
