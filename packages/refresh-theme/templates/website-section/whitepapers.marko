@@ -1,12 +1,9 @@
-$ const { site } = out.global;
 $ const {
   id,
   alias,
   name,
   pageNode
 } = data;
-
-$ const withSite = site.get('publishedContentMultisite') ? !site.get('publishedContentMultisite') : false;
 
 <refresh-theme-website-section-published-content-layout
   id=id
@@ -18,8 +15,7 @@ $ const withSite = site.get('publishedContentMultisite') ? !site.get('publishedC
     name="website-scheduled-content"
     params={
       includeContentTypes: ["Whitepaper"],
-      limit: 12,
-      withSite
+      limit: 12
     }
   />
 </refresh-theme-website-section-published-content-layout>
