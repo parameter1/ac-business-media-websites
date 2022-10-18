@@ -1,12 +1,9 @@
-$ const { site } = out.global;
 $ const {
   id,
   alias,
   name,
   pageNode
 } = data;
-
-$ const withSite = site.get('publishedContentMultisite') ? !site.get('publishedContentMultisite') : false;
 
 <refresh-theme-website-section-published-content-layout
   id=id
@@ -15,11 +12,10 @@ $ const withSite = site.get('publishedContentMultisite') ? !site.get('publishedC
   page-node=pageNode
 >
   <@query
-    name="all-published-content"
+    name="website-scheduled-content"
     params={
-      contentTypes: ["Video"],
-      limit: 12,
-      withSite
+      includeContentTypes: ["Video"],
+      limit: 12
     }
   />
 </refresh-theme-website-section-published-content-layout>

@@ -7,8 +7,6 @@ $ const {
 } = data;
 $ const now = Date.now();
 
-$ const withSite = site.get('publishedContentMultisite') ? !site.get('publishedContentMultisite') : false;
-
 <refresh-theme-website-section-published-content-layout
   id=id
   alias=alias
@@ -16,14 +14,12 @@ $ const withSite = site.get('publishedContentMultisite') ? !site.get('publishedC
   page-node=pageNode
 >
   <@query
-    name="all-published-content"
+    name="website-scheduled-content"
     params={
-      contentTypes: ["Event"],
+      includeContentTypes: ["Event"],
       limit: 12,
       endingAfter: now,
-      sortField: "startDate",
-      sortOrder: "asc",
-      withSite
+      sort: { field: "startDate", order: "asc" }
     }
   />
 </refresh-theme-website-section-published-content-layout>
