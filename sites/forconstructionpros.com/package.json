@@ -27,6 +27,7 @@
     "@parameter1/base-cms-object-path": "^3.0.0",
     "@parameter1/base-cms-utils": "^3.0.0",
     "@parameter1/base-cms-web-cli": "^3.0.0",
+    "node-fetch": "^2.6.5",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
   }
