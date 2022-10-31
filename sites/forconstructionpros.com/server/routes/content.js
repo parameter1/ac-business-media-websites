@@ -9,31 +9,43 @@ const queryFragment = require('@ac-business-media/refresh-theme/graphql/fragment
 const companyQueryFragment = require('@ac-business-media/refresh-theme/graphql/fragments/content-company-page');
 
 module.exports = (app) => {
+  const { site } = app.locals;
+  const enableIronProsLinking = site.get('enableIronProsLinking');
+
   app.get('/*?company/:id(\\d{8})*', withContent({
     template: company,
     queryFragment: companyQueryFragment,
   }));
-  app.get('/*?:id(\\d{8})*', userState(), withContent({
-    template: content,
-    queryFragment,
-    async sideloadDataFn() {
-      try {
-        const res = await fetch('https://bcl.tauron.base.parameter1.com/', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json', 'x-tenant-key': 'acbm_fcp' },
-          body: JSON.stringify({
-            query: `query { highlightedContentBody(input: { _id: ${this.variables.input.id} }) }`,
-          }),
-        });
-        const { data } = await res.json();
-        if (!data || !data.highlightedContentBody) return {};
-        return {
-          bcl: { body: data.highlightedContentBody },
-        };
-      } catch (e) {
-        // log this somehow?
-        return {};
-      }
-    },
-  }));
+  // const { enableIronProsLinking } = app.locals.site;
+  // console.log(app.locals);
+  if (enableIronProsLinking) {
+    app.get('/*?:id(\\d{8})*', userState(), withContent({
+      template: content,
+      queryFragment,
+      async sideloadDataFn() {
+        try {
+          const res = await fetch('https://bcl.tauron.base.parameter1.com/', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json', 'x-tenant-key': 'acbm_fcp' },
+            body: JSON.stringify({
+              query: `query { highlightedContentBody(input: { _id: ${this.variables.input.id} }) }`,
+            }),
+          });
+          const { data } = await res.json();
+          if (!data || !data.highlightedContentBody) return {};
+          return {
+            bcl: { body: data.highlightedContentBody },
+          };
+        } catch (e) {
+          // log this somehow?
+          return {};
+        }
+      },
+    }));
+  } else {
+    app.get('/*?:id(\\d{8})*', userState(), withContent({
+      template: content,
+      queryFragment,
+    }));
+  }
 };

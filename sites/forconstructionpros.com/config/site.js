@@ -12,6 +12,7 @@ module.exports = {
   // module configs
   specGuides,
   dragonForms,
+  enableIronProsLinking: process.env.ENABLE_IRONPROS_LINKING || false,
   events,
   gam,
   nativeX,
