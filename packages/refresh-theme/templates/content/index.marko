@@ -189,7 +189,6 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 </if>
                 <else>
                   $ const bodyId = `content-body-${id}`;
-                  $ console.log('hitting: ', pageNode.sideloadedData);
                   $ const bodyObj = get(pageNode, "sideloadedData.bcl.body") ? getAsObject(pageNode, "sideloadedData.bcl") : content;
                   <marko-web-content-body block-name=blockName obj=bodyObj attrs={ id: bodyId } />
                   <if(injectAds)>
