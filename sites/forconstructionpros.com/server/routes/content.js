@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const newrelic = require('newrelic');
 const { withContent } = require('@parameter1/base-cms-marko-web/middleware');
 const userState = require('@ac-business-media/refresh-theme/middleware/user-state');
 const content = require('@ac-business-media/refresh-theme/templates/content');
@@ -16,8 +17,6 @@ module.exports = (app) => {
     template: company,
     queryFragment: companyQueryFragment,
   }));
-  // const { enableIronProsLinking } = app.locals.site;
-  // console.log(app.locals);
   if (enableIronProsLinking) {
     app.get('/*?:id(\\d{8})*', userState(), withContent({
       template: content,
@@ -37,7 +36,7 @@ module.exports = (app) => {
             bcl: { body: data.highlightedContentBody },
           };
         } catch (e) {
-          // log this somehow?
+          newrelic.noticeError(e);
           return {};
         }
       },
