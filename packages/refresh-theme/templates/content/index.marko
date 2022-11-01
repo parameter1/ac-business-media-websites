@@ -191,6 +191,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                   $ const bodyId = `content-body-${id}`;
                   $ const bodyObj = get(pageNode, "sideloadedData.bcl.body") ? getAsObject(pageNode, "sideloadedData.bcl") : content;
                   <marko-web-content-body block-name=blockName obj=bodyObj attrs={ id: bodyId } />
+                  <marko-web-p1-events-track-content-body-links selector=`#${bodyId}` content=content />
                   <if(injectAds)>
                     $ const atCount = 1750;
                     <marko-web-gam-inject-ads selector=`#${bodyId}`>
