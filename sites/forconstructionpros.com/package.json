@@ -28,8 +28,6 @@
     "@parameter1/base-cms-utils": "^3.0.0",
     "@parameter1/base-cms-web-cli": "^3.11.0",
     "graphql": "^14.5.4",
-    "graphql-tag": "^2.10.1",
-    "newrelic": "^5.11.0",
-    "node-fetch": "^2.6.5"
+    "graphql-tag": "^2.10.1"
   }
 }

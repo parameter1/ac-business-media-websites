@@ -5,7 +5,7 @@ fragment ContentPageFragment on Content {
   id
   name
   teaser(input: { useFallback: false, maxLength: null })
-  body
+  body(input: { useLinkInjectedBody: true })
   published
   siteContext {
     path
