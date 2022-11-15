@@ -492,6 +492,24 @@ $theme-related-content-border-color: #dee2e6;
   &__content-embed-code {
     margin-bottom: map-get($spacers, block);
   }
+
+  &__content-transcript {
+    @include theme-content-body();
+    &:empty {
+      display: none;
+    }
+  }
+
+  > .btn-transcript,
+  > .btn-transcript:hover {
+    background-color: $gray-200;
+  }
+
+  &__content-transcript-title {
+    border-top: 1px solid rgba(0, 0, 0, .25);
+    padding-top: map-get($spacers, block);
+    padding-bottom: map-get($spacers, block);
+  }
 }
 
 .page-rail {
