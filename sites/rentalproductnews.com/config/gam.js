@@ -4,14 +4,14 @@ module.exports = {
     {
       alias: 'default',
       map: {
-        lb1: 'default/lb1',
-        'lb-sticky-bottom': 'default/lb1',
-        rail1: 'default/rail1',
-        rail2: 'default/rail1',
-        'infinite-rail': 'default/rail1',
-        'infinite-interstitial': 'default/rail1',
-        'in-content': 'default/rail1',
-        reskin: 'default/reskin',
+        lb1: 'rental/lb1',
+        'lb-sticky-bottom': 'rental/lb1',
+        rail1: 'rental/rail1',
+        rail2: 'rental/rail1',
+        'infinite-rail': 'rental/rail1',
+        'infinite-interstitial': 'rental/rail1',
+        'in-content': 'rental/rail1',
+        reskin: 'rental/reskin',
       },
     },
     {
