@@ -165,3 +165,20 @@ services:
     ports:
       - "9718:80"
       - "19718:19718"
+
+  rental:
+    <<: *site-cmd
+    working_dir: /root/sites/rentalproductnews.com
+    environment:
+      <<: [*env, *env-tauron]
+      PORT: 80
+      EXPOSED_PORT: 9719
+      LIVERELOAD_PORT: 19719
+      TENANT_KEY: acbm_fcp
+      SITE_ID: 53ca8d671784f8066eb2c949
+      OMEDA_INPUT_ID: ${RENTAL_OMEDA_INPUT_ID-(unset)}
+      HOST: www-acbm-rental.dev.parameter1.com
+    hostname: www-acbm-rental.dev.parameter1.com
+    ports:
+      - "9719:80"
+      - "19719:19719"
