@@ -167,6 +167,12 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
               </if>
               <default-theme-content-contact-details obj=content />
 
+              <if(content.transcript)>
+                <marko-web-link href=`#transcript-${id}` class="btn btn-transcript mb-block" title="Transcript">
+                  <marko-web-icon name="file" modifiers=["lg"] /> Transcript
+                </marko-web-link>
+              </if>
+
               $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired") || contentGatingHandler({ content, req });
               $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
               <marko-web-identity-x-access|context|
@@ -189,12 +195,25 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 </if>
                 <else>
                   $ const bodyId = `content-body-${id}`;
+                  $ const transcriptId = `content-transcript-${content.id}`;
+
                   <marko-web-content-body block-name=blockName obj=content attrs={ id: bodyId } />
                   <marko-web-p1-events-track-content-body-links
                     content=content
                     selector=`#${bodyId}`
                     link-selector=".bcl-injected-link"
                   />
+
+                  <!-- Add Transcripts and allow for the ad injection -->
+                  <if(content.transcript)>
+                    <div id=`transcript-${id}` class="page-contents__content-transcript">
+                      <marko-web-element block-name="page-contents" name="content-transcript-title">
+                        <marko-web-icon name="file" modifiers=["lg"] /> Transcript
+                      </marko-web-element>
+                      <marko-web-content-transcript obj=content block-name=blockName attrs={ id: transcriptId }  />
+                    </div>
+                  </if>
+
                   <if(injectAds)>
                     $ const atCount = 1750;
                     <marko-web-gam-inject-ads selector=`#${bodyId}`>
@@ -219,6 +238,30 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                         ...GAM.getAdUnit({ name: "in-content", aliases })
                       />
                     </marko-web-gam-inject-ads>
+                    <if(content.transcript)>
+                      <marko-web-gam-inject-ads selector=`#${bodyId}`>
+                        <@inject
+                          at=atCount
+                          modifiers=["max-width-300", "in-content"]
+                          ...GAM.getAdUnit({ name: "in-content", aliases })
+                        />
+                        <@inject
+                          at=(atCount * 2)
+                          modifiers=["max-width-300", "in-content"]
+                          ...GAM.getAdUnit({ name: "in-content", aliases })
+                        />
+                        <@inject
+                          at=(atCount * 3)
+                          modifiers=["max-width-300", "in-content"]
+                          ...GAM.getAdUnit({ name: "in-content", aliases })
+                        />
+                        <@inject
+                          at=(atCount * 4)
+                          modifiers=["max-width-300", "in-content"]
+                          ...GAM.getAdUnit({ name: "in-content", aliases })
+                        />
+                      </marko-web-gam-inject-ads>
+                    </if>
                   </if>
 
                   <marko-web-content-sidebars block-name=blockName obj=content />
