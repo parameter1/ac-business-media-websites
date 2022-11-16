@@ -1,3 +1,7 @@
+const { getOmedaCustomerRecord } = require('@parameter1/base-cms-marko-web-omeda-identity-x/omeda-data');
+const { get, getAsArray } = require('@parameter1/base-cms-object-path');
+const defaultValue = require('@parameter1/base-cms-marko-core/utils/default-value');
+
 module.exports = ({
   omedaConfig,
   idxConfig,
@@ -64,4 +68,47 @@ module.exports = ({
   appendPromoCodeToHook,
   appendBehaviorToHook,
   appendDemographicToHook,
+  onAuthenticationSuccessFormatter: (async ({ req, payload }) => {
+    // BAIL if omedaGraphQLCLient isnt available return payload.
+    if (!req.$omedaGraphQLClient) return payload;
+
+    const identityXOptInHooks = req.app.locals.site.getAsObject('identityXOptInHooks');
+    const omeda = req.app.locals.site.getAsObject('omeda');
+    if (identityXOptInHooks.onAuthenticationSuccess) {
+      const { autoSignupDeploymentTypes } = identityXOptInHooks.onAuthenticationSuccess;
+      const { user } = payload;
+      const found = getAsArray(user, 'externalIds')
+        .find(({ identifier, namespace }) => identifier.type === 'encrypted'
+          && namespace.provider === 'omeda'
+          && namespace.tenant === omeda.brandKey);
+
+      // BAIL if no encryptedCustomerId and return payload
+      if (!found) return payload;
+      const encryptedCustomerId = get(found, 'identifier.value');
+
+      // Retrive the omeda customer
+      const omedaCustomer = await getOmedaCustomerRecord({
+        omedaGraphQLClient: req.$omedaGraphQLClient,
+        encryptedCustomerId,
+      });
+      // Get the current user subscriptions
+      const subscriptions = getAsArray(omedaCustomer, 'subscriptions');
+      // For each autoOptinProduct check if they have a subscription.
+      // Sign the user up if they do not
+
+      const autoDeploymentTypes = autoSignupDeploymentTypes.filter(
+        id => !subscriptions.some(({ product }) => product.deploymentTypeId === id),
+      );
+      const userDeploymentTypes = defaultValue(user.deploymentTypes, []);
+      const deploymentTypes = [...userDeploymentTypes, ...autoDeploymentTypes];
+      // Always apply the ${pubcod_Profile Updated_Meter} promocode & Demo
+      if (omedaCustomer && (deploymentTypes)) {
+        return ({
+          ...payload,
+          deploymentTypes,
+        });
+      }
+    }
+    return payload;
+  }),
 });
