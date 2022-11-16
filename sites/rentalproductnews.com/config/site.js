@@ -78,7 +78,7 @@ module.exports = {
         logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress',
       },
       to: 'support@forconstructionpros.com',
-      from: 'For Construction Pros <noreply@forconstructionpros.com>',
+      from: 'Rental Product News <noreply@forconstructionpros.com>',
     },
     branding: {
       bgColor: '#000',
