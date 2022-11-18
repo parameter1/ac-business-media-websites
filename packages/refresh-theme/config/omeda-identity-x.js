@@ -70,7 +70,7 @@ module.exports = (args) => {
     appendPromoCodeToHook,
     appendBehaviorToHook,
     appendDemographicToHook,
-    onUserProfileUpdateFormatter: (async ({ req, payload }) => {
+    onAuthenticationSuccessFormatter: (async ({ req, payload }) => {
       // BAIL if omedaGraphQLCLient isnt available return payload.
       if (!omedaConfig.omedaGraphQLClientProp || !onAuthenticationSuccess) return payload;
       const { autoSignupDeploymentTypes } = onAuthenticationSuccess;
