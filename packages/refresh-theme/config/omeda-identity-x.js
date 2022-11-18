@@ -97,7 +97,7 @@ module.exports = (args) => {
       // Sign the user up if they do not
 
       const autoDeploymentTypes = autoSignupDeploymentTypes.filter(
-        id => !subscriptions.some(({ product }) => product.deploymentTypeId === id),
+        ({ id }) => !subscriptions.some(({ product }) => product.deploymentTypeId === id),
       );
       const userDeploymentTypes = defaultValue(user.deploymentTypes, []);
       const deploymentTypes = [...userDeploymentTypes, ...autoDeploymentTypes];
