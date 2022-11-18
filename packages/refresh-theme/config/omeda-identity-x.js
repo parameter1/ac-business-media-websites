@@ -72,8 +72,12 @@ module.exports = (args) => {
     appendDemographicToHook,
     onAuthenticationSuccessFormatter: (async ({ req, payload }) => {
       // BAIL if omedaGraphQLCLient isnt available return payload.
-      if (!omedaConfig.omedaGraphQLClientProp || !onAuthenticationSuccess) return payload;
+      const omedaGraphQLClient = req[omedaConfig.omedaGraphQLClientProp];
+      if (!omedaGraphQLClient || !onAuthenticationSuccess) return payload;
+
       const { autoSignupDeploymentTypes } = onAuthenticationSuccess;
+      if (!autoSignupDeploymentTypes) return payload
+
       const { user } = payload;
       const found = getAsArray(user, 'externalIds')
         .find(({ identifier, namespace }) => identifier.type === 'encrypted'
@@ -86,7 +90,7 @@ module.exports = (args) => {
 
       // Retrive the omeda customer
       const omedaCustomer = await getOmedaCustomerRecord({
-        omedaGraphQLClient: req[omedaConfig.omedaGraphQLClientProp],
+        omedaGraphQLClient,
         encryptedCustomerId,
       });
       if (!omedaCustomer) return payload;
