@@ -73,42 +73,39 @@ module.exports = (args) => {
     appendDemographicToHook,
     onUserProfileUpdateFormatter: (async ({ req, payload }) => {
       // BAIL if omedaGraphQLCLient isnt available return payload.
-      if (!omedaConfig.omedaGraphQLClientProp) return payload;
-      if (onAuthenticationSuccess) {
-        const { autoSignupDeploymentTypes } = onAuthenticationSuccess;
-        const { user } = payload;
-        const found = getAsArray(user, 'externalIds')
-          .find(({ identifier, namespace }) => identifier.type === 'encrypted'
-            && namespace.provider === 'omeda'
-            && namespace.tenant === omedaConfig.brandKey);
+      if (!omedaConfig.omedaGraphQLClientProp || !onAuthenticationSuccess) return payload;
+      const { autoSignupDeploymentTypes } = onAuthenticationSuccess;
+      const { user } = payload;
+      const found = getAsArray(user, 'externalIds')
+        .find(({ identifier, namespace }) => identifier.type === 'encrypted'
+          && namespace.provider === 'omeda'
+          && namespace.tenant === omedaConfig.brandKey);
 
-        // BAIL if no encryptedCustomerId and return payload
-        if (!found) return payload;
-        const encryptedCustomerId = get(found, 'identifier.value');
+      // BAIL if no encryptedCustomerId and return payload
+      if (!found) return payload;
+      const encryptedCustomerId = get(found, 'identifier.value');
 
-        // Retrive the omeda customer
-        const omedaCustomer = await getOmedaCustomerRecord({
-          omedaGraphQLClient: req[omedaConfig.omedaGraphQLClientProp],
-          encryptedCustomerId,
-        });
-        if (!omedaCustomer) return payload;
-        // Get the current user subscriptions
-        const subscriptions = getAsArray(omedaCustomer, 'subscriptions');
-        // For each autoOptinProduct check if they have a subscription.
-        // Sign the user up if they do not
+      // Retrive the omeda customer
+      const omedaCustomer = await getOmedaCustomerRecord({
+        omedaGraphQLClient: req[omedaConfig.omedaGraphQLClientProp],
+        encryptedCustomerId,
+      });
+      if (!omedaCustomer) return payload;
+      // Get the current user subscriptions
+      const subscriptions = getAsArray(omedaCustomer, 'subscriptions');
+      // For each autoOptinProduct check if they have a subscription.
+      // Sign the user up if they do not
 
-        const autoDeploymentTypes = autoSignupDeploymentTypes.filter(
-          id => !subscriptions.some(({ product }) => product.deploymentTypeId === id),
-        );
-        const userDeploymentTypes = defaultValue(user.deploymentTypes, []);
-        const deploymentTypes = [...userDeploymentTypes, ...autoDeploymentTypes];
-        // Always apply the ${pubcod_Profile Updated_Meter} promocode & Demo
-        return {
-          ...payload,
-          ...(deploymentTypes.length && { deploymentTypes }),
-        };
-      }
-      return payload;
+      const autoDeploymentTypes = autoSignupDeploymentTypes.filter(
+        id => !subscriptions.some(({ product }) => product.deploymentTypeId === id),
+      );
+      const userDeploymentTypes = defaultValue(user.deploymentTypes, []);
+      const deploymentTypes = [...userDeploymentTypes, ...autoDeploymentTypes];
+      // Always apply the ${pubcod_Profile Updated_Meter} promocode & Demo
+      return {
+        ...payload,
+        ...(deploymentTypes.length && { deploymentTypes }),
+      };
     }),
   };
 };
