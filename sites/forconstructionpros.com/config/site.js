@@ -7,7 +7,6 @@ const nativeX = require('./native-x');
 const navigation = require('./navigation');
 const identityX = require('./identity-x');
 const omedaIdentityX = require('./omeda-identity-x');
-const identityXOptInHooks = require('./identity-x-opt-in-hooks');
 
 module.exports = {
   // module configs
@@ -23,7 +22,6 @@ module.exports = {
     enable: false,
   },
   omedaIdentityX,
-  identityXOptInHooks,
   // theme configs
   company: 'AC Business Media, LLC',
   showCompanySectionFilters: true,
