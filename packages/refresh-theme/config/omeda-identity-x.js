@@ -1,6 +1,5 @@
 const { getOmedaCustomerRecord } = require('@parameter1/base-cms-marko-web-omeda-identity-x/omeda-data');
 const { get, getAsArray } = require('@parameter1/base-cms-object-path');
-const defaultValue = require('@parameter1/base-cms-marko-core/utils/default-value');
 
 module.exports = (args) => {
   const {
@@ -99,7 +98,7 @@ module.exports = (args) => {
       const autoDeploymentTypes = autoSignupDeploymentTypes.filter(
         ({ id }) => !subscriptions.some(({ product }) => product.deploymentTypeId === id),
       );
-      const userDeploymentTypes = defaultValue(user.deploymentTypes, []);
+      const userDeploymentTypes = getAsArray(user, 'deploymentTypes');
       const deploymentTypes = [...userDeploymentTypes, ...autoDeploymentTypes];
       // Always apply the ${pubcod_Profile Updated_Meter} promocode & Demo
       return {
