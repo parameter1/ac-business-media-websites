@@ -76,7 +76,7 @@ module.exports = (args) => {
       if (!omedaGraphQLClient || !onAuthenticationSuccess) return payload;
 
       const { autoSignupDeploymentTypes } = onAuthenticationSuccess;
-      if (!autoSignupDeploymentTypes) return payload
+      if (!autoSignupDeploymentTypes) return payload;
 
       const { user } = payload;
       const found = getAsArray(user, 'externalIds')
