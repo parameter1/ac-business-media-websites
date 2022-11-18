@@ -91,6 +91,7 @@ module.exports = (args) => {
           omedaGraphQLClient: req[omedaConfig.omedaGraphQLClientProp],
           encryptedCustomerId,
         });
+        if (!omedaCustomer) return payload;
         // Get the current user subscriptions
         const subscriptions = getAsArray(omedaCustomer, 'subscriptions');
         // For each autoOptinProduct check if they have a subscription.
