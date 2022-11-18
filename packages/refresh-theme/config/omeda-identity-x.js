@@ -103,12 +103,10 @@ module.exports = (args) => {
         const userDeploymentTypes = defaultValue(user.deploymentTypes, []);
         const deploymentTypes = [...userDeploymentTypes, ...autoDeploymentTypes];
         // Always apply the ${pubcod_Profile Updated_Meter} promocode & Demo
-        if (omedaCustomer && (deploymentTypes)) {
-          return ({
-            ...payload,
-            deploymentTypes,
-          });
-        }
+        return {
+          ...payload,
+          ...(deploymentTypes.length && { deploymentTypes }),
+        };
       }
       return payload;
     }),
