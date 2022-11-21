@@ -7,4 +7,9 @@ module.exports = configure({
   idxConfig,
   rapidIdentProductId: 15375,
   websiteBehaviorAttributeId: 451156,
+  onAuthenticationSuccess: {
+    autoSignupDeploymentTypes: [
+      { id: 4303, optedIn: true },
+    ],
+  },
 });
