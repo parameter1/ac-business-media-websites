@@ -325,7 +325,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 />
               </refresh-theme-latest-in-section-block>
 
-              <leaders-contextual content-id=id />
+              <refresh-theme-native-x-list-block aliases=site.getAsArray("nativeXBlockAliases") />
 
               <if(!isShortForm)>
                 <marko-web-gam-display-ad
