@@ -325,7 +325,13 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                 />
               </refresh-theme-latest-in-section-block>
 
-              <refresh-theme-native-x-list-block aliases=site.getAsArray("nativeXBlockAliases") />
+              <if(site.getAsArray("nativeXBlock.aliases").length)>
+                <refresh-theme-native-x-list-block
+                  aliases=site.getAsArray("nativeXBlock.aliases")
+                  header-img-src=site.get("nativeXBlock.headerImgSrc")
+                  header-img-alt=site.get("nativeXBlock.headerImgAlt")
+                />
+             </if>
 
               <if(!isShortForm)>
                 <marko-web-gam-display-ad

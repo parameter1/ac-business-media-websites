@@ -112,6 +112,8 @@
     "@placement-name": "string",
     "@aliases": "array",
     "@modifiers": "array",
-    "@list": "object"
+    "@list": "object",
+    "@header-img-src": "string",
+    "@header-img-alt": "string"
   }
 }
