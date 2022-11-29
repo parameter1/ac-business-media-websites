@@ -16,7 +16,6 @@ $ const displayHeader = defaultValue(input.displayHeader, true);
 
 <marko-web-native-x-fetch-elements|{ ads }| uri=uri id=placement.id opts={ n: limit }>
   $ const nodes = ads.filter(ad => ad.hasCampaign);
-  $ console.log(ads);
 
   <if(nodes.length)>
     <marko-web-node-list
@@ -31,7 +30,7 @@ $ const displayHeader = defaultValue(input.displayHeader, true);
         <@header>
           <div class="leaders__header">
             <div class="leaders__header-image">
-              <img src="https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/fcp-leaders.jpeg?h=85&auto=format,compress" alt="IronPros Sponsored Block Header">
+              <img src=input.headerImgSrc alt=input.headerImgAlt >
             </div>
           </div>
         </@header>
