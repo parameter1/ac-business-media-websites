@@ -149,4 +149,5 @@ module.exports = {
   ],
   publishedContentMultisite: false,
   useSectionLogos: true,
+  nativeXBlockAliases: ['ironpros'],
 };
