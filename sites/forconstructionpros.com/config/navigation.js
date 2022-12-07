@@ -4,14 +4,15 @@ const channels = [
   { href: '/concrete', label: 'Concrete' },
   { href: '/asphalt', label: 'Asphalt' },
   { href: '/pavement-maintenance', label: 'Pavement' },
-  { href: '/business', label: 'Business' },
   { href: '/construction-technology', label: 'Technology' },
   { href: '/profit-matters', label: 'Profit Matters' },
+  { href: 'https://www.forconstructionpros.com/equipment', label: 'CONEXPO' },
 ];
 
 const resources = [
   { href: '/directory', label: 'New Equipment Directory' },
   { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
+  { href: '/business', label: 'Business' },
   { href: '/videos', label: 'Video Network' },
   { href: '/magazine', label: 'Magazines' },
   { href: '/events', label: 'Events' },
