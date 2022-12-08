@@ -11,6 +11,7 @@ module.exports = {
     rental: '5b55e29d2360050001b7734c',
     'construction-technology': '5b55e3162360050001b77351',
     trucks: '5b55e1a52360050001b77343',
+    ironpros: '63863e54fc370c00019b2027',
   },
   content: {
     latestIn: {

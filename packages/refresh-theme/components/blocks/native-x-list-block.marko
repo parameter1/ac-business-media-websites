@@ -1,0 +1,50 @@
+import { getAsObject, get } from "@parameter1/base-cms-object-path";
+import { defaultValue } from "@parameter1/base-cms-marko-web/utils";
+import convertAdToContent from "@parameter1/base-cms-marko-web-native-x/utils/convert-ad-to-content";
+
+$ const { nativeX: nxConfig } = out.global;
+$ const limit = defaultValue(input.limit, 1);
+$ const placementName = defaultValue(input.placementName, "default");
+$ const aliases = defaultValue(input.aliases, []);
+
+$ const modifiers = input.modifiers || [];
+$ modifiers.push("native-x-list");
+$ const uri = nxConfig.getUri();
+$ const placement = nxConfig.getPlacement({ name: placementName, aliases });
+
+$ const displayHeader = defaultValue(input.displayHeader, true);
+
+<marko-web-native-x-fetch-elements|{ ads }| uri=uri id=placement.id opts={ n: limit }>
+  $ const nodes = ads.filter(ad => ad.hasCampaign);
+
+  <if(nodes.length)>
+    <marko-web-node-list
+      inner-justified=false
+      flush-x=false
+      flush-y=false
+      modifiers=modifiers
+      ...input.list
+    >
+
+      <if(displayHeader)>
+        <@header>
+          <div class="leaders__header">
+            <div class="leaders__header-image">
+              <img src=input.headerImgSrc alt=input.headerImgAlt >
+            </div>
+          </div>
+        </@header>
+      </if>
+      <@nodes nodes=nodes>
+        <@slot|{ node: ad, index }|>
+          $ const node = convertAdToContent(ad);
+          <refresh-theme-content-card-node
+            node=node
+            attrs=getAsObject(node, "attributes.container")
+            link-attrs=getAsObject(node, "attributes.link")
+          />
+        </@slot>
+      </@nodes>
+    </marko-web-node-list>
+  </if>
+</marko-web-native-x-fetch-elements>

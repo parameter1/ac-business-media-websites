@@ -149,4 +149,9 @@ module.exports = {
   ],
   publishedContentMultisite: false,
   useSectionLogos: true,
+  nativeXBlock: {
+    aliases: ['ironpros'],
+    headerImgSrc: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/IP_Newswire_image.jpg?h=90&auto=format,compress',
+    headerImgAlt: 'IronPros Newswire Block Header',
+  },
 };

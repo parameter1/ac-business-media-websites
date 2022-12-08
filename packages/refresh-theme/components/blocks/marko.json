@@ -105,5 +105,15 @@
       "type": "object",
       "required": true
     }
+  },
+  "<refresh-theme-native-x-list-block>": {
+    "template": "./native-x-list-block.marko",
+    "@limit": "number",
+    "@placement-name": "string",
+    "@aliases": "array",
+    "@modifiers": "array",
+    "@list": "object",
+    "@header-img-src": "string",
+    "@header-img-alt": "string"
   }
 }
