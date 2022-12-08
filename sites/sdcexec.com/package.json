@@ -1,6 +1,6 @@
 {
   "name": "@ac-business-media/sdcexec.com",
-  "version": "1.41.7",
+  "version": "1.41.10",
   "author": "Brandon Krigbaum <brandonbk@gmail.com>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/sites/sdcexec.com",
   "license": "MIT",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@ac-business-media/package-directory": "^1.41.4",
-    "@ac-business-media/refresh-theme": "^1.41.7",
+    "@ac-business-media/refresh-theme": "^1.41.10",
     "@parameter1/base-cms-marko-core": "^3.3.1",
     "@parameter1/base-cms-marko-web": "^3.14.0",
     "@parameter1/base-cms-marko-web-omeda": "^3.7.3",
