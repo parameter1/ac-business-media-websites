@@ -103,6 +103,7 @@ module.exports = {
           { href: '/concrete/equipment-products/concrete-pumps', label: 'Pumps' },
           { href: '/concrete/equipment-products/power-trowels', label: 'Trowels' },
           { href: '/concrete/equipment-products/repair-rehabilitation-products', label: 'Repair' },
+          { href: '/concrete/world-of-concrete', label: 'World of Concrete' },
         ],
       },
     },
