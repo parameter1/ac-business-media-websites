@@ -175,6 +175,7 @@ module.exports = {
           { href: '/awards/pros-to-know', label: 'Pros To Know' },
           { href: '/awards/top-supply-chain-projects', label: 'Top Supply Chain Projects' },
           { href: '/awards/green-supply-chain', label: 'Green Supply Chain' },
+          { href: '/awards/top-tech-startups', label: 'Top Tech Startups' },
         ],
       },
     },
