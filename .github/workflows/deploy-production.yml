@@ -107,7 +107,7 @@ jobs:
           tags: ${{ env.ECR_REGISTRY }}/${{ env.IMG_PREFIX }}-${{ matrix.site }}:${{ needs.vars.outputs.version }}
 
   deploy-sites:
-    needs: [vars, build-sites, deploy-services]
+    needs: [vars, build-sites]
     runs-on: ubuntu-latest
     strategy:
       matrix:
