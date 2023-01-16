@@ -63,6 +63,7 @@ module.exports = {
       items: [
         { href: '/business-management', label: 'Business Management' },
         { href: '/design-installation', label: 'Design & Installation' },
+        { href: '/industry-updates', label: 'Industry Updates' },
         { href: '/irrigation-water-management', label: 'Irrigation & Water' },
         { href: '/lawn-care', label: 'Lawn Care' },
         { href: '/mowing-maintenance', label: 'Mowing & Maintenance' },
