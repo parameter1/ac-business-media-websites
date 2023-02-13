@@ -37,6 +37,11 @@ $ const displayCompanyImage = ["product", "press-release"].includes(type) ? true
 $ const displaySocialShare = ["contact"].includes(type) ? false : true;
 $ const displayPhotoswipe = ["contact"].includes(type) ? false : true;
 $ const isShortForm = ["contact"].includes(type) ? true : false;
+
+$ const isSponsored = (content) => {
+  return getAsArray(content, "labels").some( l => ["Sponsored"].indexOf(l) >= 0)
+};
+
 $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) ? true : false;
 
 <!-- @todo change recommended to be more from company on product pages -->
@@ -61,7 +66,9 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
   <@above-container>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
       $ const aliases = hierarchyAliases(content.primarySection);
-      <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
+      <if(!isSponsored)>
+        <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
+      </if>
       <marko-web-p1-events-track-content node=content />
     </marko-web-resolve-page>
   </@above-container>
@@ -70,17 +77,19 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
       $ const section = resolved.getAsObject("primarySection");
       $ const aliases = hierarchyAliases(section);
       <marko-web-page-wrapper modifiers=["no-bottom-padding"]>
-        <@section>
-          <div class="row">
-            <div class="col">
-              <marko-web-gam-display-ad
-                id="gpt-ad-lb1"
-                slots=adSlots({ aliases })
-                modifiers=["max-width-970", "center"]
-              />
+        <if(!isSponsored)>
+          <@section>
+            <div class="row">
+              <div class="col">
+                <marko-web-gam-display-ad
+                  id="gpt-ad-lb1"
+                  slots=adSlots({ aliases })
+                  modifiers=["max-width-970", "center"]
+                />
+              </div>
             </div>
-          </div>
-        </@section>
+          </@section>
+        </if>
         <if(showCompanySectionFilter)>
           <@section>
             <div class="row company-section-search">
@@ -307,11 +316,13 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
 
             </default-theme-page-contents>
             <aside class="col-lg-4 page-rail">
-              <marko-web-gam-display-ad
-                id="gpt-ad-rail1"
-                modifiers=["max-width-300", "margin-auto-x-md"]
-                slots=adSlots({ aliases })
-              />
+              <if(!isSponsored(content))>
+                <marko-web-gam-display-ad
+                  id="gpt-ad-rail1"
+                  modifiers=["max-width-300", "margin-auto-x-md"]
+                  slots=adSlots({ aliases })
+                />
+              </if>
 
               <refresh-theme-latest-in-section-block
                 content-id=id
@@ -332,8 +343,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
                   header-img-alt=site.get("nativeXBlock.headerImgAlt")
                 />
              </if>
-
-              <if(!isShortForm)>
+              <if(!isShortForm && !isSponsored(content))>
                 <marko-web-gam-display-ad
                   id="gpt-ad-rail2"
                   modifiers=["sticky-top", "max-width-300", "margin-auto-x-md"]
@@ -421,7 +431,9 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
   </@below-page>
   <@foot>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
-      <refresh-theme-fixed-ad-bottom aliases=hierarchyAliases(content.primarySection) />
+      <if(!isSponsored)>
+        <refresh-theme-fixed-ad-bottom aliases=hierarchyAliases(content.primarySection) />
+      </if>
     </marko-web-resolve-page>
   </@foot>
 </marko-web-content-page-layout>
