@@ -1,6 +1,6 @@
 {
   "name": "@ac-business-media/forconstructionpros.com",
-  "version": "1.41.17",
+  "version": "1.41.18",
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/sites/forconstructionpros.com",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@ac-business-media/package-directory": "^1.41.17",
     "@ac-business-media/package-leaders": "^1.41.17",
-    "@ac-business-media/refresh-theme": "^1.41.17",
+    "@ac-business-media/refresh-theme": "^1.41.18",
     "@parameter1/base-cms-marko-core": "^3.17.3",
     "@parameter1/base-cms-marko-web": "^3.17.3",
     "@parameter1/base-cms-marko-web-gam": "^3.17.0",
