@@ -66,7 +66,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
   <@above-container>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
       $ const aliases = hierarchyAliases(content.primarySection);
-      <if(!isSponsored)>
+      <if(!isSponsored(content))>
         <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
       </if>
       <marko-web-p1-events-track-content node=content />
@@ -77,7 +77,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
       $ const section = resolved.getAsObject("primarySection");
       $ const aliases = hierarchyAliases(section);
       <marko-web-page-wrapper modifiers=["no-bottom-padding"]>
-        <if(!isSponsored)>
+        <if(!isSponsored(content))>
           <@section>
             <div class="row">
               <div class="col">
@@ -431,7 +431,7 @@ $ const injectAds = ["article", "news", "press-release", "blog"].includes(type) 
   </@below-page>
   <@foot>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
-      <if(!isSponsored)>
+      <if(!isSponsored(content))>
         <refresh-theme-fixed-ad-bottom aliases=hierarchyAliases(content.primarySection) />
       </if>
     </marko-web-resolve-page>
