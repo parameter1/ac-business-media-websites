@@ -40,8 +40,8 @@ $ const displayHeader = defaultValue(input.displayHeader, true);
           $ const node = convertAdToContent(ad);
           <refresh-theme-content-card-node
             node=node
-            attrs=getAsObject(node, "attributes.container")
-            link-attrs=getAsObject(node, "attributes.link")
+            attrs=getAsObject(ad, "attributes.container")
+            link-attrs=getAsObject(ad, "attributes.link")
           />
         </@slot>
       </@nodes>
