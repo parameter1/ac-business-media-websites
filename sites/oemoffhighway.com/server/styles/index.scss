@@ -29,7 +29,7 @@ $website-section-colors: (
   ifpe-conexpo: #0190ff,
 );
 
-@import "../../node_modules/@ac-business-media/refresh-theme/scss/theme";
+@import "@ac-business-media/refresh-theme/scss/theme";
 
 .spec-guide-button {
   &--engine {
