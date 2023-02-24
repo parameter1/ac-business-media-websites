@@ -43,6 +43,7 @@ x-env-development: &env-development
   SITEMAPS_URI: ${SITEMAPS_URI-http://host.docker.internal:10009}
 
 x-site-command: &site-cmd
+  <<: *node
   entrypoint: ["yarn"]
   command: ["dev"]
 
