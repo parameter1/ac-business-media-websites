@@ -6,19 +6,28 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --ignore-path ../../.eslintignore ./",
-    "test": "yarn lint"
+    "compile": "basecms-marko-compile compile",
+    "build": "yarn compile",
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
-    "@parameter1/base-cms-marko-core": "^3.17.3",
-    "@parameter1/base-cms-marko-web": "^3.17.3",
-    "@parameter1/base-cms-marko-web-icons": "^3.19.1",
-    "@parameter1/base-cms-marko-web-leaders": "^3.19.1",
-    "@parameter1/base-cms-object-path": "^3.0.0",
+    "@parameter1/base-cms-marko-core": "^4.2.0",
+    "@parameter1/base-cms-marko-web": "^4.2.1",
+    "@parameter1/base-cms-marko-web-icons": "^4.1.0",
+    "@parameter1/base-cms-marko-web-leaders": "^4.1.7",
+    "@parameter1/base-cms-object-path": "^4.0.2",
     "graphql-tag": "^2.10.1",
     "object-path": "^0.11.4"
   },
-  "devDependencies": {
-    "babel-eslint": "^10.0.3"
-  }
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
 }
