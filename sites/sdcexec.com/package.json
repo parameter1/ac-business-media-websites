@@ -5,6 +5,14 @@
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/sites/sdcexec.com",
   "license": "MIT",
   "private": true,
+  "website": {
+    "id": "53c960451784f8066eb2c8a4",
+    "tenant": "acbm_scn",
+    "account": "acbm",
+    "stack": "tauron",
+    "key": "sdc",
+    "deploy": true
+  },
   "scripts": {
     "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
     "build": "basecms-website build",
@@ -13,6 +21,14 @@
     "lint:fix": "yarn lint --fix",
     "test": "yarn lint && yarn compile --no-clean"
   },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
   "dependencies": {
     "@ac-business-media/package-directory": "^1.41.17",
     "@ac-business-media/refresh-theme": "^1.41.22",
@@ -24,13 +40,5 @@
     "@parameter1/base-cms-web-cli": "^4.1.1",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
-  },
-  "engines": {
-    "node": ">=14.15"
-  },
-  "os": [
-    "darwin",
-    "linux",
-    "win32"
-  ]
+  }
 }
