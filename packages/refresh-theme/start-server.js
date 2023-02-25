@@ -19,7 +19,7 @@ const idxRouteTemplates = require('./templates/user');
 const idxNavItems = require('./config/identity-x-nav');
 
 const defaultContentGatingHandler = () => false;
-const routes = siteRoutes => (app) => {
+const routes = (siteRoutes) => (app) => {
   // Handle submissions on /__inquiry
   loadInquiry(app);
   // Handle contact submissions on /__contact-us
@@ -77,6 +77,6 @@ module.exports = (options = {}) => {
       }
       return sharedRedirectHandler(redirectOps);
     },
-    onAsyncBlockError: e => newrelic.noticeError(e),
+    onAsyncBlockError: (e) => newrelic.noticeError(e),
   });
 };
