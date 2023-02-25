@@ -67,12 +67,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/greenindustrypros.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9710
       LIVERELOAD_PORT: 19710
-      TENANT_KEY: acbm_gip
-      SITE_ID: 53c95fdd1784f8066eb2c891
       OMEDA_INPUT_ID: ${GIP_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-gip.dev.parameter1.com
     hostname: www-acbm-gip.dev.parameter1.com
@@ -84,12 +82,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/sdcexec.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9711
       LIVERELOAD_PORT: 19711
-      TENANT_KEY: acbm_scn
-      SITE_ID: 53c960451784f8066eb2c8a4
       OMEDA_INPUT_ID: ${SDC_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-sdc.dev.parameter1.com
     hostname: www-acbm-sdc.dev.parameter1.com
@@ -100,12 +96,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/foodlogistics.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9713
       LIVERELOAD_PORT: 19713
-      TENANT_KEY: acbm_scn
-      SITE_ID: 53c95f4a1784f8066eb2c86a
       OMEDA_INPUT_ID: ${FL_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-fl.dev.parameter1.com
     hostname: www-acbm-fl.dev.parameter1.com
@@ -117,12 +111,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/oemoffhighway.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9714
       LIVERELOAD_PORT: 19714
-      TENANT_KEY: acbm_ooh
-      SITE_ID: 54b5a261c99db54158ed0fc9
       OMEDA_INPUT_ID: ${OEM_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-oem.dev.parameter1.com
     hostname: www-acbm-oem.dev.parameter1.com
@@ -134,12 +126,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/forconstructionpros.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9716
       LIVERELOAD_PORT: 19716
-      TENANT_KEY: acbm_fcp
-      SITE_ID: 53ca8d671784f8066eb2c949
       OMEDA_INPUT_ID: ${FCP_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-fcp.dev.parameter1.com
     hostname: www-acbm-fcp.dev.parameter1.com
@@ -151,12 +141,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/safesecureopenings.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9718
       LIVERELOAD_PORT: 19718
-      TENANT_KEY: acbm_fcp
-      SITE_ID: 5f09fe3771f65a24008b456e
       OMEDA_INPUT_ID: ${SSO_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-sso.dev.parameter1.com
     hostname: www-acbm-sso.dev.parameter1.com
@@ -168,12 +156,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/rentalproductnews.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9719
       LIVERELOAD_PORT: 19719
-      TENANT_KEY: acbm_fcp
-      SITE_ID: 53ca8d671784f8066eb2c949
       OMEDA_INPUT_ID: ${RENTAL_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-rental.dev.parameter1.com
     hostname: www-acbm-rental.dev.parameter1.com
