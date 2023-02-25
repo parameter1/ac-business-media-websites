@@ -3,7 +3,7 @@ BaseCMS Websites for AC Business Media
 This monorepo contains the codebase for websites managed by AC Business Media. All sites within this repository utilize the [@parameter1/base-cms](https://github.com/parameter1/base-cms) packages, most notably `marko-web` and `web-cli`.
 
 ## Requirements
-To use this repository, you must have a NodeJS 10.24 environment or Docker Compose (v1.29.0+) (preferred).
+To use this repository, you must have a NodeJS 14.21 environment or Docker Compose (v1.29.0+) (preferred).
 
 ### Environment variables
 The following categories identify the required environment values for this project. Unless specified, these values can be customized by creating a `.env` file at the root of the project and specifying the value in the standard INI format:
