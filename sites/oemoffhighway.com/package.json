@@ -5,27 +5,42 @@
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/sites/oemoffhighway.com",
   "license": "MIT",
   "private": true,
-  "scripts": {
-    "dev": "basecms-website dev index.js",
-    "build": "basecms-website build",
-    "compile": "basecms-marko-compile compile --dir ./ --silent true",
-    "lint": "yarn lint:js && yarn lint:css",
-    "lint:js": "eslint --ext .js --ext .vue --max-warnings 5 --ignore-path ../../.eslintignore ./",
-    "lint:css": "stylelint ./**/*.scss --max-warnings 5",
-    "test": "yarn lint && yarn compile && yarn build"
+  "website": {
+    "id": "54b5a261c99db54158ed0fc9",
+    "tenant": "acbm_ooh",
+    "account": "acbm",
+    "stack": "tauron",
+    "key": "oem",
+    "deploy": true
   },
+  "scripts": {
+    "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
+    "build": "basecms-website build",
+    "compile": "basecms-marko-compile compile",
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint && yarn compile --no-clean"
+  },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
   "dependencies": {
     "@ac-business-media/package-directory": "^1.41.17",
     "@ac-business-media/refresh-theme": "^1.41.22",
-    "@parameter1/base-cms-marko-core": "^3.17.3",
-    "@parameter1/base-cms-marko-web": "^3.17.3",
-    "@parameter1/base-cms-marko-web-gam": "^3.17.0",
-    "@parameter1/base-cms-marko-web-gtm": "^3.17.0",
-    "@parameter1/base-cms-marko-web-p1-events": "^3.17.0",
-    "@parameter1/base-cms-marko-web-theme-default": "^3.19.1",
-    "@parameter1/base-cms-object-path": "^3.0.0",
-    "@parameter1/base-cms-utils": "^3.0.0",
-    "@parameter1/base-cms-web-cli": "^3.17.3",
+    "@parameter1/base-cms-marko-core": "^4.2.0",
+    "@parameter1/base-cms-marko-web": "^4.5.2",
+    "@parameter1/base-cms-marko-web-gam": "^4.1.0",
+    "@parameter1/base-cms-marko-web-gtm": "^4.1.0",
+    "@parameter1/base-cms-marko-web-p1-events": "^4.3.3",
+    "@parameter1/base-cms-marko-web-theme-default": "^4.1.0",
+    "@parameter1/base-cms-object-path": "^4.0.2",
+    "@parameter1/base-cms-utils": "^4.0.2",
+    "@parameter1/base-cms-web-cli": "^4.3.4",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
   }

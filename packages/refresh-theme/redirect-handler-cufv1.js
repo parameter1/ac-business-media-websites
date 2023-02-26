@@ -1,4 +1,4 @@
-module.exports = domain => ({ from }) => {
+module.exports = (domain) => ({ from }) => {
   const pattern = /^\/content\/cu\/display\/company\/([a-z0-9-/]+)/;
   const matches = pattern.exec(from);
   if (!matches || !matches[1]) return null;
