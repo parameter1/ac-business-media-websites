@@ -1,6 +1,6 @@
 {
   "name": "@ac-business-media/package-leaders",
-  "version": "1.41.17",
+  "version": "2.0.0",
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/packages/leaders",
   "license": "MIT",
@@ -23,7 +23,6 @@
     "graphql-tag": "^2.10.1",
     "object-path": "^0.11.4"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=14.15"
   },
