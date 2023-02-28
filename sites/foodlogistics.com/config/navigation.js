@@ -169,6 +169,8 @@ module.exports = {
           { href: '/awards/top-green-providers', label: 'Top Green Providers' },
           { href: '/awards/fl100+', label: 'Top Software & Technology Providers' },
           { href: '/awards/top-3pl-cold-storage-providers', label: 'Top 3PL & Cold Storage Providers' },
+          { href: '/awards/top-tech-startups', label: 'Top Tech Startups' },
+          { href: '/awards/women-in-supply-chain', label: 'Women in Supply Chain' },
         ],
       },
     },

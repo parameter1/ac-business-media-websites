@@ -1,18 +1,29 @@
 {
   "name": "@ac-business-media/package-directory",
-  "version": "1.41.0",
+  "version": "2.0.1",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/packages/directory",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --ignore-path ../../.eslintignore ./",
-    "test": "yarn lint"
+    "compile": "basecms-marko-compile compile",
+    "build": "yarn compile",
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
-    "@parameter1/base-cms-marko-core": "^3.3.1",
-    "@parameter1/base-cms-marko-web": "^3.11.0",
-    "@parameter1/base-cms-marko-web-theme-default": "^3.9.1",
-    "@parameter1/base-cms-object-path": "^3.0.0"
-  }
+    "@parameter1/base-cms-marko-core": "^4.5.12",
+    "@parameter1/base-cms-marko-web": "^4.5.12",
+    "@parameter1/base-cms-marko-web-theme-default": "^4.5.12",
+    "@parameter1/base-cms-object-path": "^4.5.12"
+  },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
 }

@@ -3,7 +3,7 @@ version: '3.7'
 x-node-defaults: &node
   tty: true
   init: true
-  image: node:10.24
+  image: node:14.21
   entrypoint: ["node"]
   working_dir: /root
   restart: always
@@ -19,17 +19,14 @@ x-env-defaults: &env
   OMEDA_APP_ID: ${OMEDA_APP_ID-(unset)}
   OMEDA_INPUT_ID: ${OMEDA_INPUT_ID-(unset)}
   OMEDA_GRAPHQL_URI: ${OMEDA_GRAPHQL_URI-https://graphql.omeda.parameter1.com}
-  # @todo the recaptcha values should be removed (?) once contact-us is moved to core.
-  RECAPTCHA_V3_SITE_KEY: ${RECAPTCHA_V3_SITE_KEY-}
-  RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY-}
+  RECAPTCHA_V3_SITE_KEY: ${RECAPTCHA_V3_SITE_KEY-(unset)}
+  RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY-(unset)}
   SPEC_GUIDE_DOCS_API_KEY: ${SPEC_GUIDE_DOCS_API_KEY-(unset)}
-  # @todo the sendgrid values should be removed once the @parameter1/base-cms-mailer service is created.
   SENDGRID_API_KEY: ${SENDGRID_API_KEY-(unset)}
   SENDGRID_DEV_TO: ${SENDGRID_DEV_TO-support@parameter1.com}
   YARN_CACHE_FOLDER: /.yarn-cache
   IDENTITYX_API_TOKEN: ${IDENTITYX_API_TOKEN-(unset)}
   BASE_BROWSE_GRAPHQL_URI: ${BASE_BROWSE_GRAPHQL_URI-https://base-browse.tauron.base.parameter1.com/graphql}
-  ENABLE_IRONPROS_LINKING: ${ENABLE_IRONPROS_LINKING-false};
 
 x-env-tauron: &env-tauron
   GRAPHQL_URI: ${GRAPHQL_URI-https://tauron.graphql.base.parameter1.com}
@@ -45,8 +42,8 @@ x-env-development: &env-development
 
 x-site-command: &site-cmd
   <<: *node
-  entrypoint: ["node_modules/.bin/basecms-website"]
-  command: ["dev", "index.js"]
+  entrypoint: ["yarn"]
+  command: ["dev"]
 
 volumes:
   yarn-cache: {}
@@ -70,12 +67,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/greenindustrypros.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9710
       LIVERELOAD_PORT: 19710
-      TENANT_KEY: acbm_gip
-      SITE_ID: 53c95fdd1784f8066eb2c891
       OMEDA_INPUT_ID: ${GIP_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-gip.dev.parameter1.com
     hostname: www-acbm-gip.dev.parameter1.com
@@ -87,12 +82,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/sdcexec.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9711
       LIVERELOAD_PORT: 19711
-      TENANT_KEY: acbm_scn
-      SITE_ID: 53c960451784f8066eb2c8a4
       OMEDA_INPUT_ID: ${SDC_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-sdc.dev.parameter1.com
     hostname: www-acbm-sdc.dev.parameter1.com
@@ -103,12 +96,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/foodlogistics.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9713
       LIVERELOAD_PORT: 19713
-      TENANT_KEY: acbm_scn
-      SITE_ID: 53c95f4a1784f8066eb2c86a
       OMEDA_INPUT_ID: ${FL_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-fl.dev.parameter1.com
     hostname: www-acbm-fl.dev.parameter1.com
@@ -120,12 +111,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/oemoffhighway.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9714
       LIVERELOAD_PORT: 19714
-      TENANT_KEY: acbm_ooh
-      SITE_ID: 54b5a261c99db54158ed0fc9
       OMEDA_INPUT_ID: ${OEM_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-oem.dev.parameter1.com
     hostname: www-acbm-oem.dev.parameter1.com
@@ -137,12 +126,10 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/forconstructionpros.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9716
       LIVERELOAD_PORT: 19716
-      TENANT_KEY: acbm_fcp
-      SITE_ID: 53ca8d671784f8066eb2c949
       OMEDA_INPUT_ID: ${FCP_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-fcp.dev.parameter1.com
     hostname: www-acbm-fcp.dev.parameter1.com
@@ -154,15 +141,28 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/safesecureopenings.com
     environment:
-      <<: [*env, *env-tauron]
+      <<: *env
       PORT: 80
       EXPOSED_PORT: 9718
       LIVERELOAD_PORT: 19718
-      TENANT_KEY: acbm_fcp
-      SITE_ID: 5f09fe3771f65a24008b456e
       OMEDA_INPUT_ID: ${SSO_OMEDA_INPUT_ID-(unset)}
       HOST: www-acbm-sso.dev.parameter1.com
     hostname: www-acbm-sso.dev.parameter1.com
     ports:
       - "9718:80"
       - "19718:19718"
+
+  rental:
+    <<: *site-cmd
+    working_dir: /root/sites/rentalproductnews.com
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 9719
+      LIVERELOAD_PORT: 19719
+      OMEDA_INPUT_ID: ${RENTAL_OMEDA_INPUT_ID-(unset)}
+      HOST: www-acbm-rental.dev.parameter1.com
+    hostname: www-acbm-rental.dev.parameter1.com
+    ports:
+      - "9719:80"
+      - "19719:19719"

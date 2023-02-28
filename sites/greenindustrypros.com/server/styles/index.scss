@@ -23,7 +23,7 @@ $website-section-colors: (
   snowpro: #000
 );
 
-@import "../../node_modules/@ac-business-media/refresh-theme/scss/theme";
+@import "@ac-business-media/refresh-theme/scss/theme";
 
 .site-navbar {
   $self: &;

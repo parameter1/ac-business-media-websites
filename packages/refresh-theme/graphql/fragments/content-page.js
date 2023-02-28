@@ -5,8 +5,9 @@ fragment ContentPageFragment on Content {
   id
   name
   teaser(input: { useFallback: false, maxLength: null })
-  body
+  body(input: { useLinkInjectedBody: true })
   published
+  labels
   siteContext {
     path
     canonicalUrl
@@ -70,6 +71,10 @@ fragment ContentPageFragment on Content {
   }
   ... on ContentVideo {
     embedCode
+    transcript
+  }
+  ... on ContentPodcast {
+    transcript
   }
   ... on ContentNews {
     source
@@ -85,6 +90,7 @@ fragment ContentPageFragment on Content {
   ... on ContentWebinar {
     linkUrl
     startDate
+    transcript
     sponsors {
       edges {
         node {

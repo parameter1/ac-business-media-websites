@@ -55,6 +55,10 @@ module.exports = (app) => {
     template: feed,
     queryFragment,
   }));
+  app.get('/:alias(km-international-videos)', withWebsiteSection({
+    template: feed,
+    queryFragment,
+  }));
   app.get('/:alias(profit-matters/on-site-series)', withWebsiteSection({
     template: onSiteSeries,
     queryFragment,

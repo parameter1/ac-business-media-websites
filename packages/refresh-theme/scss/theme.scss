@@ -173,19 +173,19 @@ $theme-item-footer-font-size: 12px !default;
 $theme-newsletter-block-bg-color: #212121 !default;
 $theme-newsletter-block-button-bg-color: #c83e31 !default;
 
-@import "../../node_modules/@parameter1/base-cms-marko-web-theme-default/scss/theme";
+@import "@parameter1/base-cms-marko-web-theme-default/scss/theme";
 
 $pswp__root-z-index: $theme-site-header-z-index + 1 !default;
-@import "../../node_modules/@parameter1/base-cms-marko-web-photoswipe/scss/main";
+@import "@parameter1/base-cms-marko-web-photoswipe/scss/main";
 
-@import "../../node_modules/@parameter1/base-cms-marko-web-gam/scss/fixed-ad-bottom";
-@import "../../node_modules/@parameter1/base-cms-marko-web-social-sharing/scss/buttons";
-@import "../../node_modules/@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
+@import "@parameter1/base-cms-marko-web-gam/scss/fixed-ad-bottom";
+@import "@parameter1/base-cms-marko-web-social-sharing/scss/buttons";
+@import "@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
 
-@import "../../node_modules/@ac-business-media/package-common/scss/directory";
-@import "../../node_modules/@ac-business-media/package-common/scss/spec-guide";
-@import "../../node_modules/@ac-business-media/package-common/scss/company-search";
-@import "../../node_modules/@ac-business-media/package-common/scss/section-search";
+@import "@ac-business-media/package-common/scss/directory";
+@import "@ac-business-media/package-common/scss/spec-guide";
+@import "@ac-business-media/package-common/scss/company-search";
+@import "@ac-business-media/package-common/scss/section-search";
 @import "./leaders";
 @import "./company-page";
 
@@ -491,6 +491,24 @@ $theme-related-content-border-color: #dee2e6;
 
   &__content-embed-code {
     margin-bottom: map-get($spacers, block);
+  }
+
+  &__content-transcript {
+    @include theme-content-body();
+    &:empty {
+      display: none;
+    }
+  }
+
+  > .btn-transcript,
+  > .btn-transcript:hover {
+    background-color: $gray-200;
+  }
+
+  &__content-transcript-title {
+    border-top: 1px solid rgba(0, 0, 0, .25);
+    padding-top: map-get($spacers, block);
+    padding-bottom: map-get($spacers, block);
   }
 }
 
