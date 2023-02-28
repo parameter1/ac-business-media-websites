@@ -5,6 +5,11 @@ const idxConfig = require('./identity-x');
 module.exports = configure({
   omedaConfig: configureOmeda({}),
   idxConfig,
-  rapidIdentProductId: 15440,
+  rapidIdentProductId: 15498,
   websiteBehaviorAttributeId: 451159,
+  onAuthenticationSuccess: {
+    autoSignupDeploymentTypes: [
+      { id: 5638, optedIn: true },
+    ],
+  },
 });

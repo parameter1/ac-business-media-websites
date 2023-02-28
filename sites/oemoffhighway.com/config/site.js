@@ -20,7 +20,11 @@ module.exports = {
   identityX,
   omedaIdentityX,
   idxNavItems: {
-    enable: false,
+    enable: true,
+    navigationTargets: [
+      'navigation.menu.2.items',
+      'navigation.tertiary.items',
+    ],
   },
   // theme configs
   company: 'AC Business Media, LLC',

@@ -8,18 +8,18 @@ const get = (o, path) => {
 };
 
 const getAuthor = (node) => {
-  const authors = getAsArray(node, 'authors.edges').map(e => get(e, 'node.name'));
+  const authors = getAsArray(node, 'authors.edges').map((e) => get(e, 'node.name'));
   return authors.length ? { '@type': 'Person', name: authors.join(', ') } : undefined;
 };
 
 const getImages = (node) => {
-  const images = getAsArray(node, 'images.edges').map(e => get(e, 'node.src'));
+  const images = getAsArray(node, 'images.edges').map((e) => get(e, 'node.src'));
   return images.length ? images : undefined;
 };
 
-const getCreators = node => getAsArray(node, 'authors.edges').map(e => get(e, 'node.name'));
+const getCreators = (node) => getAsArray(node, 'authors.edges').map((e) => get(e, 'node.name'));
 
-const getKeywords = node => getAsArray(node, 'taxonomy.edges').map(e => get(e, 'node.name'));
+const getKeywords = (node) => getAsArray(node, 'taxonomy.edges').map((e) => get(e, 'node.name'));
 
 const getPublishedISOString = (node) => {
   const { published } = node;

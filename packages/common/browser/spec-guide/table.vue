@@ -71,7 +71,6 @@
   </div>
 </template>
 
-
 <script>
 import { get } from 'object-path';
 import escapeRegex from './utils/escape-regex';
@@ -124,7 +123,7 @@ export default {
     driftPercent: {
       type: Number,
       default: 0.1,
-      validate: v => v >= 0 && v <= 1,
+      validate: (v) => v >= 0 && v <= 1,
     },
   },
 
@@ -202,9 +201,9 @@ export default {
      */
     visibleColumnList() {
       const { columnList, selectedMeasure, selectedMeasureKey } = this;
-      if (!selectedMeasure) return columnList.filter(col => !col.hidden).slice();
+      if (!selectedMeasure) return columnList.filter((col) => !col.hidden).slice();
       const visible = columnList
-        .filter(col => ((!col.measure || col.measure === selectedMeasureKey) && !col.hidden));
+        .filter((col) => ((!col.measure || col.measure === selectedMeasureKey) && !col.hidden));
       return visible;
     },
 
@@ -399,8 +398,8 @@ export default {
         // Added google API v4 from v3 support to have set data
         // from unkeyed rows to keyed rows by column header
         const unKeyed = get(json, 'values');
-        const sheetKeys = unKeyed.shift().map(v => v.toLowerCase().replace(/\s+|[,()/]/g, ''));
-        let rows = unKeyed.map(row => sheetKeys.reduce((obj, key, index) => ({
+        const sheetKeys = unKeyed.shift().map((v) => v.toLowerCase().replace(/\s+|[,()/]/g, ''));
+        let rows = unKeyed.map((row) => sheetKeys.reduce((obj, key, index) => ({
           ...obj,
           [key]: row[index],
         }), {}));

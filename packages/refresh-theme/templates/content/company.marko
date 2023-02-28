@@ -79,32 +79,32 @@ $ const displayInquiry = (content) => {
           <refresh-theme-company-content-list-block company-id=id>
             <@header>Articles & News</@header>
             <@list class="mb-block" />
-            <@query-params include-content-types=["Article", "Blog", "News"] />
+            <@query-params include-content-types=["Article", "Blog", "News"] with-site=false />
           </refresh-theme-company-content-list-block>
           <if(["53c95f4a1784f8066eb2c86a","53c960451784f8066eb2c8a4"].includes(websiteContext.id))>
             <refresh-theme-company-content-list-block company-id=id>
               <@header>Multimedia & Learning</@header>
               <@list class="mb-block" />
-              <@query-params include-content-types=["Video", "Whitepaper", "Webinar", "Document", "MediaGallery", "Podcast"] />
+              <@query-params include-content-types=["Video", "Whitepaper", "Webinar", "Document", "MediaGallery", "Podcast"] with-site=false />
             </refresh-theme-company-content-list-block>
 
             <refresh-theme-company-content-list-block company-id=id>
               <@header>Products & Press Releases</@header>
               <@list class="mb-block" />
-              <@query-params include-content-types=["Product", "PressRelease"] />
+              <@query-params include-content-types=["Product", "PressRelease"] with-site=false />
             </refresh-theme-company-content-list-block>
           </if>
           <else>
             <refresh-theme-company-content-list-block company-id=id>
               <@header>Products & Press Releases</@header>
               <@list class="mb-block" />
-              <@query-params include-content-types=["Product", "PressRelease"] />
+              <@query-params include-content-types=["Product", "PressRelease"] with-site=false />
             </refresh-theme-company-content-list-block>
 
             <refresh-theme-company-content-list-block company-id=id>
               <@header>Videos & Resources</@header>
               <@list class="mb-block" />
-              <@query-params include-content-types=["Video", "Whitepaper", "Webinar", "Document", "MediaGallery", "Podcast"] />
+              <@query-params include-content-types=["Video", "Whitepaper", "Webinar", "Document", "MediaGallery", "Podcast"] with-site=false />
             </refresh-theme-company-content-list-block>
           </else>
         </div>
