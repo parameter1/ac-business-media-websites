@@ -11,7 +11,7 @@
     "account": "acbm",
     "stack": "tauron",
     "key": "sso",
-    "deploy": true
+    "deploy": false
   },
   "scripts": {
     "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
