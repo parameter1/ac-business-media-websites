@@ -137,21 +137,6 @@ services:
       - "9716:80"
       - "19716:19716"
 
-  sso:
-    <<: *site-cmd
-    working_dir: /root/sites/safesecureopenings.com
-    environment:
-      <<: *env
-      PORT: 80
-      EXPOSED_PORT: 9718
-      LIVERELOAD_PORT: 19718
-      OMEDA_INPUT_ID: ${SSO_OMEDA_INPUT_ID-(unset)}
-      HOST: www-acbm-sso.dev.parameter1.com
-    hostname: www-acbm-sso.dev.parameter1.com
-    ports:
-      - "9718:80"
-      - "19718:19718"
-
   rental:
     <<: *site-cmd
     working_dir: /root/sites/rentalproductnews.com
