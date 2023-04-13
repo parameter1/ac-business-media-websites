@@ -4,8 +4,9 @@ const topics = [
   { href: '/software-technology', label: 'Software & Tech' },
   { href: '/safety', label: 'Safety' },
   { href: '/sustainability', label: 'Sustainability' },
-  { href: '/professional-development', label: 'Professional Development' },
+  { href: '/professional-development', label: 'Prof Dev' },
   { href: 'https://www.scnsummit.com/', label: 'SCN Summit', target: '_blank' },
+  { href: 'https://www.womeninsupplychainforum.com/', label: 'WISC Forum', target: '_blank' },
 ];
 
 const resources = [
