@@ -5,8 +5,8 @@ const topics = [
   { href: '/safety-security', label: 'Safety' },
   { href: '/sustainability', label: 'Sustainability' },
   { href: '/sourcing-procurement', label: 'Procurement' },
-  { href: '/professional-development', label: 'Prof Development' },
-  { href: 'https://www.scnsummit.com/', label: 'SCN Summit', target: '_blank' },
+  { href: '/professional-development', label: 'Prof Dev' },
+  { href: 'https://www.womeninsupplychainforum.com/', label: 'WISC Forum', target: '_blank' },
 ];
 
 const resources = [
@@ -17,6 +17,7 @@ const resources = [
   { href: '/webinars', label: 'Webinars' },
   { href: '/podcast', label: 'Podcasts' },
   { href: '/premium-content', label: 'Premium Content' },
+  { href: 'https://www.scnsummit.com/', label: 'SCN Summit', target: '_blank' },
   { href: 'http://www.supplychainnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
   { href: '/contact-us', label: 'Contact Us' },
 
