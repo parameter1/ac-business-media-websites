@@ -168,7 +168,7 @@ module.exports = {
         items: [
           { href: '/awards/rock-stars-supply-chain', label: 'Rock Stars of the Supply Chain' },
           { href: '/awards/top-green-providers', label: 'Top Green Providers' },
-          { href: '/awards/fl100+', label: 'Top Software & Technology' },
+          { href: '/awards/top-software-technology', label: 'Top Software & Technology' },
           { href: '/awards/top-3pl-cold-storage-providers', label: 'Top 3PL & Cold Storage Providers' },
           { href: '/awards/top-tech-startups', label: 'Top Tech Startups' },
           { href: '/awards/women-in-supply-chain', label: 'Women in Supply Chain' },
