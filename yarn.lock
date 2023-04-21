@@ -1199,10 +1199,10 @@
     node-fetch "^2.6.9"
     tldjs "^2.3.1"
 
-"@parameter1/base-cms-marko-web-p1-events@^4.19.1":
-  version "4.19.1"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-p1-events/-/base-cms-marko-web-p1-events-4.19.1.tgz#14b3b726b521482cdde3f02ec0e3e26b3839ef5f"
-  integrity sha512-kUkOscn16674rc/T9Mb+/poxf3kt6y1NAGz70fHZu7IvV1BjJsC0TbVCROnVSg/UkHe1zs0dBmWabTD8xWC6ow==
+"@parameter1/base-cms-marko-web-p1-events@^4.20.1":
+  version "4.20.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-p1-events/-/base-cms-marko-web-p1-events-4.20.1.tgz#8095f42e484c3b1974bad8a4db853763231d5eaf"
+  integrity sha512-NWb1806DMj0l625JCkUw6Cqqsl13q1Ck8NoOM5tx+VLojtUmr8UA+JyHBVLN8Nge/GtcudpUSrJYnJ6Zy6mAag==
   dependencies:
     "@parameter1/base-cms-inflector" "^4.5.12"
     "@parameter1/base-cms-marko-web-deferred-script-loader" "^4.5.12"
