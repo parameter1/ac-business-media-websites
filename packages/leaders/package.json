@@ -1,6 +1,6 @@
 {
   "name": "@ac-business-media/package-leaders",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/packages/leaders",
   "license": "MIT",
@@ -13,12 +13,12 @@
     "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
-    "@parameter1/base-cms-marko-core": "^4.5.12",
-    "@parameter1/base-cms-marko-web": "^4.5.12",
+    "@parameter1/base-cms-marko-core": "^4.9.0",
+    "@parameter1/base-cms-marko-web": "^4.16.0",
     "@parameter1/base-cms-marko-web-gam": "^4.5.12",
-    "@parameter1/base-cms-marko-web-gtm": "^4.5.12",
-    "@parameter1/base-cms-marko-web-icons": "^4.5.12",
-    "@parameter1/base-cms-marko-web-leaders": "^4.5.12",
+    "@parameter1/base-cms-marko-web-gtm": "^4.17.1",
+    "@parameter1/base-cms-marko-web-icons": "^4.16.2",
+    "@parameter1/base-cms-marko-web-leaders": "^4.16.2",
     "@parameter1/base-cms-object-path": "^4.5.12",
     "graphql-tag": "^2.10.1",
     "object-path": "^0.11.4"

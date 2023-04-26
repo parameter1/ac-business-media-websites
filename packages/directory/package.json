@@ -1,6 +1,6 @@
 {
   "name": "@ac-business-media/package-directory",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/packages/directory",
   "license": "MIT",
@@ -13,9 +13,9 @@
     "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
-    "@parameter1/base-cms-marko-core": "^4.5.12",
-    "@parameter1/base-cms-marko-web": "^4.5.12",
-    "@parameter1/base-cms-marko-web-theme-default": "^4.5.12",
+    "@parameter1/base-cms-marko-core": "^4.9.0",
+    "@parameter1/base-cms-marko-web": "^4.16.0",
+    "@parameter1/base-cms-marko-web-theme-default": "^4.16.2",
     "@parameter1/base-cms-object-path": "^4.5.12"
   },
   "engines": {
