@@ -6,7 +6,6 @@ const channels = [
   { href: '/pavement-maintenance', label: 'Pavement' },
   { href: '/construction-technology', label: 'Technology' },
   { href: '/profit-matters', label: 'Profit Matters' },
-  { href: 'https://www.forconstructionpros.com/equipment', label: 'CONEXPO' },
 ];
 
 const resources = [
