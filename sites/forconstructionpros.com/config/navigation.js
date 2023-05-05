@@ -6,6 +6,7 @@ const channels = [
   { href: '/pavement-maintenance', label: 'Pavement' },
   { href: '/construction-technology', label: 'Technology' },
   { href: '/profit-matters', label: 'Profit Matters' },
+  { href: 'https://www.pavexshow.com/', label: 'PAVE/X', target: '_blank' },
 ];
 
 const resources = [
