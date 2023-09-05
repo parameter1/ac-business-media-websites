@@ -5,5 +5,11 @@ User-agent: *
 Disallow: /__
 Disallow: /print/content
 
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
 Sitemap: https://www.foodlogistics.com/sitemap.xml
 Sitemap: https://www.foodlogistics.com/sitemap-google-news.xml

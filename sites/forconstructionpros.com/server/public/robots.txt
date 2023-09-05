@@ -5,5 +5,11 @@ User-agent: *
 Disallow: /__
 Disallow: /print/content
 
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
 Sitemap: https://www.forconstructionpros.com/sitemap.xml
 Sitemap: https://www.forconstructionpros.com/sitemap-google-news.xml
