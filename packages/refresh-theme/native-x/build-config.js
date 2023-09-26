@@ -2,13 +2,14 @@ const NativeXConfiguration = require('@parameter1/base-cms-marko-web-native-x/co
 const { asObject } = require('@parameter1/base-cms-utils');
 
 module.exports = ({
-  uri = 'https://acbm.native-x.parameter1.com',
+  uri = 'https://delivery.mindfulcms.com/acbm/default/compat/native-website',
   enabled = true,
   placements,
 } = {}) => {
   const aliases = Object.keys(asObject(placements));
   const config = new NativeXConfiguration(uri, {
     enabled: aliases.length ? enabled : false,
+    tenantKey: 'acbm',
   });
   aliases.forEach((alias) => {
     const id = placements[alias];
