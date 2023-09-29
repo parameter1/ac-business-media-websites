@@ -69,7 +69,7 @@ $ const isRadixEnabled = Boolean(radix.enabled && radix.appId);
 
     <marko-web-identity-x-context|{ hasUser, user }|>
       <if(hasUser && user.id)>
-        <marko-web-gtm-push data={ user_id: user.id } />
+        <marko-web-gtm-push data={ user: site.get('identityX').getGTMUserData(user), user_id: user.id}  />
       </if>
     </marko-web-identity-x-context>
 
