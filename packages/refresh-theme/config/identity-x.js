@@ -17,6 +17,7 @@ module.exports = ({
     'countryCode',
     'postalCode',
   ],
+  gtmUserFields,
 } = {}) => {
   const config = new IdentityXConfiguration({
     appId,
@@ -24,6 +25,7 @@ module.exports = ({
     hiddenFields,
     requiredServerFields,
     requiredClientFields,
+    gtmUserFields,
     onHookError: newrelic.noticeError.bind(newrelic),
   });
   return config;

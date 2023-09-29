@@ -76,7 +76,7 @@ $ const isRadixEnabled = Boolean(radix.enabled && radix.appId);
     <!-- Send Encrypted Omeda Id to GTM -->
     $ const olyEncId = cookies.oly_enc_id ? getCookieId(cookies.oly_enc_id, 'enc') : undefined;
     <if(olyEncId)>
-      <marko-web-gtm-push data={ oly_enc_id: olyEncId } />
+      <marko-web-gtm-push data={ user: site.get('identityX').getGTMUserData(user), user_id: user.id}  />
     </if>
     <!-- Send Anonomouse Omeda Id to GTM -->
     $ const olyAnonId = cookies.oly_anon_id ? getCookieId(cookies.oly_anon_id, 'anon') : undefined;
