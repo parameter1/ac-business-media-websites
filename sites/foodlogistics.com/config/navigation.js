@@ -171,6 +171,7 @@ module.exports = {
           { href: '/awards/top-software-technology', label: 'Top Software & Technology' },
           { href: '/awards/top-3pl-cold-storage-providers', label: 'Top 3PL & Cold Storage Providers' },
           { href: '/awards/top-tech-startups', label: 'Top Tech Startups' },
+          { href: '/awards/top-supply-chain-projects', label: 'Top Supply Chain Projects' },
           { href: '/awards/women-in-supply-chain', label: 'Women in Supply Chain' },
         ],
       },
