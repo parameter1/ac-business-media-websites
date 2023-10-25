@@ -131,7 +131,7 @@ module.exports = {
     bgColor: '#000',
   },
   leaders: {
-    enabled: true,
+    enabled: false,
     title: 'Leaders in Construction',
     alias: 'leaders/2021',
     calloutValue: 'Leading Companies',
