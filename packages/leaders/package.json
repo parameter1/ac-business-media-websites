@@ -13,13 +13,13 @@
     "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
-    "@parameter1/base-cms-marko-core": "^4.36.0",
-    "@parameter1/base-cms-marko-web": "^4.38.1",
-    "@parameter1/base-cms-marko-web-gam": "^4.5.12",
-    "@parameter1/base-cms-marko-web-gtm": "^4.38.1",
+    "@parameter1/base-cms-marko-core": "^4.40.3",
+    "@parameter1/base-cms-marko-web": "^4.40.3",
+    "@parameter1/base-cms-marko-web-gam": "^4.40.3",
+    "@parameter1/base-cms-marko-web-gtm": "^4.40.3",
     "@parameter1/base-cms-marko-web-icons": "^4.36.8",
-    "@parameter1/base-cms-marko-web-leaders": "^4.36.8",
-    "@parameter1/base-cms-object-path": "^4.5.12",
+    "@parameter1/base-cms-marko-web-leaders": "^4.40.3",
+    "@parameter1/base-cms-object-path": "^4.40.3",
     "graphql-tag": "^2.10.1",
     "object-path": "^0.11.4"
   },
