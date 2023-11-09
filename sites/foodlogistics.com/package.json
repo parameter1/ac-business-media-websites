@@ -32,11 +32,11 @@
   "dependencies": {
     "@ac-business-media/package-directory": "^2.3.1",
     "@ac-business-media/refresh-theme": "^2.3.1",
-    "@parameter1/base-cms-marko-core": "^4.36.0",
-    "@parameter1/base-cms-marko-web": "^4.38.1",
-    "@parameter1/base-cms-object-path": "^4.5.12",
-    "@parameter1/base-cms-utils": "^4.5.12",
-    "@parameter1/base-cms-web-cli": "^4.18.3",
+    "@parameter1/base-cms-marko-core": "^4.40.3",
+    "@parameter1/base-cms-marko-web": "^4.40.3",
+    "@parameter1/base-cms-object-path": "^4.40.3",
+    "@parameter1/base-cms-utils": "^4.40.3",
+    "@parameter1/base-cms-web-cli": "^4.40.3",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
   }
