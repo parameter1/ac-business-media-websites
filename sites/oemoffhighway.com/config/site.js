@@ -27,7 +27,7 @@ module.exports = {
     ],
   },
   // theme configs
-  company: 'IRONMARKETS',
+  company: 'IRONMARKETS, LLC',
   p1events: {
     tenant: 'acbm',
     enabled: true,

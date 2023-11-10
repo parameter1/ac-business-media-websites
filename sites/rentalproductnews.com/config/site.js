@@ -21,7 +21,7 @@ module.exports = {
   },
   omedaIdentityX,
   // theme configs
-  company: 'IRONMARKETS',
+  company: 'IRONMARKETS, LLC',
   showCompanySectionFilters: true,
   p1events: {
     tenant: 'acbm',
