@@ -70,7 +70,10 @@ $ const isRadixEnabled = Boolean(radix.enabled && radix.appId);
     <marko-web-omeda-identity-x-identify />
 
     <marko-web-gtm-start />
-    <marko-web-gam-enable />
+    <!-- start gam -->
+    <marko-web-gam-enable>
+      <@lazy-load ...site.getAsObject("gam.lazyLoad") />
+    </marko-web-gam-enable>
     $ const sapience = parseIdentityId(req);
     $ const gamKeyValues = { uri: req.path, ...(sapience && { sapience }) };
     <marko-web-gam-targeting key-values=gamKeyValues />
