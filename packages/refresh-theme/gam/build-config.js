@@ -6,6 +6,13 @@ module.exports = ({
   accountId = '21772951814',
   basePath,
   pathMaps = [],
+  lazyload = {
+    enabled: true, // set to true to enable lazy loading
+    fetchMarginPercent: 100, // fetch ad when one viewport away
+    renderMarginPercent: 50, // render ad when half viewport away
+    mobileScaling: 2, // double these on mobile
+  },
+
   stickyBottomTemplate = {
     size: [[320, 50], [300, 50]],
     sizeMapping: [
@@ -15,7 +22,7 @@ module.exports = ({
   },
 } = {}) => {
   const config = new GAMConfiguration(accountId, { basePath });
-
+  config.lazyload = lazyload;
   config
     .setTemplate('LB', {
       size: [[970, 250], [970, 90], [970, 66], [728, 90], [320, 50], [300, 50], [300, 100]],
