@@ -64,7 +64,7 @@ module.exports = {
       tertiary: { items: tertiaryItems },
       primary: {
         items: [
-          { href: '/business-management/software-technology', label: 'Software & Technology' },
+          { href: '/business-management/software', label: 'Software & Technology' },
           { href: '/business-management/recruitment-retention', label: 'Recruitment & Retention' },
           { href: '/business-management/marketing', label: 'Marketing' },
           { href: '/business-management/training-education', label: 'Training & Education' },
@@ -77,10 +77,10 @@ module.exports = {
       tertiary: { items: tertiaryItems },
       primary: {
         items: [
-          { href: '/lawn-care/spreader-sprayers-equipment', label: 'Spreader-Sprayers & Equipment' },
+          { href: '/lawn-care/spraying-spreading', label: 'Spreader-Sprayers & Equipment' },
           { href: '/lawn-care/weed-insect-id', label: 'Weed & Insect ID' },
           { href: '/lawn-care/fungicides-herbicides-insecticides', label: 'Fungicides, Herbicides, Insecticides' },
-          { href: '/lawn-care/fertilizing', label: 'Fertilizing' },
+          { href: '/lawn-care/fertilizer', label: 'Fertilizing' },
           { href: '/lawn-care/aeration-dethatching', label: 'Aeration & Dethatching' },
         ],
       },
@@ -91,11 +91,12 @@ module.exports = {
       tertiary: { items: tertiaryItems },
       primary: {
         items: [
-          { href: '/mowing-maintenance/mowing-maintenance', label: 'Mowing & Maintenance' },
+          { href: '/mowing-maintenance/mowing', label: 'Mowing & Maintenance' },
           { href: '/mowing-maintenance/mulching', label: 'Mulching' },
           { href: '/mowing-maintenance/handheld-equipment', label: 'Handheld Equipment' },
+          { href: '/mowing-maintenance/cleanups', label: 'Cleanups' },
           { href: '/mowing-maintenance/engines-parts-shop-equipment', label: 'Engines, Parts & Shop Equipment' },
-          { href: '/mowing-maintenance/trucks-trailers-utvs', label: 'Trucks, Trailers & UTVs' },
+          { href: '/mowing-maintenance/trucks-trailers-utility-vehicles', label: 'Trucks, Trailers & UTVs' },
           { href: '/mowing-maintenance/alternative-fuels', label: 'Alternative Fuels' },
           { href: '/mowing-maintenance/robotics', label: 'Robotics' },
         ],
@@ -109,7 +110,7 @@ module.exports = {
         items: [
           { href: '/tree-ornamental/safety', label: 'Safety' },
           { href: '/tree-ornamental/disease-control', label: 'Disease Control' },
-          { href: '/tree-ornamental/tools-equipment', label: 'Tools & Equipment' },
+          { href: '/tree-ornamental/tools-safety-equipment', label: 'Tools & Equipment' },
           { href: '/tree-ornamental/debris-handling', label: 'Debris Handling' },
           { href: '/tree-ornamental/alternative-fuels', label: 'Alternative Fuels' },
         ],
@@ -122,7 +123,7 @@ module.exports = {
       primary: {
         items: [
           { href: '/design-installation/design', label: 'Design' },
-          { href: '/design-installation/hardscaping-installation', label: 'Hardscaping & Installation' },
+          { href: '/design-installation/hardscaping', label: 'Hardscaping & Installation' },
           { href: '/design-installation/compact-equipment', label: 'Compact Equipment' },
           { href: '/design-installation/attachments', label: 'Attachments' },
           { href: '/design-installation/water-features', label: 'Water Features' },
@@ -137,8 +138,8 @@ module.exports = {
         items: [
           { href: '/irrigation-water-management/smart-irrigation-water-management', label: 'Smart Irrigation & Water Management' },
           { href: '/irrigation-water-management/controllers', label: 'Controllers' },
-          { href: '/irrigation-water-management/irrigation-components', label: 'Irrigation Components' },
-          { href: '/irrigation-water-management/trenching', label: 'Trenching' },
+          { href: '/irrigation-water-management/irrigation', label: 'Irrigation Components' },
+          { href: '/irrigation-water-management/trenching', label: 'Trenchers' },
           { href: '/irrigation-water-management/installation-maintenance', label: 'Installation & Maintenance' },
         ],
       },
@@ -150,7 +151,7 @@ module.exports = {
       primary: {
         items: [
           { href: '/snowpro/operations', label: 'Operations' },
-          { href: '/snowpro/liquid-deicing', label: 'Liquid De-icing' },
+          { href: '/snowpro/deicing', label: 'Liquid De-icing' },
           { href: '/snowpro/sand-salt-spreading', label: 'Sand & Salt Spreading' },
           { href: '/snowpro/snow-attachments', label: 'Snow Attachments' },
           { href: '/snowpro/snow-clearing-equipment', label: 'Snow-Clearing Equipment' },
