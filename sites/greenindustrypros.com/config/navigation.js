@@ -2,11 +2,11 @@ const snowProNav = 'https://img.greenindustrypros.com/files/base/acbm/gip/image/
 const snowProMenu = 'https://img.greenindustrypros.com/files/base/acbm/gip/image/static/logo/SnowPro_Logo_horizontal-color.png?h=18&auto=format';
 
 const topics = [
-  { href: '/business-management', label: 'Business Mgmt' },
+  { href: '/business-management', label: 'Business Management' },
   { href: '/design-installation', label: 'Design/Build' },
   { href: '/irrigation-water-management', label: 'Irrigation' },
   { href: '/lawn-care', label: 'Lawn Care' },
-  { href: '/mowing-maintenance', label: 'Mow & Maint' },
+  { href: '/mowing-maintenance', label: 'Mow & Maintenance' },
   { href: '/tree-ornamental', label: 'Tree Care' },
   { href: '/industry-updates', label: 'Industry Updates' },
   { href: '/snowpro', label: `<img src=${snowProNav} />` },
@@ -49,10 +49,10 @@ const tertiaryItems = [
 
 module.exports = {
   primary: {
-    items: resources,
+    items: topics,
   },
   secondary: {
-    items: topics,
+    items: resources,
   },
   tertiary: {
     items: tertiaryItems,
