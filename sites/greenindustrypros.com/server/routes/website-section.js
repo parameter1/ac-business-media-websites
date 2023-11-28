@@ -1,11 +1,11 @@
 const { withWebsiteSection } = require('@parameter1/base-cms-marko-web/middleware');
 const section = require('@ac-business-media/refresh-theme/templates/website-section');
-const podcasts = require('@ac-business-media/refresh-theme/templates/website-section/podcasts');
 const publishedVideos = require('@ac-business-media/refresh-theme/templates/website-section/published-videos');
 const contactUs = require('@ac-business-media/refresh-theme/templates/website-section/contact-us');
 const queryFragment = require('@ac-business-media/refresh-theme/graphql/fragments/website-section-page');
 const leadersFragment = require('@ac-business-media/refresh-theme/graphql/fragments/leaders-section');
 const leaders = require('@ac-business-media/refresh-theme/templates/website-section/leaders');
+const media = require('@ac-business-media/refresh-theme/templates/website-section/media');
 const feed = require('@ac-business-media/refresh-theme/templates/website-section/feed');
 const awards = require('@ac-business-media/refresh-theme/templates/website-section/awards');
 const webinars = require('@ac-business-media/refresh-theme/templates/website-section/webinars');
@@ -34,8 +34,12 @@ module.exports = (app) => {
     template: awards,
     queryFragment,
   }));
-  app.get('/:alias(podcasts)', withWebsiteSection({
-    template: podcasts,
+  app.get('/:alias(podcasts|videos)', withWebsiteSection({
+    template: media,
+    queryFragment,
+  }));
+  app.get('/:alias(podcasts/*|videos/*)', withWebsiteSection({
+    template: feed,
     queryFragment,
   }));
   app.get('/:alias(videos)', withWebsiteSection({
