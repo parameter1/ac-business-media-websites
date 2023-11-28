@@ -19,7 +19,7 @@ module.exports = {
       { href: '/magazine', label: 'Magazine' },
       { href: '/advertise', label: 'Advertise' },
       { href: '/webinars', label: 'Webinars' },
-      { href: 'https://cms.megaphone.fm/channel/grassroots?selected=ACBMI1756535736', target: '_blank', label: 'Podcast' },
+      { href: '/podcasts', label: 'Podcasts' },
       { href: '/premium-content', label: 'Premium Content' },
       { href: '/videos', label: 'Videos' },
       { href: '/expert-columns', label: 'Expert Columns' },
