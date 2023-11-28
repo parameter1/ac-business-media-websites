@@ -34,11 +34,11 @@ module.exports = (app) => {
     template: awards,
     queryFragment,
   }));
-  app.get('/:alias(podcasts|videos)', withWebsiteSection({
+  app.get('/:alias(podcasts)', withWebsiteSection({
     template: media,
     queryFragment,
   }));
-  app.get('/:alias(podcasts/*|videos/*)', withWebsiteSection({
+  app.get('/:alias(podcasts/*)', withWebsiteSection({
     template: feed,
     queryFragment,
   }));
