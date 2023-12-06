@@ -3,7 +3,7 @@ const snowProMenu = 'https://img.greenindustrypros.com/files/base/acbm/gip/image
 
 const topics = [
   { href: '/business-management', label: 'Business Mgmt' },
-  { href: '/design-installation', label: 'Design/Build' },
+  { href: '/design-installation', label: 'Design-Build' },
   { href: '/irrigation-water-management', label: 'Irrigation' },
   { href: '/lawn-care', label: 'Lawn Care' },
   { href: '/mowing-maintenance', label: 'Mow & Maintenance' },
@@ -78,7 +78,7 @@ module.exports = {
       primary: {
         items: [
           { href: '/lawn-care/spraying-spreading', label: 'Spreader-Sprayers & Equipment' },
-          { href: '/lawn-care/weed-insect-id', label: 'Weed & Insect ID' },
+          { href: '/lawn-care/weed-disease-insect-id', label: 'Weed, Disease & Insect ID' },
           { href: '/lawn-care/fungicides-herbicides-insecticides', label: 'Fungicides, Herbicides, Insecticides' },
           { href: '/lawn-care/fertilizer', label: 'Fertilizing' },
           { href: '/lawn-care/aeration-dethatching', label: 'Aeration & Dethatching' },
@@ -125,6 +125,7 @@ module.exports = {
           { href: '/design-installation/design', label: 'Design' },
           { href: '/design-installation/hardscaping', label: 'Hardscaping & Installation' },
           { href: '/design-installation/compact-equipment', label: 'Compact Equipment' },
+          { href: '/design-installation/lighting', label: 'Lighting' },
           { href: '/design-installation/attachments', label: 'Attachments' },
           { href: '/design-installation/water-features', label: 'Water Features' },
         ],
@@ -184,7 +185,7 @@ module.exports = {
       label: 'Topics',
       items: [
         { href: '/business-management', label: 'Business Management' },
-        { href: '/design-installation', label: 'Design/Build & Installation' },
+        { href: '/design-installation', label: 'Design-Build' },
         { href: '/irrigation-water-management', label: 'Irrigation & Water Management' },
         { href: '/lawn-care', label: 'Lawn Care' },
         { href: '/mowing-maintenance', label: 'Mowing & Maintenance' },
