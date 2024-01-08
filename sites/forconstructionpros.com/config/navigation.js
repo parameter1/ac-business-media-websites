@@ -219,6 +219,7 @@ module.exports = {
         { href: '/expert-columns', label: 'Expert Columns' },
         { href: '/awards', label: 'Awards' },
         { href: '/whitepapers', label: 'Whitepapers' },
+        { href: '/profit-matters', label: 'Profit Matters' },
       ],
     },
     {
