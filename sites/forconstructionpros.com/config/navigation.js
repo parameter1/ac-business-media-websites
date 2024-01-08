@@ -5,20 +5,20 @@ const channels = [
   { href: '/asphalt', label: 'Asphalt' },
   { href: '/pavement-maintenance', label: 'Pavement' },
   { href: '/construction-technology', label: 'Technology' },
-  { href: '/profit-matters', label: 'Profit Matters' },
+  { href: '/business', label: 'Business' },
   { href: 'https://www.pavexshow.com/', label: 'PAVE/X', target: '_blank' },
 ];
 
 const resources = [
   { href: '/directory', label: 'New Equipment Directory' },
   { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
-  { href: '/business', label: 'Business' },
   { href: '/videos', label: 'Video Network' },
   { href: '/magazine', label: 'Magazines' },
   { href: '/events', label: 'Events' },
   { href: '/podcasts', label: 'Podcasts' },
   { href: '/premium-content', label: 'Premium Content' },
   { href: '/webinars', label: 'Webinars' },
+  { href: '/profit-matters', label: 'Profit Matters' },
   { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
 ];
 
@@ -196,7 +196,6 @@ module.exports = {
         { href: '/pavement-maintenance', label: 'Pavement' },
         { href: '/business', label: 'Business' },
         { href: '/construction-technology', label: 'Technology' },
-        { href: '/profit-matters', label: 'Profit Matters' },
         { href: '/infrastructure', label: 'Infrastructure' },
         { href: '/new-equipment', label: 'New Equipment' },
         { href: '/latest-news', label: 'Construction News' },
@@ -219,6 +218,7 @@ module.exports = {
         { href: '/expert-columns', label: 'Expert Columns' },
         { href: '/awards', label: 'Awards' },
         { href: '/whitepapers', label: 'Whitepapers' },
+        { href: '/profit-matters', label: 'Profit Matters' },
       ],
     },
     {
