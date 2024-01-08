@@ -5,7 +5,7 @@ const channels = [
   { href: '/asphalt', label: 'Asphalt' },
   { href: '/pavement-maintenance', label: 'Pavement' },
   { href: '/construction-technology', label: 'Technology' },
-  { href: '/profit-matters', label: 'Profit Matters' },
+  { href: '/business', label: 'Business' },
   { href: 'https://www.pavexshow.com/', label: 'PAVE/X', target: '_blank' },
 ];
 
@@ -19,6 +19,7 @@ const resources = [
   { href: '/podcasts', label: 'Podcasts' },
   { href: '/premium-content', label: 'Premium Content' },
   { href: '/webinars', label: 'Webinars' },
+  { href: '/profit-matters', label: 'Profit Matters' },
   { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
 ];
 
