@@ -196,7 +196,6 @@ module.exports = {
         { href: '/pavement-maintenance', label: 'Pavement' },
         { href: '/business', label: 'Business' },
         { href: '/construction-technology', label: 'Technology' },
-        { href: '/profit-matters', label: 'Profit Matters' },
         { href: '/infrastructure', label: 'Infrastructure' },
         { href: '/new-equipment', label: 'New Equipment' },
         { href: '/latest-news', label: 'Construction News' },
