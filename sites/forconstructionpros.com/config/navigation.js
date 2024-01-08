@@ -12,7 +12,6 @@ const channels = [
 const resources = [
   { href: '/directory', label: 'New Equipment Directory' },
   { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
-  { href: '/business', label: 'Business' },
   { href: '/videos', label: 'Video Network' },
   { href: '/magazine', label: 'Magazines' },
   { href: '/events', label: 'Events' },
