@@ -14,9 +14,10 @@ module.exports = ({
   },
 
   stickyBottomTemplate = {
-    size: [[320, 50], [300, 50]],
+    size: [[970, 90], [970, 66], [728, 90], [320, 50], [300, 50]],
     sizeMapping: [
-      { viewport: [576, 0], size: [] },
+      { viewport: [980, 0], size: [[970, 90], [970, 66], [728, 90]] },
+      { viewport: [750, 0], size: [728, 90] },
       { viewport: [320, 0], size: [[300, 50], [320, 50]] },
     ],
   },
