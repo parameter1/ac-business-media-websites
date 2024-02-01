@@ -22,7 +22,7 @@ module.exports = {
       { href: '/events', label: 'Events' },
       { href: 'https://www.oemoffhighwaymediakit.com/', label: 'Advertise', target: '_blank' },
       { href: '/magazine', label: 'Magazine' },
-      { href: 'https://www.oemsummit.com/', label: 'OEM Summit', target: '_blank'},
+      { href: 'https://www.oemsummit.com/', label: 'OEM Summit', target: '_blank' },
     ],
   },
   tertiary: {
