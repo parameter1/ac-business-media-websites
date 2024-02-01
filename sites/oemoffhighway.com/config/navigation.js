@@ -9,19 +9,20 @@ module.exports = {
       { href: '/engineering-manufacturing', label: 'Engineering & Manufacturing' },
       { href: '/trends', label: 'Trends' },
       { href: '/market-analysis', label: 'Market Analysis' },
+      { href: '/directory', label: 'Directory' },
+      { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
     ],
   },
   secondary: {
     items: [
       { href: '/premium-content', label: 'Premium Content' },
-      { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
       { href: '/webinars', label: 'Webinars' },
       { href: '/videos', label: 'Videos' },
       { href: 'https://cms.megaphone.fm/channel/oemupdate?selected=ACBMI3051469857', label: 'Podcast', target: '_blank' },
       { href: '/events', label: 'Events' },
       { href: 'https://www.oemoffhighwaymediakit.com/', label: 'Advertise', target: '_blank' },
       { href: '/magazine', label: 'Magazine' },
-      { href: '/directory', label: 'Directory' },
+      { href: 'https://www.oemsummit.com/', label: 'OEM Summit', target: '_blank'},
     ],
   },
   tertiary: {
