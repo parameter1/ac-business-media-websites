@@ -5,8 +5,5 @@ User-agent: *
 Disallow: /__
 Disallow: /print/content
 
-User-agent: ChatGPT-User
-Disallow: /
-
 Sitemap: https://www.greenindustrypros.com/sitemap.xml
 Sitemap: https://www.greenindustrypros.com/sitemap-google-news.xml
