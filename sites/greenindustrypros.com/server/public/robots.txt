@@ -5,9 +5,6 @@ User-agent: *
 Disallow: /__
 Disallow: /print/content
 
-User-agent: GPTBot
-Disallow: /
-
 User-agent: ChatGPT-User
 Disallow: /
 
