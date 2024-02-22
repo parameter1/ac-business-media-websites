@@ -4,6 +4,9 @@ import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 $ const { id, type, pageNode } = input;
 $ const { site, GAM } = out.global;
+$ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
+
+$ console.log('showCompanySectionFilter: ', showCompanySectionFilter)
 
 $ const withAds = defaultValue(input.withAds, true);
 $ const sections = getAsArray(input, "sections");
@@ -46,6 +49,18 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
               aliases=aliases
               modifiers=[]
             />
+          </@section>
+        </if>
+        <if(showCompanySectionFilter)>
+          <@section>
+            <div class="row company-section-search">
+              <div class="col-md-6">
+                <common-company-search-block />
+              </div>
+              <div class="col-md-6">
+                <common-section-search-block />
+              </div>
+            </div>
           </@section>
         </if>
         <for|s| of=sections>

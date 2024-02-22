@@ -163,6 +163,13 @@
 /*! critical:start|home */
 /*! critical:start|content */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-content-list";
+// company section search
+@import "@ac-business-media/package-common/scss/directory";
+@import "@ac-business-media/package-common/scss/spec-guide";
+/*! purgecss start ignore */
+@import "@ac-business-media/package-common/scss/company-search";
+@import "@ac-business-media/package-common/scss/section-search";
+/*! purgecss end ignore */
 /*! critical:end */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-podcast";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-products-feed";

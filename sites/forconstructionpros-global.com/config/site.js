@@ -104,4 +104,13 @@ module.exports = {
     bgColor: '#000',
   },
   pageDetails,
+  showCompanySectionFilters: true,
+  sectionSearchIds: [
+    54289, // Asphalt
+    54300, // Business
+    54436, // Concrete
+    54319, // Construction Technology
+    54330, // Equipment
+    54468, // Pavement Maintenance
+  ],
 };

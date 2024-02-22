@@ -13,6 +13,7 @@
     "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
+    "@ac-business-media/package-common": "^2.6.10",
     "@parameter1/base-cms-image": "^4.47.1",
     "@parameter1/base-cms-inflector": "^4.5.12",
     "@parameter1/base-cms-marko-core": "^4.48.1",
