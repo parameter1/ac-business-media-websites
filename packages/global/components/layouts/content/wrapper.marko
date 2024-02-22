@@ -66,7 +66,9 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
       <marko-web-page-container for="content" tag="div" id=id type=type modifiers=["below"]>
         <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
           $ const section = content.primarySection;
-          $ const aliases = hierarchyAliases(content.primarySection);
+          $ const labels = getAsArray(content, "labels");
+          $ const isSponsored = labels.includes("Sponsored");
+          $ const aliases = hierarchyAliases(section);
           <if(loadMore)>
             <marko-web-page-wrapper>
               <@section>
@@ -81,7 +83,7 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
               </@section>
             </marko-web-page-wrapper>
           </if>
-          <if(withAds)>
+          <if(withAds && !isSponsored)>
             <theme-reveal-ad-handler
               select-all-targets=true
               path=GAM.getAdUnit({ name: "reskin", aliases }).path
