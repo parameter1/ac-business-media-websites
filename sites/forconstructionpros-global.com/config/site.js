@@ -11,7 +11,6 @@ const identityXOptInHooks = require('./identity-x-opt-in-hooks');
 const pageDetails = require('./page-details');
 const search = require('./search');
 
-console.log(nativeX.getPlacement('default'));
 module.exports = {
   // Module configs
   useLinkInjectedBody: process.env.USE_LINK_INJECTED_BODY || true,

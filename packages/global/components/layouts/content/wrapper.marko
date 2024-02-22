@@ -6,8 +6,6 @@ $ const { id, type, pageNode } = input;
 $ const { site, GAM } = out.global;
 $ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
 
-$ console.log('showCompanySectionFilter: ', showCompanySectionFilter)
-
 $ const withAds = defaultValue(input.withAds, true);
 $ const sections = getAsArray(input, "sections");
 $ const alias = get(input, "primarySection.alias");
