@@ -1,0 +1,17 @@
+.magazine-publication-buttons {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: map-get($spacers, 2);
+  padding-top: map-get($spacers, 2);
+  // padding-bottom: map-get($spacers, 2);
+  @include marko-web-node-list-border(border-top);
+  @include marko-web-node-list-border(border-bottom);
+  .btn {
+    margin-right: map-get($spacers, 2);
+    margin-bottom: map-get($spacers, 2);
+    @include skin-button($style: "primary");
+    font-size: 12px;
+    padding: map-get($spacers, 2)
+  }
+}

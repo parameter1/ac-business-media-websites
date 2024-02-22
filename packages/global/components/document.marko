@@ -1,0 +1,122 @@
+import createOmedaIdentityBuilder from "@parameter1/base-cms-marko-web-p1-events/utils/create-omeda-identity-builder";
+import { getAsObject } from "@parameter1/base-cms-object-path";
+
+$ const {
+  site,
+  req,
+  nativeX,
+  GAM,
+  contentMeterState,
+} = out.global;
+
+$ const omedaConfig = site.get('omeda');
+
+<marko-web-document ...input>
+  <@head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <marko-web-google-font family="Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400" />
+
+    <marko-web-deferred-script-loader-init />
+
+    <!-- init gtm -->
+    <marko-web-gtm-init
+      container-id=site.get("gtm.containerId")
+      request-frame=true
+      target-tag="body"
+      on="ready"
+    />
+
+    <!-- init p1 website events -->
+    <marko-web-p1-events-init
+      request-frame=true
+      target-tag="body"
+      on="load"
+      identity-query-builder=createOmedaIdentityBuilder(omedaConfig.brandKey)
+      enable-gam-plugin=true
+    />
+
+    <!-- init gam -->
+    <marko-web-gam-init
+      request-frame=true
+      target-tag="body"
+      on="load"
+    />
+
+    <!-- init native-x -->
+    <marko-web-native-x-init
+      uri=nativeX.getUri()
+      enabled=nativeX.isEnabled()
+      on="load"
+      request-frame=true
+      target-tag="body"
+    />
+
+    <!-- init omeda olytics -->
+    <marko-web-omeda-olytics-init
+      oid="90d9e151682e4fdc8d57bf8d280bb1dd"
+      on="load"
+      request-frame=true
+      target-tag="body"
+    />
+
+    <${input.head} />
+
+    <marko-web-omeda-identity-x-identify />
+
+    <!-- start gtm -->
+    <marko-web-gtm-start />
+
+    <!-- start gam -->
+    <marko-web-gam-enable>
+      <@lazy-load ...site.getAsObject("gam.lazyLoad") />
+    </marko-web-gam-enable>
+  </@head>
+  <@above-wrapper>
+    <!-- Temp hack to Fix Top Leaderboard -->
+    <style>
+      body {
+        overflow-y: initial !important;
+      }
+    </style>
+    <marko-web-gtm-noscript container-id=site.get("gtm.containerId") />
+    <${input.aboveWrapper} />
+  </@above-wrapper>
+  <@above-container>
+    <marko-web-browser-component name="OmedaIdentityXRapidIdentify" />
+
+    <marko-web-gtm-track-bus-event
+      on="newsletter-form-action"
+      clear-data=true
+    />
+    <marko-web-gtm-track-bus-event
+      on="newsletter-form-subscription"
+      clear-data=true
+    />
+    <marko-web-identity-x-context|{ hasUser, user, isEnabled }|>
+      <global-site-header has-user=hasUser reg-enabled=isEnabled />
+      <global-site-menu has-user=hasUser reg-enabled=isEnabled />
+    </marko-web-identity-x-context>
+    <if(contentMeterState && !contentMeterState.isLoggedIn)>
+      <theme-content-meter-block
+        views=contentMeterState.views
+        view-limit=contentMeterState.viewLimit
+        display-overlay=contentMeterState.displayOverlay
+        display-gate=contentMeterState.displayGate
+        dynamic-title="We hope you’ve enjoyed your articles."
+      />
+    </if>
+    <marko-web-browser-component name="DynamicSiteMenuPositioner" />
+    <${input.aboveContainer} />
+  </@above-container>
+  <@below-container>
+    <${input.belowContainer} />
+    <global-site-footer />
+  </@below-container>
+  <@below-wrapper>
+    <marko-web-deferred-script-loader-load />
+  </@below-wrapper>
+</marko-web-document>

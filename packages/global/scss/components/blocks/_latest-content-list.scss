@@ -1,0 +1,15 @@
+.node-list {
+  $self: &;
+
+  &--latest-content-list {
+    .node-list {
+      &__header {
+        padding-top: 0;
+      }
+    }
+
+    #{ $self }__header {
+      @include skin-block-header-overline();
+    }
+  }
+}

@@ -1,0 +1,102 @@
+.node-list {
+  $self: &;
+
+  &__header {
+    /*! critical */
+    padding-bottom: 0;
+  }
+
+  &__nodes {
+    /*! critical */
+    padding-top: 0;
+  }
+
+  &__node {
+    padding: 1.25rem;
+    .section-feed-content-node--text-ad-content-type {
+      background-color: $gray-100;
+      padding: 20px 0;
+      margin: -20px 0;
+    }
+  }
+  &--latest-issue {
+    #{ $self }__nodes {
+      padding-right: 3rem;
+      padding-left: 3rem;
+    }
+    #{ $self }__node:first-child {
+      border-top: none;
+    }
+    #{ $self }__footer {
+      border-top: none;
+      padding-top: 0;
+    }
+    .node {
+      &__title a {
+        font-size: 1.25rem;
+      }
+    }
+  }
+  &--wufoo, &--issue-archives, &--latest-issue {
+    #{ $self }__header {
+      @include skin-typography($style: "header-2");
+      font-family: $skin-font-family-primary;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-top: 24px;
+      padding-left: 0;
+      &:before {
+        background: $primary;
+        content: "";
+        height: 4px;
+        left: 0;
+        position: absolute;
+        top: 12px;
+        width: 40px;
+      }
+    }
+  }
+
+  &--wufoo {
+    #{ $self }__body {
+      padding: 0;
+    }
+  }
+
+  /*! critical:start|website-section.blogs */
+  &--section-authors {
+    h2 {
+      font-weight: 600;
+      a {
+        color: $black;
+      }
+    }
+  }
+  /*! critical:end */
+  /*! critical:start|website-section.regions */
+  &--section-children-toc {
+    #{ $self }__nodes {
+      padding: 0;
+      margin-top: 0;
+      margin-bottom: map-get($spacers, block);
+    }
+    #{ $self }__header {
+      @include skin-block-header-overline($flex: true, $text-lg: false);
+    }
+    .form-group {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    #{ $self }__node {
+      border-bottom: none;
+      padding: 6px 0;
+      a {
+        display: block;
+        width: 100%;
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+  /*! critical:end */
+}

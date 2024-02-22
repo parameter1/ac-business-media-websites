@@ -1,0 +1,25 @@
+$ const { config, req } = out.global;
+
+$ const type = "profile";
+$ const title = "User profile";
+$ const description = `${config.siteName()} User Profile`;
+$ const callToAction = 'To complete your profile, please fill out the required fields & select your email subscriptions.'
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <global-gam-path-targeting|{ adChannels: ad_channels }| path=req.path>
+      <marko-web-gtm-default-context|{ context }| type=type>
+        $ context.ad_channels = ad_channels;
+        <marko-web-gtm-push data=context />
+      </marko-web-gtm-default-context>
+    </global-gam-path-targeting>
+  </@head>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section modifiers=["user-form"]>
+        <h1 class="page-wrapper__title">${description}</h1>
+        <marko-web-identity-x-form-profile call-to-action=callToAction />
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>

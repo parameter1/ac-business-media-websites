@@ -1,0 +1,23 @@
+$ const { id, alias, name, pageNode } = input;
+
+$ const now = Date.now();
+$ const queryParams = {
+  includeContentTypes: ["Event", "Webinars"],
+  requiresImage: false,
+  sectionBubbling: false,
+  endingAfter: now,
+  sort: {
+    field: "startDate",
+    order: "asc",
+  },
+};
+<global-website-section-feed-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+  query-params=queryParams
+  node={ withDates: true, withTeaser: true }
+  with-ads=false
+  with-native-x=false
+/>

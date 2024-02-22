@@ -1,0 +1,18 @@
+import pathAliases from "@ac-business-media/package-global/utils/path-aliases";
+
+$ const { site } = out.global;
+
+$ const aliasToChannel = site.get("gam.aliasToChannel") || {}
+$ const getChannels = (path) => {
+  const aliases = pathAliases(path);
+  const channels = aliases.filter((alias) => aliasToChannel[alias] !== undefined).map((alias) => aliasToChannel[alias]);
+  // If there are no Channels apply the General Fallback value
+  return channels.length !== 0 ? channels : ['General'];
+}
+
+$ const keyValues = {
+  Channels: [...new Set(getChannels(input.path))],
+};
+
+<marko-web-gam-targeting key-values=keyValues />
+<${input.renderBody} ad-channels=keyValues.Channels />

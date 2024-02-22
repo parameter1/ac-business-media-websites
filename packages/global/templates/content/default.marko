@@ -1,0 +1,22 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+
+$ const { id, type, pageNode, ...rest } = input;
+
+<marko-web-resolve-page|{ data: content }| node=pageNode>
+  <if(getAsArray(content, "labels").includes("Sponsored"))>
+    <global-content-sponsored-layout
+      id=id
+      type=type
+      page-node=pageNode
+      ...rest
+    />
+  </if>
+  <else>
+    <global-content-default-layout
+      id=id
+      type=type
+      page-node=pageNode
+      ...rest
+    />
+  </else>
+</marko-web-resolve-page>

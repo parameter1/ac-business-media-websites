@@ -1,0 +1,65 @@
+import { buildImgixUrl } from "@parameter1/base-cms-image";
+import { get } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const blockName = "newsletter-signup-banner";
+
+$ const { config, site, req } = out.global;
+$ const { identityX } = req;
+$ const additionalEventData = defaultValue(input.additionalEventData, {});
+$ const buttonLabels = defaultValue(input.buttonLabels, { continue: "Sign Up" })
+$ const loginEmailPlaceholder = defaultValue(input.loginEmailPlaceholder, "example@gmail.com");
+$ const source = defaultValue(input.source, "newsletterSignup");
+$ const configName = defaultValue(input.configName, "signupBanner");
+$ const newsletterSignupType = defaultValue(input.type, "default");
+$ const validTypes = ["inlineContent", "inlineSection", "footer", "recommended"];
+$ const withImage = defaultValue(input.withImage, true);
+
+$ if (!validTypes.includes(newsletterSignupType)) {
+  console.log(`Unknown inline signup type. One of ${validTypes} expected!`);
+}
+
+$ const {
+  name,
+  description,
+  imagePath,
+  disabled,
+} = site.getAsObject(`newsletter.${configName}`);
+
+$ const lang = site.config.lang || "en";
+$ const imageSrc = withImage && imagePath ? buildImgixUrl(`https://${config.website("imageHost")}/${imagePath}`, { w: 120, auto: "format,compress" }) : null;
+$ const imageSrcset = withImage && imageSrc ? `${imageSrc}&dpr=2 2x` : null;
+
+
+<if(Boolean(identityX))>
+  <marko-web-identity-x-context|{ user, isEnabled, application }|>
+    <if(name && description)>
+      <marko-web-browser-component
+        name="IdentityXNewsletterFormInline"
+        props={
+          imageSrc,
+          imageSrcset,
+          siteName: config.website("name"),
+          name: input.name || name,
+          description: input.description || description,
+          disabled,
+          lang,
+          additionalEventData: additionalEventData,
+          source,
+          type: newsletterSignupType,
+          activeUser: user,
+          endpoints: identityX.config.getEndpoints(),
+          buttonLabels,
+          redirect: input.redirect,
+          loginEmailPlaceholder,
+          loginEmailLabel: input.loginEmailLabel,
+          actionText: input.actionText,
+          consentPolicy: input.consentPolicy || get(application, "organization.consentPolicy"),
+          emailConsentRequest: get(application, "organization.emailConsentRequest"),
+          regionalConsentPolicies: get(application, "organization.regionalConsentPolicies"),
+          appContextId: identityX.config.get("appContextId"),
+        }
+      />
+    </if>
+  </marko-web-identity-x-context>
+</if>

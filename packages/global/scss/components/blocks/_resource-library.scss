@@ -1,0 +1,28 @@
+.resource-library {
+  &__header {
+    @include skin-block-header-overline($flex: true, $text-lg: true);
+    align-items: end;
+  }
+
+  &__view-more {
+    line-height: 1.7;
+  }
+}
+
+.page-wrapper {
+  &__section {
+    &--background-color {
+      .resource-library {
+        padding: 1rem 2rem 2rem;
+        background-color: #f0f1f2;
+      }
+    }
+
+    &--background-color-dark {
+      .resource-library {
+        padding: 1rem 2rem 2rem;
+        background-color: #39393a;
+      }
+    }
+  }
+}

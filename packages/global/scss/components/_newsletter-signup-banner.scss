@@ -1,0 +1,43 @@
+.newsletter-signup-banner {
+  margin-bottom: 0;
+  font-family: $skin-font-family-primary;
+  &__form-wrapper {
+    .text-muted {
+      color: $gray-100 !important;
+      a {
+        color: $secondary;
+      }
+    }
+  }
+  &__name {
+    &--footer {
+      font-size: 1.25rem;
+    }
+  }
+  &__description {
+    strong {
+      font-weight: bold;
+    }
+    &--footer {
+      font-family: $skin-font-family-primary;
+      font-weight: 400;
+    }
+  }
+  &__name, &__description {
+    &--large {
+      font-family: $skin-font-family-primary;
+      color: $theme-site-navbar-primary-link-color;
+      max-width: 600px;
+    }
+  }
+  &--large {
+    background-color: $primary;
+    .btn-primary {
+      background-color: $secondary;
+    }
+  }
+  &__right-col {
+    width: 100%;
+    max-width: 600px;
+  }
+}

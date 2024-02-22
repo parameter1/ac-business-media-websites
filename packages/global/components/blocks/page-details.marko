@@ -1,0 +1,43 @@
+import { defaultValue } from "@parameter1/base-cms-marko-web/utils";
+import { buildImgixUrl } from "@parameter1/base-cms-image";
+
+$ const { content } = input;
+$ const { primaryImage, socialLinks, body } = content;
+$ const blockName = defaultValue(content.blockName, "section-page");
+
+<marko-web-block name=blockName>
+  <marko-web-element block-name=blockName name="wrapper">
+    <if(primaryImage && primaryImage.src)>
+      $ const imgOpt = {
+        w: 160,
+        h: 160,
+        crop: "faces",
+        fit: "crop",
+        ...(primaryImage.imgOpt && { ...primaryImage.imgOpt }),
+      };
+      $ const src = buildImgixUrl(primaryImage.src, imgOpt);
+      $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
+      <marko-web-img
+        src=src
+        srcset=srcset
+        alt=primaryImage.alt
+        class=`${blockName}__image`
+      />
+    </if>
+    <div class="page-wrapper__website-section-details">
+      <div class="page-wrapper__website-section-description">$!{body}</div>
+      <if(socialLinks && socialLinks.length)>
+        <theme-content-contact-details-section block-name=blockName modifiers=["social-links"]>
+          <for|item| of=socialLinks>
+            <theme-social-icon-link
+              label=item.label
+              provider=item.provider
+              href=item.url
+              modifiers=["dark", "lg"]
+            />
+          </for>
+        </theme-content-contact-details-section>
+      </if>
+    </div>
+  </marko-web-element>
+</marko-web-block>

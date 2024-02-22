@@ -1,0 +1,33 @@
+@mixin skin-block-header-overline($flex: false, $text-lg: false) {
+
+  @include skin-typography($style: "header-2");
+  font-family: $skin-font-family-primary;
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  margin-bottom: 16px;
+  padding-top: 24px;
+  padding-left: 0;
+
+
+  @if $flex {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @if $text-lg {
+    font-size: 1.9rem;
+  }
+
+  // ident
+  &:before {
+    background: $skin-block-header-overline-color;
+    content: "";
+    height: 4px;
+    left: 0;
+    position: absolute;
+    top: 12px;
+    width: 40px;
+  }
+}

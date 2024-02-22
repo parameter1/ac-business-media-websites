@@ -1,0 +1,10 @@
+.hero-card  {
+  &__header {
+    @include skin-block-header-overline($flex: true, $text-lg: true);
+  }
+
+  &__header-left {
+    display: flex;
+    flex-direction: column;
+  }
+}

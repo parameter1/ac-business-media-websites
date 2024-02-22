@@ -1,0 +1,137 @@
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import { get, getAsArray } from "@parameter1/base-cms-object-path";
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list";
+import sectionFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-info";
+
+$ const {
+  pagination: p,
+  nativeX: nxConfig,
+  site,
+  req,
+  } = out.global;
+
+$ const { id, alias, name, pageNode } = input;
+$ const adName = defaultValue(input.adName, "rotation");
+$ const withAds = defaultValue(input.withAds, true);
+$ const perSectionAdInject = 3
+
+<global-website-section-default-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+  with-ads=input.withAds
+>
+  <@section|{ blockName, section, aliases }| modifiers=["with-child-toc"]>
+    $ const children = getAsArray(section, "children.edges").map(({ node }) => node).sort((a, b) => (a.name > b.name) ? 1: -1);;
+    $ const split1 = (children.length > 3) ? children.slice(0, Math.ceil((children.length / 2))) : children;
+    $ const split2 = (children.length > 3) ? children.slice(Math.ceil((children.length / 2)), children.length) : [];
+    <theme-website-section-breadcrumbs
+      section=section
+      display-home=false
+      display-self=false
+      modifiers=["website-section"]
+    />
+    <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
+      <if(p.page > 1)>${value}: Page ${p.page}</if>
+      <else>${value}</else>
+    </marko-web-website-section-name>
+
+    $ const pageDetails = site.getAsObject("pageDetails");
+    <if(pageDetails[alias])>
+      <global-page-details-block content=pageDetails[alias] />
+    </if>
+    <else>
+      <marko-web-website-section-description obj=section />
+    </else>
+
+    <if(split1.length)>
+      <div class="row">
+        <div class="col-lg-8">
+          $ const tocHeader = get(pageDetails, `${alias}.tocHeader`);
+          <marko-web-node-list flush-x=true flush-y=true modifiers=["section-children-toc"] header=tocHeader >
+            <if(tocHeader)>
+              <@header>
+                ${tocHeader}
+              </@header>
+            </if>
+            <@nodes|{ nodes }| nodes=children>
+              <div class="form-group col-lg-6">
+                <select id="regions-select" class="custom-select" onchange="location = this.value">
+                  <option value='' title='Please Select'>Please Select</option>
+                  <for|node| of=nodes>
+                    $ const { name, alias }  = node;
+                    $ const value = `#${alias.replace('/','-')}`;
+                    <option value=value title=name>$!{name}</option>
+                  </for>
+                </select>
+              </div>
+            </@nodes>
+          </marko-web-node-list>
+          <!-- add self execution script to auto select above option based on hash. -->
+          <script>
+            (function() {
+              document.getElementById('regions-select').value = location.hash;
+            })();
+          </script>
+          <for|child, index| of=split1>
+            <a class="child-anchor" id=`${child.alias.replace('/','-')}` />
+            <theme-content-card-deck-block alias=`${child.alias}` query-params={ limit: 3 } />
+            <if(((index + 1) % perSectionAdInject) == 0 && (index + 1) !== children.length)>
+              <if(withAds)>
+                <theme-gam-define-display-ad
+                  name=adName
+                  position="section_page"
+                  aliases=[alias]
+                  modifiers=["inline-section-feed"]
+                />
+              </if>
+            </if>
+          </for>
+        </div>
+        <div class="col-lg-4">
+          <div class="mb-block">
+            <theme-gam-define-display-ad
+              name="top-rotation"
+              position="content_page"
+              aliases=aliases
+              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+              class="mb-0"
+            />
+          </div>
+        </div>
+      </div>
+    </if>
+    <if(split2.length)>
+      <div class="row">
+        <div class="col-lg-8">
+          <for|child, index| of=split2>
+            <a class="child-anchor" id=`${child.alias.replace('/','-')}` />
+            <theme-content-card-deck-block alias=`${child.alias}` query-params={ limit: 3 } />
+            <if(((index + 1) % perSectionAdInject) == 0 && (index + 1) !== children.length)>
+              <if(withAds)>
+                <theme-gam-define-display-ad
+                  name=adName
+                  position="section_page"
+                  aliases=[alias]
+                  modifiers=["inline-section-feed"]
+                />
+              </if>
+            </if>
+          </for>
+        </div>
+        <div class="col-lg-4">
+          <div class="mb-block">
+            <theme-gam-define-display-ad
+              name="top-rotation"
+              position="content_page"
+              aliases=aliases
+              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+              class="mb-0"
+            />
+          </div>
+        </div>
+      </div>
+    </if>
+  </@section>
+</global-website-section-default-layout>

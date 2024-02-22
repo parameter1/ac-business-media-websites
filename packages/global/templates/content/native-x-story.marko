@@ -1,0 +1,122 @@
+import convert from "@parameter1/base-cms-marko-web-native-x/utils/convert-story-to-content";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { story } = input;
+$ const content = convert(story, { sectionName: "Brand Insights" });
+$ const { id, type } = content;
+$ const { primarySection } = content;
+$ const aliases = ["brand-insights"];
+$ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
+
+<theme-default-page title=story.title description=story.teaser>
+  <@head>
+    <marko-web-gtm-native-x-story-context|{ context }| obj=content>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-native-x-story-context>
+    <marko-web-native-x-gtm-init />
+    <marko-web-p1-events-track-native-story story=story />
+    <global-gam-content-targeting obj=content />
+  </@head>
+  <@page>
+    <marko-web-native-x-story-track-init story=story />
+    <marko-web-native-x-story-track-page-view />
+    <marko-web-native-x-story-track-social-share />
+
+    <marko-web-page-wrapper>
+      <@section|{ blockName }| modifiers=["nativex-story-header"]>
+        <marko-web-p1-events-track-native-story-scroll-depth
+          story=story
+          selector=".document-container .page .content-page-body .page-contents__content-body"
+        />
+        <div class="content-page-header">
+          <theme-breadcrumbs modifiers=["content-page"]>
+            <@item>
+              ${primarySection.name}
+            </@item>
+          </theme-breadcrumbs>
+          <marko-web-content-name tag="h1" block-name=blockName obj=content />
+          <theme-page-dates|{ blockName }|>
+            <theme-content-published-node block-name=blockName obj=content display-updated-date=false format=dateFormat />
+          </theme-page-dates>
+          <presented-by advertiser=story.advertiser />
+        </div>
+      </@section>
+
+      <@section|{ blockName }|>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="content-page-body">
+              <theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
+                <theme-primary-image-block obj=content.primaryImage />
+                <marko-web-content-body block-name=blockName obj=content />
+                <marko-web-social-sharing
+                  path=content.siteContext.path
+                  providers=["facebook", "linkedin", "twitter", "pinterest"]
+                />
+              </theme-page-contents>
+            </div>
+          </div>
+          <div class="col-lg-4 page-rail">
+            <div class="mb-block">
+              <theme-gam-define-display-ad
+                name="sponsored-content_top-rotation"
+                position="content_page"
+                aliases=aliases
+                modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+                class="mb-0"
+              />
+            </div>
+          </div>
+        </div>
+      </@section>
+      <!-- <@section>
+        <global-native-x-section-feed-wrapper
+          section={ name: "Brand Insights", description: "Information to advance your business from industry suppliers" }
+          placement-name="brand-insights"
+          exclude-content-ids=[content.id]
+        >
+          <@header>More Brand Insights</@header>
+          <@node withSection=false />
+        </global-native-x-section-feed-wrapper>
+      </@section> -->
+      <@section|{ aliases }|>
+        $ const adRows = [0, 1, 2];
+        <div class="content-card-deck__header">Sponsor Content</div>
+        <div class="row native-ad-row">
+          <for|rows| of=adRows>
+            <div class="col-lg-6">
+              <theme-gam-define-display-ad
+                name="sponsored-link"
+                position="content_page"
+                aliases=aliases
+                modifiers=["center", "margin-auto-x"]
+                show-label=false
+              />
+            </div>
+            <div class="col-lg-6">
+              <theme-gam-define-display-ad
+                name="sponsored-link"
+                position="content_page"
+                aliases=aliases
+                modifiers=["center", "margin-auto-x"]
+                show-label=false
+              />
+            </div>
+          </for>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
+
+    <marko-web-native-x-story-track-outbound-links container="#native-x-story-body" />
+    <marko-web-native-x-story-track-end-of-content />
+  </@page>
+  <@below-page>
+    <marko-web-page-container for="content" tag="div" id=id type=type modifiers=["below"]>
+      <theme-gam-define-display-ad
+        name="sponsored-content_footer-leaderboard"
+        position="content_page"
+        aliases=aliases
+      />
+    </marko-web-page-container>
+  </@below-page>
+</theme-default-page>

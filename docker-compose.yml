@@ -152,3 +152,18 @@ services:
     ports:
       - "9719:80"
       - "19719:19719"
+
+  fcp-g:
+    <<: *site-cmd
+    working_dir: /root/sites/forconstructionpros-global.com
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 9721
+      LIVERELOAD_PORT: 19721
+      OMEDA_INPUT_ID: ${FCP_OMEDA_INPUT_ID-(unset)}
+      HOST: www-acbm-fcp-g.dev.parameter1.com
+    hostname: www-acbm-fcp-g.dev.parameter1.com
+    ports:
+      - "9721:80"
+      - "19721:19721"

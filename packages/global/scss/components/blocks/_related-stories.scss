@@ -1,0 +1,5 @@
+.related-stories {
+  &__header {
+    @include skin-block-header-overline($flex: true, $text-lg: false);
+  }
+}

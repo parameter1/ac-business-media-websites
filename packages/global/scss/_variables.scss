@@ -1,0 +1,173 @@
+@import "@parameter1/base-cms-marko-web/scss/fonts/montserrat-fallback";
+
+$marko-web-document-container-max-width: 1300px;
+$skin-content-body-max-width: 1000px !default;
+$enable-rounded: true;
+$marko-web-page-wrapper-padding: 0;
+
+// Fonts
+$skin-font-family-primary: "Montserrat", montserrat-fallback, sans-serif !default;
+$skin-font-family-secondary: "Montserrat", montserrat-fallback, sans-serif !default;
+
+$theme-content-body-font: $skin-font-family-primary;
+$theme-header-font-family: $skin-font-family-primary;
+
+$black: #141414;
+$body-color: $black;
+
+// Navbar
+$theme-site-navbar-primary-type: light !default;
+$theme-site-navbar-primary-link-color: #323239 !default;
+$theme-site-navbar-primary-link-active-color: $primary !default;
+$theme-site-navbar-primary-link-hover-color: $primary !default;
+$theme-site-navbar-primary-bg-color: #f0f1f2 !default;
+$theme-site-navbar-primary-font-size: 14px !default;
+$theme-site-navbar-primary-font-weight: 500 !default;
+$theme-site-navbar-secondary-font-size: 14px !default;
+$theme-site-navbar-secondary-link-color: #0a0a0a !default;
+$theme-site-navbar-logo-height: 30px !default;
+
+
+$theme-card-header-text-transform: uppercase !default;
+
+// Ads
+$leaderboard-min-height-mobile: 100px !default;
+$leaderboard-min-height-desktop: 90px !default;
+
+$skin-block-header-overline-color: $primary !default;
+
+$theme-item-header-font-size: 13px;
+$theme-item-header-font-weight: 500;
+
+
+$typography: (
+  "header-1": (
+    "color": $black,
+    "font-family": $theme-header-font-family,
+    "font-weight": 600,
+    "font-size": 2.75rem,
+    "letter-spacing": 0,
+  ),
+  "header-1.5": (
+    "color": $black,
+    "font-family": $theme-header-font-family,
+    "font-weight": 600,
+    "letter-spacing": 0,
+  ),
+  "header-2": (
+    "color": $black,
+    "font-family": $theme-header-font-family,
+    "text-transform": uppercase,
+    "font-weight": 600,
+    "letter-spacing": 0,
+  ),
+  "header-3": (
+    "color": $black,
+    "font-family": $theme-header-font-family,
+    "font-size": 20px,
+    "font-weight": 600,
+    "letter-spacing": 0,
+  ),
+  "article-text": (
+    "color": $black,
+    "font-family": $theme-content-body-font,
+    "line-height": 1.7,
+    "font-size": 1.25rem,
+    "font-weight": 400,
+    "letter-spacing": 0,
+  ),
+  "small-body-text": (
+    "color": $black,
+    "font-family": $theme-content-body-font,
+    "font-size": 17px,
+    "line-height": 1.7,
+    "letter-spacing": 0,
+  ),
+  "teaser-text-1": (
+    "color": $black,
+    "font-family": $theme-content-body-font,
+    "line-height": 1.4,
+    "font-size": 16px,
+    "font-weight": 300,
+    "letter-spacing": 0,
+  ),
+  "slug-medium": (
+    "color": $primary,
+    "line-height": 1.1125,
+    "font-size": 0.875rem,
+    "font-weight": 500,
+  ),
+  "section-header": (
+    "color": $black,
+  ),
+  "section-header-small__header": (
+    "color": $black,
+  ),
+  "view-more": (
+    "font-family": $theme-content-body-font,
+    "font-size": 14px,
+    "letter-spacing": 0,
+  ),
+  "menu-item-primary": (
+    "font-family": $theme-content-body-font,
+    "font-weight": 500,
+    "letter-spacing": 0,
+  ),
+  "menu-item-primary-header": (
+    "font-family": $skin-font-family-primary,
+    "font-weight": 500,
+    "letter-spacing": 0,
+  ),
+  "menu-item-secondary": (
+    "font-family": $theme-content-body-font,
+    "font-weight": 500,
+    "letter-spacing": 0,
+  ),
+  "menu-item-secondary-header": (
+    "font-family": $skin-font-family-primary,
+    "font-weight": 500,
+  ),
+  "footer-header-1": (
+    // "font-family": $theme-header-h1-font-family,
+    "font-size": 24px,
+  ),
+  "footer-text": (
+    "font-family": $theme-content-body-font,
+    "font-weight": 300,
+    "letter-spacing": 0,
+  ),
+  "social-follow-header": (
+    // "font-family": $theme-header-h1-font-family,
+    "font-size": 20px,
+  ),
+  // content page overrides
+  "author-content-page": (
+    // "font-family": $theme-header-font-family,
+    // "font-size": 18px,
+    "color": $primary,
+    "font-weight": 500,
+    "letter-spacing": 0,
+  ),
+  "date-content-page": (
+    // "font-size": 14px,
+    // "letter-spacing": 0,
+  )
+);
+
+.page-wrapper {
+  &__deck {
+    font-size: 1.25rem;
+    color: #68686c;
+  }
+}
+
+.site-menu {
+  $self: &;
+  &__section {
+    &--primary {
+      #{ $self }__item {
+        font-family: $skin-font-family-primary;
+      }
+    }
+  }
+}

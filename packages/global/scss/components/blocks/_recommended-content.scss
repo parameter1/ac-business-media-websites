@@ -1,0 +1,9 @@
+.node-list {
+  &--recommended {
+    .node {
+      &__image  {
+        border: none;
+      }
+    }
+  }
+}
