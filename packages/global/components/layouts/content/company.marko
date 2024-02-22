@@ -12,6 +12,11 @@ $ const leadersEnabled = site.get("leaders.enabled");
 $ const perPage = 12;
 $ const lang = site.config.lang || "en";
 
+$ const displayInquiry = (content) => {
+  if (site.get("inquiry.enabled") === false) return false;
+  return get(content, "company.enableRmi");
+}
+
 <global-content-wrapper-layout
   id=id
   type=type
@@ -196,6 +201,11 @@ $ const lang = site.config.lang || "en";
           class="mb-0"
         />
         $ const inquiry = site.getAsObject('inquiry');
+        <if(displayInquiry(content))>
+          <div class="mb-block">
+            <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
+          </div>
+        </if>
         <theme-company-inquiry-form-block content=content initially-expanded=true consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
 
         <theme-gam-define-display-ad

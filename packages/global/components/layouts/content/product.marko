@@ -11,6 +11,11 @@ $ const perPage = 12;
 $ const displayPublishedDate = true;
 $ const displaySocialShare = true;
 
+$ const displayInquiry = (content) => {
+  if (site.get("inquiry.enabled") === false) return false;
+  return get(content, "company.enableRmi") || false;
+}
+
 <global-content-wrapper-layout
   id=id
   type=type
@@ -64,7 +69,7 @@ $ const displaySocialShare = true;
       </div>
       <div class="col-lg-4 page-rail">
         $ const inquiry = site.getAsObject('inquiry');
-        <if(content.company)>
+        <if(displayInquiry(content))>
           <div class="mb-block">
             <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
           </div>

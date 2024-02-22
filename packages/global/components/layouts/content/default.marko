@@ -22,6 +22,13 @@ $ const withRelatedStories = (displayOverlay) ? false : defaultValue(input.withR
 $ const withSocialShare = (displayOverlay) ? false : defaultValue(input.withSocialShare, ["contact"].includes(type) ? false : true);
 $ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
 
+$ const displayInquiry = (content) => {
+  if (site.get("inquiry.enabled") === false) return false;
+  if (type === "company" && get(content, "enableRmi") === true) return true;
+  if (type === "product" && get(content, "company.enableRmi") === true) return true;
+  return get(content, "company.enableRmi") || false;
+}
+
 <global-content-wrapper-layout
   id=id
   type=type
@@ -72,6 +79,8 @@ $ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
   </@section>
 
   <@section|{ aliases, content, authors }| modifiers=["content-body"]>
+    $ const labels = getAsArray(content, "labels");
+    $ const isSponsored = labels.includes("Sponsored");
     $ const { primarySection } = content;
     <div class="row">
       <div class="col-lg-8">
@@ -128,7 +137,7 @@ $ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
                   aliases=aliases
                   block-name=blockName
                   selector=bodyId
-                  preventHTMLInjection=!withAdInjection
+                  preventHTMLInjection=(!withAdInjection && !isSponsored)
                   mobile-leaderboard-ad-name="top-rotation-mobile"
                   lazyload-first-image=lazyloadFirstImage
                 />
@@ -143,7 +152,7 @@ $ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
                       aliases=aliases
                       block-name=blockName
                       selector=transcriptId
-                      preventHTMLInjection=!withAdInjection
+                      preventHTMLInjection=(!withAdInjection && !isSponsored)
                     />
                   </div>
                 </if>
@@ -212,7 +221,7 @@ $ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
         </div>
       </div>
       <div class="col-lg-4 page-rail">
-        <if(withAds)>
+        <if(withAds && !isSponsored)>
           <div class="mb-block">
             <theme-gam-define-display-ad
               name="top-rotation"
@@ -224,7 +233,8 @@ $ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
           </div>
         </if>
         $ const inquiry = site.getAsObject('inquiry');
-        <if(content.type === 'product' && content.company)>
+
+        <if(displayInquiry(content))>
           <div class="mb-block">
             <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
           </div>
@@ -252,14 +262,14 @@ $ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
 
   <if(!displayOverlay)>
     <@section|{ content, aliases }|>
-        $ const showLeaderboardLabel = defaultValue(GAM.showLeaderboardLabel, false);
-        <theme-gam-define-display-ad
-          name="middle-leaderboard"
-          position="content_page"
-          aliases=aliases
-          show-label=true
-          modifiers=["inline-leaderboard"]
-        />
+      $ const showLeaderboardLabel = defaultValue(GAM.showLeaderboardLabel, false);
+      <theme-gam-define-display-ad
+        name="middle-leaderboard"
+        position="content_page"
+        aliases=aliases
+        show-label=true
+        modifiers=["inline-leaderboard"]
+      />
     </@section>
   </if>
 
