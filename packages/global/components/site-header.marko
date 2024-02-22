@@ -10,7 +10,6 @@ $ const blockName = input.blockName || "site-header";
 
 $ const contexts = site.getAsArray("navigation.contexts");
 $ const contextualNav = contexts.find(({ when }) => asArray(when).some(path => isActiveLink(req.path, path)));
-$ console.log('nav', contexts, contextualNav)
 $ const getNavItems = (key) => {
   if (!contextualNav) return  site.getAsArray(`navigation.${key}`);
   return getAsArray(contextualNav, key);

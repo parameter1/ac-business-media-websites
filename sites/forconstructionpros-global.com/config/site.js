@@ -95,24 +95,13 @@ module.exports = {
   gtm: {
     containerId: 'GTM-PNBSZL4',
   },
-  // inquiry: {
-  //   enabled: true,
-  //   directSend: false,
-  //   sendTo: ['Web-fg@wattglobal.com'],
-  //   sendFrom: 'Feed & Grain <noreply@parameter1.com>',
-  //   logo: 'https://img.forconstructionpros.com/files/base/acbm/all/image/static/ip/FG_Logo_PrimaryBlue_R_4C.svg?h=45&auto=format,compress&bg=000000&pad=5',
-  //   bgColor: '#000000',
-  // },
-  // magazine: {
-  //   publicationIds: ['64107886b3ce49ed4e8b4573'],
-  //   subscribe: {
-  //     id: '64107886b3ce49ed4e8b4573',
-  //     name: 'Feed and Grain Magazine',
-  //     new: {
-  //       omedasite: 'FGJ_new', // FS_land
-  //     },
-  //   },
-  //   buttons: ['subscribe', 'digital-edition', 'archives'],
-  // },
+  inquiry: {
+    enabled: true,
+    directSend: true,
+    sendTo: 'requestmoreinfo@acbusinessmedia.com',
+    sendFrom: 'ForConstructionPros.com <noreply@parameter1.com>',
+    logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress&bg=000000&pad=5',
+    bgColor: '#000',
+  },
   pageDetails,
 };
