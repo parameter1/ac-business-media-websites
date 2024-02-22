@@ -47,10 +47,10 @@ const expertInsights = [
 ];
 
 const utilities = [
-  { href: '/page/subscribe', label: 'Subscribe' },
-  { href: 'https://www.wattglobalmedia.com/advertising/advertising-feed/', label: 'Advertise', target: '_blank' },
-  { href: 'https://www.wattglobalmedia.com/about-us/', label: 'About Us', target: '_blank' },
-  { href: 'https://www.wattglobalmedia.com/about-us/contact/', label: 'Contact Us', target: '_blank' },
+  { href: '/contact-us', label: 'Contact Us' },
+  { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
+  { href: '/page/privacy-policy', label: 'Privacy Policy', target: '_blank' },
+  { href: '/page/terms-conditions', label: 'Terms & Conditions', target: '_blank' },
 ];
 
 const mobileMenu = {
