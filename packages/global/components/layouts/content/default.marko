@@ -9,7 +9,7 @@ $ const sections = getAsArray(input, "sections");
 
 $ const displayOverlay = (contentMeterState) ? defaultValue(contentMeterState.displayOverlay, false) : false;
 $ const adInjectionContentTypes = ["article", "blog", "media-gallery", "news", "product"];
-$ const withAdInjection = (displayOverlay) ? false : defaultValue(input.withAdInjection, adInjectionContentTypes.includes(type));
+$ const withAdInjection = false; //(displayOverlay) ? false : defaultValue(input.withAdInjection, adInjectionContentTypes.includes(type));
 $ const withAds = (displayOverlay) ? false : defaultValue(input.withAds, true);
 $ const withComments = (displayOverlay) ? false : defaultValue(input.withComments, true);
 $ const withCompany = defaultValue(input.withCompany, ["press-release", "product"].includes(type));

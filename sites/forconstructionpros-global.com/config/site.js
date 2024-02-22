@@ -93,7 +93,7 @@ module.exports = {
   },
   podcastLinks: [],
   gtm: {
-    containerId: '@TODO',
+    containerId: 'GTM-PNBSZL4',
   },
   // inquiry: {
   //   enabled: true,
@@ -115,7 +115,4 @@ module.exports = {
   //   buttons: ['subscribe', 'digital-edition', 'archives'],
   // },
   pageDetails,
-  exports: {
-    allowedAccessLevels: ['653944edc3488a4f7d9fb228'],
-  },
 };
