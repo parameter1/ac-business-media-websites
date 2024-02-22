@@ -17,7 +17,7 @@ module.exports = {
   // uses inline omeda form
   signupBanner: {
     ...defaults,
-    imagePath: 'files/base/wattglobalmedia/all/image/static/newsletter-pushdown/fg-full.png',
+    // imagePath: 'files/base/acbm/fcp/image/static/newsletter-pushdown/fg-full.png',
   },
   // pushdown: {
   //   ...defaults,
