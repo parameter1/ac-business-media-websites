@@ -1,0 +1,67 @@
+import { getAsObject, get } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const node = getAsObject(input, "node");
+$ const rootPath = defaultValue(input.rootPath, "/specguide");
+$ const content = {
+  shortName: node.title,
+  body: node.teaser,
+  primaryImage: {
+    src: get(node, "image.src"),
+    alt: node.title,
+  },
+  siteContext: {
+    path: `${rootPath}/${node.alias}`,
+  },
+};
+$ const { primaryImage } = content;
+$ const buttonClasses = `spec-guide-button spec-guide-button--${node.alias}`;
+
+<marko-web-node
+  type="spec-guide-content"
+  image-position="top"
+  card=true
+  flush=true
+  full-height=true
+  attrs=input.attrs
+  modifiers=input.modifiers
+>
+  <@image
+    width=340
+    align="top"
+    fluid=true
+    ar="16:9"
+    use-placeholder=false
+    src=primaryImage.src
+    alt=primaryImage.alt
+    isLogo=true
+    link={ href: content.siteContext.path }
+  />
+  <@body>
+    <@title tag="h5" ...input.title>
+      <marko-web-content-short-name tag=null obj=content link=true />
+    </@title>
+    <@text tag="p" modifiers=["body"]>
+      <marko-web-content-body tag=null obj=content />
+    </@text>
+    <@text modifiers=["spec-guide-link-button"]>
+      <marko-web-link
+        class=buttonClasses
+        href=content.siteContext.path
+      >
+        Visit the Interactive<br>$!{content.shortName}
+      </marko-web-link>
+    </@text>
+    <@text
+      modifiers=["spec-guide-link-button"]
+      show=(Boolean(node.downloadLink))
+    >
+      <marko-web-link
+        class=buttonClasses
+        href=node.downloadLink
+      >
+        Download/Print<br>$!{content.shortName}
+      </marko-web-link>
+    </@text>
+  </@body>
+</marko-web-node>

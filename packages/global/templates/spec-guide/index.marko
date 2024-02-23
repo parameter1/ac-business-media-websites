@@ -47,7 +47,7 @@ $ const nodes = Object.keys(specGuides.guides).map((alias) => {
       <@section modifiers=["card-deck"]>
         <default-theme-card-deck-flow cols=3 nodes=nodes>
           <@slot|{ node }|>
-            <refresh-theme-spec-guide-card-node root-path=specGuides.rootPath node=node />
+            <common-spec-guide-card-node root-path=specGuides.rootPath node=node />
           </@slot>
         </default-theme-card-deck-flow>
       </@section>
