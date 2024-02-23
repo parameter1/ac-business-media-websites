@@ -20,7 +20,7 @@ $ const nodes = Object.keys(specGuides.guides).map((alias) => {
   </@above-container> -->
   <@page>
     <marko-web-page-wrapper>
-      <@section>
+      <@section|{ aliases }|>
         <theme-gam-define-display-ad
           name="top-leaderboard"
           position="section-page"
