@@ -7,7 +7,7 @@ const DynamicSiteMenuPositioner = () => import(/* webpackChunkName: "dynamic-sit
 
 export default (Browser) => {
   Common(Browser);
-  GSCE(Browser);
+  GCSE(Browser);
   MonoRail(Browser);
   Leaders(Browser);
   Browser.register('DynamicSiteMenuPositioner', DynamicSiteMenuPositioner);
