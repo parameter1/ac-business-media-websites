@@ -9,7 +9,6 @@ const omeda = require('./omeda');
 const omedaIdentityX = require('./omeda-identity-x');
 const identityXOptInHooks = require('./identity-x-opt-in-hooks');
 const pageDetails = require('./page-details');
-const search = require('./search');
 
 module.exports = {
   // Module configs
@@ -23,7 +22,9 @@ module.exports = {
   omeda,
   omedaIdentityX,
   identityXOptInHooks,
-  search,
+  gcse: {
+    id: '003355913687346718228:la4zrhjf2r9',
+  },
   // Site configs
   idxNavItems: {
     enable: process.env.IDX_NAV_ENABLE || false,
