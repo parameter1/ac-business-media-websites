@@ -1,0 +1,56 @@
+$ const { GAM, specGuides } = out.global;
+
+$ const type = "spec-guide-index";
+$ const { title, description } = specGuides;
+$ const nodes = Object.keys(specGuides.guides).map((alias) => {
+  const node = specGuides.guides[alias];
+  return { ...node, alias };
+});
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+    <marko-web-gam-slots slots=adSlots() />
+  </@head>
+  <@above-container>
+    <refresh-theme-parsely-page headline=title />
+  </@above-container>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section>
+        <theme-gam-define-display-ad
+          name="top-leaderboard"
+          position="section-page"
+          aliases=aliases
+          modifiers=[]
+        />
+      </@section>
+      <@section>
+        <div class="row">
+          <div class="col">
+            <h1 class="page-wrapper__title">
+              <if(title === "OEM Off-Highway’s Engine Spec Guide")>
+                <i>${title}</i>
+              </if>
+              <else>
+                $!{title}
+              </else>
+            </h1>
+            <if(description)>
+              <div class="page-wrapper__deck">$!{description}</div>
+            </if>
+          </div>
+        </div>
+      </@section>
+      <@section modifiers=["card-deck"]>
+        <default-theme-card-deck-flow cols=3 nodes=nodes>
+          <@slot|{ node }|>
+            <refresh-theme-spec-guide-card-node root-path=specGuides.rootPath node=node />
+          </@slot>
+        </default-theme-card-deck-flow>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>
