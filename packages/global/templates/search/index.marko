@@ -10,6 +10,7 @@ $ const {
   i18n,
 } = out.global;
 
+$ const apiKey = site.get("gcse.id");
 $ const type = "search";
 $ const i18nIsFunction = isFunction(i18n);
 $ const title = i18nIsFunction ? i18n("Search") : "Search";
