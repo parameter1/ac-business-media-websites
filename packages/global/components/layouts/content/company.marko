@@ -79,7 +79,7 @@ $ const displayInquiry = (content) => {
                 />
 
                 <label class="content-section-header content-section-header--border">${i18n("About")} ${content.name}</label>
-                <global-content-body-with-tracking block-name="leaders-more-info" content=content />
+                <marko-web-content-body block-name=blockName obj=content />
                 <if(input.topCompanyData)>
                   <marko-web-browser-component name="TopCompanyDetail" props=input.topCompanyData />
                 </if>
@@ -206,7 +206,6 @@ $ const displayInquiry = (content) => {
             <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
           </div>
         </if>
-        <theme-company-inquiry-form-block content=content initially-expanded=true consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
 
         <theme-gam-define-display-ad
           name="rotation-rail"
