@@ -17,22 +17,7 @@ module.exports = (app) => {
 
   // Directory Pages have to happen after content or they wont match
   directory(app, {
-    assignedToWebsiteSectionIds: [
-      94758,
-      94759,
-      94760,
-      94761,
-      94762,
-      94763,
-      94764,
-      94765,
-      94766,
-      94767,
-      94768,
-      94769,
-      94770,
-      94771,
-    ],
+    assignedToWebsiteSectionIds: [],
   });
 
   // Native-X story rendering
