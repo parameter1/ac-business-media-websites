@@ -64,7 +64,7 @@ $ const perPage = 12;
       <marko-web-website-section-description obj=section />
     </else>
 
-    <if(alias != "brand-insights" || !nxConfig.domainName)>
+    <if(alias != "premium-content" || !nxConfig.domainName)>
       <global-section-feed-wrapper
         aliases=aliases
         alias=alias
@@ -76,7 +76,7 @@ $ const perPage = 12;
       >
         <@node ...input.node />
         <if(withNativeX)>
-          <@native-x index=[1] name="brand-insights" aliases=aliases sectionName="Brand Insights" />
+          <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Sponsored" />
         </if>
         <@rail>
           <div class="mb-block">
@@ -133,7 +133,7 @@ $ const perPage = 12;
             <theme-gam-define-display-ad
               name="top-rotation"
               position="section_page"
-              aliases=["brand-insights"]
+              aliases=["premium-content"]
               modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
               class="mb-0"
             />
