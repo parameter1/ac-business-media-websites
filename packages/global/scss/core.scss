@@ -160,12 +160,19 @@
 /*! critical:end */
 
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/hero-card";
+/*! critical:start|directory */
+@import "@ac-business-media/package-common/scss/directory";
+/*! critical:end */
+/*! critical:start|specguide */
+@import "@ac-business-media/package-common/scss/spec-guide";
+.node__text--spec-guide-link-button + .node__text--spec-guide-link-button {
+  margin-top: .75rem;
+}
+/*! critical:end */
 /*! critical:start|home */
 /*! critical:start|content */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-content-list";
 // company section search
-@import "@ac-business-media/package-common/scss/directory";
-@import "@ac-business-media/package-common/scss/spec-guide";
 /*! purgecss start ignore */
 @import "@ac-business-media/package-common/scss/company-search";
 @import "@ac-business-media/package-common/scss/section-search";

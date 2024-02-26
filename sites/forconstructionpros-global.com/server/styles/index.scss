@@ -14,3 +14,23 @@ $dark: #212529;
 $info: #6c757d;
 
 @import "@ac-business-media/package-global/scss/core";
+
+.spec-guide-button {
+  $color: #1e5d92;
+  @include button-variant($color, $color);
+
+  &--asphalt-paver {
+    $color: #751c1c;
+    @include button-variant($color, $color);
+  }
+
+  &--roller {
+    $color: #fdb813;
+    @include button-variant($color, $color);
+  }
+
+  &--skid-steer {
+    $color: #000;
+    @include button-variant($color, $color);
+  }
+}

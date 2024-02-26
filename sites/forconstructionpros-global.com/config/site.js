@@ -9,6 +9,7 @@ const omeda = require('./omeda');
 const omedaIdentityX = require('./omeda-identity-x');
 const identityXOptInHooks = require('./identity-x-opt-in-hooks');
 const pageDetails = require('./page-details');
+const specGuides = require('./spec-guides');
 
 module.exports = {
   // Module configs
@@ -113,4 +114,5 @@ module.exports = {
     54330, // Equipment
     54468, // Pavement Maintenance
   ],
+  specGuides,
 };

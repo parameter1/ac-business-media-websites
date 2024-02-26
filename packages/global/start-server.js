@@ -28,6 +28,7 @@ const routes = (siteRoutes, siteConfig) => (app) => {
 
 module.exports = (options = {}) => {
   const { onStart } = options;
+  const specGuideConfig = getAsObject(options, 'siteConfig.specGuides');
   return startServer({
     ...options,
     routes: routes(options.routes, options.siteConfig),
@@ -44,6 +45,11 @@ module.exports = (options = {}) => {
     onStart: async (app) => {
       if (typeof onStart === 'function') await onStart(app);
       app.set('trust proxy', 'loopback, linklocal, uniquelocal');
+
+      // Setup Spec Guides
+      if (specGuideConfig.guides && Object.keys(specGuideConfig.guides).length) {
+        set(app.locals, 'specGuides', specGuideConfig);
+      }
 
       // Use paginated middleware
       app.use(paginated());
