@@ -6,6 +6,7 @@ const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitem
 const identityX = require('@parameter1/base-cms-marko-web-identity-x');
 const omedaIdentityX = require('@parameter1/base-cms-marko-web-omeda-identity-x');
 
+const specGuideHandler = require('./routes/spec-guide');
 const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
@@ -22,6 +23,8 @@ const routes = (siteRoutes, siteConfig) => (app) => {
   loadInquiry(app);
   // Shared/global routes (all sites)
   sharedRoutes(app, siteConfig);
+  // Handle spec-guide sheet request on /__spec-guide?src=${sheetSrc}
+  specGuideHandler(app);
   // Load site routes
   siteRoutes(app);
 };

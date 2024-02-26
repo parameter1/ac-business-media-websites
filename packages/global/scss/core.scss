@@ -164,7 +164,7 @@
 @import "@ac-business-media/package-common/scss/directory";
 /*! critical:end */
 /*! critical:start|specguide */
-@import "@ac-business-media/package-common/scss/spec-guide";
+@import "../components/spec-guide";
 .node__text--spec-guide-link-button + .node__text--spec-guide-link-button {
   margin-top: .75rem;
 }

@@ -2,6 +2,7 @@
   "taglib-imports": [
     "./blocks/marko.json",
     "./layouts/marko.json",
+    "./spec-guide/marko.json",
     "./wrappers/marko.json"
   ],
   "<global-document>": {

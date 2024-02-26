@@ -1,0 +1,8 @@
+{
+  "<global-spec-guide-table>": {
+    "template": "./table.marko"
+  },
+  "<global-spec-guide-card-node>": {
+    "template": "./spec-guide-card.marko"
+  }
+}
