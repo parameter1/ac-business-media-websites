@@ -5,7 +5,7 @@ $ const { story } = input;
 $ const content = convert(story, { sectionName: "Brand Insights" });
 $ const { id, type } = content;
 $ const { primarySection } = content;
-$ const aliases = ["premium-contents"];
+$ const aliases = ["premium-content"];
 $ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
 
 <theme-default-page title=story.title description=story.teaser>
@@ -72,7 +72,7 @@ $ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
       <!-- <@section>
         <global-native-x-section-feed-wrapper
           section={ name: "Brand Insights", description: "Information to advance your business from industry suppliers" }
-          placement-name="premium-contents"
+          placement-name="premium-content"
           exclude-content-ids=[content.id]
         >
           <@header>More Brand Insights</@header>
