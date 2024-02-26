@@ -8,13 +8,14 @@ $ const { id, alias, name, pageNode } = input;
 $ const withNativeX = defaultValue(input.withNativeX, true);
 $ const sections = getAsArray(input, "sections");
 $ const perPage = 12;
+$ const withAds = alias === "premium-content" ? false : defaultValue(input.withAds, true);
 
 <global-website-section-default-layout
   id=id
   alias=alias
   name=name
   page-node=pageNode
-  with-ads=input.withAds
+  with-ads=withAds
 >
   <@head>
     <theme-section-feed-block|{ totalCount }| alias=alias count-only=true>
@@ -63,13 +64,12 @@ $ const perPage = 12;
     <else>
       <marko-web-website-section-description obj=section />
     </else>
-
-    <if(alias != "premium-content" || !nxConfig.domainName)>
+    <if(alias !== "premium-content" || !nxConfig.domainName)>
       <global-section-feed-wrapper
         aliases=aliases
         alias=alias
         flow=input.feedFlow
-        with-ads=input.withAds
+        with-ads=withAds
         query-params=input.queryParams
         above-the-fold=true
         ad-name=input.adName
@@ -103,7 +103,7 @@ $ const perPage = 12;
     </if>
     <else>
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
           <marko-web-native-x-publisher-stories|{ nodes, pageInfo }|
             domain-name=nxConfig.domainName
           >
@@ -128,7 +128,7 @@ $ const perPage = 12;
             </marko-web-node-list>
           </marko-web-native-x-publisher-stories>
         </div>
-        <div class="col-lg-4">
+        <!-- <div class="col-lg-4">
           <div class="mb-block">
             <theme-gam-define-display-ad
               name="top-rotation"
@@ -138,7 +138,7 @@ $ const perPage = 12;
               class="mb-0"
             />
           </div>
-        </div>
+        </div> -->
       </div>
     </else>
   </@section>
