@@ -1,0 +1,92 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+import promotionQueryFragment from "../../graphql/fragments/content-promotion-list";
+
+$ const { GAM } = out.global;
+
+$ const { id, alias, name, pageNode } = input;
+$ const sections = getAsArray(input, "sections");
+$ const withAds = defaultValue(input.withAds, true);
+$ const pageWrapperModifiers = defaultValue(input.pageWrapperModifiers, []);
+
+<theme-website-section-page id=id alias=alias name=name>
+  <@head>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <marko-web-p1-events-track-website-section node=section />
+      <global-gam-section-targeting|{ adChannels: ad_channels }| obj=section>
+        <marko-web-gtm-website-section-context|{ context }| alias=alias>
+          $ context.ad_channels = ad_channels;
+          <marko-web-gtm-push data=context />
+        </marko-web-gtm-website-section-context>
+      </global-gam-section-targeting>
+    </marko-web-resolve-page>
+    <${input.head} />
+  </@head>
+  <@page>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <marko-web-p1-events-track-website-section-scroll-depth
+        section=section
+        selector=".document-container"
+      />
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-page-wrapper modifiers=pageWrapperModifiers>
+        <if(withAds)>
+          <@section|{ aliases }| modifiers=["first-sm"]>
+            <theme-gam-define-display-ad
+              name="top-leaderboard"
+              position="section-page"
+              aliases=aliases
+              modifiers=[]
+            />
+          </@section>
+        </if>
+
+
+        <@section modifiers=["card-deck"]>
+          <marko-web-query|{ nodes }|
+            name="website-scheduled-content"
+            params={
+              sectionId: id,
+              optionName: "Pinned",
+              includeContentTypes: ["Promotion"],
+              queryFragment: promotionQueryFragment,
+              limit: 15
+            }
+          >
+            <default-theme-card-deck-flow cols=3 nodes=nodes>
+              <@slot|{ node }|>
+                <theme-content-node
+                  node=node
+                  card=true
+                  image-position="top"
+                  full-height=true
+                  flush=true
+                  with-body=true
+                  with-dates=false
+                  with-attribution=false
+                >
+                  <@image width=680 fluid=true />
+                </theme-content-node>
+              </@slot>
+            </default-theme-card-deck-flow>
+           </marko-web-query>
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+  <@below-page>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <if(withAds)>
+        <theme-reveal-ad-handler
+          select-all-targets=true
+          path=GAM.getAdUnit({ name: "reskin", aliases }).path
+          id="reveal-ad"
+        />
+        <theme-fixed-ad-bottom aliases=aliases />
+      </if>
+    </marko-web-resolve-page>
+  </@below-page>
+</theme-website-section-page>

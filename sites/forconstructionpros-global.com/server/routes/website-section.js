@@ -5,6 +5,7 @@ const webinars = require('@ac-business-media/package-global/templates/website-se
 const podcasts = require('@ac-business-media/package-global/templates/website-section/podcasts');
 const upcomingEvents = require('@ac-business-media/package-global/templates/website-section/upcoming-events');
 const section = require('@ac-business-media/package-global/templates/website-section');
+const promoCards = require('@ac-business-media/package-global/templates/website-section/promo-cards');
 const sectionWithoutNativeX = require('@ac-business-media/package-global/templates/website-section/without-native-x');
 
 const withoutNativeXAlias = [
@@ -16,6 +17,10 @@ const withoutNativeXAlias = [
 module.exports = (app) => {
   app.get('/:alias(expert-insights/podcasts)', withWebsiteSection({
     template: podcasts,
+    queryFragment,
+  }));
+  app.get('/:alias(podcasts|videos)', withWebsiteSection({
+    template: promoCards,
     queryFragment,
   }));
   app.get('/:alias(webinars)', withWebsiteSection({
