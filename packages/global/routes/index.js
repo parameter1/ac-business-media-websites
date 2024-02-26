@@ -4,8 +4,8 @@ const magazine = require('@parameter1/base-cms-marko-web-theme-monorail-magazine
 const issueFragment = require('@parameter1/base-cms-marko-web-theme-monorail-magazine/graphql/fragments/magazine-issue-page');
 const taxonomy = require('@parameter1/base-cms-marko-web-theme-monorail/routes/taxonomy');
 const omedaNewsletters = require('@parameter1/base-cms-marko-web-omeda/routes/omeda-newsletters');
-const companySearchHandler = require('@ac-business-media/package-common/company-search');
 
+const companySearchHandler = require('./company-search');
 const rss = require('./rss');
 const printContent = require('./print-content');
 const publicFiles = require('./public-files');
