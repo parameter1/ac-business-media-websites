@@ -26,7 +26,7 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
   </@head>
   <@page>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
-      $ const bclSelector = defaultValue(input.bclSelector, '.page-wrapper__content-body');
+      $ const bclSelector = defaultValue(input.bclSelector, '.page-contents__content-body');
       $ const bclLinkSelector = defaultValue(input.bclLinkSelector, '.bcl-injected-link');
       $ const aliases = hierarchyAliases(content.primarySection);
       $ const authors = getAsArray(content, "authors.edges").map((edge) => edge.node);
