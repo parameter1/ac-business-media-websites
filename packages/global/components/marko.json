@@ -49,5 +49,11 @@
   },
   "<global-directory-sort-by>": {
     "template": "./directory-sort-by.marko"
+  },
+  "<global-company-search-block>": {
+    "template": "./company-search.marko"
+  },
+  "<global-section-search-block>": {
+    "template": "./section-search.marko"
   }
 }

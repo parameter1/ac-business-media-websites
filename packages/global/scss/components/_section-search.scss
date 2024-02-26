@@ -1,0 +1,20 @@
+.section-search {
+  position: relative;
+  .form-control {
+    &:focus {
+      border-color: #ebebeb;
+      box-shadow: none;
+    }
+  }
+  .list-group {
+    @include box-shadow($theme-card-box-shadow);
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    max-height: 10em;
+    padding: map-get($spacers, 2);
+    overflow: scroll;
+    background: $white;
+    border: 1px solid #ebebeb;
+  }
+}

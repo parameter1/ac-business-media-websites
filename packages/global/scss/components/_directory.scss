@@ -1,0 +1,113 @@
+.directory-facets-toggle {
+  display: flex;
+  padding: 20px;
+  margin-bottom: map-get($spacers, block);
+  background-color: #f1f1f1;
+  // @include media-breakpoint-up(md) {
+  //   display: none;
+  // }
+  &__label {
+    align-self: center;
+  }
+
+  &__button {
+    @include theme-toggle-button();
+    align-self: center;
+    margin-left: auto;
+  }
+}
+
+.directory-facets {
+  @include theme-card();
+  $color: $gray-200;
+  $self: &;
+  // @include media-breakpoint-down(sm) {
+  //   display: none;
+  // }
+
+  &--open {
+    display: block;
+  }
+
+  &__title {
+    @include theme-card-header();
+    @include border-top-radius($theme-item-list-border-radius);
+    padding: $marko-web-node-list-padding;
+    margin-bottom: 0;
+    line-height: $line-height-base;
+    &:empty {
+      display: none;
+    }
+
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+    padding: $marko-web-node-list-padding;
+    overflow: scroll;
+
+    #{ $self } {
+      &__list {
+        display: none;
+        max-height: 100%;
+        padding: $marko-web-node-list-padding;
+        overflow: initial;
+      }
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: inline;
+    color: #333;
+    &:hover {
+      color: #333;
+      text-decoration: underline;
+    }
+    &--active {
+      font-weight: 700;
+      color: $primary;
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: block;
+    padding-top: .375rem;
+    padding-right: 1.5rem;
+    padding-bottom: .375rem;
+    font-size: 14px;
+    line-height: 1.25;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    &--open {
+      > #{ $self } {
+        &__list {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  &__toggle {
+    @include theme-toggle-button();
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin-left: auto;
+
+    & > .icon {
+      @include theme-navbar-link-color(( active: $primary, hover: $primary, default: $black ));
+    }
+  }
+}
