@@ -22,9 +22,6 @@ module.exports = (app, siteConfig) => {
   // Handle spec-guide sheet request on /__company-search?searchQuery=CompanyName
   companySearchHandler(app);
 
-  // Handle spec-guide sheet request on /__company-search?searchQuery=CompanyName
-  companySearchHandler(app);
-
   // Magazine
   magazine(app, { index: magazineIndex, issue: magazineIssue }, { issueFragment });
 
