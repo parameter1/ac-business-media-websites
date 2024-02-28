@@ -13,6 +13,8 @@ $ const uri = nxConfig.getUri();
 $ const placement = nxConfig.getPlacement({ name: placementName, aliases });
 
 $ const displayHeader = defaultValue(input.displayHeader, true);
+$ const useAdLinkInHeader = defaultValue(input.linkHeader, true) && limit === 1;
+$ const linkHeader = displayHeader && useAdLinkInHeader;
 
 <marko-web-native-x-fetch-elements|{ ads }| uri=uri id=placement.id opts={ n: limit }>
   $ const nodes = ads.filter(ad => ad.hasCampaign);
@@ -27,13 +29,27 @@ $ const displayHeader = defaultValue(input.displayHeader, true);
     >
 
       <if(displayHeader)>
-        <@header>
-          <div class="leaders__header">
-            <div class="leaders__header-image">
-              <img src=input.headerImgSrc alt=input.headerImgAlt >
+        <if(linkHeader)>
+          $ const [ad] = nodes;
+          <@header>
+            <a href=ad.href ...getAsObject(ad, 'attributes.link')>
+              <div class="leaders__header">
+                <div class="leaders__header-image">
+                  <img src=input.headerImgSrc alt=input.headerImgAlt >
+                </div>
+              </div>
+            </a>
+          </@header>
+        </if>
+        <else>
+          <@header>
+            <div class="leaders__header">
+              <div class="leaders__header-image">
+                <img src=input.headerImgSrc alt=input.headerImgAlt >
+              </div>
             </div>
-          </div>
-        </@header>
+          </@header>
+        </else>
       </if>
       <@nodes nodes=nodes>
         <@slot|{ node: ad, index }|>

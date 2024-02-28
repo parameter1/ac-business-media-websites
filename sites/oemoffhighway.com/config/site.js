@@ -27,7 +27,7 @@ module.exports = {
     ],
   },
   // theme configs
-  company: 'AC Business Media, LLC',
+  company: 'IRONMARKETS, LLC',
   p1events: {
     tenant: 'acbm',
     enabled: true,
@@ -53,6 +53,7 @@ module.exports = {
     { provider: 'linkedin', href: 'https://www.linkedin.com/company/oem-off-highway/', target: '_blank' },
     { provider: 'youtube', href: 'https://www.youtube.com/channel/UCuAwQzKyZOqJolRTNYa0ZyA', target: '_blank' },
     { provider: 'flipboard', href: 'https://flipboard.com/@OEMOffHighway', target: '_blank' },
+    { provider: 'instagram', href: 'https://www.instagram.com/oemoffhighway/', target: '_blank' },
   ],
   radix: {
     enabled: true,
@@ -94,7 +95,7 @@ module.exports = {
   },
   inquiry: {
     enabled: true,
-    directSend: false,
+    directSend: true,
     sendTo: 'requestmoreinfooem@acbusinessmedia.com',
     sendFrom: 'OEM Off-Highway <noreply@parameter1.com>',
     logo: 'https://img.oemoffhighway.com/files/base/acbm/static/OEM_Logo2019_Reversed_NoTag.png?h=60&auto=format,compress',

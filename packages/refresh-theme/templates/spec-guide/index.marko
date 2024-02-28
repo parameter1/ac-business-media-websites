@@ -34,7 +34,14 @@ $ const nodes = Object.keys(specGuides.guides).map((alias) => {
       <@section>
         <div class="row">
           <div class="col">
-            <h1 class="page-wrapper__title">$!{title}</h1>
+            <h1 class="page-wrapper__title">
+              <if(title === "OEM Off-Highway’s Engine Spec Guide")>
+                <i>${title}</i>
+              </if>
+              <else>
+                $!{title}
+              </else>
+            </h1>
             <if(description)>
               <div class="page-wrapper__deck">$!{description}</div>
             </if>

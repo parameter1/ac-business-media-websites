@@ -1,6 +1,6 @@
 {
   "name": "@ac-business-media/forconstructionpros.com",
-  "version": "2.0.7",
+  "version": "2.6.11",
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/sites/forconstructionpros.com",
   "license": "MIT",
@@ -30,18 +30,18 @@
     "win32"
   ],
   "dependencies": {
-    "@ac-business-media/package-directory": "^2.0.7",
-    "@ac-business-media/package-leaders": "^2.0.7",
-    "@ac-business-media/refresh-theme": "^2.0.7",
-    "@parameter1/base-cms-marko-core": "^4.5.12",
-    "@parameter1/base-cms-marko-web": "^4.5.12",
-    "@parameter1/base-cms-marko-web-gam": "^4.5.12",
-    "@parameter1/base-cms-marko-web-gtm": "^4.5.12",
-    "@parameter1/base-cms-marko-web-p1-events": "^4.5.12",
-    "@parameter1/base-cms-marko-web-theme-default": "^4.5.12",
-    "@parameter1/base-cms-object-path": "^4.5.12",
-    "@parameter1/base-cms-utils": "^4.5.12",
-    "@parameter1/base-cms-web-cli": "^4.5.13",
+    "@ac-business-media/package-directory": "^2.6.10",
+    "@ac-business-media/package-leaders": "^2.6.10",
+    "@ac-business-media/refresh-theme": "^2.6.10",
+    "@parameter1/base-cms-marko-core": "^4.48.1",
+    "@parameter1/base-cms-marko-web": "^4.48.1",
+    "@parameter1/base-cms-marko-web-gam": "^4.40.3",
+    "@parameter1/base-cms-marko-web-gtm": "^4.40.3",
+    "@parameter1/base-cms-marko-web-p1-events": "^4.49.0",
+    "@parameter1/base-cms-marko-web-theme-default": "^4.40.3",
+    "@parameter1/base-cms-object-path": "^4.40.3",
+    "@parameter1/base-cms-utils": "^4.40.3",
+    "@parameter1/base-cms-web-cli": "^4.40.3",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
   }

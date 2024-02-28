@@ -27,6 +27,7 @@ x-env-defaults: &env
   YARN_CACHE_FOLDER: /.yarn-cache
   IDENTITYX_API_TOKEN: ${IDENTITYX_API_TOKEN-(unset)}
   BASE_BROWSE_GRAPHQL_URI: ${BASE_BROWSE_GRAPHQL_URI-https://base-browse.tauron.base.parameter1.com/graphql}
+  NATIVEX_SERVE_URI: ${NATIVEX_SERVE_URI-}
 
 x-env-tauron: &env-tauron
   GRAPHQL_URI: ${GRAPHQL_URI-https://tauron.graphql.base.parameter1.com}
@@ -136,21 +137,6 @@ services:
     ports:
       - "9716:80"
       - "19716:19716"
-
-  sso:
-    <<: *site-cmd
-    working_dir: /root/sites/safesecureopenings.com
-    environment:
-      <<: *env
-      PORT: 80
-      EXPOSED_PORT: 9718
-      LIVERELOAD_PORT: 19718
-      OMEDA_INPUT_ID: ${SSO_OMEDA_INPUT_ID-(unset)}
-      HOST: www-acbm-sso.dev.parameter1.com
-    hostname: www-acbm-sso.dev.parameter1.com
-    ports:
-      - "9718:80"
-      - "19718:19718"
 
   rental:
     <<: *site-cmd

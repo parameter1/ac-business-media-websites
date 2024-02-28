@@ -236,4 +236,12 @@ module.exports = {
       },
     },
   ],
+  // override to disable bottom sticky leaderboard
+  // stickyBottomTemplate: {
+  //   size: [[320, 50], [300, 50]],
+  //   sizeMapping: [
+  //     { viewport: [576, 0], size: [] },
+  //     { viewport: [320, 0], size: [[300, 50], [320, 50]] },
+  //   ],
+  // },
 };

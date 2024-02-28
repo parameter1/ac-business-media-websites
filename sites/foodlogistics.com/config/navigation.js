@@ -4,8 +4,9 @@ const topics = [
   { href: '/software-technology', label: 'Software & Tech' },
   { href: '/safety', label: 'Safety' },
   { href: '/sustainability', label: 'Sustainability' },
-  { href: '/professional-development', label: 'Professional Development' },
+  { href: '/professional-development', label: 'Prof Dev' },
   { href: 'https://www.scnsummit.com/', label: 'SCN Summit', target: '_blank' },
+  { href: 'https://www.womeninsupplychainforum.com/', label: 'WISC Forum', target: '_blank' },
 ];
 
 const resources = [
@@ -167,9 +168,10 @@ module.exports = {
         items: [
           { href: '/awards/rock-stars-supply-chain', label: 'Rock Stars of the Supply Chain' },
           { href: '/awards/top-green-providers', label: 'Top Green Providers' },
-          { href: '/awards/fl100+', label: 'Top Software & Technology Providers' },
+          { href: '/awards/top-software-technology', label: 'Top Software & Technology' },
           { href: '/awards/top-3pl-cold-storage-providers', label: 'Top 3PL & Cold Storage Providers' },
           { href: '/awards/top-tech-startups', label: 'Top Tech Startups' },
+          { href: '/awards/top-supply-chain-projects', label: 'Top Supply Chain Projects' },
           { href: '/awards/women-in-supply-chain', label: 'Women in Supply Chain' },
         ],
       },
