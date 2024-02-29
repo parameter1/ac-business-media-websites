@@ -38,13 +38,6 @@ module.exports = (options = {}) => {
     document: options.document || document,
     components: options.components || components,
     fragments: options.fragments || fragments,
-    sitemapsHeaders: {
-      'x-google-news-input': JSON.stringify({
-        days: 7,
-        includeContentTypes: ['Article'],
-        excludeLabels: [],
-      }),
-    },
     onStart: async (app) => {
       if (typeof onStart === 'function') await onStart(app);
       app.set('trust proxy', 'loopback, linklocal, uniquelocal');
