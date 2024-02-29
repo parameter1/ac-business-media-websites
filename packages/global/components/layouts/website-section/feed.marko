@@ -131,6 +131,13 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
           </marko-web-native-x-publisher-stories>
         </div>
         <div class="col-lg-4">
+          <marko-web-identity-x-context|{ hasUser }|>
+            <if(!hasUser)>
+              <div class="sticky-top mb-block">
+                <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
+              </div>
+            </if>
+          </marko-web-identity-x-context>
           <div class="mb-block">
             <if(withAds)>
               <theme-gam-define-display-ad
