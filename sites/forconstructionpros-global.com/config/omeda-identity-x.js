@@ -6,6 +6,6 @@ module.exports = config({
   omedaConfig,
   idxConfig,
   // @todo: rapidIdentProductId & siteId
-  rapidIdentProductId: 209,
-  websiteBehaviorAttributeId: 17408,
+  rapidIdentProductId: 15375,
+  websiteBehaviorAttributeId: 451156,
 });

@@ -70,45 +70,65 @@ module.exports = (args) => {
     appendPromoCodeToHook,
     appendBehaviorToHook,
     appendDemographicToHook,
-    onAuthenticationSuccessFormatter: (async ({ req, payload }) => {
+    onAuthenticationSuccessFormatter: (async ({
+      req,
+      payload,
+      loginSource,
+      additionalEventData,
+    }) => {
       // BAIL if omedaGraphQLCLient isnt available return payload.
-      const omedaGraphQLClient = req[omedaConfig.omedaGraphQLClientProp];
-      if (!omedaGraphQLClient || !onAuthenticationSuccess) return payload;
+      if (!req.$omedaGraphQLClient) return payload;
 
-      const { autoSignupDeploymentTypes } = onAuthenticationSuccess;
-      if (!autoSignupDeploymentTypes) return payload;
+      const identityXOptInHooks = req.app.locals.site.getAsObject('identityXOptInHooks');
+      const omeda = req.app.locals.site.getAsObject('omeda');
+      if (identityXOptInHooks.onAuthenticationSuccess) {
+        const { productIds, promoCode } = identityXOptInHooks.onAuthenticationSuccess;
+        const { user } = payload;
 
-      const { user } = payload;
-      const found = getAsArray(user, 'externalIds')
-        .find(({ identifier, namespace }) => identifier.type === 'encrypted'
-          && namespace.provider === 'omeda'
-          && namespace.tenant === omedaConfig.brandKey);
+        const found = getAsArray(user, 'externalIds')
+          .find(({ identifier, namespace }) => identifier.type === 'encrypted'
+            && namespace.provider === 'omeda'
+            && namespace.tenant === omeda.brandKey);
 
-      // BAIL if no encryptedCustomerId and return payload
-      if (!found) return payload;
-      const encryptedCustomerId = get(found, 'identifier.value');
+        // BAIL if no encryptedCustomerId and return payload
+        if (!found) return payload;
+        const encryptedCustomerId = get(found, 'identifier.value');
 
-      // Retrive the omeda customer
-      const omedaCustomer = await getOmedaCustomerRecord({
-        omedaGraphQLClient,
-        encryptedCustomerId,
-      });
-      if (!omedaCustomer) return payload;
-      // Get the current user subscriptions
-      const subscriptions = getAsArray(omedaCustomer, 'subscriptions');
-      // For each autoOptinProduct check if they have a subscription.
-      // Sign the user up if they do not
-
-      const autoDeploymentTypes = autoSignupDeploymentTypes.filter(
-        ({ id }) => !subscriptions.some(({ product }) => product.deploymentTypeId === id),
-      );
-      const userDeploymentTypes = getAsArray(user, 'deploymentTypes');
-      const deploymentTypes = [...userDeploymentTypes, ...autoDeploymentTypes];
-      // Always apply the ${pubcod_Profile Updated_Meter} promocode & Demo
-      return {
-        ...payload,
-        ...(deploymentTypes.length && { deploymentTypes }),
-      };
+        // Retrive the omeda customer
+        const omedaCustomer = await getOmedaCustomerRecord({
+          omedaGraphQLClient: req.$omedaGraphQLClient,
+          encryptedCustomerId,
+        });
+        // Get the current user subscriptions
+        const subscriptions = getAsArray(omedaCustomer, 'subscriptions');
+        // For each autoOptinProduct check if they have a subscription.
+        // Sign the user up if they do not
+        const newSubscriptions = productIds.filter(
+          (id) => !subscriptions.some(({ product }) => product.deploymentTypeId === id),
+        );
+        if (newSubscriptions && newSubscriptions.length) {
+          // eslint-disable-next-line no-param-reassign
+          additionalEventData.autoSignups = [];
+          const deploymentTypes = newSubscriptions.map((id) => {
+            // eslint-disable-next-line no-param-reassign
+            additionalEventData.autoSignups.push({
+              userId: user.id,
+              productId: id,
+              loginSource,
+            });
+            return { id, optedIn: true };
+          });
+          return ({
+            ...payload,
+            deploymentTypes,
+            promoCode,
+            appendPromoCodes: [
+              { promoCode },
+            ],
+          });
+        }
+      }
+      return payload;
     }),
   };
 };
