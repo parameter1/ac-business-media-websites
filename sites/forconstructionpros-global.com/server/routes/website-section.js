@@ -6,10 +6,17 @@ const upcomingEvents = require('@ac-business-media/package-global/templates/webs
 const section = require('@ac-business-media/package-global/templates/website-section');
 const promoCards = require('@ac-business-media/package-global/templates/website-section/promo-cards');
 const sectionWithoutNativeX = require('@ac-business-media/package-global/templates/website-section/without-native-x');
+const sectionWithoutAds = require('@ac-business-media/package-global/templates/website-section/feed-without-ads');
 
 const withoutNativeXAlias = [
+];
+
+const withoutAdsAliases = [
   'premium-content',
-  'white-papers',
+  'whitepapers',
+  'km-international-videos',
+  'equipment/USG-your-unrivaled-edge-series',
+  'profit-matters/on-site-series',
 ];
 
 module.exports = (app) => {
@@ -24,6 +31,12 @@ module.exports = (app) => {
   withoutNativeXAlias.forEach((alias) => {
     app.get(`/:alias(${alias})`, withWebsiteSection({
       template: sectionWithoutNativeX,
+      queryFragment,
+    }));
+  });
+  withoutAdsAliases.forEach((alias) => {
+    app.get(`/:alias(${alias})`, withWebsiteSection({
+      template: sectionWithoutAds,
       queryFragment,
     }));
   });

@@ -43,7 +43,7 @@ const expertInsights = [
   { href: '/podcasts', label: 'Podcasts' },
   { href: '/videos', label: 'Videos' },
   { href: '/webinars', label: 'Webinars' },
-  { href: '/white-papers', label: 'White Papers' },
+  { href: '/whitepapers', label: 'White Papers' },
 ];
 
 const utilities = [

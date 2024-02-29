@@ -80,21 +80,23 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
         </if>
         <@rail>
           <div class="mb-block">
-            <theme-gam-define-display-ad
-              name="top-rotation"
-              position="section_page"
-              aliases=aliases
-              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-              class="mb-0"
-            />
+            <if(withAds)>
+              <theme-gam-define-display-ad
+                name="top-rotation"
+                position="section_page"
+                aliases=aliases
+                modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+                class="mb-0"
+              />
+            </if>
           </div>
-          <!-- <marko-web-identity-x-context|{ hasUser }|>
+          <marko-web-identity-x-context|{ hasUser }|>
             <if(!hasUser)>
               <div class="sticky-top mt-2">
                 <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
               </div>
             </if>
-          </marko-web-identity-x-context> -->
+          </marko-web-identity-x-context>
         </@rail>
         <@rail>
           <theme-client-side-most-popular-list-block class="sticky-top" />
@@ -103,7 +105,7 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
     </if>
     <else>
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-8">
           <marko-web-native-x-publisher-stories|{ nodes, pageInfo }|
             domain-name=nxConfig.domainName
           >
@@ -128,17 +130,22 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
             </marko-web-node-list>
           </marko-web-native-x-publisher-stories>
         </div>
-        <!-- <div class="col-lg-4">
+        <div class="col-lg-4">
           <div class="mb-block">
-            <theme-gam-define-display-ad
-              name="top-rotation"
-              position="section_page"
-              aliases=["premium-content"]
-              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-              class="mb-0"
-            />
+            <if(withAds)>
+              <theme-gam-define-display-ad
+                name="top-rotation"
+                position="section_page"
+                aliases=["premium-content"]
+                modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+                class="mb-0"
+              />
+            </if>
+            <else>
+              <theme-client-side-most-popular-list-block class="sticky-top" />
+            </else>
           </div>
-        </div> -->
+        </div>
       </div>
     </else>
   </@section>
