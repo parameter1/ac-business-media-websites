@@ -1,0 +1,18 @@
+$ const { id, alias, name, pageNode } = input;
+
+<global-website-section-webinars-feed-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+  feed-flow={ displayImage: false }
+  node={
+    withDates: true,
+    withTeaser: true,
+    withCompany: false,
+    teaserCTA: "More Information",
+    dateFormat: "MMMM D, YYYY h:mma z",
+    withSection: false,
+  }
+  with-ads=false
+/>

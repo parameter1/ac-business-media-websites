@@ -1,0 +1,19 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+
+$ const { site } = out.global;
+$ const section = input.obj
+
+$ const aliasToChannel = site.get("gam.aliasToChannel") || {}
+$ const getChannels = (section) => {
+  const aliases = hierarchyAliases(section);
+  const channels = aliases.filter((alias) => aliasToChannel[alias] !== undefined).map((alias) => aliasToChannel[alias]);
+  // If there are no Channels apply the General Fallback value
+  return channels.length !== 0 ? channels : ['General'];
+}
+
+$ const keyValues = {
+  Channels: [...new Set(getChannels(section))],
+};
+
+<marko-web-gam-targeting key-values=keyValues />
+<${input.renderBody} ad-channels=keyValues.Channels />

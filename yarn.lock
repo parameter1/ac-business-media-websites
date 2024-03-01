@@ -1103,6 +1103,17 @@
     graphql "^14.7.0"
     graphql-tag "^2.12.6"
 
+"@parameter1/base-cms-marko-web-html-sitemap@^4.40.3":
+  version "4.40.3"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-html-sitemap/-/base-cms-marko-web-html-sitemap-4.40.3.tgz#b5b9ddf8838f313ab8a89aac33275cfd6e4f97f7"
+  integrity sha512-oOWad3ara3yC9245NHzyhti4H1lFMweC/BMqDFvfb3H76n6KBwMUCVDIMXDkQ7ipjRYINOl5w3Rby8VujiEEqA==
+  dependencies:
+    "@parameter1/base-cms-dayjs" "^4.5.12"
+    "@parameter1/base-cms-object-path" "^4.40.3"
+    "@parameter1/base-cms-utils" "^4.40.3"
+    graphql "^14.5.4"
+    graphql-tag "^2.12.6"
+
 "@parameter1/base-cms-marko-web-icons@^4.36.8":
   version "4.36.8"
   resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-icons/-/base-cms-marko-web-icons-4.36.8.tgz#db479337f3bc3be9ad57fe8d18ffa5cba0008820"
@@ -1271,6 +1282,56 @@
     graphql "^14.7.0"
     graphql-tag "^2.12.6"
 
+"@parameter1/base-cms-marko-web-theme-monorail-magazine@^4.48.1":
+  version "4.48.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail-magazine/-/base-cms-marko-web-theme-monorail-magazine-4.48.1.tgz#72b10985d5c443aa53e77c63021a1df29fcf7bc2"
+  integrity sha512-sZCEbv3kUKFRrLyTcXqQwdGmilj/ar6Wux6m2uLi3VweUmYYiWDAU0B11zfHfo5ojyxlfs0bpMwiueP/j/+xrw==
+  dependencies:
+    "@parameter1/base-cms-marko-web-gtm" "^4.40.3"
+    "@parameter1/base-cms-object-path" "^4.40.3"
+    "@parameter1/base-cms-utils" "^4.40.3"
+    "@parameter1/base-cms-web-common" "^4.48.1"
+    graphql "^14.7.0"
+    graphql-tag "^2.12.6"
+    object-path "^0.11.8"
+
+"@parameter1/base-cms-marko-web-theme-monorail@^4.49.4":
+  version "4.49.4"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.49.4.tgz#f0583e850914ddb9785b84fd01c5b0dd8f6b2069"
+  integrity sha512-hLq7Ym5Bx1TnuFD+thRI8MFv4oAHC8LT3eN+mOlgLs8rRXmvWfnQFHOKYj8NOJZ9LVwrE5J4S+Oj5BoN6WSdkQ==
+  dependencies:
+    "@parameter1/base-cms-dayjs" "^4.5.12"
+    "@parameter1/base-cms-image" "^4.47.1"
+    "@parameter1/base-cms-inflector" "^4.5.12"
+    "@parameter1/base-cms-marko-web-deferred-script-loader" "^4.40.3"
+    "@parameter1/base-cms-marko-web-gam" "^4.40.3"
+    "@parameter1/base-cms-marko-web-gtm" "^4.40.3"
+    "@parameter1/base-cms-marko-web-html-sitemap" "^4.40.3"
+    "@parameter1/base-cms-marko-web-icons" "^4.36.8"
+    "@parameter1/base-cms-marko-web-identity-x" "^4.49.1"
+    "@parameter1/base-cms-marko-web-inquiry" "^4.40.3"
+    "@parameter1/base-cms-marko-web-native-x" "^4.48.1"
+    "@parameter1/base-cms-marko-web-omeda" "^4.40.3"
+    "@parameter1/base-cms-marko-web-omeda-identity-x" "^4.49.1"
+    "@parameter1/base-cms-marko-web-p1-events" "^4.49.0"
+    "@parameter1/base-cms-marko-web-recaptcha" "^4.5.12"
+    "@parameter1/base-cms-marko-web-reveal-ad" "^4.40.3"
+    "@parameter1/base-cms-marko-web-search" "^4.48.1"
+    "@parameter1/base-cms-marko-web-social-sharing" "^4.40.3"
+    "@parameter1/base-cms-object-path" "^4.40.3"
+    "@parameter1/base-cms-utils" "^4.40.3"
+    "@parameter1/base-cms-web-common" "^4.48.1"
+    "@parameter1/joi" "^1.2.10"
+    "@trevoreyre/autocomplete-vue" "^2.4.1"
+    bootstrap "^4.6.2"
+    cheerio "^1.0.0-rc.12"
+    debug "^4.3.4"
+    graphql-tag "^2.12.6"
+    http-errors "^1.8.1"
+    moment "^2.29.1"
+    node-fetch "^2.6.9"
+    ua-parser-js "^1.0.33"
+
 "@parameter1/base-cms-marko-web@^4.48.1":
   version "4.48.1"
   resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.48.1.tgz#ace9d0f602329fed8a1a6d4d73b9a32103c92880"
@@ -1385,10 +1446,28 @@
   dependencies:
     "@parameter1/omeda-graphql-client" "^0.2.3"
 
+"@parameter1/omeda-graphql-client-express@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@parameter1/omeda-graphql-client-express/-/omeda-graphql-client-express-0.4.2.tgz#a0552d607de75ab35862d62a2c4fac2522aef83f"
+  integrity sha512-Ui4Tt7G8gs2leBlQS/VIzrXpcsLdRp/nb6d0I5JhhKkT3EojrkpA7SZSrAChnwDoCWLn7giP0vtRnWdVE9SpVg==
+  dependencies:
+    "@parameter1/omeda-graphql-client" "^0.4.2"
+
 "@parameter1/omeda-graphql-client@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@parameter1/omeda-graphql-client/-/omeda-graphql-client-0.2.3.tgz#46345a851a7f51b361fe67ad7597429498d5e2d3"
   integrity sha512-cVLB9+paLmEhy6/I8FyjX+YVoGUMqVsfzUvKPRJzhuMLJhpnV88S28WqWWXNFdw8ocySjsmBfohCr74Dd76g7A==
+  dependencies:
+    apollo-cache-inmemory "^1.6.6"
+    apollo-client "^2.6.10"
+    apollo-link-http "^1.5.17"
+    graphql "^15.5.0"
+    node-fetch "^2.6.1"
+
+"@parameter1/omeda-graphql-client@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@parameter1/omeda-graphql-client/-/omeda-graphql-client-0.4.2.tgz#42476b0acf1c817ad4facbdfb9b9ba34a140522c"
+  integrity sha512-ZwIu67TcrRxGBg3JJjDma2ZqjLdl79KpQDTho0sQH+2GVFvQkM2/uPgiBAv+6VRlT1FkZ6T2slxXQaGaDYW2tw==
   dependencies:
     apollo-cache-inmemory "^1.6.6"
     apollo-client "^2.6.10"
@@ -1522,7 +1601,7 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
-"@trevoreyre/autocomplete-vue@^2.2.0":
+"@trevoreyre/autocomplete-vue@^2.2.0", "@trevoreyre/autocomplete-vue@^2.4.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@trevoreyre/autocomplete-vue/-/autocomplete-vue-2.4.1.tgz#00e1be48ce8a840b0bbff5aa155fec8ecfe46f10"
   integrity sha512-LEwoRP18TPFzLtJm4CP99rRZ+0YRO9GrjxKsVNmxGZPsAmNRywkUYXnyZh0kpK2TgUf2JXs9BRJAPrNxcOmdYw==
@@ -2392,7 +2471,7 @@ cheerio@1.0.0-rc.10:
     parse5-htmlparser2-tree-adapter "^6.0.1"
     tslib "^2.2.0"
 
-cheerio@^1.0.0-rc.12, cheerio@^1.0.0-rc.3:
+cheerio@^1.0.0-rc.10, cheerio@^1.0.0-rc.12, cheerio@^1.0.0-rc.3:
   version "1.0.0-rc.12"
   resolved "https://registry.yarnpkg.com/cheerio/-/cheerio-1.0.0-rc.12.tgz#788bf7466506b1c6bf5fae51d24a2c4d62e47683"
   integrity sha512-VqR8m68vM46BNnuZ5NtnGBKIE/DfN0cRIzg9n40EIq9NOv90ayxLBXA8fXC5gquFRGJSTRqBq25Jt2ECLR431Q==
@@ -3699,7 +3778,7 @@ express-http-proxy@^1.6.3:
     es6-promise "^4.1.1"
     raw-body "^2.3.0"
 
-express@^4.18.2:
+express@^4.17.1, express@^4.18.2:
   version "4.18.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.18.2.tgz#3fabe08296e930c796c19e3c516979386ba9fd59"
   integrity sha512-5/PsL6iGPdfQ/lKM1UuielYgv3BUoJfz1aUwU9vHZ+J7gyvwdQXFEBIEIaxeGf0GIcreATNyBExtalisDbuMqQ==
@@ -4457,6 +4536,11 @@ html-entities@^1.4.0:
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.4.0.tgz#cfbd1b01d2afaf9adca1b10ae7dffab98c71d2dc"
   integrity sha512-8nxjcBcd8wovbeKx7h3wTji4e6+rhaVuPNpMqwWgnHh+N9ToqsCs6XztWRBPQ+UtzsoMAdKZtUENoVzU/EMtZA==
 
+html-entities@^2.1.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.4.0.tgz#edd0cee70402584c8c76cc2c0556db09d1f45061"
+  integrity sha512-igBTJcNNNhvZFRtm8uA6xMY6xYleeDwn3PeBCkDz7tHttv4F2hsDI2aPgNERWzvRcNYHNT3ymRaQzllmXj4YsQ==
+
 html2plaintext@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/html2plaintext/-/html2plaintext-2.1.4.tgz#d8252893869d4c02e761551973433b31bdab5b7a"
@@ -4510,7 +4594,7 @@ http-errors@2.0.0:
     statuses "2.0.1"
     toidentifier "1.0.1"
 
-http-errors@^1.8.1:
+http-errors@^1.7.3, http-errors@^1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.8.1.tgz#7c3f28577cbc8a207388455dbd62295ed07bd68c"
   integrity sha512-Kpk9Sm7NmI+RHhnj6OIWDI1d6fIoFAtFt9RLaTMRlg/8w49juAStsrBgp0Dp4OdxdVbRIeKhtCUvoi/RuAhO4g==
@@ -5870,6 +5954,11 @@ modify-values@^1.0.0:
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
+moment@^2.29.1:
+  version "2.30.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.30.1.tgz#f8c91c07b7a786e30c59926df530b4eac96974ae"
+  integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -6265,7 +6354,7 @@ object-keys@^1.1.1:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
-object-path@^0.11.4, object-path@^0.11.8:
+object-path@^0.11.4, object-path@^0.11.5, object-path@^0.11.8:
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.8.tgz#ed002c02bbdd0070b78a27455e8ae01fc14d4742"
   integrity sha512-YJjNZrlXJFM42wTBn6zgOJVar9KFJvzx6sTWDte8sWZF//cnjl0BxHNpfZx+ZffXX63A9q0b1zsFiBX4g4X5KA==
@@ -7630,6 +7719,11 @@ slash@3.0.0, slash@^3.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
+slug@^4.0.2:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/slug/-/slug-4.1.0.tgz#f2c3ee98f43983d1ef2a0a517b3d0450b3a18da5"
+  integrity sha512-4CbVfau2lVbmoBYn0M+rHA/g90LL/AAJvI/b4tF68A+vs/1EwdWXPn8R35Fuh0kxtfx9hWH4TuZdxbv3a8PRrg==
+
 smart-buffer@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
@@ -8169,6 +8263,11 @@ typedarray@^0.0.6:
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
+
+ua-parser-js@^1.0.33:
+  version "1.0.37"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-1.0.37.tgz#b5dc7b163a5c1f0c510b08446aed4da92c46373f"
+  integrity sha512-bhTyI94tZofjo+Dn8SN6Zv8nBDvyXTymAdM3LDI/0IboIUwTu1rEhW7v2TfiVsoYWgkQ4kOVqnI8APUFbIQIFQ==
 
 uglify-js@^3.1.4:
   version "3.17.4"

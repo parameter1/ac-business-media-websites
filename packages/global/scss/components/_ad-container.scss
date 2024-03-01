@@ -1,0 +1,76 @@
+.ad-container {
+  $self: &;
+
+  $container-bottom-padding: 10px;
+  $wrapper-first-child-padding: 16px;
+  $label-bottom-padding: 4px;
+  $label-font-size: 10px;
+  $label-line-height: 1;
+  $container-height: $container-bottom-padding + $wrapper-first-child-padding + ($label-font-size * $label-line-height) + $label-bottom-padding;
+
+  &--inline-content#{&}--template-inline-content-desktop,
+  &--inline-content#{&}--template-inline-content-mobile,
+  &--inline-content#{&}--template-top-rotation-desktop,
+  &--inline-content#{&}--template-top-rotation-mobile {
+    margin-bottom: 0;
+    // min-height: 250px + $container-height;
+    min-height: 0;
+    > *:first-child {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+    }
+  }
+  &--inline-content#{&}--template-inline-content-desktop,
+  &--inline-content#{&}--template-top-rotation-desktop {
+    display: none;
+    background-color: #fff;
+    margin-left: 0;
+    margin-right: 0;
+    > *:first-child {
+      border-top: 3px solid $skin-ad-bg-color;
+      border-bottom: 3px solid $skin-ad-bg-color;
+    }
+    @media (min-width: 980px) {
+      display: block;
+    }
+  }
+  &--inline-content#{&}--template-inline-content-mobile,
+  &--inline-content#{&}--template-top-rotation-mobile {
+    @media (min-width: 780px) {
+      display: block;
+    }
+    @media (min-width: 980px) {
+      display: none;
+    }
+  }
+  &--inline-section-feed {
+    min-height: 0; //250px + $container-height;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    > *:first-child {
+      padding-bottom: 30px;
+      border-bottom: 1px solid $skin-ad-bg-color;
+    }
+  }
+  &--inline-leaderboard {
+    > *:first-child {
+      border-top: 2px solid $skin-ad-bg-color;
+      border-bottom: 2px solid $skin-ad-bg-color;
+    }
+  }
+  &--template-leaderboard, &--template-top-leaderboard {
+    min-height: 0;
+    // min-height: 20px + $leaderboard-min-height-mobile + $container-height;
+    // @media (min-width: 980px) {
+    //   min-height: 20px + $leaderboard-min-height-desktop + $container-height;
+    // }
+  }
+  &--rail {
+    background-color: #fff;
+  }
+  &--template-footer-leaderboard {
+    border-top: 1px solid #f5f5fa;
+  }
+}

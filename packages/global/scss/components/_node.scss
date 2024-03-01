@@ -1,0 +1,49 @@
+.node {
+  $self: &;
+  $image-border: 1px solid rgba(239, 239, 239, .9);
+
+  &__header {
+    margin-bottom: 6px;
+  }
+
+  &__header a, &__header .node__website-section-name {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  &__content-published {
+    @include skin-typography($style: "date");
+  }
+
+  &__image {
+    border: $image-border;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+  }
+
+  &__image-inner-wrapper--fluid-3by2 {
+    #{ $self } {
+      &__image {
+        border: $image-border;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &--video-content-type {
+    #{ $self } {
+      &__image-inner-wrapper {
+        &::after {
+          $size: 70px;
+          width: 70px;
+          height: 70px;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

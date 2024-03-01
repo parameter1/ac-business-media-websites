@@ -1,0 +1,31 @@
+import { defaultValue } from "@parameter1/base-cms-marko-web/utils";
+import { getAsArray, getAsObject } from "@parameter1/base-cms-object-path";
+import convertAdToNode from "@parameter1/base-cms-marko-web-native-x/utils/convert-ad-to-node";
+import chunkArray from "../../utils/chunk-array";
+
+$ const { nativeX: nxConfig, i18n } = out.global;
+$ const { section, modifiers } = input;
+$ const limit = defaultValue(input.limit, 6);
+$ const placementName = defaultValue(input.placementName, "default");
+$ const aliases = defaultValue(input.aliases, []);
+$ const cols = input.cols != null ? input.cols : limit;
+$ const viewMore = defaultValue(input.viewMore, false);
+$ const nodeImageInput = getAsObject(input, "node.image");
+$ const aboveTheFold = defaultValue(input.aboveTheFold, false);
+$ const excludeContentIds = getAsArray(input.excludeContentIds);
+$ const displayImage = defaultValue(input.displayImage, true);
+
+$ const uri = nxConfig.getUri();
+$ const placement = nxConfig.getPlacement({ name: placementName, aliases });
+
+<marko-web-native-x-fetch-elements|{ ads }| uri=uri id=placement.id opts={ n: limit }>
+  $ const hasAd = ads && ads.length && ads[0] && ads[0].hasCampaign;
+  <if(hasAd)>
+    $ const nodes = ads.filter(
+      (ad) => ad.hasCampaign).map(
+      (ad) => convertAdToNode(ad, { sectionName: "Brand Insights" }).node).filter(
+      (node) => !excludeContentIds.includes(node.storyId)
+    );
+    <theme-card-deck-flow cols=2 nodes=nodes modifiers=["featured-products"] />
+  </if>
+</marko-web-native-x-fetch-elements>

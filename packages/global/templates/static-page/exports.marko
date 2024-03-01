@@ -1,0 +1,34 @@
+$ const { site } = out.global;
+
+$ const type = "static-page";
+$ const title = "Export Landing Page";
+$ const description = "A landing page for exports";
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+  </@head>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section>
+        <div>
+          <marko-web-element block-name="page-wrapper" name="website-section-name" tag="h1" >
+            Export Landing Page
+          </marko-web-element>
+          <marko-web-identity-x-access|{ hasRequiredAccessLevel, user }|
+            required-access-level-ids=site.get('exports.allowedAccessLevels')
+          >
+            <if(hasRequiredAccessLevel)>
+              <a href="/__exports/print-directories">Print Directory Exports</a>
+            </if>
+            <else>
+              <marko-web-identity-x-form-login />
+            </else>
+          </marko-web-identity-x-access>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>

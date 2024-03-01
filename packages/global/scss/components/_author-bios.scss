@@ -1,0 +1,13 @@
+.author-bio-node {
+  &__content-teaser,
+  &__content-title {
+    @include skin-typography($style: "article-text");
+    font-size: 15px
+  }
+  &__content-title {
+    color: #000;
+  }
+  &__content-teaser {
+    color: #555;
+  }
+}

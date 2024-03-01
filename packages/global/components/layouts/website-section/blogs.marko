@@ -1,0 +1,79 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list";
+import sectionFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-info";
+
+$ const { pagination: p, nativeX: nxConfig, site } = out.global;
+
+$ const { id, alias, name, pageNode } = input;
+$ const sections = getAsArray(input, "sections");
+$ const perPage = 12;
+
+<global-website-section-default-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+  with-ads=input.withAds
+>
+  <@section|{ blockName, section, aliases }|>
+    <theme-website-section-breadcrumbs
+      section=section
+      display-home=false
+      display-self=false
+      modifiers=["website-section"]
+    />
+
+    <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
+      <if(p.page > 1)>${value}: Page ${p.page}</if>
+      <else>${value}</else>
+    </marko-web-website-section-name>
+
+    <div class="row">
+      <div class="col-lg-8">
+        $ const pageDetails = site.getAsObject("pageDetails");
+        <div class="node-list node-list--section-authors">
+          <div class="node-list__nodes">
+            <for|key| in=pageDetails>
+              <if(key.match(`^${alias}\/`))>
+                <marko-web-query|{ nodes, section }|
+                  name="website-scheduled-content"
+                  params={
+                    alias: key,
+                    limit: 1,
+                    queryFragment,
+                    sectionAlias: key,
+                    sectionFragment,
+                  }
+                  collapsible=false
+                >
+                  <div class="node-list__node">
+                    <marko-web-website-section-name tag="h2" obj=section link=true />
+                    <global-page-details-block content=pageDetails[key] />
+                  </div>
+                </marko-web-query>
+              </if>
+            </for>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="mb-block">
+          <theme-gam-define-display-ad
+            name="top-rotation"
+            position="content_page"
+            aliases=aliases
+            modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+            class="mb-0"
+          />
+        </div>
+        <!-- <marko-web-identity-x-context|{ hasUser }|>
+          <if(!hasUser)>
+            <div class="sticky-top mt-2">
+              <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
+            </div>
+          </if>
+        </marko-web-identity-x-context> -->
+      </div>
+    </div>
+  </@section>
+</global-website-section-default-layout>

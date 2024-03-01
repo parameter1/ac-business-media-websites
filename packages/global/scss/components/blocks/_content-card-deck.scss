@@ -1,0 +1,42 @@
+.content-card-deck {
+  &__header {
+    @include skin-block-header-overline($flex: true, $text-lg: false);
+  }
+}
+
+.page-wrapper {
+  &__section {
+    &--background-color {
+      .content-card-deck {
+        padding: 1rem 2rem 2rem;
+        background-color: #f0f1f2;
+      }
+    }
+
+    &--background-color-dark {
+      .content-card-deck {
+        padding: 1rem 2rem 2rem;
+        background-color: #39393a;
+      }
+    }
+  }
+}
+.page-wrapper {
+  &__section {
+    &--with-child-toc {
+      .content-card-deck {
+        margin-top: map-get($spacers, block);
+        margin-bottom: map-get($spacers, block);
+        padding-bottom: map-get($spacers, block);
+        @include marko-web-node-list-border(border-bottom);
+      }
+      // offset anchor by sticky leaderboard  Can remove if they get right of that.
+      .child-anchor {
+        position: relative;
+        display: block;
+        visibility: hidden;
+        top: -90px;
+      }
+    }
+  }
+}

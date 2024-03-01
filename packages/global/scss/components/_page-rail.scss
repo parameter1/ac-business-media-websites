@@ -1,0 +1,9 @@
+.page-rail {
+  &--dual-sticky-top {
+    display: flex;
+    flex-direction: column;
+  }
+  &__container {
+    height: 50%;
+  }
+}

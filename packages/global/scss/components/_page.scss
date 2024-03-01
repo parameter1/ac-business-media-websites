@@ -1,0 +1,21 @@
+.page {
+  &--search {
+    .ad-container {
+      &--template-leaderboard {
+        min-height: 0;
+        display: none;
+      }
+    }
+  }
+
+  &--subscribe {
+    .magazine-publication-card-block {
+      .node {
+        &__footer {
+          /*! critical|subscribe */
+          display: none;
+        }
+      }
+    }
+  }
+}

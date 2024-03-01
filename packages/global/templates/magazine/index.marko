@@ -1,0 +1,66 @@
+import { getAsArray, get } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import publicationListFragment from "@parameter1/base-cms-marko-web-theme-monorail-magazine/graphql/fragments/magazine-publication-list";
+import latestIssueFragment from "@parameter1/base-cms-marko-web-theme-monorail-magazine/graphql/fragments/latest-issue";
+
+$ const { site, req } = out.global;
+
+$ const newsletterUrl = site.get('newsletter.externalUrl');
+
+$ const type = "magazines";
+$ const title = defaultValue(site.get("magazine.title"), "Magazine");
+$ const description = site.get("magazine.description");
+$ const publicationIds = site.getAsArray("magazine.publicationIds");
+$ const requiresCoverImage = defaultValue(input.requiresCoverImage, true);
+$ const withHeader = defaultValue(input.withHeader, true);
+$ const link = { class: "btn btn-primary" }
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <global-gam-path-targeting|{ adChannels: ad_channels }| path=req.path>
+      <marko-web-gtm-default-context|{ context }| type=type>
+        $ context.ad_channels = ad_channels;
+        <marko-web-gtm-push data=context />
+      </marko-web-gtm-default-context>
+    </global-gam-path-targeting>
+  </@head>
+  <@page>
+    <marko-web-page-wrapper class="mb-block">
+      <@section>
+        <div class="row">
+          <div class="col">
+            <h1 class="page-wrapper__title">${title}</h1>
+            <if(description)>
+              <p class="page-wrapper__deck">${description}</p>
+            </if>
+          </div>
+        </div>
+        <marko-web-query|{ nodes }| name="magazine-publications" params={ publicationIds: publicationIds, queryFragmet: publicationListFragment }>
+          <for|publication| of=nodes>
+            <marko-web-query|{ node: latestIssue }| name="magazine-latest-issue" params={ publicationId: publication.id, requiresCoverImage, queryFragment: latestIssueFragment }>
+              <theme-magazine-publication-card-block publication-id=publication.id issue-id=latestIssue.id latest-issue={ buttons: [] } >
+                  <@header>
+                      <marko-web-block name="magazine-publication-buttons">
+                        <if(newsletterUrl)>
+                          <marko-web-link class=link.class href=newsletterUrl target="_blank" title="Subscribe to Newsletters" >
+                            Subscribe to Newsletters
+                          </marko-web-link>
+                        </if>
+                        <if(get(latestIssue, "publication.subscribeUrl"))>
+                          <marko-web-magazine-publication-subscribe-url tag=null obj=latestIssue.publication link=link>
+                            Subscribe To Magazine
+                          </marko-web-magazine-publication-subscribe-url>
+                        </if>
+                        <marko-web-magazine-publication-name tag=null obj=latestIssue.publication link=link>
+                          Archives
+                        </marko-web-magazine-publication-name>
+                      </marko-web-block>
+                  </@header>
+              </theme-magazine-publication-card-block>
+            </marko-web-query>
+          </for>
+        </marko-web-query>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>

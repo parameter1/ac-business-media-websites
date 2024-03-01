@@ -1,0 +1,209 @@
+import { getAsObject } from "@parameter1/base-cms-object-path";
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import shuffleArray from "../../../utils/shuffle-array";
+
+import homePageTopStoriesLoader from "@ac-business-media/package-global/loaders/home-page-top-stories";
+
+$ const { config, site } = out.global;
+
+$ const loader = getAsObject(input, "loader");
+$ const { id, alias, name, pageNode } = input;
+$ const sections = getAsArray(input, "sections");
+$ const withFeatured = defaultValue(input.withFeatured, true);
+$ const excludedSectionIds = [];
+$ const { GAM, apollo, i18n } = out.global;
+
+$ const latestTitle = defaultValue(input.latestTitle, "Latest News");
+$ const morePrefix = defaultValue(input.morePrefix, "More from");
+
+$ const promise = homePageTopStoriesLoader(apollo, {
+  featuredParams: { limit: 7 },
+});
+<marko-web-resolve|{ resolved: sectionContent }| promise=promise>
+  $ const { topStory, featured, ids } = sectionContent;
+  <theme-website-section-page id=id alias=alias name=name>
+    <@head>
+      <marko-web-resolve-page|{ data: section }| node=pageNode>
+        <marko-web-p1-events-track-website-section node=section />
+        <global-gam-section-targeting|{ adChannels: ad_channels }| obj={ alias: "home-page", hierarchy: [{ alias: "home-page"}] }>
+          <marko-web-gtm-website-section-context|{ context }| alias=alias>
+            $ context.ad_channels = ad_channels;
+            <marko-web-gtm-push data=context />
+          </marko-web-gtm-website-section-context>
+        </global-gam-section-targeting>
+      </marko-web-resolve-page>
+      <${input.head} />
+    </@head>
+    <@page>
+      <marko-web-resolve-page|{ data: section }| node=pageNode>
+        <marko-web-p1-events-track-website-section-scroll-depth
+          section=section
+          selector=".document-container"
+        />
+        $ const aliases = hierarchyAliases(section);
+        <marko-web-page-wrapper>
+          <@section|{ aliases }| modifiers=["first-sm"]>
+            <theme-gam-define-display-ad
+              name="top-leaderboard"
+              position="section-page"
+              aliases=aliases
+              modifiers=["inter-block"]
+            />
+          </@section>
+          <@section class=["mt-3", "mb-3"]>
+            <div class="row top-stories-row">
+              $ const rowOneClass = (withFeatured) ? "col-lg-5" : "col-lg-6";
+              <div class=rowOneClass>
+                <if(topStory.nodes && topStory.nodes.length)>
+                  $ const topStoryNode = topStory.nodes[0];
+                  $ const heroImageNode = {
+                    id: topStoryNode.id,
+                    type: topStoryNode.type,
+                    siteContext: topStoryNode.siteContext,
+                    primaryImage: topStoryNode.primaryImage,
+                  };
+                  $ const featuredCardNodes = topStoryNode;
+                  $ const cardNodes = topStoryNode;
+                  <marko-web-element tag="h1" block-name="top-stories" name="header">Top Story</marko-web-element>
+                  <marko-web-element block-name="top-story" name="row">
+                    <marko-web-element block-name="top-story" name="col" modifiers=["hero"]>
+                      <theme-content-node
+                        image-position="top"
+                        card=true
+                        flush=true
+                        image-only=true
+                        modifiers=["top-story-hero-image"]
+                        node=heroImageNode
+                      >
+                        <@image fluid=true width=685 ar="3:2" lazyload=false />
+                      </theme-content-node>
+                    </marko-web-element>
+                    <marko-web-element block-name="top-story" name="col" modifiers=["list"]>
+                      <theme-content-node
+                        full-height=true
+                        card=true
+                        display-image=false
+                        flush=true
+                        with-dates=false
+                        modifiers=["top-story-hero"]
+                        node=topStoryNode
+                      />
+                    </marko-web-element>
+                  </marko-web-element>
+                </if>
+              </div>
+              <div class="col-lg-4">
+                $ const featuredNodes = featured.nodes;
+                <theme-latest-content-list-block nodes=featuredNodes title=latestTitle >
+                  <@query-params exclude-content-ids=ids limit=7 />
+                  <!-- <@native-x indexes=[0] name="default" aliases=aliases /> -->
+                  <@node with-section=false with-dates=false display-image=false />
+                </theme-latest-content-list-block>
+              </div>
+              <div class="col-lg-3">
+                <!-- @todo set back to home/featured and { limit: 2 } -->
+                <div class="mb-3">
+                  <theme-content-card-deck-block
+                    title="Featured"
+                    alias="home"
+                    cols=1
+                    query-params={ limit: 2, skip: 8 }
+                    view-more=false
+                  >
+                    <@node with-section=false />
+                  </theme-content-card-deck-block>
+                </div>
+              </div>
+            </div>
+          </@section>
+
+          <@section>
+            <global-section-feed-wrapper
+              alias=section.alias
+              aliases=aliases
+              with-pagination=false
+              ad-name="rotation"
+            >
+              <@header>${i18n(morePrefix)} ${config.siteName()}</@header>
+              <@query-params
+                alias=section.alias
+                limit=12
+                optionName=["Pinned", "Standard"]
+                excludeContentIds=sectionContent.ids
+                requires-image=true
+              />
+              <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
+              <@rail>
+                <theme-gam-define-display-ad
+                  name="top-rotation"
+                  position="home_page"
+                  aliases=aliases
+                  modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+                  class="mb-0"
+                />
+                $ const publicationIds = site.get("magazine.homePublicationIds") || site.get("magazine.publicationIds");
+                <if(publicationIds && publicationIds.length)>
+                  $ const pubId = shuffleArray(publicationIds)[0];
+                  <global-magazine-current-issue-block publication-id=pubId />
+                </if>
+                <marko-web-identity-x-context|{ hasUser }|>
+                  <if(!hasUser)>
+                    <div class="sticky-top mt-2">
+                      <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
+                    </div>
+                  </if>
+                </marko-web-identity-x-context>
+              </@rail>
+              <@rail>
+                <theme-client-side-most-popular-list-block class="sticky-top" />
+              </@rail>
+            </global-section-feed-wrapper>
+          </@section>
+          <@section>
+            $ const adRows = [0, 1, 2];
+            <div class="content-card-deck__header">Sponsor Content</div>
+            <div class="row native-ad-row">
+              <for|rows| of=adRows>
+                <div class="col-lg-6">
+                  <theme-gam-define-display-ad
+                    name="sponsored-link"
+                    position="home_page"
+                    aliases=aliases
+                    modifiers=["center", "margin-auto-x"]
+                    show-label=false
+                  />
+                </div>
+                <div class="col-lg-6">
+                  <theme-gam-define-display-ad
+                    name="sponsored-link"
+                    position="home_page"
+                    aliases=aliases
+                    modifiers=["center", "margin-auto-x"]
+                    show-label=false
+                  />
+                </div>
+              </for>
+            </div>
+          </@section>
+        </marko-web-page-wrapper>
+      </marko-web-resolve-page>
+    </@page>
+    <@below-page>
+      <marko-web-resolve-page|{ data: section }| node=pageNode>
+        $ const aliases = hierarchyAliases(section);
+        <theme-gam-define-display-ad
+          name="footer-leaderboard"
+          position="section_page"
+          aliases=aliases
+        />
+      </marko-web-resolve-page>
+    </@below-page>
+    <!-- <@foot>
+      <marko-web-resolve-page|{ data: section }| node=pageNode>
+        <theme-fixed-ad-bottom aliases=hierarchyAliases(section) />
+      </marko-web-resolve-page>
+    </@foot> -->
+  </theme-website-section-page>
+</marko-web-resolve>

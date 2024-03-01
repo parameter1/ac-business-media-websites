@@ -1,0 +1,29 @@
+import { get, getAsArray, getAsObject } from "@parameter1/base-cms-object-path";
+import { dasherize } from "@parameter1/base-cms-inflector";
+import { isFunction } from '@parameter1/base-cms-utils';
+
+$ const { $markoWebSearch: search, i18n } = out.global;
+
+$ const blockName = "marko-web-search-sort-by";
+$ const options = [
+  { id: 'NAME', label: "Sort: Alphabetically" },
+  { id: 'PUBLISHED', label: "Sort: Published" },
+];
+
+<marko-web-block name=blockName modifiers=input.modifiers>
+  $ const { searchQuery, sortField } = search.input;
+  $ const selectedId = sortField;
+  <if(searchQuery)>
+    $ options.push({ id: 'SCORE', label: "Sort: Relevancy" });
+    <marko-web-browser-component
+      name="MarkoWebSearchSortSelect"
+      props={ options, selectedId }
+    />
+  </if>
+  <else>
+    <marko-web-browser-component
+      name="MarkoWebSearchSortSelect"
+      props={ options, selectedId }
+    />
+  </else>
+</marko-web-block>

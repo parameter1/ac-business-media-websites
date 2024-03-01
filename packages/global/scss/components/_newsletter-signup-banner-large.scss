@@ -1,0 +1,23 @@
+.newsletter-signup-banner-large {
+  $self: &;
+  padding: 20px;
+  background-color: $primary;
+  &__name, &__description {
+    color: $theme-site-navbar-primary-link-color;
+  }
+  .btn-primary {
+    background-color: $secondary;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: $secondary;
+    }
+  }
+  &--1-cols {
+    #{ $self }__form {
+      button.btn-primary {
+        min-width: 115px;
+      }
+    }
+  }
+}

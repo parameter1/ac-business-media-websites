@@ -1,0 +1,15 @@
+.node-list {
+  $self: &;
+
+  &--section-list {
+    #{ $self }__header {
+      @include skin-block-header-overline();
+    }
+
+    .node-list {
+      &__header a {
+        color: $black;
+      }
+    }
+  }
+}
