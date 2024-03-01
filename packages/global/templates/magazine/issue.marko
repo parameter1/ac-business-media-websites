@@ -1,0 +1,177 @@
+import issueFragment from "@parameter1/base-cms-marko-web-theme-monorail-magazine/graphql/fragments/magazine-issue-archive";
+import contentListFragment from "@parameter1/base-cms-marko-web-theme-monorail-magazine/graphql/fragments/magazine-content-feed-block";
+import { get, getAsObject } from "@parameter1/base-cms-object-path";
+<!-- import dayjs from "@parameter1/base-cms-dayjs"; -->
+
+$ const { site, pagination: p, } = out.global;
+$ const { id, pageNode } = data;
+
+$ const perPage = 20;
+$ const excludeContentTypes = ["Company", "Product"];
+
+<marko-web-magazine-issue-page-layout id=id>
+  <@head>
+    <marko-web-gtm-magazine-issue-context|{ context }| id=id>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-magazine-issue-context>
+  </@head>
+  <@page>
+    <marko-web-resolve-page|{ data: issue }| node=pageNode>
+      <marko-web-page-wrapper class="mb-block">
+        <@section>
+          <div class="row">
+            <div class="col">
+              <theme-breadcrumbs modifiers=["website-section"]>
+                <@item><marko-web-link href="/magazine">Magazine</marko-web-link></@item>
+                <@item><marko-web-magazine-publication-name tag=null obj=issue.publication link=true /></@item>
+              </theme-breadcrumbs>
+              <h1 class="page-wrapper__title">
+                ${issue.name}
+              </h1>
+              <if(issue.description)>
+                <p class="page-wrapper__deck">${issue.description}</p>
+              </if>
+            </div>
+          </div>
+        </@section>
+
+        <if(p.page === 1)>
+          <@section|{ aliases }|>
+            <div class="row">
+              <div class="col-lg-4" style="padding-top: 11px;">
+                <theme-magazine-latest-issue-block node=issue with-title=false buttons=["subscribe", "digital-edition"] />
+                    <!-- sort: {
+                      field: "mailDate",
+                      order: "asc"
+                    } -->
+                <marko-web-query|{ nodes }| name="magazine-active-issues"
+                  params={
+                    publicationId: issue.publication.id,
+                    queryFragment: issueFragment,
+                    limit: 6,
+                    requiresCoverImage: true,
+                    mailing: {
+                      before: issue.mailDate
+                    }
+                  }
+                >
+                  <div class="form-group mt-3">
+                    <form>
+                      <select
+                        id="magazineSelect"
+                        class="custom-select"
+                        style="font-weight: 700;"
+                        onchange="location = this.value"
+                      >
+                        <for|node| of=nodes>
+                          <option value=`/magazine/${node.id}`>${node.name}</option>
+                        </for>
+                      </select>
+                    </form>
+                  </div>
+                </marko-web-query>
+              </div>
+              <div class="col-lg-5">
+                <theme-content-card-deck-block
+                  query-name="magazine-scheduled-content"
+                  query-params={ issueId: id, queryFragment: contentListFragment, excludeContentTypes, limit: 1 }
+                  cols=1
+                />
+                <br/>
+                <theme-content-card-deck-block
+                  query-name="magazine-scheduled-content"
+                  query-params={ issueId: id, queryFragment: contentListFragment, excludeContentTypes, limit: 2, skip: 2 }
+                  cols=2
+                />
+              </div>
+              <div class="col-lg-3">
+                <theme-content-card-deck-block
+                  query-name="magazine-scheduled-content"
+                  query-params={ issueId: id, queryFragment: contentListFragment, excludeContentTypes, limit: 2, skip: 3 }
+                  cols=1
+                >
+                  <@node with-image=false />
+                </theme-content-card-deck-block>
+              </div>
+            </div>
+          </@section>
+        </if>
+
+        <@section>
+          <div class="row">
+            <div class="col-lg-8">
+              $ const limitParams = (p.page === 1) ? { limit: 7, skip: 5 } : { limit: perPage, skip: p.skip({ perPage })};
+              $ const feedQueryParams = { issueId: id, queryFragment: contentListFragment, excludeContentTypes, ...limitParams };
+              <theme-section-feed-block
+                query-name="magazine-scheduled-content"
+                query-params=feedQueryParams
+                node-list={ innerJustified: false }
+              >
+                <@header>
+                  More In This Issue <if(p.page !== 1)>(Page ${p.page})</if>
+                </@header>
+                <@after>
+                  <theme-section-feed-block|{ totalCount }|
+                    alias=`/magazine/${issue.id}`
+                    count-only=true
+                    query-name="magazine-scheduled-content"
+                    query-params={ issueId: id, queryFragment: contentListFragment, excludeContentTypes }
+                  >
+                    <theme-pagination-controls
+                      per-page=perPage
+                      total-count=totalCount
+                      path=`/magazine/${issue.id}`
+                    />
+                  </theme-section-feed-block>
+                </@after>
+              </theme-section-feed-block>
+            </div>
+            <div class="col-lg-4">
+              <if(p.page !== 1)>
+                <theme-magazine-latest-issue-block node=issue with-title=false buttons=["subscribe", "digital-edition"] />
+              </if>
+              <div class="sticky-top">
+                <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
+              </div>
+            </div>
+          </div>
+        </@section>
+
+        <@section>
+          <marko-web-query|{ nodes }| name="magazine-active-issues"
+            params={
+              publicationId: issue.publication.id,
+              excludeIssueIds: [issue.id],
+              queryFragment: issueFragment,
+              limit: 12,
+              requiresCoverImage: true,
+              mailing: {
+                before: issue.mailDate
+              }
+            }
+          >
+          <marko-web-node-list
+            inner-justified=true
+            flush-x=true
+            flush-y=false
+            modifiers=["issue-archives"]
+            collapsible=false
+          >
+            <@header>
+              Past Issues
+            </@header>
+            <@body>
+              <theme-magazine-issue-archive-flow nodes=nodes flush=true />
+            </@body>
+            <@footer>
+              <marko-web-magazine-publication-name tag=null obj=issue.publication link={ class: "btn btn-primary" }>
+                View All Past Issues
+              </marko-web-magazine-publication-name>
+            </@footer>
+          </marko-web-node-list>
+          </marko-web-query>
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+</marko-web-magazine-issue-page-layout>

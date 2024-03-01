@@ -1,0 +1,95 @@
+import { getAsArray, get } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
+import contentIframe from "@ac-business-media/package-global/utils/content-iframe";
+
+$ const { site, apollo, contentMeterState } = out.global;
+$ const { id, type, pageNode, ...rest } = input;
+$ const sections = getAsArray(input, "sections");
+
+<global-content-wrapper-layout
+  id=id
+  type=type
+  page-node=pageNode
+  with-ads=false
+  load-more=false
+  ...rest
+>
+  <@section|{ blockName, content, aliases, authors }| modifiers=["content-header"]>
+    $ const { primarySection } = content;
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="content-page-header">
+          <theme-content-page-breadcrumbs section=primarySection />
+          <marko-web-content-name tag="h1" block-name=blockName obj=content />
+          <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
+
+          <theme-content-attribution obj=content elements=["company"] />
+
+          <theme-page-dates|{ blockName }|>
+            <marko-web-content-starts tag="span" block-name=blockName obj=content />
+            <if(content.starts !== content.ends)>
+              <marko-web-content-ends tag="span" block-name=blockName obj=content />
+            </if>
+          </theme-page-dates>
+
+          <global-sponsored-section-logo alias=primarySection.alias modifiers=["content-page"] class="mt-3" />
+        </div>
+      </div>
+    </div>
+  </@section>
+
+  <@section|{ aliases, content, authors }| modifiers=["content-body"]>
+    $ const { primarySection } = content;
+    <div class="row  justify-content-center">
+      <div class="col-lg-8">
+        <global-content-contact-details obj=content />
+        <div class="content-page-body">
+          <theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
+
+            <if(content.transcript)>
+              <marko-web-link href=`#transcript-${id}` class="btn btn-transcript mt-block mb-2" title="Transcript">
+                <marko-web-icon name="file" modifiers=["lg"] /> Transcript
+              </marko-web-link>
+            </if>
+
+            $ const isUpcoming = new Date(content.startDate) > Date.now();
+            $ const btnLabel = (isUpcoming) ? "Register for Webinar" : "View Webinar";
+            <marko-web-link
+              class="mb-block btn btn-primary btn-lg"
+              href=content.linkUrl
+              title=btnLabel
+              target="_blank"
+            >
+              ${btnLabel}
+            </marko-web-link>
+
+            $ const bodyId = `content-body-${content.id}`;
+            <marko-web-content-body block-name=blockName obj=content attrs={ id: bodyId } />
+
+            <!-- Add Transcripts and allow for the ad injection -->
+            <if(content.transcript)>
+              $ const transcriptId = `content-transcript-${content.id}`;
+              <div id=`transcript-${id}` class="page-contents__content-transcript">
+                <marko-web-element block-name="page-contents" name="content-transcript-title">
+                  <marko-web-icon name="file" modifiers=["lg"] /> Transcript
+                </marko-web-element>
+                <marko-web-content-transcript obj=content block-name=blockName attrs={ id: transcriptId }  />
+              </div>
+            </if>
+
+            <marko-web-link
+              class="mb-block btn btn-primary btn-lg"
+              href=content.linkUrl
+              title=btnLabel
+              target="_blank"
+            >
+              ${btnLabel}
+            </marko-web-link>
+
+          </theme-page-contents>
+        </div>
+      </div>
+    </div>
+  </@section>
+</global-content-wrapper-layout>

@@ -1,0 +1,33 @@
+.section-card-list {
+  &__header {
+    @include skin-block-header-overline($flex: true, $text-lg: true);
+  }
+}
+
+.node {
+  $self: &;
+
+  &--section-card-list-hero {
+    #{ $self }__title {
+      text-transform: none;
+    }
+  }
+}
+
+.page-wrapper {
+  &__section {
+    &--background-color {
+      .section-card-list {
+        padding: 1rem 2rem 2rem;
+        background-color: #f0f1f2;
+      }
+    }
+
+    &--background-color-dark {
+      .section-card-list {
+        padding: 1rem 2rem 2rem;
+        background-color: #39393a;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "<global-recommended-content-block>": {
+    "template": "./recommended-content.marko"
+  },
+  "<global-page-details-block>": {
+  "template": "./page-details.marko"
+  },
+  "<global-sponsors-block>": {
+    "template": "./sponsors.marko",
+    "@alias": "string"
+  },
+  "<global-identity-x-newsletter-form-inline>": {
+    "template": "./newsletter-inline.marko"
+  },
+  "<global-magazine-current-issue-block>": {
+    "template": "./magazine-current-issue.marko"
+  },
+  "<theme-native-x-card-deck-block>": {
+    "template": "./native-x-card-deck.marko"
+  }
+
+}

@@ -1,0 +1,92 @@
+import { get, getAsArray } from "@parameter1/base-cms-object-path";
+
+$ const { GAM, specGuides, userState } = out.global;
+$ const type = "spec-guide";
+$ const { title, description, alias } = data;
+
+$ const config = get(specGuides, `guides.${alias}`);
+$ const bullets = getAsArray(config, "bullets");
+
+<marko-web-default-page-layout type=type title=config.title description=config.description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      $ const ctx = {
+        ...context,
+        page_type: "static-page",
+        static_page: {
+          title: config.title
+        },
+        userState,
+      };
+      <marko-web-gtm-push data=ctx />
+    </marko-web-gtm-default-context>
+  </@head>
+  <!-- @todo Parsley -->
+  <!-- <@above-container>
+    <refresh-theme-parsely-page headline=title />
+  </@above-container> -->
+  <@below-container>
+    <div class="spec-guide-container">
+      <marko-web-page-wrapper>
+        <@section|{ aliases }|>
+          <theme-gam-define-display-ad
+            name="top-leaderboard"
+            position="section-page"
+            aliases=aliases
+            modifiers=[]
+          />
+        </@section>
+        <@section>
+          <div class="row">
+            <div class="col-md-6 col-lg-4">
+              <marko-web-page-image
+                obj=config.image
+                fluid=true
+                width=400
+              />
+              <p class="spec-guide-tagline">
+                Search | Sort | Filter | Download
+              </p>
+            </div>
+            <div class="col-md-6 col-lg-8">
+              <p>$!{config.description}</p>
+              <if(bullets.length)>
+                <p><strong>Access ONLY the information you want through:</strong></p>
+                <ul>
+                  <for|text| of=bullets>
+                    <li>$!{text}</li>
+                  </for>
+                  <if(config.downloadLink)>
+                    <li>
+                      <marko-web-link href=config.downloadLink>
+                        <strong>Download the PDF</strong>
+                      </marko-web-link>
+                    </li>
+                  </if>
+                </ul>
+              </if>
+              <if(config.seeAlso)>
+                <div>$!{config.seeAlso}</div>
+              </if>
+            </div>
+          </div>
+        </@section>
+        <@section>
+          <div class="row">
+            <div class="col">
+              <if(config)>
+                <global-spec-guide-table
+                  measures=config.measures
+                  columns=config.columns
+                  initial-measure-key=config.initialMeasureKey
+                  sheet-src=config.sheetSrc
+                  alias=alias
+                />
+              </if>
+            </div>
+          </div>
+        </@section>
+      </marko-web-page-wrapper>
+    </div>
+  </@below-container>
+</marko-web-default-page-layout>

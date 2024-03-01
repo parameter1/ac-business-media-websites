@@ -1,0 +1,59 @@
+{
+  "taglib-imports": [
+    "./blocks/marko.json",
+    "./layouts/marko.json",
+    "./spec-guide/marko.json",
+    "./wrappers/marko.json"
+  ],
+  "<global-document>": {
+    "template": "./document.marko",
+    "<head>": {},
+    "<above-container>": {},
+    "<container>": {
+      "<above-page>": {},
+      "<page>": {},
+      "<below-page>": {}
+    },
+    "<below-container>": {},
+    "<foot>": {}
+  },
+  "<global-site-header>": {
+    "template": "./site-header.marko"
+  },
+  "<global-site-footer>": {
+    "template": "./site-footer/index.marko"
+  },
+  "<global-site-menu>": {
+    "template": "./site-menu/index.marko"
+  },
+  "<global-site-newsletter-menu>": {
+    "template": "./site-newsletter-menu.marko"
+  },
+  "<global-sponsored-label-logo>": {
+    "template": "./sponsored-label-logo.marko"
+  },
+  "<global-sponsored-section-logo>": {
+    "template": "./sponsored-section-logo.marko"
+  },
+  "<global-sponsored-section-name-logo>": {
+    "template": "./sponsored-section-name-logo.marko"
+  },
+  "<global-gam-content-targeting>": {
+    "template": "./gam-content-targeting.marko"
+  },
+  "<global-gam-path-targeting>": {
+    "template": "./gam-path-targeting.marko"
+  },
+  "<global-gam-section-targeting>": {
+    "template": "./gam-section-targeting.marko"
+  },
+  "<global-directory-sort-by>": {
+    "template": "./directory-sort-by.marko"
+  },
+  "<global-company-search-block>": {
+    "template": "./company-search.marko"
+  },
+  "<global-section-search-block>": {
+    "template": "./section-search.marko"
+  }
+}

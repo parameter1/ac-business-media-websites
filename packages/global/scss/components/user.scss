@@ -1,0 +1,19 @@
+.content-page-gate {
+  $self: &;
+
+  background-color: $gray-100;
+  padding: 1.5rem;
+
+  #{ $self }__title {
+    @include skin-typography($style: "content-meter-cta");
+    color: $theme-page-title-color;
+    font-weight: $font-weight-bold;
+  }
+
+  #{ $self }__confirmation {
+    background-color: $gray-200;
+    font-weight: $font-weight-bold;
+    padding: map-get($spacers, 2);
+    margin-bottom: map-get($spacers, block);
+  }
+}

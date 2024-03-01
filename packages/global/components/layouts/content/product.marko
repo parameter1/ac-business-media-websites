@@ -1,0 +1,120 @@
+import { getAsArray, get } from "@parameter1/base-cms-object-path";
+import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list";
+import contentIframe from "@ac-business-media/package-global/utils/content-iframe";
+
+$ const { site, apollo, contentMeterState, pagination: p, i18n } = out.global;
+$ const { id, type, pageNode, ...rest } = input;
+
+$ const lang = site.config.lang || "en";
+$ const perPage = 12;
+$ const displayPublishedDate = true;
+$ const displaySocialShare = true;
+
+$ const displayInquiry = (content) => {
+  if (site.get("inquiry.enabled") === false) return false;
+  return get(content, "company.enableRmi") || false;
+}
+
+<global-content-wrapper-layout
+  id=id
+  type=type
+  page-node=pageNode
+  ...rest
+  load-more=false
+>
+  <@section|{ blockName, content, aliases, authors }| modifiers=["content-header"]>
+    $ const { primarySection } = content;
+    <div class="content-page-header">
+      <theme-content-page-breadcrumbs section=primarySection />
+      <marko-web-content-name tag="h1" block-name=blockName obj=content />
+      <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
+      <theme-content-attribution obj=content elements=["company"] />
+    </div>
+  </@section>
+
+  <@section|{ aliases, content, authors }| modifiers=["content-body"]>
+    $ const { primarySection } = content;
+    <div class="row">
+      <div class="col-lg-8">
+        <global-content-contact-details obj=content />
+        <div class="content-page-body">
+          <theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
+            $ let forceDisplay;
+            $ if (type === "product") forceDisplay = "right";
+            <theme-primary-image-block
+              obj=content.primaryImage
+              force-display=forceDisplay
+            />
+
+            $ const bodyId = `content-body-${content.id}`;
+            <theme-body-with-injection
+              content=content
+              aliases=aliases
+              block-name=blockName
+              selector=bodyId
+              preventHTMLInjection=true
+              lazyload-first-image=false
+            />
+
+            <if(displaySocialShare)>
+              <marko-web-social-sharing
+                path=content.siteContext.path
+                providers=["print", "facebook", "linkedin", "twitter", "pinterest"]
+                print-path=`/print/content/${content.id}`
+              />
+            </if>
+          </theme-page-contents>
+        </div>
+      </div>
+      <div class="col-lg-4 page-rail">
+        $ const inquiry = site.getAsObject('inquiry');
+        <if(displayInquiry(content))>
+          <div class="mb-block">
+            <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
+          </div>
+        </if>
+      </div>
+    </div>
+  </@section>
+
+  <@section|{ content, aliases }|>
+    <if(content.company)>
+      <div class="row">
+        <div class="col-lg-8">
+          $ const latestTitle = (p.page > 1) ? `${i18n("More From")} ${content.company.name} - Page ${p.page}` : `${i18n("More From")} ${content.company.name}`;
+          $ const params = {
+            companyId: content.company.id,
+            excludeContentTypes: ["Promotion"],
+            excludeContentIds: [content.id],
+            limit: perPage,
+            skip: p.skip({ perPage }),
+            withSite: false,
+            queryFragment,
+          };
+          <marko-web-query|{ nodes }| name="all-company-content" params=params>
+            <theme-section-feed-flow nodes=nodes>
+              <@header>${latestTitle}</@header>
+              <@node-list inner-justified=false />
+              <@node with-dates=false with-section=false />
+            </theme-section-feed-flow>
+          </marko-web-query>
+        </div>
+        <div class="col-lg-4">
+          <theme-gam-define-display-ad
+            name="top-rotation"
+            position="content_page"
+            aliases=aliases
+            modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+            class="mb-0"
+          />
+        </div>
+      </div>
+    </if>
+    <theme-gam-define-display-ad
+      name="footer-leaderboard"
+      position="content_page"
+      aliases=aliases
+    />
+  </@section>
+</global-content-wrapper-layout>

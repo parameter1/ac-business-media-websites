@@ -1,0 +1,34 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import categorySectionsFragment from "../graphql/fragments/sections-search"
+
+$ const getNames = (nodes, names = {}) => {
+  nodes.map((node) => {
+    names[node.name] = node.alias;
+    const childNodes = getAsArray(node, "children.edges").map(({ node }) => node);
+    if (childNodes.length) getNames(childNodes, names);
+  });
+  return Object.keys(names)
+  .sort()
+  .reduce(function (acc, key) {
+      acc[key] = names[key];
+      return acc;
+  }, {});
+}
+
+$ const { site } = out.global;
+$ const sectionIds = getAsArray(site, "config.sectionSearchIds");
+
+<if(sectionIds.length)>
+  <marko-web-query|{ nodes }|
+    name="website-sections"
+    params={ includeIds: sectionIds, limit: 100, queryFragment: categorySectionsFragment }
+  >
+    $ const sections = getNames(nodes)
+    $ const props = {
+      sections,
+      sectionNames: Object.keys(sections)
+    }
+    <marko-web-browser-component name="GlobalSectionSearch" props=props />
+  </marko-web-query>
+</if>

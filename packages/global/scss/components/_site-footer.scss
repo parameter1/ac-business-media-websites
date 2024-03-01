@@ -1,0 +1,30 @@
+.site-footer {
+  $self: &;
+  margin-top: 0;
+  &__brand {
+    margin-bottom: 0;
+  }
+  &__tagline {
+    font-size: 1.25rem;
+  }
+  &__corporate-logo {
+    filter: brightness(0) invert(1);
+  }
+  .personal-info-disclaimer {
+    display: flex;
+    justify-content: center;
+    &__link {
+      margin-top: map-get($spacers, block);
+      margin-bottom: map-get($spacers, block);
+    }
+  }
+}
+.site-footer-nav {
+  &__header {
+    font-size: 1.25rem;
+  }
+  &__item {
+    font-family: $skin-font-family-primary;
+    font-weight: 400;
+  }
+}

@@ -1,0 +1,37 @@
+.document-carousel {
+  &__header {
+    @include skin-block-header-overline($flex: true, $text-lg: true);
+  }
+}
+
+.node-list {
+  $self: &;
+
+  &--document-carousel {
+    #{ $self }__header {
+      @include skin-block-header-overline();
+    }
+  }
+}
+
+.page-wrapper {
+  &__section {
+    &--background-color {
+      .node-list {
+        &--document-carousel {
+          padding: 1rem 2rem 2rem;
+          background-color: #f0f1f2;
+        }
+      }
+    }
+
+    &--background-color-dark {
+      .node-list {
+        &--document-carousel {
+          padding: 1rem 2rem 2rem;
+          background-color: #39393a;
+        }
+      }
+    }
+  }
+}

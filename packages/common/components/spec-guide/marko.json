@@ -1,5 +1,8 @@
 {
   "<common-spec-guide-table>": {
     "template": "./table.marko"
+  },
+  "<common-spec-guide-card-node>": {
+    "template": "./spec-guide-card.marko"
   }
 }

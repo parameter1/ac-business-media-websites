@@ -1,0 +1,59 @@
+.top-stories {
+  &__header {
+    @include skin-block-header-overline($flex: true);
+  }
+}
+
+.top-story {
+  &__row {
+    margin-bottom: 1rem;
+    .node {
+      &__body {
+        margin-top: 14px;
+      }
+      &__title {
+        font-size: 24px;
+      }
+      &__website-section-name {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.top-stories-row {
+  .content-card-deck {
+    &__title {
+      a {
+        color: #1f2937;
+      }
+    }
+
+    .card-deck-flow__node {
+      &:not(:first-of-type) {
+        .node--content-card-deck {
+          padding-top: map-get($spacers, block);
+          @include marko-web-node-list-border(border-top);
+        }
+      }
+    }
+  }
+
+  .node {
+    &--top-story-hero {
+      .node__text {
+        &--teaser a {
+          -webkit-line-clamp: 5;
+        }
+      }
+    }
+    &--section-card-list-hero {
+      .node__text {
+        &--teaser {
+          font-weight: 300 !important;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

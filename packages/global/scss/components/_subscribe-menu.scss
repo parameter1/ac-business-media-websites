@@ -1,0 +1,56 @@
+.site-navbar {
+  $self: &;
+  &__items--subscribe-dropdown {
+    position: absolute;
+    top: 35px;
+    display: none;
+    flex-direction: column;
+    z-index: 160000;
+    background: #fff;
+    border: solid 1px $gray-200;
+    width: 200px;
+    padding: map-get($spacers, 2);
+    box-shadow: $theme-box-shadow-lg;
+    &#{ $self }__items--subscribe-dropdown-open {
+      display: flex;
+    }
+    li {
+      margin-bottom: 0.25rem;
+    }
+  }
+  &__left {
+    .btn--subscribe-dropdown {
+      @include skin-button($style: "secondary");
+      padding: 0 12px 0 10px;
+      min-width: 40px;
+      height: 40px;
+      font-size: 1rem;
+      color: $white;
+      border-radius: 4px;
+      outline-color: none;
+      box-shadow: none;
+      border: 1px solid $white;
+      background-color: $secondary;
+      &:hover,
+      &:focus {
+        color: $white;
+        border: 1px solid $white;
+        background-color: $secondary;
+        border: 1px solid $white;
+        svg {
+          fill: $white;;
+        }
+      }
+      :first-child {
+        margin-right: 2px;
+      }
+      svg {
+        display: inline-block;
+        width: 12px;
+        height: 1.25rem;
+        fill: $white;
+        vertical-align: sub;
+      }
+    }
+  }
+}

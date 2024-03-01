@@ -1,0 +1,113 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+import { getAsArray, get } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { id, type, pageNode } = input;
+$ const { site, GAM } = out.global;
+$ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
+
+$ const withAds = defaultValue(input.withAds, true);
+$ const sections = getAsArray(input, "sections");
+$ const alias = get(input, "primarySection.alias");
+$ const loadMore = defaultValue(input.loadMore, true);
+$ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
+
+<theme-content-page id=id type=type>
+  <@head>
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      <marko-web-p1-events-track-content node=content />
+      <global-gam-content-targeting|{ adChannels: ad_channels }| obj=content>
+        <marko-web-gtm-content-context|{ context }| id=id>
+          $ context.ad_channels = ad_channels;
+          <marko-web-gtm-push data=context />
+        </marko-web-gtm-content-context>
+      </global-gam-content-targeting>
+    </marko-web-resolve-page>
+  </@head>
+  <@page>
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      $ const bclSelector = defaultValue(input.bclSelector, '.page-contents__content-body');
+      $ const bclLinkSelector = defaultValue(input.bclLinkSelector, '.bcl-injected-link');
+      $ const aliases = hierarchyAliases(content.primarySection);
+      $ const authors = getAsArray(content, "authors.edges").map((edge) => edge.node);
+      $ const scrollDepthSelector = defaultValue(input.scrollDepthSelector, ".document-container .page .content-page-body .page-contents__content-body") ;
+      <marko-web-p1-events-track-content-scroll-depth
+        content=content
+        selector=scrollDepthSelector
+      />
+      <marko-web-p1-events-track-content-body-links
+        content=content
+        selector=bclSelector
+        link-selector=bclLinkSelector
+      />
+      <marko-web-page-wrapper>
+        <if(withAds)>
+          <@section|{ aliases }| modifiers=["first-sm"]>
+            <theme-gam-define-display-ad
+              name="top-leaderboard"
+              position="section-page"
+              aliases=aliases
+              modifiers=[]
+            />
+          </@section>
+        </if>
+        <if(showCompanySectionFilter)>
+          <@section>
+            <div class="row company-section-search">
+              <div class="col-md-6">
+                <global-company-search-block />
+              </div>
+              <div class="col-md-6">
+                <global-section-search-block />
+              </div>
+            </div>
+          </@section>
+        </if>
+        <for|s| of=sections>
+          <@section|{ blockName }| modifiers=s.modifiers>
+            <${s.renderBody}
+              block-name=blockName
+              content=content
+              aliases=aliases
+              authors=authors
+            />
+          </@section>
+        </for>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+  <@below-page>
+    <if(type !== "page" && (loadMore || withAds))>
+      <marko-web-page-container for="content" tag="div" id=id type=type modifiers=["below"]>
+        <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
+          $ const section = content.primarySection;
+          $ const labels = getAsArray(content, "labels");
+          $ const isSponsored = labels.includes("Sponsored");
+          $ const aliases = hierarchyAliases(section);
+          <if(loadMore)>
+            <marko-web-page-wrapper>
+              <@section>
+                <global-section-feed-wrapper aliases=aliases alias=content.primarySection.alias ad-name="rotation">
+                  <@header>More in ${content.primarySection.name}</@header>
+                  <@query-params excludeContentIds=[content.id] />
+                  <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
+                  <@rail>
+                    <theme-client-side-most-popular-list-block class="sticky-top" />
+                  </@rail>
+                </global-section-feed-wrapper>
+              </@section>
+            </marko-web-page-wrapper>
+          </if>
+          <if(withAds && !isSponsored)>
+            <theme-reveal-ad-handler
+              select-all-targets=true
+              path=GAM.getAdUnit({ name: "reskin", aliases }).path
+              id="reveal-ad"
+            />
+            <theme-fixed-ad-bottom aliases=hierarchyAliases(content.primarySection) />
+          </if>
+        </marko-web-resolve-page>
+      </marko-web-page-container>
+    </if>
+  </@below-page>
+</theme-content-page>

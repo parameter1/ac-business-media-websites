@@ -1,0 +1,50 @@
+$ const { personasHandler } = out.global;
+
+$ const type = "static-page";
+$ const title = "Personas Debug Page";
+$ const description = "A page for debuggin/testing Personas";
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+  </@head>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section>
+        <div>
+          <marko-web-element block-name="page-wrapper" name="website-section-name" tag="h1" >
+            Personas Test Page
+          </marko-web-element>
+          <marko-web-identity-x-context|{ hasUser, user, isEnabled }|>
+            <if(hasUser)>
+              $ const answeredQuestions = user.customSelectFieldAnswers.filter((answers) => answers.hasAnswered);
+              $ const { assignedPersonas, answers } = personasHandler({ answeredQuestions, debug: true });
+              <h4>Current User:</h4>
+              <div>${user.givenName} ${user.familyName} (${user.email})</div>
+              <for|answer| of=answers>
+                <div><strong>${answer.questionLabel}:</strong> ${answer.answerLabel}</div>
+              </for>
+              <div><a href="/user/profile" target="_blank">View Profile</a></div>
+              <br>
+              <h4>Assigned Personas:</h4>
+              <if(assignedPersonas && assignedPersonas.length)>
+                <for|persona| of=assignedPersonas>
+                  <div>${persona}</div>
+                </for>
+              </if>
+              <else>
+                <div>No persona matches found for the current user.</div>
+              </else>
+            </if>
+            <else>
+              <!-- Login form here -->
+              <marko-web-identity-x-form-login />
+            </else>
+          </marko-web-identity-x-context>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>
