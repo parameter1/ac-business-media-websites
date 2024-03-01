@@ -2,5 +2,5 @@ const defaultConfig = require('@ac-business-media/package-global/config/content-
 
 module.exports = {
   ...defaultConfig,
-  enabled: true,
+  enabled: process.env.ENABLE_CONTENT_METER === 'true',
 };
