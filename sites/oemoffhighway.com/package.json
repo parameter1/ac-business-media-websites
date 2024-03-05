@@ -1,6 +1,6 @@
 {
   "name": "@ac-business-media/oemoffhighway.com",
-  "version": "2.6.11",
+  "version": "2.7.0",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/sites/oemoffhighway.com",
   "license": "MIT",
@@ -30,8 +30,8 @@
     "win32"
   ],
   "dependencies": {
-    "@ac-business-media/package-directory": "^2.6.10",
-    "@ac-business-media/refresh-theme": "^2.6.10",
+    "@ac-business-media/package-directory": "^2.7.0",
+    "@ac-business-media/refresh-theme": "^2.7.0",
     "@parameter1/base-cms-marko-core": "^4.48.1",
     "@parameter1/base-cms-marko-web": "^4.48.1",
     "@parameter1/base-cms-marko-web-gam": "^4.40.3",
