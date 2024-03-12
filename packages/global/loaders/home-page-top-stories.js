@@ -18,7 +18,7 @@ const loadTopStoryContent = async (apolloClient, params = {}) => {
 const loadFeaturedContent = async (apolloClient, params = {}) => {
   const defaults = {
     limit: 8,
-    sectionAlias: 'latest-news',
+    sectionAlias: 'home', // 'latest-news',
     queryFragment: defaultFragment,
   };
   return websiteScheduledContent(apolloClient, {
