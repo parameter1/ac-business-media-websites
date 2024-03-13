@@ -99,7 +99,7 @@ $ const omedaConfig = site.get('omeda');
       clear-data=true
     />
     <marko-web-identity-x-context|{ hasUser, user, isEnabled }|>
-      <if(site.get('headerStyle') && site.get('headerStyle') === 'iron')>
+      <if(site.get('headerTagName') === 'iron-site-header')>
         <iron-site-header has-user=hasUser reg-enabled=isEnabled />
       </if>
       <else>
@@ -121,7 +121,12 @@ $ const omedaConfig = site.get('omeda');
   </@above-container>
   <@below-container>
     <${input.belowContainer} />
-    <global-site-footer />
+    <if(site.get('headerTagName') === 'iron-site-header')>
+      <iron-site-footer />
+    </if>
+    <else>
+      <global-site-footer />
+    </else>
   </@below-container>
   <@below-wrapper>
     <marko-web-deferred-script-loader-load />

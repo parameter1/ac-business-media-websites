@@ -9,7 +9,8 @@ const identityXOptInHooks = require('./identity-x-opt-in-hooks');
 const pageDetails = require('./page-details');
 
 module.exports = {
-  headerStyle: 'iron',
+  headerTagName: 'iron-site-header',
+  footerTagName: 'iron-site-footer',
   // Module configs
   useLinkInjectedBody: process.env.USE_LINK_INJECTED_BODY || true,
   contentMeter,
