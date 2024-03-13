@@ -5,7 +5,6 @@ const idxConfig = require('./identity-x');
 module.exports = config({
   omedaConfig,
   idxConfig,
-  // '@TODO-Configure rapidIdentProductId & siteId
-  rapidIdentProductId: 15375,
-  websiteBehaviorAttributeId: 451156,
+  rapidIdentProductId: 15407,
+  websiteBehaviorAttributeId: 496738,
 });
