@@ -6,18 +6,19 @@ const subscribe = {
 };
 
 const topics = [
-  { href: '#', label: 'Categories' },
-  { href: '#', label: 'Equipment' },
-  { href: '#', label: 'Software' },
-  { href: '#', label: 'Workware' },
-  { href: '#', label: 'Brands' },
+  { href: '/equipment', label: 'Equipment' },
+  { href: '/rental', label: 'Rental' },
+  { href: '/concrete', label: 'Concrete' },
+  { href: '/asphalt', label: 'Asphalt' },
+  { href: '/pavement', label: 'Pavemement' },
+  { href: '/brands', label: 'Brands'},
   { href: '#', label: 'Finance' },
 ];
 
 const secondary = [
-  { href: '#', label: 'Virtual Events' },
-  { href: '#', label: 'IronPros TV' },
-  { href: '#', label: 'Awards' },
+  { href: '/events', label: 'Virtual Events' },
+  { href: '/videos', label: 'IronPros TV' },
+  { href: '/awards', label: 'Awards' },
   { href: '#', label: 'Finance' },
 ];
 
@@ -63,10 +64,10 @@ module.exports = {
   mobileMenu,
   topics,
   primary: {
-    items: topics,
+    items: secondary,
   },
   secondary: {
-    items: secondary,
+    items: topics,
   },
   tertiary: {
     items: [],

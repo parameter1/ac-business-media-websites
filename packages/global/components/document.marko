@@ -99,7 +99,12 @@ $ const omedaConfig = site.get('omeda');
       clear-data=true
     />
     <marko-web-identity-x-context|{ hasUser, user, isEnabled }|>
-      <global-site-header has-user=hasUser reg-enabled=isEnabled />
+      <if(site.get('headerStyle') && site.get('headerStyle') === 'iron')>
+        <iron-site-header has-user=hasUser reg-enabled=isEnabled />
+      </if>
+      <else>
+        <global-site-header has-user=hasUser reg-enabled=isEnabled />
+      </else>
       <global-site-menu has-user=hasUser reg-enabled=isEnabled />
     </marko-web-identity-x-context>
     <if(contentMeterState && !contentMeterState.isLoggedIn)>

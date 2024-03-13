@@ -3,20 +3,19 @@ const contentMeter = require('./content-meter');
 const identityX = require('./identity-x');
 const nativeX = require('./native-x');
 const navigation = require('./navigation');
-const newsletter = require('./newsletter');
 const omeda = require('./omeda');
 const omedaIdentityX = require('./omeda-identity-x');
 const identityXOptInHooks = require('./identity-x-opt-in-hooks');
 const pageDetails = require('./page-details');
 
 module.exports = {
+  headerStyle: 'iron',
   // Module configs
   useLinkInjectedBody: process.env.USE_LINK_INJECTED_BODY || true,
   contentMeter,
   identityX,
   nativeX,
   navigation,
-  newsletter,
   omeda,
   omedaIdentityX,
   identityXOptInHooks,
@@ -35,15 +34,15 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo.png?h=45&auto=format,compress',
+      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress',
       srcset: [
-        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo.png?h=90&auto=format,compress 2x',
+        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=90&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo.png?h=45&auto=format,compress',
+      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress',
       srcset: [
-        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo.png?h=90&auto=format,compress 2x',
+        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=90&auto=format,compress 2x',
       ],
     },
     corporate: corporate.logo,

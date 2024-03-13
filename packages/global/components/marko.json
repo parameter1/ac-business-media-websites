@@ -55,5 +55,8 @@
   },
   "<global-section-search-block>": {
     "template": "./section-search.marko"
+  },
+  "<iron-site-header>": {
+    "template": "./iron-site-header.marko"
   }
 }
