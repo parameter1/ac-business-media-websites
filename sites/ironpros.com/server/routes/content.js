@@ -3,14 +3,11 @@ const contentMetering = require('@parameter1/base-cms-marko-web-theme-monorail/m
 const { withContent } = require('@parameter1/base-cms-marko-web/middleware');
 const { newsletterState, formatContentResponse } = require('@ac-business-media/package-global/middleware/newsletter-state');
 const loaderFragment = require('@ac-business-media/package-global/graphql/fragments/content-primary-section');
-const qf = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-page');
-const company = require('@ac-business-media/package-global/templates/content/company');
-const contact = require('@ac-business-media/package-global/templates/content/contact');
-const product = require('@ac-business-media/package-global/templates/content/product');
-const webinar = require('@ac-business-media/package-global/templates/content/webinar');
-const whitepaper = require('@ac-business-media/package-global/templates/content/whitepaper');
-const content = require('@ac-business-media/package-global/templates/content/default');
 const redirectHandler = require('@ac-business-media/package-global/redirect-handler');
+const qf = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-page');
+const company = require('../templates/content/company');
+const contact = require('../templates/content/contact');
+const content = require('../templates/content/default');
 
 function redirectToFn({ content: contentItem, requestingSiteId }) {
   const existingRedirect = redirectHandler({
@@ -43,30 +40,6 @@ module.exports = (app) => {
     { // company
       regex: '/*?company/:id(\\d{8})*',
       template: company,
-      queryFragment,
-      loaderFragment,
-    },
-    { // document
-      regex: '/*?document/:id(\\d{8})*',
-      template: whitepaper,
-      queryFragment,
-      loaderFragment,
-    },
-    { // product
-      regex: '/*?product/:id(\\d{8})*',
-      template: product,
-      queryFragment,
-      loaderFragment,
-    },
-    { // webinar
-      regex: '/*?webinar/:id(\\d{8})*',
-      template: webinar,
-      queryFragment,
-      loaderFragment,
-    },
-    { // whitepaper
-      regex: '/*?whitepaper/:id(\\d{8})*',
-      template: whitepaper,
       queryFragment,
       loaderFragment,
     },

@@ -1,0 +1,66 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { config, site } = out.global;
+
+$ const { id, alias, name, pageNode } = input;
+$ const { GAM, i18n } = out.global;
+
+$ const morePrefix = defaultValue(input.morePrefix, "More from");
+
+<theme-website-section-page id=id alias=alias name=name>
+  <@head>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <marko-web-p1-events-track-website-section node=section />
+      <if(GAM)>
+        <global-gam-section-targeting|{ adChannels: ad_channels }| obj={ alias: "home-page", hierarchy: [{ alias: "home-page"}] }>
+          <marko-web-gtm-website-section-context|{ context }| alias=alias>
+            $ context.ad_channels = ad_channels;
+            <marko-web-gtm-push data=context />
+          </marko-web-gtm-website-section-context>
+        </global-gam-section-targeting>
+      </if>
+    </marko-web-resolve-page>
+    <${input.head} />
+  </@head>
+  <@page>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <marko-web-p1-events-track-website-section-scroll-depth
+        section=section
+        selector=".document-container"
+      />
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-page-wrapper>
+
+        <@section>
+          <global-section-feed-wrapper
+            alias=section.alias
+            aliases=aliases
+            with-pagination=false
+            ad-name="rotation"
+          >
+            <@header>${i18n(morePrefix)} ${config.siteName()}</@header>
+            <@query-params
+              alias=section.alias
+              limit=3
+              optionName=["Pinned", "Standard"]
+              requires-image=true
+            />
+            <@rail>
+              <marko-web-identity-x-context|{ hasUser }|>
+                <if(!hasUser)>
+                  <div class="sticky-top mt-2">
+                    <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
+                  </div>
+                </if>
+              </marko-web-identity-x-context>
+            </@rail>
+            <@rail>
+              <theme-client-side-most-popular-list-block class="sticky-top" />
+            </@rail>
+          </global-section-feed-wrapper>
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+</theme-website-section-page>

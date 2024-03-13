@@ -1,6 +1,5 @@
 const corporate = require('@ac-business-media/package-global/config/corporate');
 const contentMeter = require('./content-meter');
-const gam = require('./gam');
 const identityX = require('./identity-x');
 const nativeX = require('./native-x');
 const navigation = require('./navigation');
@@ -14,7 +13,6 @@ module.exports = {
   // Module configs
   useLinkInjectedBody: process.env.USE_LINK_INJECTED_BODY || true,
   contentMeter,
-  gam,
   identityX,
   nativeX,
   navigation,
