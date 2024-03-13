@@ -168,3 +168,18 @@ services:
     ports:
       - "9721:80"
       - "19721:19721"
+
+  ip:
+    <<: *site-cmd
+    working_dir: /root/sites/ironpros.com
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 9723
+      LIVERELOAD_PORT: 19723
+      OMEDA_INPUT_ID: ${IP_OMEDA_INPUT_ID-(unset)}
+      HOST: www-acbm-ip.dev.parameter1.com
+    hostname: www-acbm-ip.dev.parameter1.com
+    ports:
+      - "9723:80"
+      - "19723:19723"

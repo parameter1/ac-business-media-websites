@@ -1,0 +1,40 @@
+$theme-site-header-breakpoints: (
+  hide-primary: 1100px,
+  hide-secondary: 700px,
+  small-logo: 775px,
+  small-text-primary: 0,
+  small-text-secondary: 830px
+);
+
+// Colors
+$primary: #445566;
+$secondary: #c99227;
+$light: #e9ecef;
+$dark: #212529;
+$info: #3e5573;
+
+$theme-site-navbar-primary-type: dark !default;
+$theme-site-navbar-primary-bg-color: $primary !default;
+$theme-site-navbar-primary-link-color: $secondary !default;
+
+@import "@ac-business-media/package-global/scss/core";
+
+.spec-guide-button {
+  $color: #1e5d92;
+  @include button-variant($color, $color);
+
+  &--asphalt-paver {
+    $color: #751c1c;
+    @include button-variant($color, $color);
+  }
+
+  &--roller {
+    $color: #fdb813;
+    @include button-variant($color, $color);
+  }
+
+  &--skid-steer {
+    $color: #000;
+    @include button-variant($color, $color);
+  }
+}
