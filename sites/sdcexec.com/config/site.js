@@ -48,7 +48,6 @@ module.exports = {
     { provider: 'linkedin', href: 'https://www.linkedin.com/company/supply-demand-chain-executive/', target: '_blank' },
     { provider: 'flipboard', href: 'https://flipboard.com/@SDCExec', target: '_blank' },
     { provider: 'youtube', href: 'https://www.youtube.com/channel/UCr_15DiCMiM_HkL-ujXzuvw', target: '_blank' },
-    { provider: 'instagram', href: 'https://www.instagram.com/sdcexec', target: '_blank' },
   ],
   radix: {
     enabled: true,
