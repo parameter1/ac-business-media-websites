@@ -52,10 +52,17 @@ export default {
       arrows: true,
       focusOnSelect: false,
       infinite: true,
-      slidesToShow: 4,
-      slidesToScroll: 4,
+      slidesToShow: 6,
+      slidesToScroll: 6,
       touchThreshold: 5,
       responsive: [
+        {
+          breakpoint: 1000,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+          },
+        },
         {
           breakpoint: 600,
           settings: {
