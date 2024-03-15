@@ -80,8 +80,12 @@ $skin-font-family-secondary: informapro, informapro-fallback, sans-serif;
       background-position-y: center;
       max-width: none;
       background-size: auto 400px;
-      margin-left: calc(50% - 50vw);
-      margin-right: calc(50% - 50vw);
+      margin-right: -20px;
+      margin-left: -20px;
+      @media (min-width: $marko-web-document-container-max-width) {
+        margin-left: calc(-50vw - -638px);
+        margin-right: calc(-50vw - -638px);
+      }
       display: flex;
       flex-direction: column;
       margin-top: -20px;
@@ -134,41 +138,6 @@ $skin-font-family-secondary: informapro, informapro-fallback, sans-serif;
   }
 }
 
-// IRON Pros Company Page update::after
-.content-page-header {
-  .ldp__logo {
-    margin-top: -100px;
-    padding: map-get($spacers, 1);
-    background-color: $white;
-    margin-right: map-get($spacers, block);
-    img {
-      margin-right: initial;
-    }
-    @include media-breakpoint-down(sm) {
-      margin-top: -30px;
-      margin-right: 0;
-      margin-bottom: map-get($spacers, block)
-    }
-    &:empty {
-      display: none;
-      visibility: hidden;
-    }
-  }
-
-  .ldp {
-    @include media-breakpoint-down(sm) {
-      flex-direction: column;
-    }
-  }
-  // Only set this way to match avobe media query logic
-  .page-wrapper__company-social-info {
-    margin-top: -70px;
-    @include media-breakpoint-down(sm) {
-      margin-top: initial;
-    }
-  }
-}
-
 // Temp seciton overrides as examples.  with need to look at pulling off of section or parent sections somehow and setting as inline style.
 .page--website-section-54497 {
   .page-cover-image{
@@ -204,8 +173,12 @@ $skin-font-family-secondary: informapro, informapro-fallback, sans-serif;
   &--content-company {
     .page-wrapper__section.page-wrapper__section--content-header {
       > div:first-of-type {
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
+        margin-right: -20px;
+        margin-left: -20px;
+        @media (min-width: $marko-web-document-container-max-width) {
+          margin-left: calc(-50vw - -620px);
+          margin-right: calc(-50vw - -620px);
+        }
         justify-self: end;
         width: 100vw;
         display: inline-block;
@@ -219,6 +192,40 @@ $skin-font-family-secondary: informapro, informapro-fallback, sans-serif;
         width: 100%;
         padding-right: map-get($spacers, block);
         padding-left: map-get($spacers, block);
+      }
+    }
+    // IRON Pros Company Page update::after
+    .content-page-header {
+      .ldp__logo {
+        margin-top: -100px;
+        padding: map-get($spacers, 1);
+        background-color: $white;
+        margin-right: map-get($spacers, block);
+        img {
+          margin-right: initial;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-top: -30px;
+          margin-right: 0;
+          margin-bottom: map-get($spacers, block)
+        }
+        &:empty {
+          display: none;
+          visibility: hidden;
+        }
+      }
+
+      .ldp {
+        @include media-breakpoint-down(sm) {
+          flex-direction: column;
+        }
+      }
+      // Only set this way to match avobe media query logic
+      .page-wrapper__company-social-info {
+        margin-top: -70px;
+        @include media-breakpoint-down(sm) {
+          margin-top: initial;
+        }
       }
     }
   }
