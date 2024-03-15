@@ -73,6 +73,11 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
         </else>
       </div>
     </div>
+  </@section>
+  <@section|{ blockName, section, aliases }|>
+    <global-partners-block alias=alias title="Titanium Partners" />
+  </@section>
+  <@section|{ blockName, section, aliases }|>
     <if(alias !== "premium-content" || !nxConfig.domainName)>
       <global-section-feed-wrapper
         aliases=aliases

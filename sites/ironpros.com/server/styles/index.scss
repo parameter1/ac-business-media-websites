@@ -58,8 +58,8 @@ $theme-site-footer-primary-bg-color:    $primary !default;
 $theme-site-footer-secondary-bg-color:  #6f7c90 !default;
 
 // Fonts
-$skin-font-family-primary: solitaire-mvb-pro, solitaire-mvb-pro-fallback, sans-serif;
-$skin-font-family-secondary: informapro, informapro-fallback, sans-serif;
+$skin-font-family-primary: "DM Sans", sans-serif;
+$skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 
 
 @import "@ac-business-media/package-global/scss/core";

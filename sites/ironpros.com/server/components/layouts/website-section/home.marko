@@ -31,7 +31,9 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
       />
       $ const aliases = hierarchyAliases(section);
       <marko-web-page-wrapper>
-
+        <@section|{ blockName, section, aliases }|>
+          <global-partners-block alias="equipment" title="Titanium Partners" />
+        </@section>
         <@section>
           <global-section-feed-wrapper
             alias=section.alias

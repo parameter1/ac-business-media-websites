@@ -304,6 +304,11 @@
 @import "./components/blocks/content-card-deck";
 @import "./components/blocks/document-carousel";
 @import "./components/blocks/hero-card";
+
+/*! purgecss start ignore */
+@import "./components/blocks/partners";
+/*! purgecss end ignore */
+
 /*! critical:start|home */
 /*! critical:start|content */
 @import "./components/blocks/latest-content-list";
