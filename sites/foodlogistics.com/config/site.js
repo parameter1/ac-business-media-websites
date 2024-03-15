@@ -48,7 +48,6 @@ module.exports = {
     { provider: 'linkedin', href: 'https://www.linkedin.com/company/food-logistics-magazine/', target: '_blank' },
     { provider: 'flipboard', href: 'https://flipboard.com/@FoodLogistics', target: '_blank' },
     { provider: 'youtube', href: 'https://www.youtube.com/user/FoodLogistics', target: '_blank' },
-    { provider: 'instagram', href: 'https://www.instagram.com/foodlogisticsmag', target: '_blank' },
   ],
   radix: {
     enabled: true,
