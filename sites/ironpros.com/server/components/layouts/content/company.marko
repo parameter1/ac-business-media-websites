@@ -27,11 +27,20 @@ $ const displayInquiry = (content) => {
   scroll-depth-selector=".document-container .page .content-page-body"
   ...rest
 >
+  <@section|{ content }|>
+    $ const { bannerImagePath } = content;
+    $ const inlineStyle = bannerImagePath ? `
+      background-image: url(${bannerImagePath});
+    ` : '';
+    <div class="page-cover-image__wrapper" style=inlineStyle cover-image-path=bannerImagePath>
+      <div class="page-cover-image__contents" >
+      </div>
+    </div>
+  </@section>
   <@section|{ aliases, blockName, content }| modifiers=["content-header"]>
     $ const { primarySection } = content;
     <div>
       <div class="content-page-header  content-page-header--full-width">
-        <theme-content-page-breadcrumbs section=primarySection />
         <div class="row">
           <div class="col-md-9 col-sm-12 col-lg-10">
             <div class="ldp">
@@ -44,7 +53,7 @@ $ const displayInquiry = (content) => {
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-lg-2 col-sm-12 justify-content-center d-flex flex-column px-3 py-3">
+          <div class="page-wrapper__company-social-info col-md-3 col-lg-2 col-sm-12 justify-content-center d-flex flex-column px-3 py-3">
             <div class="ldp__social">
               <marko-web-leaders-company-website-link company=content lang=lang/>
               <div class="mt-2 d-flex justify-content-around">
@@ -55,7 +64,6 @@ $ const displayInquiry = (content) => {
             </div>
           </div>
         </div>
-        <hr>
       </div>
     </div>
     <div class="row">

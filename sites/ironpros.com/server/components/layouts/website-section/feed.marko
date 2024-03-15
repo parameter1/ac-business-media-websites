@@ -34,41 +34,45 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
   </@head>
 
   <@section|{ blockName, section, aliases }|>
-    <theme-website-section-breadcrumbs
-      section=section
-      display-home=false
-      display-self=false
-      modifiers=["website-section"]
-    />
+    <div class="page-cover-image__wrapper" >
+      <div class="page-cover-image__contents" >
+        <theme-website-section-breadcrumbs
+          section=section
+          display-home=false
+          display-self=false
+          modifiers=["website-section"]
+        />
 
-    <if(input.beforeName)>
-      <${input.beforeName}
-        aliases=aliases
-        block-name=blockName
-        section=section
-      />
-    </if>
+        <if(input.beforeName)>
+          <${input.beforeName}
+            aliases=aliases
+            block-name=blockName
+            section=section
+          />
+        </if>
 
-    <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
-      <if(p.page > 1)>${value}: Page ${p.page}</if>
-      <else>${value}</else>
-    </marko-web-website-section-name>
+        <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
+          <if(p.page > 1)>${value}: Page ${p.page}</if>
+          <else>${value}</else>
+        </marko-web-website-section-name>
 
-    <if(input.afterName)>
-      <${input.afterName}
-        aliases=aliases
-        block-name=blockName
-        section=section
-      />
-    </if>
+        <if(input.afterName)>
+          <${input.afterName}
+            aliases=aliases
+            block-name=blockName
+            section=section
+          />
+        </if>
 
-    $ const pageDetails = site.getAsObject("pageDetails");
-    <if(pageDetails[alias])>
-      <global-page-details-block content=pageDetails[alias] />
-    </if>
-    <else>
-      <marko-web-website-section-description obj=section />
-    </else>
+        $ const pageDetails = site.getAsObject("pageDetails");
+        <if(pageDetails[alias])>
+          <global-page-details-block content=pageDetails[alias] />
+        </if>
+        <else>
+          <marko-web-website-section-description block-name=blockName obj=section />
+        </else>
+      </div>
+    </div>
     <if(alias !== "premium-content" || !nxConfig.domainName)>
       <global-section-feed-wrapper
         aliases=aliases

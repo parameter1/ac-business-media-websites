@@ -1,3 +1,32 @@
+// https://stackoverflow.com/questions/17248915/css-attribute-selector-for-existing-but-non-empty-attributes
+/**
+ * Requires
+ */
+ @use "sass:meta";
+
+ /**
+  * Select current scope only if a given attribute is set
+  * @param {string} $attribute - Attribute name, default: 'class'
+  * @param {boolean} $empty - Allow empty attribute
+  * @param {string} $error - Error message prefix
+  * @output Wraps given content styles to apply only if the current scope element has the given attribute
+  */
+ @mixin attr-isset($attribute: 'class', $empty: false, $error: 'attr-isset::') {
+   @if meta.content-exists() != true {
+     @error '#{$error}@content is required';
+   }
+   @if $empty {
+     &[#{$attribute}] {
+       @content;
+     }
+   } @else {
+     &[#{$attribute}]:not([#{$attribute}='']) {
+       @content;
+     }
+   }
+ }
+
+
 $theme-site-header-breakpoints: (
   hide-primary: 1100px,
   hide-secondary: 700px,
@@ -39,4 +68,138 @@ $skin-font-family-secondary: informapro, informapro-fallback, sans-serif;
 .site-navbar--top .site-navbar__right .site-navbar__toggler {
   background: transparent;
   border: none;
+}
+.page {
+  $self: &;
+  .page-cover-image {
+    &__wrapper {
+      background: linear-gradient(-90deg, rgba(0,0,0,0.4),rgba(0,0,0,1)), #000000;
+      background-repeat: no-repeat;
+      height: 270px;
+      background-position-x: right;
+      background-position-y: center;
+      max-width: none;
+      background-size: auto 400px;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      display: flex;
+      flex-direction: column;
+      margin-top: -20px;
+      padding-top: 20px;
+      .page-cover-image__contents {
+        padding-right: map-get($spacers, block);
+        padding-left: map-get($spacers, block);
+        max-width: 100%;
+        width: $marko-web-document-container-max-width;
+        align-self: center;
+        color: $light;
+        .page-wrapper__website-section-name {
+          color: $light;
+        }
+      }
+      .breadcrumb {
+        background-color: transparent;
+        a {
+          color: $light;
+        }
+      }
+    }
+  }
+  &--website-section {
+    .page-cover-image{
+      &__wrapper {
+        background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/bucket.png');
+      }
+    }
+  }
+  &--content-company {
+    .page-cover-image{
+      &__wrapper {
+        height: 100px;
+        @include attr-isset('cover-image-path') {
+          height: 270px;
+          background-position-x: center;
+          background-position-y: top;
+          background-size: auto 270px;
+        }
+      }
+    }
+    .page-wrapper {
+      &__section {
+        &:first-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// IRON Pros Company Page update::after
+
+.ldp__logo {
+  margin-top: -100px;
+  padding: map-get($spacers, 1);
+  background-color: $light;
+  margin-right: map-get($spacers, block);
+  img {
+    margin-right: initial;
+  }
+}
+
+.page-wrapper__company-social-info {
+  margin-top: -70px;
+}
+
+
+// Temp seciton overrides as examples.  with need to look at pulling off of section or parent sections somehow and setting as inline style.
+.page--website-section-54497 {
+  .page-cover-image{
+    &__wrapper {
+      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/crane.png');
+    }
+  }
+}
+.page--website-section-54436 {
+  .page-cover-image{
+    &__wrapper {
+      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/crane.png');
+    }
+  }
+}
+.page--website-section-54289 {
+  .page-cover-image{
+    &__wrapper {
+      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/skidsteer.png');
+    }
+  }
+}
+.page--website-section-54468 {
+  .page-cover-image{
+    &__wrapper {
+      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/skidsteer.png');
+    }
+  }
+}
+
+
+.page {
+  &--content-company {
+    .page-wrapper__section.page-wrapper__section--content-header {
+      > div:first-of-type {
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        justify-self: end;
+        width: 100vw;
+        display: inline-block;
+        display: flex;
+        flex-direction: column;
+        background-color: $gray-100;
+      }
+      .content-page-header {
+        max-width: 1300px;
+        align-self: center;
+        width: 100%;
+      }
+    }
+  }
 }
