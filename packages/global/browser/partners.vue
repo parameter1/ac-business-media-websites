@@ -76,10 +76,10 @@ export default {
 
   methods: {
     getImgSrc(imagePath) {
-      return `${imagePath}?h=360&w=640&pad=5&q=70&fit=fill&fill=solid&fill-color=&w=640&h=360`;
+      return `${imagePath}?h=360&w=360&pad=5&q=70&fit=fill&fill=solid&fill-color=`;
     },
     getImgSrcSet(imagePath) {
-      return `${imagePath}?h=360&w=640&pad=5&q=70&fit=fill&fill=solid&fill-color=&w=640&h=360&dpr=2 2x`;
+      return `${imagePath}?h=360&w=360&pad=5&q=70&fit=fill&fill=solid&fill-color=&dpr=2 2x`;
     },
   },
 };
