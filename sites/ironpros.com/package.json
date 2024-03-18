@@ -6,11 +6,11 @@
   "license": "MIT",
   "private": true,
   "website": {
-    "id": "53ca8d671784f8066eb2c949",
+    "id": "65f8419f7985623e9ff46d6e",
     "tenant": "acbm_fcp",
     "account": "acbm",
-    "stack": "tauron",
-    "key": "fcp",
+    "stack": "leonis",
+    "key": "ip",
     "deploy": {
       "staging": true
     }
