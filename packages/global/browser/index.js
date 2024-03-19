@@ -7,6 +7,7 @@ const GlobalSectionSearch = () => import(/* webpackChunkName: "global-section-se
 const GlobalSpecGuideTable = () => import(/* webpackChunkName: "global-spec-guide-table" */ './spec-guide/table.vue');
 const DynamicSiteMenuPositioner = () => import(/* webpackChunkName: "dynamic-site-menu-positioner" */ './dynamic-site-menu-positioner.vue');
 const GlobalPartners = () => import(/* webpackChunkName: "global-partners" */ './partners.vue');
+const GlobalNodeCarousel = () => import(/* webpackChunkName: "global-node-carousel" */ './node-carousel.vue');
 
 export default (Browser) => {
   const { EventBus } = Browser;
@@ -16,6 +17,7 @@ export default (Browser) => {
   Browser.register('GlobalSpecGuideTable', GlobalSpecGuideTable);
   Browser.register('DynamicSiteMenuPositioner', DynamicSiteMenuPositioner);
   Browser.register('GlobalPartners', GlobalPartners);
+  Browser.register('GlobalNodeCarousel', GlobalNodeCarousel);
   Browser.register('GlobalCompanySearch', GlobalCompanySearch, {
     provide: { EventBus },
   });

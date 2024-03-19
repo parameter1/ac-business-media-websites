@@ -32,7 +32,6 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
       />
     </theme-section-feed-block>
   </@head>
-
   <@section|{ blockName, section, aliases }|>
     <div class="page-cover-image__wrapper" >
       <div class="page-cover-image__contents" >
@@ -74,6 +73,14 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
       </div>
     </div>
   </@section>
+  <@section modifiers=["background-color-dark"]>
+    <global-node-carousel-block title="Whitepapers" alias=alias modifiers=["dark"] />
+  </@section>
+
+  <@section>
+    <global-node-carousel-block title="Whitepapers" alias=alias />
+  </@section>
+
   <@section|{ blockName, section, aliases }|>
     <global-partners-block alias=alias title="Titanium Partners" />
   </@section>

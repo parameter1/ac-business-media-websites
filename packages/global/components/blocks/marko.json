@@ -23,5 +23,8 @@
     "<query-params>": {},
     "@title": "string",
     "@alias": "string"
+  },
+  "<global-node-carousel-block>": {
+    "template": "./node-carousel.marko"
   }
 }
