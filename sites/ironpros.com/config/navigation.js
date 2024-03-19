@@ -7,11 +7,10 @@ const subscribe = {
 
 const topics = [
   { href: '/equipment', label: 'Equipment' },
-  { href: '/rental', label: 'Rental' },
-  { href: '/concrete', label: 'Concrete' },
-  { href: '/asphalt', label: 'Asphalt' },
-  { href: '/pavement', label: 'Pavemement' },
-  { href: '/brands', label: 'Brands'},
+  { href: '/technology', label: 'Technology' },
+  { href: '/workwear', label: 'Workwear' },
+  { href: '/product-categories', label: 'Categories' },
+  { href: '/brands', label: 'Brands' },
   { href: '#', label: 'Finance' },
 ];
 
