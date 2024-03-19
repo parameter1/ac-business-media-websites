@@ -10,19 +10,18 @@ const topics = [
   { href: '/technology', label: 'Technology' },
   { href: '/workwear', label: 'Workwear' },
   { href: '/product-categories', label: 'Categories' },
-  { href: '/brands', label: 'Brands' },
-  { href: '#', label: 'Finance' },
+  { href: '/#', label: 'Brands' },
 ];
 
 const secondary = [
-  { href: '/events', label: 'Virtual Events' },
-  { href: '/videos', label: 'IronPros TV' },
-  { href: '/awards', label: 'Awards' },
+  { href: '/#', label: 'Virtual Events' },
+  { href: '/#', label: 'IronPros TV' },
+  { href: '/#', label: 'Awards' },
   { href: '#', label: 'Finance' },
 ];
 
 const exclusives = [
-  { href: '/directory', label: 'Product Directory' },
+  { href: '/product-categories', label: 'Product Directory' },
   { href: '#', label: 'Advertise', target: '_blank' },
 ];
 
