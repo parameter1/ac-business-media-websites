@@ -10,7 +10,6 @@ const topics = [
   { href: '/technology', label: 'Technology' },
   { href: '/workwear', label: 'Workwear' },
   { href: '/product-categories', label: 'Categories' },
-  { href: '/#', label: 'Brands' },
 ];
 
 const secondary = [
@@ -101,7 +100,6 @@ module.exports = {
     more: exclusives,
     items: [
       ...utilities,
-      { href: '/page/privacy-policy', label: 'Privacy Policy', target: '_blank' },
       { href: '/site-map', label: 'Site Map' },
     ],
   },
