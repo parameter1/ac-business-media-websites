@@ -4,7 +4,6 @@ const home = require('./home');
 const content = require('./content');
 const dynamicPages = require('./dynamic-page');
 const websiteSections = require('./website-section');
-const specguide = require('./spec-guide');
 
 module.exports = (app) => {
   // Homepage
@@ -16,12 +15,10 @@ module.exports = (app) => {
   // Content Pages
   content(app);
 
-  specguide(app);
-
   // Directory Pages have to happen after content or they wont match
   directory(app, {
     rootAlias: 'product-categories',
-    contentTypes: ['Company', 'Product'],
+    contentTypes: ['Product', 'Company'],
     assignedToWebsiteSectionIds: [
       214237,
       214238,
