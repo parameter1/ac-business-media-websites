@@ -1,0 +1,62 @@
+import { get } from "@parameter1/base-cms-object-path";
+import { buildImgixUrl } from "@parameter1/base-cms-image";
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
+
+$ const { id, type, pageNode, ...rest } = input;
+
+$ const { site, pagination: p, req, i18n } = out.global;
+$ const lang = site.config.lang || "en";
+$ const perPage = 12;
+
+<site-content-wrapper-layout
+  id=id
+  type=type
+  page-node=pageNode
+  ...rest
+  load-more=false
+>
+  <@section|{ content }| modifiers=["content-header"]>
+    $ const { primaryImage } = content;
+    $ const blockName = "contact-page";
+    <marko-web-block name=blockName>
+      <marko-web-content-name tag="h1" block-name=blockName obj=content />
+      <marko-web-element block-name=blockName name="wrapper">
+        <if(primaryImage && primaryImage.src)>
+          $ const src = buildImgixUrl(primaryImage.src, {
+            w: 160,
+            h: 160,
+            crop: "faces",
+            fit: "crop",
+          });
+          $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
+          <marko-web-img
+            src=src
+            srcset=srcset
+            alt=primaryImage.alt
+            class=`${blockName}__image`
+          />
+        </if>
+
+        <default-theme-page-contents|{ blockName }| modifiers=["contact"]>
+          <marko-web-content-body block-name=blockName obj=content />
+        </default-theme-page-contents>
+
+      </marko-web-element>
+    </marko-web-block>
+  </@section>
+  <@section|{ content, aliases }|>
+    $ const latestTitle = (p.page > 1) ? `${i18n("From the Author")} - Page ${p.page}` : `${i18n("From the Author")}`;
+    $ const params = {
+      contactId: id,
+      limit: perPage,
+      skip: p.skip({ perPage }),
+      queryFragment,
+    };
+    <global-section-feed-wrapper query-name="all-author-content" query-params={ contactId: id } path=req.path>
+      <@header>${latestTitle}</@header>
+      <@rail>
+        <theme-client-side-most-popular-list-block class="sticky-top" />
+      </@rail>
+    </global-section-feed-wrapper>
+  </@section>
+</site-content-wrapper-layout>

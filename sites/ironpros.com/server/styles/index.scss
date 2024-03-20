@@ -1,0 +1,232 @@
+// https://stackoverflow.com/questions/17248915/css-attribute-selector-for-existing-but-non-empty-attributes
+/**
+ * Requires
+ */
+ @use "sass:meta";
+
+ /**
+  * Select current scope only if a given attribute is set
+  * @param {string} $attribute - Attribute name, default: 'class'
+  * @param {boolean} $empty - Allow empty attribute
+  * @param {string} $error - Error message prefix
+  * @output Wraps given content styles to apply only if the current scope element has the given attribute
+  */
+ @mixin attr-isset($attribute: 'class', $empty: false, $error: 'attr-isset::') {
+   @if meta.content-exists() != true {
+     @error '#{$error}@content is required';
+   }
+   @if $empty {
+     &[#{$attribute}] {
+       @content;
+     }
+   } @else {
+     &[#{$attribute}]:not([#{$attribute}='']) {
+       @content;
+     }
+   }
+ }
+
+
+$theme-site-header-breakpoints: (
+  hide-primary: 1100px,
+  hide-secondary: 700px,
+  small-logo: 775px,
+  small-text-primary: 0,
+  small-text-secondary: 830px
+);
+
+// Colors
+$primary: #445566;
+$secondary: #c99227;
+$light: #e9ecef;
+$dark: #212529;
+$info: #3e5573;
+
+$theme-site-navbar-secondary-type: dark !default;
+$theme-site-navbar-secondary-bg-color: $primary !default;
+$theme-site-navbar-secondary-link-color: $light !default;
+$theme-site-navbar-secondary-link-active-color: $secondary !default;
+$theme-site-navbar-secondary-link-hover-color: $secondary !default;
+
+$theme-site-navbar-primary-bg-color: #6f7c90 !default;
+$theme-site-navbar-primary-link-color: $light !default;
+$theme-site-navbar-primary-link-active-color: #000000 !default;
+$theme-site-navbar-primary-link-hover-color: #000000 !default;
+
+
+$theme-site-footer-primary-bg-color:    $primary !default;
+$theme-site-footer-secondary-bg-color:  #6f7c90 !default;
+
+// Fonts
+$skin-font-family-primary: "DM Sans", sans-serif;
+$skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
+
+
+@import "@ac-business-media/package-global/scss/core";
+
+
+.site-navbar--top .site-navbar__right .site-navbar__toggler {
+  background: transparent;
+  border: none;
+}
+.page {
+  $self: &;
+  .page-cover-image {
+    &__wrapper {
+      background: linear-gradient(-90deg, rgba(0,0,0,0.4),rgba(0,0,0,1)), #000000;
+      background-repeat: no-repeat;
+      height: 270px;
+      background-position-x: right;
+      background-position-y: center;
+      max-width: none;
+      background-size: auto 400px;
+      margin-right: -20px;
+      margin-left: -20px;
+      @media (min-width: $marko-web-document-container-max-width) {
+        margin-left: calc(-50vw - -638px);
+        margin-right: calc(-50vw - -638px);
+      }
+      display: flex;
+      flex-direction: column;
+      margin-top: -20px;
+      padding-top: 20px;
+      .page-cover-image__contents {
+        padding-right: map-get($spacers, block);
+        padding-left: map-get($spacers, block);
+        max-width: 100%;
+        width: $marko-web-document-container-max-width;
+        align-self: center;
+        color: $light;
+        .page-wrapper__website-section-name {
+          color: $light;
+        }
+      }
+      .breadcrumb {
+        background-color: transparent;
+        a {
+          color: $light;
+        }
+      }
+    }
+  }
+  &--website-section {
+    .page-cover-image{
+      &__wrapper {
+        background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/bucket.png');
+      }
+    }
+  }
+  &--content-company {
+    .page-cover-image{
+      &__wrapper {
+        height: 100px;
+        @include attr-isset('cover-image-path') {
+          height: 270px;
+          background-position-x: center;
+          background-position-y: top;
+          background-size: auto 270px;
+        }
+      }
+    }
+    .page-wrapper {
+      &__section {
+        &:first-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// Temp seciton overrides as examples.  with need to look at pulling off of section or parent sections somehow and setting as inline style.
+.page--website-section-214147 {
+  .page-cover-image{
+    &__wrapper {
+      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/crane.png');
+    }
+  }
+}
+.page--website-section-54436 {
+  .page-cover-image{
+    &__wrapper {
+      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/crane.png');
+    }
+  }
+}
+.page--website-section-214161 {
+  .page-cover-image{
+    &__wrapper {
+      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/skidsteer.png');
+    }
+  }
+}
+.page--website-section-54468 {
+  .page-cover-image{
+    &__wrapper {
+      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/skidsteer.png');
+    }
+  }
+}
+
+
+.page {
+  &--content-company {
+    .page-wrapper__section.page-wrapper__section--content-header {
+      > div:first-of-type {
+        margin-right: -20px;
+        margin-left: -20px;
+        @media (min-width: $marko-web-document-container-max-width) {
+          margin-left: calc(-50vw - -620px);
+          margin-right: calc(-50vw - -620px);
+        }
+        justify-self: end;
+        width: 100vw;
+        display: inline-block;
+        display: flex;
+        flex-direction: column;
+        background-color: $gray-100;
+      }
+      .content-page-header {
+        max-width: 1300px;
+        align-self: center;
+        width: 100%;
+        padding-right: map-get($spacers, block);
+        padding-left: map-get($spacers, block);
+      }
+    }
+    // IRON Pros Company Page update::after
+    .content-page-header {
+      .ldp__logo {
+        margin-top: -100px;
+        padding: map-get($spacers, 1);
+        background-color: $white;
+        margin-right: map-get($spacers, block);
+        img {
+          margin-right: initial;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-top: -30px;
+          margin-right: 0;
+          margin-bottom: map-get($spacers, block)
+        }
+        &:empty {
+          display: none;
+          visibility: hidden;
+        }
+      }
+
+      .ldp {
+        @include media-breakpoint-down(sm) {
+          flex-direction: column;
+        }
+      }
+      // Only set this way to match avobe media query logic
+      .page-wrapper__company-social-info {
+        margin-top: -70px;
+        @include media-breakpoint-down(sm) {
+          margin-top: initial;
+        }
+      }
+    }
+  }
+}

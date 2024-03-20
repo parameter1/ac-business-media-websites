@@ -17,6 +17,14 @@
   },
   "<theme-native-x-card-deck-block>": {
     "template": "./native-x-card-deck.marko"
+  },
+  "<global-partners-block>": {
+    "template": "./partners.marko",
+    "<query-params>": {},
+    "@title": "string",
+    "@alias": "string"
+  },
+  "<global-node-carousel-block>": {
+    "template": "./node-carousel.marko"
   }
-
 }

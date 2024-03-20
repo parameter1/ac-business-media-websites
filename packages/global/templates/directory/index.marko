@@ -26,7 +26,7 @@ $ const currentPage = search.getCurrentPage();
     </marko-web-resolve-page>
     <${input.head} />
   </@head>
-  <if(GAM.enableRevealAd)>
+  <if(GAM && GAM.enableRevealAd)>
     <@above-container>
       <marko-web-resolve-page|{ data: section }| node=pageNode>
         $ const aliases = hierarchyAliases(section);
@@ -64,22 +64,24 @@ $ const currentPage = search.getCurrentPage();
                   <@title value="Categories" />
                 </marko-web-search-website-sections-by-alias-filter>
               </marko-web-search-filter-container>
-              <div class="mb-block">
-                <theme-gam-define-display-ad
-                  name="top-rotation"
-                  position="section_page"
-                  aliases=aliases
-                  modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-                  class="mb-0"
-                />
-                <theme-gam-define-display-ad
-                  name="rotation-rail"
-                  position="section_page"
-                  aliases=aliases
-                  modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-                  class="mb-0"
-                />
-              </div>
+              <if(GAM)>
+                <div class="mb-block">
+                  <theme-gam-define-display-ad
+                    name="top-rotation"
+                    position="section_page"
+                    aliases=aliases
+                    modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+                    class="mb-0"
+                  />
+                  <theme-gam-define-display-ad
+                    name="rotation-rail"
+                    position="section_page"
+                    aliases=aliases
+                    modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+                    class="mb-0"
+                  />
+                </div>
+              </if>
             </div>
             <div class="col-lg-9">
               <div class="row">

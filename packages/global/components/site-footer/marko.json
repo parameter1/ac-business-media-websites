@@ -1,0 +1,8 @@
+{
+  "<global-site-footer>": {
+    "template": "./index.marko"
+  },
+  "<iron-site-footer>": {
+    "template": "./iron.marko"
+  }
+}

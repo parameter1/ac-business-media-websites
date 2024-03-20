@@ -1,0 +1,60 @@
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
+
+$ const withViewMore = defaultValue(input.withViewMore, true);
+$ const { title, alias } = input;
+
+$ const queryParams = {
+  requiresImage: true,
+  ...(alias && { sectionAlias: alias }),
+  queryFragment,
+  ...input.queryParams,
+};
+
+
+$ const blockName = "node-carousel";
+$ const modifiers = getAsArray(input, "modifiers");
+
+<marko-web-query|{ nodes }| name="website-scheduled-content" params=queryParams>
+  <marko-web-node-list
+    inner-justified=true
+    flush-x=true
+    flush-y=false
+    block-name=blockName
+    modifiers=modifiers
+    collapsible=false
+    header=title
+  >
+    <if(title)>
+      <@header block-name=blockName modifiers=modifiers>
+        <marko-web-website-section-name block-name=blockName obj={ name: title, canonicalPath: alias } link=true  />
+        <marko-web-element block-name=blockName name="header-right">
+          <if(withViewMore && alias)>
+            <marko-web-element block-name=blockName name="view-more">
+              <marko-web-link href=alias>
+                View more &raquo;
+              </marko-web-link>
+            </marko-web-element>
+          </if>
+        </marko-web-element>
+      </@header>
+    </if>
+    <@body block-name=blockName modifiers=modifiers>
+      <marko-web-browser-component
+        name="GlobalNodeCarousel"
+        props={
+          nodes,
+        }
+        ssr=true
+      />
+    </@body>
+    <if(withViewMore && alias)>
+      <@footer block-name=blockName modifiers=[...modifiers, "view-more"]>
+        <marko-web-website-section-name obj={ name: title, canonicalPath: alias } link=true>
+          View More &raquo;
+        </marko-web-website-section-name>
+      </@footer>
+    </if>
+  </marko-web-node-list>
+</marko-web-query>

@@ -55,7 +55,8 @@
     "node-fetch": "^2.6.1",
     "object-path": "^0.11.5",
     "slug": "^4.0.2",
-    "ua-parser-js": "^1.0.33"
+    "ua-parser-js": "^1.0.33",
+    "vue-slick-carousel": "^1.0.6"
   },
   "engines": {
     "node": ">=14.15"

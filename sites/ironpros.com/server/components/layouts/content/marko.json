@@ -1,0 +1,63 @@
+{
+  "<site-content-default-layout>": {
+    "template": "./default.marko",
+    "<after-body>": {},
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@type": "string",
+    "@page-node": "object",
+    "@with-ad-injection": "boolean",
+    "@with-ads": "boolean",
+    "@with-bottom-ad-block": "boolean",
+    "@with-comments": "boolean",
+    "@with-company": "boolean",
+    "@with-load-more": "boolean",
+    "@with-newsletter-signup": "boolean",
+    "@with-primary-image": "boolean",
+    "@with-published-date": "boolean",
+    "@with-recommended": "boolean",
+    "@with-related-stories": "boolean",
+    "@with-social-share": "boolean"
+  },
+  "<site-content-company-layout>": {
+    "template": "./company.marko",
+    "<after-body>": {},
+    "<right-rail>": {},
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@top-company-data": "object",
+    "@type": "string",
+    "@page-node": "object"
+  },
+  "<site-content-company-details>": {
+    "template": "./company-details.marko",
+    "@obj": "object",
+    "@show-email": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<site-content-contact-layout>": {
+    "template": "./contact.marko",
+    "@id": "number",
+    "@type": "string",
+    "@page-node": "object"
+  },
+  "<site-content-wrapper-layout>": {
+    "template": "./wrapper.marko",
+    "@sections <section>[]": {},
+    "@scroll-depth-selector": "string",
+    "@id": "number",
+    "@type": "string",
+    "@page-node": "object",
+    "@load-more": "boolean",
+    "@with-ads": "boolean"
+  }
+}
