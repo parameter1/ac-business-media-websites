@@ -184,6 +184,7 @@ services:
       EXPOSED_PORT: 9723
       LIVERELOAD_PORT: 19723
       OMEDA_INPUT_ID: ${IP_OMEDA_INPUT_ID-(unset)}
+      BASE_BROWSE_GRAPHQL_URI: ${IP_BASE_BROWSE_GRAPHQL_URI-https://base-browse.leonis.base.parameter1.com/graphql}
       HOST: www-acbm-ip.dev.parameter1.com
     hostname: www-acbm-ip.dev.parameter1.com
     ports:
