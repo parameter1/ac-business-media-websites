@@ -1,0 +1,35 @@
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
+import shuffle from "../../utils/shuffle-array";
+
+$ const { GAM } = out.global;
+$ const alias = defaultValue(input.alias, 'partners');
+
+$ const queryParams = {
+  ...input.queryParams,
+  includeContentTypes: ["Company"],
+  requiresImage: true,
+  limit: 12,
+  sectionAlias: alias,
+  queryFragment,
+};
+$ const { title } = input;
+$ const blockName = "partners";
+
+<marko-web-query|{ nodes: allNodes }| name="website-scheduled-content" params=queryParams>
+  <marko-web-block name=blockName>
+    $ const nodes = shuffle(allNodes);
+    <if(title)>
+      <marko-web-element block-name=blockName name="header">
+        ${title}
+      </marko-web-element>
+    </if>
+    <marko-web-browser-component
+      name="GlobalPartners"
+      props={
+        partners: nodes,
+      }
+      ssr=true
+    />
+  </marko-web-block>
+</marko-web-query>

@@ -1,183 +1,25 @@
 const gql = require('graphql-tag');
+const qf = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-page');
 
-module.exports = gql`
-fragment GlobalContentPageFragment on Content {
-  id
-  name
-  teaser(input: { useFallback: false, maxLength: null })
-  labels
-  body
-  published
-  updated
-  siteContext {
-    path
-    canonicalUrl
-  }
-  company {
-    id
-    name
-    canonicalPath
-    enableRmi
-  }
-  websiteSchedules {
-    section {
-      id
-      alias
-      name
-      fullName
-      site {
-        id
-      }
-      hierarchy {
-        id
-        alias
-        site {
-          id
-        }
-      }
+const factory = ({ useLinkInjectedBody = false, withMagazineSchedules = false } = {}) => {
+  const monorailFragment = qf.factory ? qf.factory(
+    { useLinkInjectedBody, withMagazineSchedules },
+  ) : qf;
+
+  const fragment = gql`
+
+  fragment LocalContentPageFragment on Content {
+    ... on ContentCompany {
+      bannerImagePath: customAttribute(input: { path: "bannerImagePath" })
     }
+    ...ContentPageFragment
   }
-  primarySection {
-    id
-    name
-    alias
-    canonicalPath
-    hierarchy {
-      id
-      name
-      alias
-      canonicalPath
-    }
-  }
-  primaryImage {
-    id
-    src(input: { useCropRectangle: true, options: { auto: "format,compress" } })
-    cropRectangle {
-      width
-      height
-    }
-    alt
-    caption
-    credit
-    isLogo
-    cropDimensions {
-      aspectRatio
-    }
-    primaryImageDisplay
-  }
-  gating {
-    surveyType
-    surveyId
-  }
-  userRegistration {
-    isCurrentlyRequired
-    accessLevels
-  }
-  ... on ContentVideo {
-    embedCode
-    transcript
-  }
-  ... on ContentPodcast {
-    transcript
-  }
-  ... on ContentNews {
-    source
-    byline
-  }
-  ... on ContentEvent {
-    ends(input:{ format: "MMMM D, YYYY h:mma z" })
-    starts(input:{ format: "MMMM D, YYYY h:mma z" })
-  }
-  ... on SidebarEnabledInterface {
-    sidebars: sidebarStubs {
-      name
-      body
-      label
-    }
-  }
-  ... on ContentWebinar {
-    linkUrl
-    starts(input:{ format: "MMMM D, YYYY h:mma z" })
-    startDate
-    transcript
-    sponsors {
-      edges {
-        node {
-          id
-          name
-          canonicalPath
-        }
-      }
-    }
-  }
-  ... on Addressable {
-    address1
-    address2
-    cityStateZip
-    country
-  }
-  ... on Contactable {
-    phone
-    tollfree
-    fax
-    website
-    title
-    mobile
-    publicEmail
-  }
-  ... on ContentCompany {
-    email
-  }
-  ... on SocialLinkable {
-    socialLinks {
-      provider
-      url
-      label
-    }
-  }
-  ... on Media {
-    fileSrc
-  }
-  ... on Inquirable {
-    enableRmi
-  }
-  ... on Authorable {
-    authors {
-      edges {
-        node {
-          id
-          name
-          type
-          body
-          labels
-          siteContext {
-            path
-          }
-          primaryImage {
-            id
-            src(input: { options: { auto: "format,compress" } })
-            alt(input: { append: "Headshot" })
-          }
-        }
-      }
-    }
-  }
-  images(input:{ pagination: { limit: 0 }, sort: { order: values } }) {
-    edges {
-      node {
-        id
-        src(input: { options: { auto: "format,compress" } })
-        alt
-        displayName
-        caption
-        credit
-        inCarousel
-        source {
-          width
-          height
-        }
-      }
-    }
-  }
-}
-`;
+  ${monorailFragment}
+
+
+  `;
+  fragment.factory = factory;
+  return fragment;
+};
+
+module.exports = factory();

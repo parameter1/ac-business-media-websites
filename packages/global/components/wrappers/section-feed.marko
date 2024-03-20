@@ -1,7 +1,7 @@
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
 
-$ const { pagination: p, req } = out.global;
+$ const { pagination: p, req, GAM } = out.global;
 
 $ const withPagination = defaultValue(input.withPagination, true);
 $ const perPage = 12;
@@ -9,7 +9,7 @@ $ const skip = p.skip({ perPage });
 
 $ const { modifiers } = input;
 $ const path = input.path || input.alias || req.path;
-$ const withAds = defaultValue(input.withAds, true);
+$ const withAds = GAM ? defaultValue(input.withAds, true) : false;
 $ const aboveTheFold = defaultValue(input.aboveTheFold, false);
 
 $ const queryName = input.queryName ? input.queryName : "website-scheduled-content";

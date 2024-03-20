@@ -243,11 +243,6 @@
 // skin components
 /*! critical:start */
 @import "./components/ad-container";
-/*! purgecss start ignore */
-// Will most likely move to sites.
-@import "./components/reveal-ad";
-/*! purgecss end ignore */
-/*! critical:end */
 @import "./components/author-bios";
 /*! critical:start|magazine */
 @import "./components/magazine";
@@ -309,6 +304,11 @@
 @import "./components/blocks/content-card-deck";
 @import "./components/blocks/document-carousel";
 @import "./components/blocks/hero-card";
+
+/*! purgecss start ignore */
+@import "./components/blocks/partners";
+/*! purgecss end ignore */
+
 /*! critical:start|home */
 /*! critical:start|content */
 @import "./components/blocks/latest-content-list";

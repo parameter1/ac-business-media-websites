@@ -15,6 +15,12 @@ $info: #6c757d;
 
 @import "@ac-business-media/package-global/scss/core";
 
+/*! purgecss start ignore */
+// Will most likely move to sites.
+@import "@ac-business-media/package-global/scss/components/reveal-ad";
+/*! purgecss end ignore */
+/*! critical:end */
+
 .spec-guide-button {
   $color: #1e5d92;
   @include button-variant($color, $color);
