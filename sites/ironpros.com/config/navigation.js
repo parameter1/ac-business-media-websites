@@ -1,10 +1,5 @@
 const user = require('@ac-business-media/package-global/config/user');
 
-const subscribe = {
-  href: '/subscribe',
-  label: 'Subscribe',
-};
-
 const topics = [
   { href: '/equipment', label: 'Equipment' },
   { href: '/technology', label: 'Technology' },
@@ -21,10 +16,6 @@ const secondary = [
 
 const exclusives = [
   { href: '/product-categories', label: 'Product Directory' },
-  { href: '#', label: 'Advertise', target: '_blank' },
-];
-
-const expertInsights = [
   { href: '/events', label: 'Events' },
   { href: '/webinars', label: 'Webinars' },
 ];
@@ -43,7 +34,6 @@ const mobileMenu = {
   ],
   secondary: [
     ...secondary,
-    subscribe,
     { href: '/', label: 'Advertise', target: '_blank' },
   ],
 };
@@ -52,9 +42,9 @@ module.exports = {
   type: 'navbar-c',
   promos: [
     {
-      title: subscribe.label,
-      callToAction: subscribe.label,
-      link: subscribe.href,
+      title: 'subscribe.label',
+      callToAction: 'subscribe.label',
+      link: 'subscribe.href',
     },
   ],
   user,
@@ -87,17 +77,15 @@ module.exports = {
       ],
     },
     col3: {
-      label: 'Expert Insights',
-      items: expertInsights,
-    },
-    col4: {
       label: 'Resources',
       items: utilities,
     },
   },
   footer: {
     topics,
-    more: exclusives,
+    more: [
+      ...exclusives,
+    ],
     items: [
       ...utilities,
       { href: '/site-map', label: 'Site Map' },

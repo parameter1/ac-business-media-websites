@@ -249,7 +249,7 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
   $self: &;
   &--primary {
     #{ $self }__right {
-      @include media-breakpoint-down(lg) {
+      @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
         display: none;
       }
     }
