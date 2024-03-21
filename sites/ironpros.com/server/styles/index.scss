@@ -222,10 +222,25 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
       }
       // Only set this way to match avobe media query logic
       .page-wrapper__company-social-info {
-        margin-top: -70px;
+        margin-top: -40px;
         @include media-breakpoint-down(sm) {
           margin-top: initial;
         }
+      }
+    }
+  }
+}
+
+
+
+// navigation adjustments
+
+.site-navbar {
+  $self: &;
+  &--primary {
+    #{ $self }__right {
+      @include media-breakpoint-down(lg) {
+        display: none;
       }
     }
   }
