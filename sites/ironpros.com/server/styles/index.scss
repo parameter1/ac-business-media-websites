@@ -100,6 +100,16 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
         .page-wrapper__website-section-name {
           color: $light;
         }
+
+        .page-wrapper__website-section-description {
+          @include theme-max-lines(
+            $font-size: $theme-item-title-large-font-size,
+            $font-size-sm: $theme-item-title-large-font-size-sm,
+            $line-height: $theme-item-title-large-line-height,
+            $line-height-sm: $theme-item-title-large-line-height-sm,
+            $num: 6, //$theme-item-title-large-max-lines
+          );
+        }
       }
       .breadcrumb {
         background-color: transparent;
