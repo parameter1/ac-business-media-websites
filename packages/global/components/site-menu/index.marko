@@ -59,14 +59,24 @@ $ const hasUser = defaultValue(input.hasUser, false);
           block-name=blockName
           name="section"
           tag="nav"
-          modifiers=["primary"]
+          modifiers=["primary", "search"]
         >
-
           <!-- Right Column Search Header -->
           <theme-site-menu-header block-name=blockName>
             ${ site.get("navigation.search.label", "Search") }
           </theme-site-menu-header>
-          <search href=site.get("navigation.search.href") />
+          <search
+            href=site.get("navigation.search.href")
+            label=site.get("navigation.search.label")
+            placeholder=site.get("navigation.search.placeholder")
+          />
+        </marko-web-element>
+        <marko-web-element
+          block-name=blockName
+          name="section"
+          tag="nav"
+          modifiers=["primary"]
+        >
 
           <!-- Right Column Dynamic Header -->
           <theme-site-menu-header block-name=blockName>
@@ -98,6 +108,18 @@ $ const hasUser = defaultValue(input.hasUser, false);
   <!-- mobile -->
   <marko-web-element block-name=blockName name="contents-mobile">
     <!-- primary section -->
+    <marko-web-element
+      block-name=blockName
+      name="section"
+      tag="nav"
+      modifiers=["search"]
+    >
+      <search
+        href=site.get("navigation.search.href")
+        label=site.get("navigation.search.label")
+        placeholder=site.get("navigation.search.placeholder")
+      />
+    </marko-web-element>
     <!-- Identity X navigation Items -->
     <theme-site-menu-section
       tag="nav"

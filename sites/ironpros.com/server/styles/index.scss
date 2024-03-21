@@ -65,10 +65,60 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 @import "@ac-business-media/package-global/scss/core";
 
 
-.site-navbar--top .site-navbar__right .site-navbar__toggler {
-  background: transparent;
-  border: none;
+.site-navbar {
+  $self: &;
+  &--top {
+    @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+      height: 80px;
+    }
+    #{ $self }__container {
+      height: 100px;
+      @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+        height: 80px;
+      }
+    }
+    #{ $self }__right {
+      #{ $self }__toggler {
+        background: transparent;
+        border: none;
+      }
+      .element__section--search {
+        margin-left: map-get($spacers, block);
+        .btn {
+          background: transparent;
+          border: 1px solid $light;
+          margin: 0;
+          height: auto;
+          border-radius: 0 4px 4px 0;
+        }
+        @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+          display: none;
+        }
+      }
+      input#site-menu-search {
+        border: 1px solid $light;
+      }
+    }
+  }
 }
+
+.site-menu {
+  $self: &;
+  &__contents-desktop {
+    padding-left: map-get($spacers, block);
+    padding-right: map-get($spacers, block);
+    #{ $self }__section--search {
+      @media (min-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+        display: none;
+         +  #{ $self }__section {
+          margin-top: 0;
+         }
+      }
+    }
+  }
+}
+
+
 .page {
   $self: &;
   .page-cover-image {

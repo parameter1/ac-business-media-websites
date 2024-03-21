@@ -10,14 +10,7 @@ const topics = [
 const secondary = [
   { href: '/#', label: 'Virtual Events' },
   { href: '/#', label: 'IronPros TV' },
-  { href: '/#', label: 'Awards' },
   { href: '#', label: 'Finance' },
-];
-
-const exclusives = [
-  { href: '/product-categories', label: 'Product Directory' },
-  { href: '/events', label: 'Events' },
-  { href: '/webinars', label: 'Webinars' },
 ];
 
 const utilities = [
@@ -50,10 +43,10 @@ module.exports = {
   user,
   mobileMenu,
   topics,
-  search: {
-    href: '/product-categories',
-    label: 'Search',
-  },
+  // search: {
+  //   href: '/product-categories',
+  //   label: 'Search',
+  // },
   primary: {
     items: secondary,
   },
@@ -75,9 +68,9 @@ module.exports = {
       ],
     },
     col2: {
-      label: 'Exclusives',
+      label: 'More',
       items: [
-        ...exclusives,
+        ...secondary,
       ],
     },
     col3: {
@@ -88,7 +81,7 @@ module.exports = {
   footer: {
     topics,
     more: [
-      ...exclusives,
+      ...secondary,
     ],
     items: [
       ...utilities,
