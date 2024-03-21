@@ -43,6 +43,11 @@ body.site-menu--open {
       font-weight: 700;
     }
   }
+  &__header {
+    ~ #{ $self }__header {
+      margin-top: map-get($spacers, block);
+    }
+  }
 }
 
 .social-follow {

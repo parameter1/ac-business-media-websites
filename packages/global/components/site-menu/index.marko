@@ -61,7 +61,14 @@ $ const hasUser = defaultValue(input.hasUser, false);
           tag="nav"
           modifiers=["primary"]
         >
-          <!-- Right Column Header -->
+
+          <!-- Right Column Search Header -->
+          <theme-site-menu-header block-name=blockName>
+            ${ site.get("navigation.search.label", "Search") }
+          </theme-site-menu-header>
+          <search href=site.get("navigation.search.href") />
+
+          <!-- Right Column Dynamic Header -->
           <theme-site-menu-header block-name=blockName>
             ${ site.get("navigation.toggleMenu.col4.label") || "User Tools" }
           </theme-site-menu-header>

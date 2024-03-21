@@ -98,7 +98,8 @@ $ const navigation = {
         />
       </div>
     <div class='site-navbar__right'>
-      <marko-web-link href="/search">
+      <!-- search box -->
+       <marko-web-link href=site.get("navigation.search.href", "/search")>
         <button class="btn btn-lg" type="submit" aria-label="Search">
           <marko-web-icon name="search" modifiers=["light"] />
         </button>

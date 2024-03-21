@@ -50,6 +50,10 @@ module.exports = {
   user,
   mobileMenu,
   topics,
+  search: {
+    href: '/product-categories',
+    label: 'Search',
+  },
   primary: {
     items: secondary,
   },
