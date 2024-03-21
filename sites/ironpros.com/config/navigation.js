@@ -9,7 +9,7 @@ const topics = [
 
 const secondary = [
   { href: '/#', label: 'Virtual Events' },
-  { href: '/#', label: 'IronPros TV' },
+  { href: '/page/tv', label: 'IronPros TV' },
   { href: '#', label: 'Finance' },
 ];
 
