@@ -86,7 +86,6 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
         margin-left: map-get($spacers, block);
         .btn {
           background: rgba(0,0,0,0.25);
-          border: 1px solid rgba(0,0,0,0.25);
           margin: 0;
           height: auto;
           border-radius: 0 4px 4px 0;
@@ -94,9 +93,6 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
         @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
           display: none;
         }
-      }
-      input#site-menu-search {
-        border: 1px solid $light;
       }
     }
   }
