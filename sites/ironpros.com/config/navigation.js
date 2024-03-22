@@ -1,10 +1,5 @@
 const user = require('@ac-business-media/package-global/config/user');
 
-const subscribe = {
-  href: '/subscribe',
-  label: 'Subscribe',
-};
-
 const topics = [
   { href: '/equipment', label: 'Equipment' },
   { href: '/technology', label: 'Technology' },
@@ -14,19 +9,8 @@ const topics = [
 
 const secondary = [
   { href: '/#', label: 'Virtual Events' },
-  { href: '/#', label: 'IronPros TV' },
-  { href: '/#', label: 'Awards' },
+  { href: '/page/tv', label: 'IronPros TV' },
   { href: '#', label: 'Finance' },
-];
-
-const exclusives = [
-  { href: '/product-categories', label: 'Product Directory' },
-  { href: '#', label: 'Advertise', target: '_blank' },
-];
-
-const expertInsights = [
-  { href: '/events', label: 'Events' },
-  { href: '/webinars', label: 'Webinars' },
 ];
 
 const utilities = [
@@ -43,7 +27,6 @@ const mobileMenu = {
   ],
   secondary: [
     ...secondary,
-    subscribe,
     { href: '/', label: 'Advertise', target: '_blank' },
   ],
 };
@@ -52,14 +35,18 @@ module.exports = {
   type: 'navbar-c',
   promos: [
     {
-      title: subscribe.label,
-      callToAction: subscribe.label,
-      link: subscribe.href,
+      title: 'subscribe.label',
+      callToAction: 'subscribe.label',
+      link: 'subscribe.href',
     },
   ],
   user,
   mobileMenu,
   topics,
+  // search: {
+  //   href: '/product-categories',
+  //   label: 'Search',
+  // },
   primary: {
     items: secondary,
   },
@@ -81,23 +68,21 @@ module.exports = {
       ],
     },
     col2: {
-      label: 'Exclusives',
+      label: 'More',
       items: [
-        ...exclusives,
+        ...secondary,
       ],
     },
     col3: {
-      label: 'Expert Insights',
-      items: expertInsights,
-    },
-    col4: {
       label: 'Resources',
       items: utilities,
     },
   },
   footer: {
     topics,
-    more: exclusives,
+    more: [
+      ...secondary,
+    ],
     items: [
       ...utilities,
       { href: '/site-map', label: 'Site Map' },
