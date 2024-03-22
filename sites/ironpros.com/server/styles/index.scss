@@ -65,10 +65,56 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 @import "@ac-business-media/package-global/scss/core";
 
 
-.site-navbar--top .site-navbar__right .site-navbar__toggler {
-  background: transparent;
-  border: none;
+.site-navbar {
+  $self: &;
+  &--top {
+    @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+      height: 80px;
+    }
+    #{ $self }__container {
+      height: 100px;
+      @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+        height: 80px;
+      }
+    }
+    #{ $self }__right {
+      #{ $self }__toggler {
+        background: transparent;
+        border: none;
+      }
+      .element__section--search {
+        margin-left: map-get($spacers, block);
+        .btn {
+          background: rgba(0,0,0,0.25);
+          margin: 0;
+          height: auto;
+          border-radius: 0 4px 4px 0;
+        }
+        @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+          display: none;
+        }
+      }
+    }
+  }
 }
+
+.site-menu {
+  $self: &;
+  &__contents-desktop {
+    padding-left: map-get($spacers, block);
+    padding-right: map-get($spacers, block);
+    #{ $self }__section--search {
+      @media (min-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+        display: none;
+         +  #{ $self }__section {
+          margin-top: 0;
+         }
+      }
+    }
+  }
+}
+
+
 .page {
   $self: &;
   .page-cover-image {
@@ -83,8 +129,8 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
       margin-right: -20px;
       margin-left: -20px;
       @media (min-width: $marko-web-document-container-max-width) {
-        margin-left: calc(-50vw - -638px);
-        margin-right: calc(-50vw - -638px);
+        margin-left: calc(-50vw - -630px);
+        margin-right: calc(-50vw - -630px);
       }
       display: flex;
       flex-direction: column;
@@ -99,6 +145,16 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
         color: $light;
         .page-wrapper__website-section-name {
           color: $light;
+        }
+
+        .page-wrapper__website-section-description {
+          @include theme-max-lines(
+            $font-size: $theme-item-title-large-font-size,
+            $font-size-sm: $theme-item-title-large-font-size-sm,
+            $line-height: $theme-item-title-large-line-height,
+            $line-height-sm: $theme-item-title-large-line-height-sm,
+            $num: 6, //$theme-item-title-large-max-lines
+          );
         }
       }
       .breadcrumb {
@@ -222,10 +278,25 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
       }
       // Only set this way to match avobe media query logic
       .page-wrapper__company-social-info {
-        margin-top: -70px;
+        margin-top: -40px;
         @include media-breakpoint-down(sm) {
           margin-top: initial;
         }
+      }
+    }
+  }
+}
+
+
+
+// navigation adjustments
+
+.site-navbar {
+  $self: &;
+  &--primary {
+    #{ $self }__right {
+      @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+        display: none;
       }
     }
   }

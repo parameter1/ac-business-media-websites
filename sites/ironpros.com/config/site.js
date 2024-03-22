@@ -7,6 +7,7 @@ const omeda = require('./omeda');
 const omedaIdentityX = require('./omeda-identity-x');
 const identityXOptInHooks = require('./identity-x-opt-in-hooks');
 const pageDetails = require('./page-details');
+const search = require('./search');
 
 module.exports = {
   headerTagName: 'iron-site-header',
@@ -69,13 +70,5 @@ module.exports = {
     bgColor: '#000',
   },
   pageDetails,
-  showCompanySectionFilters: true,
-  sectionSearchIds: [
-    54289, // Asphalt
-    54300, // Business
-    54436, // Concrete
-    54319, // Construction Technology
-    54330, // Equipment
-    54468, // Pavement Maintenance
-  ],
+  search,
 };
