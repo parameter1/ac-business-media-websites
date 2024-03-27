@@ -90,6 +90,14 @@
           display: none;
         }
       }
+      .page-company-details {
+        margin-bottom: 0;
+      }
+      .page-company-inquiry {
+        .node-list__header {
+          padding-top: 0;
+        }
+      }
     }
     .content-page-body {
       .page-company-details,
