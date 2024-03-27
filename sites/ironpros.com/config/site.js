@@ -13,7 +13,7 @@ module.exports = {
   headerTagName: 'iron-site-header',
   footerTagName: 'iron-site-footer',
   // Module configs
-  useLinkInjectedBody: process.env.USE_LINK_INJECTED_BODY || true,
+  useLinkInjectedBody: false,
   contentMeter,
   identityX,
   nativeX,
