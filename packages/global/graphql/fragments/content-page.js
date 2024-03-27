@@ -11,6 +11,22 @@ const factory = ({ useLinkInjectedBody = false, withMagazineSchedules = false } 
   fragment LocalContentPageFragment on Content {
     ... on ContentCompany {
       bannerImagePath: customAttribute(input: { path: "bannerImagePath" })
+      yearsInOperation
+      numberOfEmployees
+      salesRegion
+      salesChannels
+      warrantyInformation
+      serviceInformation
+      trainingInformation
+      servicesProvided
+    }
+    websiteSchedules {
+      section {
+        id
+        alias
+        name
+        fullName
+      }
     }
     ...ContentPageFragment
   }
