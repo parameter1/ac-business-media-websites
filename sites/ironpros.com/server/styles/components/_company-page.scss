@@ -1,0 +1,104 @@
+.page {
+  &--content-company {
+    .page-wrapper__section.page-wrapper__section--content-header {
+      > div:first-of-type {
+        margin-right: -20px;
+        margin-left: -20px;
+        @media (min-width: $marko-web-document-container-max-width) {
+          margin-left: calc(-50vw - -620px);
+          margin-right: calc(-50vw - -620px);
+        }
+        justify-self: end;
+        width: 100vw;
+        display: inline-block;
+        display: flex;
+        flex-direction: column;
+        background-color: $gray-100;
+      }
+      .content-page-header {
+        max-width: 1300px;
+        align-self: center;
+        width: 100%;
+        padding-right: map-get($spacers, block);
+        padding-left: map-get($spacers, block);
+      }
+    }
+    // IRON Pros Company Page update::after
+    .content-page-header {
+      .ldp {
+        @include media-breakpoint-down(sm) {
+          flex-direction: column;
+        }
+        &__logo {
+          margin-top: -100px;
+          padding: map-get($spacers, 1);
+          background-color: $white;
+          margin-right: map-get($spacers, block);
+          img {
+            margin-right: initial;
+          }
+          @include media-breakpoint-down(sm) {
+            margin-top: -50px;
+            margin-right: 0;
+          }
+          &:empty {
+            display: none;
+            visibility: hidden;
+          }
+        }
+        &__title {
+          margin-top: map-get($spacers, 2);
+        }
+      }
+      // Only set this way to match avobe media query logic
+      .page-wrapper__company-social-info {
+        margin-top: -40px;
+        @include media-breakpoint-down(sm) {
+          margin-top: initial;
+        }
+      }
+    }
+    .node-list {
+      &--section-feed {
+        > .node-list__header {
+          margin-bottom: 0;
+          border-bottom: none;
+        }
+        > .node-list__body {
+          padding-bottom: 0;
+          border-bottom: none;
+          &:has(label) + .node-list__nodes {
+            padding-right: $marko-web-node-list-padding;
+            padding-left: $marko-web-node-list-padding;
+          }
+        }
+        > .node-list__nodes {
+          max-height: 250px;
+          overflow: scroll;
+        }
+      }
+    }
+    // display logic for show hide block on desktop vs mobile
+    // @todo revist ordering of block to see if we can utilize display flex and positioning instead
+    .page-rail {
+
+      padding-top: 12px;
+
+      .page-company-details,
+      .page-company-inquiry {
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
+      }
+    }
+    .content-page-body {
+      .page-company-details,
+      .page-company-inquiry {
+        @include media-breakpoint-up(sm) {
+          display: none;
+        }
+      }
+    }
+
+  }
+}
