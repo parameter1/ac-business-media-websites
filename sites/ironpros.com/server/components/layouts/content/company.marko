@@ -69,6 +69,15 @@ $ const displayInquiry = (content) => {
   </@section>
   <@section|{ aliases, blockName, content }| modifiers=["content-body"]>
     <div class="row">
+      <if(p.page === 1)>
+        <div class="col-12">
+          <div class="node-list node-list--section-feed node-list--company-categories-feed">
+            <div class="node-list__header">
+              Company Information
+            </div>
+          </div>
+        </div>
+      </if>
       <div class="col-lg-8">
         <if(p.page === 1)>
           <div class="content-page-body">
@@ -90,7 +99,7 @@ $ const displayInquiry = (content) => {
                     <if(value)>
                       <if(!showTitle)>
                         $ showTitle = true;
-                        <label class="content-section-header content-section-header--border">${i18n("CompanyDetails")}</label>
+                        <label class="content-section-header content-section-header--border">${i18n("Company Details")}</label>
                       </if>
                       <div class="page-contact-details__field">
                         <span class="page-contact-details__label">${i18n(field.label)}:</span>
@@ -99,7 +108,7 @@ $ const displayInquiry = (content) => {
                     </if>
                   </for>
 
-                  <label class="content-section-header content-section-header--border">${i18n("Contact")}</label>
+                  <label class="content-section-header content-section-header--border">${i18n("Contact Details")}</label>
                   $ const { socialLinks, website,  ...contentSansSocial } = content;
                   <theme-content-contact-details
                     obj=contentSansSocial
@@ -279,7 +288,7 @@ $ const displayInquiry = (content) => {
                 <if(value)>
                   <if(!showTitle)>
                     $ showTitle = true;
-                    <label class="content-section-header content-section-header--border">${i18n("CompanyDetails")}</label>
+                    <label class="content-section-header content-section-header--border">${i18n("Company Details")}</label>
                   </if>
                   <div class="page-contact-details__field">
                     <span class="page-contact-details__label">${i18n(field.label)}:</span>
@@ -288,7 +297,7 @@ $ const displayInquiry = (content) => {
                 </if>
               </for>
 
-              <label class="content-section-header content-section-header--border">${i18n("Contact")}</label>
+              <label class="content-section-header content-section-header--border">${i18n("Contact Details")}</label>
               $ const { socialLinks, website,  ...contentSansSocial } = content;
               <theme-content-contact-details
                 obj=contentSansSocial
