@@ -15,7 +15,7 @@ $ const lang = site.config.lang || "en";
 
 $ const displayInquiry = (content) => {
   if (site.get("inquiry.enabled") === false) return false;
-  return get(content, "company.enableRmi");
+  return get(content, "enableRmi");
 }
 
 <site-content-wrapper-layout
@@ -66,38 +66,100 @@ $ const displayInquiry = (content) => {
         </div>
       </div>
     </div>
+  </@section>
+  <@section|{ aliases, blockName, content }| modifiers=["content-body"]>
     <div class="row">
+      <if(p.page === 1)>
+        <div class="col-12">
+          <div class="node-list node-list--section-feed node-list--company-categories-feed">
+            <div class="node-list__header">
+              Company Information
+            </div>
+          </div>
+        </div>
+      </if>
       <div class="col-lg-8">
         <if(p.page === 1)>
-
           <div class="content-page-body">
-            <marko-web-node-list collapsible=false class="mt-block">
-              <@header>
-                ${i18n("Company Overview")}
-              </@header>
-              <@body>
-                <label class="content-section-header content-section-header--border">${i18n("Contact")}</label>
-                $ const { socialLinks, website,  ...contentSansSocial } = content;
-                <theme-content-contact-details
-                  obj=contentSansSocial
-                  website-link-attrs=eventLinkAttrs({
-                    category: "Company Profile Page",
-                    label: "Company Website",
-                    entity: eventEntity(content.id, "company"),
-                  })
-                  lang=lang
-                />
+             <marko-web-node-list collapsible=false class="page-company-details">
+                <@body>
+                  $ const companyDetailFields = [
+                    { key: "yearsInOperation", label: "Years in business", tag: "span" },
+                    { key: "numberOfEmployees", label: "Number of employees", tag: "span" },
+                    { key: "salesRegion", label: "Geographic sales distribution", tag: "span" },
+                    { key: "salesChannels", label: "Sales Channel", tag: "span" },
+                    { key: "warrantyInformation", label: "Warranty/Guarantee", tag: "p" },
+                    { key: "serviceInformation", label: "Service, support & spare parts", tag: "p" },
+                    { key: "trainingInformation", label: "Training", tag: "p" },
+                    { key: "servicesProvided", label: "Other services", tag: "p" },
+                  ];
+                  $ let showTitle = false;
+                  <for|field| of=companyDetailFields>
+                    $ const value = get(content, field.key);
+                    <if(value)>
+                      <if(!showTitle)>
+                        $ showTitle = true;
+                        <label class="content-section-header content-section-header--border">${i18n("Company Details")}</label>
+                      </if>
+                      <div class="page-contact-details__field">
+                        <span class="page-contact-details__label">${i18n(field.label)}:</span>
+                        <marko-web-obj-text tag=field.tag obj=content field=field.key type="content" html=true />
+                      </div>
+                    </if>
+                  </for>
 
+                  <label class="content-section-header content-section-header--border">${i18n("Contact Details")}</label>
+                  $ const { socialLinks, website,  ...contentSansSocial } = content;
+                  <theme-content-contact-details
+                    obj=contentSansSocial
+                    website-link-attrs=eventLinkAttrs({
+                      category: "Company Profile Page",
+                      label: "Company Website",
+                      entity: eventEntity(content.id, "company"),
+                    })
+                    lang=lang
+                  />
+                </@body>
+              </marko-web-node-list>
+            <marko-web-node-list collapsible=false class="">
+              <!-- <@header>
+                ${i18n("Company Overview")}
+              </@header> -->
+              <@body>
                 <label class="content-section-header content-section-header--border">${i18n("About")} ${content.name}</label>
                 <marko-web-content-body block-name=blockName obj=content />
               </@body>
             </marko-web-node-list>
+            <if(displayInquiry(content))>
+              <div class="page-company-inquiry mt-block">
+                <theme-company-inquiry-form-block
+                  modifiers=["flush-x"]
+                  content=content
+                  consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes')
+                  initially-expanded=false
+                />
+              </div>
+            </if>
           </div>
-          <theme-sections-listed-in-block
+
+          $ const images = getAsArray(content, 'images.edges').map(({ node }) => node);
+          $ const inCarouselImages = images.filter(image => image.inCarousel);
+          <if(inCarouselImages.length)>
+            <marko-web-node-list class="mt-block" collapsible=false modifiers=["photos"]>
+              <@header>
+                Photos
+              </@header>
+              <@body>
+                <site-image-slider images=inCarouselImages />
+              </@body>
+            </marko-web-node-list>
+          </if>
+
+          <site-section-listed-in-block
             title="Categories Listed In"
             schedules=content.websiteSchedules
-            root-alias="directory"
-            full-name-find="Directory > "
+            root-alias="product-categories"
+            full-name-find="Product Categories > "
             full-name-replace=""
           />
 
@@ -135,6 +197,17 @@ $ const displayInquiry = (content) => {
             query-name="all-company-content"
             query-params={ companyId: id, includeContentTypes: ["Document", "Whitepaper"], withSite: false, limit: 5 }
             title=`${i18n("Company Documents")}`
+            with-native-x-section=false
+            flush-x=false
+            class="mt-block"
+          >
+            <@node with-dates=false />
+          </theme-latest-content-list-block>
+
+          <theme-latest-content-list-block
+            query-name="all-company-content"
+            query-params={ companyId: id, includeContentTypes: ["Video"], withSite: false, limit: 5 }
+            title=`${i18n("Company Videos")}`
             with-native-x-section=false
             flush-x=false
             class="mt-block"
@@ -198,7 +271,7 @@ $ const displayInquiry = (content) => {
         </div>
       </div>
 
-      <div class="col-lg-4 pt-block">
+      <div class="col-lg-4 page-rail">
         <!-- $ const topCompany = aliases.includes("top-feed-companies"); -->
         <if(withAds)>
           <theme-gam-define-display-ad
@@ -209,12 +282,62 @@ $ const displayInquiry = (content) => {
             class="mb-0"
           />
         </if>
-        $ const inquiry = site.getAsObject('inquiry');
-        <if(displayInquiry(content))>
-          <div class="mb-block">
-            <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
-          </div>
+        <if(p.page === 1)>
+          <marko-web-node-list collapsible=false class="page-company-details">
+            <@body>
+              $ const companyDetailFields = [
+                { key: "yearsInOperation", label: "Years in business", tag: "span" },
+                { key: "numberOfEmployees", label: "Number of employees", tag: "span" },
+                { key: "salesRegion", label: "Geographic sales distribution", tag: "span" },
+                { key: "salesChannels", label: "Sales Channel", tag: "span" },
+                { key: "warrantyInformation", label: "Warranty/Guarantee", tag: "p" },
+                { key: "serviceInformation", label: "Service, support & spare parts", tag: "p" },
+                { key: "trainingInformation", label: "Training", tag: "p" },
+                { key: "servicesProvided", label: "Other services", tag: "p" },
+              ];
+              $ let showTitle = false;
+              <for|field| of=companyDetailFields>
+                $ const value = get(content, field.key);
+                <if(value)>
+                  <if(!showTitle)>
+                    $ showTitle = true;
+                    <label class="content-section-header content-section-header--border">${i18n("Company Details")}</label>
+                  </if>
+                  <div class="page-contact-details__field">
+                    <span class="page-contact-details__label">${i18n(field.label)}:</span>
+                    <marko-web-obj-text tag=field.tag obj=content field=field.key type="content" html=true />
+                  </div>
+                </if>
+              </for>
+
+              <label class="content-section-header content-section-header--border">${i18n("Contact Details")}</label>
+              $ const { socialLinks, website,  ...contentSansSocial } = content;
+              <theme-content-contact-details
+                obj=contentSansSocial
+                website-link-attrs=eventLinkAttrs({
+                  category: "Company Profile Page",
+                  label: "Company Website",
+                  entity: eventEntity(content.id, "company"),
+                })
+                lang=lang
+              />
+            </@body>
+          </marko-web-node-list>
+
+          $ const inquiry = site.getAsObject('inquiry');
+          <if(displayInquiry(content))>
+            <!-- only expand when on company content pages IE page 2 or better -->
+            <div class="page-company-inquiry">
+              <theme-company-inquiry-form-block
+                modifiers=["flush-x"]
+                content=content
+                consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes')
+                initially-expanded=true
+              />
+            </div>
+          </if>
         </if>
+
         <if(withAds)>
           <theme-gam-define-display-ad
             name="rotation-rail"

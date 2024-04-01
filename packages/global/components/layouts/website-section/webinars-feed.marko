@@ -87,17 +87,17 @@ $ const archiveQueryParams = {
     <if(p.page === 1)>
       <div class="row" style="margin-bottom: 2rem;">
         <div class="col-lg-8">
-          <theme-section-feed-block display-image=false alias=alias modifiers=["upcoming"]>
+          <theme-section-feed-block ...input.feedFlow alias=alias modifiers=["upcoming"]>
             <@header>
               Upcoming
             </@header>
             <@node
               ...input.node
-              multiDateFormats=[
-                { dateFormat: "MMMM D, YYYY h:mm a z", timezone: "America/Chicago"},
-                { dateFormat: "h:mm a", timezone: "Europe/London" },
-                { dateFormat: "h:mm a", timezone: "Asia/Shanghai" },
-              ]
+              // multiDateFormats=[
+              //  { dateFormat: "MMMM D, YYYY h:mm a z", timezone: "America/Chicago"},
+              //  { dateFormat: "h:mm a", timezone: "Europe/London" },
+              //  { dateFormat: "h:mm a", timezone: "Asia/Shanghai" },
+              // ]
             />
             <@query-params ...upcomingQueryParams />
           </theme-section-feed-block>
