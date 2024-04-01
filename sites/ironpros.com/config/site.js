@@ -13,7 +13,7 @@ module.exports = {
   headerTagName: 'iron-site-header',
   footerTagName: 'iron-site-footer',
   // Module configs
-  useLinkInjectedBody: process.env.USE_LINK_INJECTED_BODY || true,
+  useLinkInjectedBody: false,
   contentMeter,
   identityX,
   nativeX,
@@ -66,7 +66,7 @@ module.exports = {
     directSend: true,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
     sendFrom: 'IronsPros.com <noreply@parameter1.com>',
-    logo: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress&bg=000000&pad=5',
+    logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000',
   },
   pageDetails,
