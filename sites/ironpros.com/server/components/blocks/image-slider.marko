@@ -1,0 +1,20 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import { buildImgixUrl } from "@parameter1/base-cms-image";
+
+$ const opts = {
+  ar: "16:9",
+  fit: "fillmax",
+  fill: "blur",
+  w: 960,
+  h: 540,
+};
+
+
+$ const images = getAsArray(input, "images").map(node => {
+  const src = buildImgixUrl(node.src, opts, opts, false);
+  return { ...node, src };
+});
+
+<if(images.length)>
+  <marko-web-browser-component name="SiteImageSlider" props={ images } />
+</if>

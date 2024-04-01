@@ -142,6 +142,19 @@ $ const displayInquiry = (content) => {
             </if>
           </div>
 
+          $ const images = getAsArray(content, 'images.edges').map(({ node }) => node);
+          $ const inCarouselImages = images.filter(image => image.inCarousel);
+          <if(inCarouselImages.length)>
+            <marko-web-node-list class="mt-block" collapsible=false modifiers=["photos"]>
+              <@header>
+                Photos
+              </@header>
+              <@body>
+                <site-image-slider images=inCarouselImages />
+              </@body>
+            </marko-web-node-list>
+          </if>
+
           <site-section-listed-in-block
             title="Categories Listed In"
             schedules=content.websiteSchedules

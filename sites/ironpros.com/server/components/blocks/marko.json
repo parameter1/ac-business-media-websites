@@ -1,5 +1,9 @@
 {
   "<site-section-listed-in-block>": {
     "template": "./section-listed-in.marko"
+  },
+  "<site-image-slider>": {
+    "template": "./image-slider.marko",
+    "@images" : "array"
   }
 }
