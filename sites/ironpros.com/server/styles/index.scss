@@ -64,7 +64,10 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 
 @import "@ac-business-media/package-global/scss/core";
 
+@import "@parameter1/base-cms-marko-web-photoswipe/scss/main";
+
 @import "./components/site-navbar";
 @import "./components/site-menu";
 @import "./components/page-cover-image";
+@import "./components/content-page";
 @import "./components/company-page";
