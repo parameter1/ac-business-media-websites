@@ -28,6 +28,12 @@ const factory = ({ useLinkInjectedBody = false, withMagazineSchedules = false } 
         fullName
       }
     }
+    company {
+      id
+      labels
+      name
+      canonicalPath
+    }
     ...ContentPageFragment
   }
   ${monorailFragment}
