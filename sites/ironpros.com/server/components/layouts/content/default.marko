@@ -92,7 +92,7 @@ $ const displayInquiry = (content) => {
               $ const iframeContent = contentIframe(content);
               <marko-web-content-embed-code block-name=blockName obj=iframeContent />
             </if>
-            <else-if(type === "product")>
+            <else-if(type === "product" && resolved.getEdgeNodesFor("images").length > 1)>
               <marko-web-image-slider images=resolved.getEdgeNodesFor("images") image-options={ fit: "fill", fillColor: "#ffffff", ar: "16:9"} />
             </else-if>
             <else-if(withPrimaryImage)>
@@ -157,6 +157,13 @@ $ const displayInquiry = (content) => {
                     />
                   </div>
                 </if>
+
+                <if(displayInquiry(content))>
+                  <div class="mb-block">
+                    <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
+                  </div>
+                </if>
+
                 <!-- needs input -->
                 <if(input.afterBody)>
                   <${input.afterBody}

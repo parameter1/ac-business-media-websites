@@ -22,3 +22,17 @@
     }
   }
 }
+.page-contents {
+  &__content-body {
+    [data-embed-type=image][data-embed-align=right] {
+      @include media-breakpoint-up(lg) {
+        margin-right: -60px;
+      }
+    }
+    [data-embed-type=image][data-embed-align=leftt] {
+      @include media-breakpoint-up(lg) {
+        margin-left: -60px;
+      }
+    }
+  }
+}
