@@ -80,6 +80,16 @@
           overflow: scroll;
         }
       }
+      &--featured-videos {
+        .node-list__nodes {
+          margin-top: map-get($spacers, block);
+        }
+      }
+      .page-details {
+        &__label {
+          font-weight: $font-weight-bold;
+        }
+      }
     }
     // display logic for show hide block on desktop vs mobile
     // @todo revist ordering of block to see if we can utilize display flex and positioning instead
@@ -87,14 +97,18 @@
 
       padding-top: 12px;
 
-      .page-company-details,
+      .page-company-contacts,
       .page-company-inquiry {
         @include media-breakpoint-down(sm) {
           display: none;
         }
       }
-      .page-company-details {
+      .page-company-contacts {
         margin-bottom: 0;
+        .node-list__body {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
       }
       .page-company-inquiry {
         .node-list__header {
@@ -103,7 +117,7 @@
       }
     }
     .content-page-body {
-      .page-company-details,
+      .page-company-contacts,
       .page-company-inquiry {
         @include media-breakpoint-up(sm) {
           display: none;
