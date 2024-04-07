@@ -166,7 +166,7 @@ $ const displayInquiry = (content) => {
           </div>
 
           $ const images = getAsArray(content, 'images.edges').map(({ node }) => node);
-          $ console.log('images', images)
+
           $ const inCarouselImages = images.filter(image => image.inCarousel);
           <if(inCarouselImages.length)>
             <marko-web-node-list class="mt-block" collapsible=false modifiers=["photos"]>
