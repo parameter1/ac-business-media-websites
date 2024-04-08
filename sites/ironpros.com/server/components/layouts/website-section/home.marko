@@ -30,49 +30,81 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
         selector=".document-container"
       />
       $ const aliases = hierarchyAliases(section);
-      <marko-web-page-wrapper>
-        <@section|{ aliases }| modifiers=["break-container"]>
-          <div class="opinion">
-            <div
-              title="Welcome to IronPros"
-              class="opinion__website-section-name opinion__header"
-            >
-              <h1>
-                Welcome to IronPros - Are you a Buyer or a Seller?
-              </h1>
-            </div>
-            <div class="intro__body">
-              <h2>Join the IronPros Community for FREE</h2>
-              <div class="row">
-                <div class="col-md-6">
-                  <marko-web-identity-x-form-login />
-                </div>
-                <div class="col-md-6">
-                  <p>
-                      <strong>
-                      Unrestricted Access To:<br>
-                      </strong>
-                      The IronPros Community
-                      Equipment Specs & Comparisons
-                      Live and On-Demand Webinars & Seminars
-                      Deep Product Insights From Our Editorial Team
-                  </p>
-                </div>
+      <marko-web-identity-x-context|{ hasUser }|>
+        <marko-web-page-wrapper>
+          <@section|{ blockName, section, aliases }| modifiers=["with-cover-image"]>
+            <div class="page-cover-image__wrapper" >
+              <div class="page-cover-image__contents" >
+                $ section = { name: 'Research and Compair', description: "Discover over 8,000 product option in our heavy equipment, technology & workwear"}
+                <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section />
+                <marko-web-website-section-description block-name=blockName obj=section />
+
               </div>
             </div>
-          </div>
-        </@section>
-        <@section|{ blockName, section, aliases }|>
-          <global-partners-block title="Titanium Partners"/>
-        </@section>
-        <@section>
-          <theme-section-list-deck-block aliases=[
-            "equipment",
-            "technology",
-            "workwear",
-          ]/>
-        </@section>
-      </marko-web-page-wrapper>
+          </@section>
+          <if(!hasUser)>
+            <@section|{ aliases }| modifiers=["break-container"]>
+              <div class="welcome-box">
+                <div
+                  title="Welcome to IronPros"
+                  class="welcome-box__header"
+                >
+                  <h2 class="welcome-box__title">
+                    Join the IronPros Community for FREE
+                  </h2>
+                </div>
+                <div class="welcome-box__body">
+                  <div class="row">
+                  <div class="col-md-6">
+                      <h3>
+                        Are you a Buyer or a Seller?
+                      </h3>
+                      <p>
+                        <strong>
+                          Unrestricted Access To:
+                        </strong>
+                      </p>
+                      <ul>
+                        <li>
+                          The IronPros Community
+                        </li>
+                        <li>
+                          Equipment Specs & Comparisons
+                        </li>
+                        <li>
+                          Live and On-Demand Webinars & Seminars
+                        </li>
+                        <li>
+                          Deep Product Insights From Our Editorial Team
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <marko-web-identity-x-form-login />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </@section>
+          </if>
+          <@section|{ blockName, section, aliases }|>
+            <global-partners-block title="Titanium Partners"/>
+          </@section>
+          <@section>
+            <theme-section-list-deck-block aliases=[
+              "equipment",
+              "technology",
+              "workwear",
+            ]/>
+          </@section>
+          <!-- <@section>
+            <global-node-carousel-block title="IronPros TV" with-teaser=true query-params={ contentTypes: ["Product"], limit: 12 } modifiers=["dark"] />
+          </@section> -->
+          <@section>
+            <global-node-carousel-block title="Features Products"  with-teaser=true query-params={ contentTypes: ["Product"], limit: 12 } />
+          </@section>
+        </marko-web-page-wrapper>
+      </marko-web-identity-x-context>
     </marko-web-resolve-page>
   </@page>
 </theme-website-section-page>
