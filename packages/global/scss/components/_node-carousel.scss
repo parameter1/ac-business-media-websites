@@ -69,6 +69,9 @@
     @include skin-block-header-overline($flex: true, $text-lg: false);
     margin-bottom: map-get($spacers, 2);
   }
+  &__teaser {
+    @include skin-typography($style: "teaser-text-1", $link-style: "primary");
+  }
   &__view-more {
     @include skin-typography($style: "view-more", $link-style: "primary");
     line-height: 1.7;
@@ -121,7 +124,9 @@
         padding: 16px 10px;
         text-align: center;
         #{ $self }__title,
-        #{ $self }__title:hover {
+        #{ $self }__title:hover,
+        #{ $self }__teaser,
+        #{ $self }__teaser:hover {
           -webkit-line-clamp: 3;
           overflow: hidden;
           display: -webkit-box;
@@ -139,10 +144,14 @@
 .node-carousel {
   $self: &;
   &--dark {
+    #{ $self }__header:before {
+      background-color: $white;
+    }
     padding: map-get($spacers, block);
     background-color: $gray-800;
     color: $light;
     .node__title,
+    .node__teaser,
     .slick-arrow,
     #{ $self }__header,
     #{ $self }__header a,
