@@ -233,7 +233,7 @@ $ const displayInquiry = (content) => {
   </@section>
 
   <if(withRelatedStories)>
-    <@section|{ content }|>
+    <@section|{ content }| modifiers=["break-container"]>
       <theme-related-stories-block
         content-id=content.id
         section-id=content.primarySection.id
