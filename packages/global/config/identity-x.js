@@ -18,7 +18,12 @@ module.exports = ({
     'postalCode',
   ],
   gtmUserFields,
+  defaultFieldLabels = {
+    mobileNumber: 'Mobile Phone',
+    organization: 'Company Name',
+  },
 } = {}) => {
+  console.log(appId, defaultFieldLabels)
   const config = new IdentityXConfiguration({
     appId,
     apiToken: process.env.IDENTITYX_API_TOKEN,
@@ -26,6 +31,7 @@ module.exports = ({
     requiredServerFields,
     requiredClientFields,
     gtmUserFields,
+    defaultFieldLabels,
     onHookError: newrelic.noticeError.bind(newrelic),
   });
   return config;
