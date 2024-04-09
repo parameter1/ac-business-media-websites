@@ -23,7 +23,6 @@ module.exports = ({
     organization: 'Company Name',
   },
 } = {}) => {
-  console.log(appId, defaultFieldLabels)
   const config = new IdentityXConfiguration({
     appId,
     apiToken: process.env.IDENTITYX_API_TOKEN,
