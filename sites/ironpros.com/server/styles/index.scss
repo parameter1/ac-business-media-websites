@@ -64,7 +64,31 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 
 @import "@ac-business-media/package-global/scss/core";
 
+@import "@parameter1/base-cms-marko-web-photoswipe/scss/main";
+
+@import "./components/welcome-box";
 @import "./components/site-navbar";
 @import "./components/site-menu";
 @import "./components/page-cover-image";
+@import "./components/content-page";
 @import "./components/company-page";
+
+.page-wrapper {
+  $self: &;
+  > #{ $self }__section {
+    &--break-container {
+      @media (min-width: $marko-web-document-container-max-width) {
+        margin-left: calc(-50vw - -630px);
+        margin-right: calc(-50vw - -630px);
+      }
+      &:first-child {
+        margin-top: -20px;
+      }
+    }
+  }
+  > #{ $self }__section--with-cover-image + #{ $self }__section {
+    &--break-container {
+      margin-top: -30px;
+    }
+  }
+}

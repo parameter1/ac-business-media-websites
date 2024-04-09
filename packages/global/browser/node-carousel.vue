@@ -25,10 +25,22 @@
                 width="250"
                 height="140"
               >
+            </a>
+            <a
+              :href="node.siteContext.path"
+              :title="node.shortName"
+              class="node__link"
+              rel="nofollow"
+            >
               <div class=" node__body node__body--carousel">
                 <h5 class="node__title">
                   {{ node.shortName }}
                 </h5>
+                <div
+                  :v-if="withTeaser"
+                  class="node__teaser">
+                  {{ node.teaser }}
+                </div>
               </div>
             </a>
           </div>
@@ -48,6 +60,10 @@ export default {
     nodes: {
       type: Array,
       required: true,
+    },
+    withTeaser: {
+      type: Boolean,
+      default: false,
     },
   },
 

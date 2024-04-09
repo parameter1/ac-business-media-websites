@@ -2,6 +2,7 @@
   width: 100%;
   &__header {
     @include skin-typography($style: "header-2");
+    @include skin-block-header-overline($flex: true, $text-lg: false);
     margin-bottom: map-get($spacers, 2);
   }
 

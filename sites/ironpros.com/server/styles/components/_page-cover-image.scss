@@ -106,3 +106,31 @@
     }
   }
 }
+
+
+
+// homepage artwork
+.page {
+  &--website-section-214911 {
+    .page-cover-image{
+      &__wrapper {
+        background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/ip-home.png');
+        background-position: center;
+      }
+      &__contents {
+        text-align: center;
+        @media (min-width: $marko-web-document-container-max-width) {
+          .page-wrapper__website-section-name {
+            font-size: 60px;
+            margin-top: 40px;
+          }
+
+          .page-wrapper__website-section-description {
+            max-width: 100%;
+            font-size: 22px;
+          }
+        }
+      }
+    }
+  }
+}

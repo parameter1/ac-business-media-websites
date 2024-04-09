@@ -33,7 +33,9 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
     </theme-section-feed-block>
   </@head>
   <@section|{ blockName, section, aliases }|>
-    <div class="page-cover-image__wrapper" >
+    $ const { coverImage } = section;
+    $ const coverStyle = (coverImage) ? { "background-image": `url(${coverImage.src})` } : {};
+    <div class="page-cover-image__wrapper" style=coverStyle>
       <div class="page-cover-image__contents" >
         <theme-website-section-breadcrumbs
           section=section
@@ -82,7 +84,7 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
   </@section> -->
 
   <@section|{ blockName, section, aliases }|>
-    <global-partners-block alias=alias title="Titanium Partners" />
+    <global-partners-block title="Titanium Partners" />
   </@section>
   <@section|{ blockName, section, aliases }|>
     <if(alias !== "premium-content" || !nxConfig.domainName)>
