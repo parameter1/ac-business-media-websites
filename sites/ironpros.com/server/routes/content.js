@@ -7,6 +7,7 @@ const redirectHandler = require('@ac-business-media/package-global/redirect-hand
 const qf = require('@ac-business-media/package-global/graphql/fragments/content-page');
 const company = require('../templates/content/company');
 const contact = require('../templates/content/contact');
+const product = require('../templates/content/product');
 const content = require('../templates/content/default');
 
 function redirectToFn({ content: contentItem, requestingSiteId }) {
@@ -40,6 +41,12 @@ module.exports = (app) => {
     { // company
       regex: '/*?company/:id(\\d{8})*',
       template: company,
+      queryFragment,
+      loaderFragment,
+    },
+    { // company
+      regex: '/*?product/:id(\\d{8})*',
+      template: product,
       queryFragment,
       loaderFragment,
     },

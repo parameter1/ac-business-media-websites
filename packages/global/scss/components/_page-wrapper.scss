@@ -52,6 +52,9 @@
       @media (min-width: 1300px) {
         padding: 1rem 7rem 2rem;
       }
+      &:empty {
+        display: none;
+      }
     }
 
     &--block-label {
