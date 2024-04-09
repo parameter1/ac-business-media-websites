@@ -107,7 +107,7 @@ $ const displayInquiry = (content) => {
                       </if>
                       <div class="page-details__field">
                         <if(field.label)>
-                          <span class="page-details__label">${i18n(field.label)}:</span>
+                          <span class="page-details__label">${i18n(field.label)}: </span>
                         </if>
                         <marko-web-obj-text tag=field.tag obj=content field=field.key type="content" html=true />
                       </div>
