@@ -164,9 +164,6 @@ $ const displayInquiry = (content) => {
                   </for>
                 </@nodes>
               </marko-web-node-list>
-              $ const sidebars = getAsArray(content, "sidebars").map((sidebar) => sidebar.body);
-              <marko-web-content-sidebars block-name=blockName obj={ sidebars } />
-
 
               $ const images = getAsArray(content, 'images.edges').map(({ node }) => node);
 
@@ -232,6 +229,9 @@ $ const displayInquiry = (content) => {
                 </@footer>
               </marko-web-node-list>
 
+              $ const sidebars = getAsArray(content, "sidebars").map((sidebar) => sidebar.body);
+              <marko-web-content-sidebars block-name=blockName obj={ sidebars } />
+
               <${input.afterBody}
                 aliases=aliases
                 block-name=blockName
@@ -258,6 +258,21 @@ $ const displayInquiry = (content) => {
           >
             <@node with-dates=false />
           </theme-latest-content-list-block>
+
+          <!-- <theme-content-card-deck-block
+            query-name="all-company-content"
+            query-params={
+              companyId: id,
+              excludeContentTypes: ["Promotion"],
+              limit: perPage,
+              skip: p.skip({ perPage }),
+              withSite: false,
+            }
+            title=latestTitle
+            cols=3
+          >
+            <@node with-dates=false with-section=false />
+          </theme-content-card-deck-block> -->
 
           <theme-section-feed-block|{ totalCount }| query-name="all-company-content" count-only=true>
             <@query-params
@@ -301,38 +316,39 @@ $ const displayInquiry = (content) => {
               />
             </@body>
           </marko-web-node-list>
+          <div class="sticky-top">
+            $ const inquiry = site.getAsObject('inquiry');
+            <if(displayInquiry(content))>
+              <!-- only expand when on company content pages IE page 2 or better -->
+              <div class="page-company-inquiry">
+                <theme-company-inquiry-form-block
+                  modifiers=["flush-x"]
+                  content=content
+                  consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes')
+                  initially-expanded=true
+                />
+              </div>
+            </if>
 
-          $ const inquiry = site.getAsObject('inquiry');
-          <if(displayInquiry(content))>
-            <!-- only expand when on company content pages IE page 2 or better -->
-            <div class="page-company-inquiry">
-              <theme-company-inquiry-form-block
-                modifiers=["flush-x"]
-                content=content
-                consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes')
-                initially-expanded=true
-              />
-            </div>
-          </if>
-
-          $ const contacts = getAsArray(content, "contacts.edges").map(({ node }) => node);
-          <marko-web-node-list class="page-company-contacts">
-            <@body>
-              <label class="content-section-header content-section-header--border">
-                <if(contacts.length > 1)>
-                  ${i18n("Key Contacts")}
-                </if>
-                <else>
-                  ${i18n("Key Contact")}
-                </else>
-              </label>
-            </@body>
-            <@nodes|{ nodes }| nodes=contacts>
-              <for|node| of=nodes>
-                <theme-author-card-node node=node with-email=true />
-              </for>
-            </@nodes>
-          </marko-web-node-list>
+            $ const contacts = getAsArray(content, "contacts.edges").map(({ node }) => node);
+            <marko-web-node-list class="page-company-contacts">
+              <@body>
+                <label class="content-section-header content-section-header--border">
+                  <if(contacts.length > 1)>
+                    ${i18n("Key Contacts")}
+                  </if>
+                  <else>
+                    ${i18n("Key Contact")}
+                  </else>
+                </label>
+              </@body>
+              <@nodes|{ nodes }| nodes=contacts>
+                <for|node| of=nodes>
+                  <theme-author-card-node node=node with-email=true />
+                </for>
+              </@nodes>
+            </marko-web-node-list>
+          </div>
         </if>
 
         <if(withAds)>
