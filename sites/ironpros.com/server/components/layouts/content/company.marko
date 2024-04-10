@@ -117,9 +117,6 @@ $ const displayInquiry = (content) => {
                 </@body>
               </marko-web-node-list>
 
-              $ const sidebars = getAsArray(content, "sidebars").map((sidebar) => sidebar.body);
-              <marko-web-content-sidebars block-name=blockName obj={ sidebars } />
-
               <marko-web-node-list collapsible=false class="page-company-contacts">
                 <@body>
                   <label class="content-section-header content-section-header--border">${i18n("Contact Information")}</label>
@@ -167,78 +164,81 @@ $ const displayInquiry = (content) => {
                   </for>
                 </@nodes>
               </marko-web-node-list>
+              $ const sidebars = getAsArray(content, "sidebars").map((sidebar) => sidebar.body);
+              <marko-web-content-sidebars block-name=blockName obj={ sidebars } />
+
+
+              $ const images = getAsArray(content, 'images.edges').map(({ node }) => node);
+
+              $ const inCarouselImages = images.filter(image => image.inCarousel);
+              <if(inCarouselImages.length)>
+                <marko-web-node-list class="mt-block" collapsible=false modifiers=["photos"]>
+                  <@header>
+                    Photos
+                  </@header>
+                  <@body>
+                    <site-image-slider images=inCarouselImages />
+                  </@body>
+                </marko-web-node-list>
+              </if>
+
+              <site-section-listed-in-block
+                title="Categories Listed In"
+                schedules=content.websiteSchedules
+                root-alias="product-categories"
+                full-name-find="Product Categories > "
+                full-name-replace=""
+              />
+
+
+              <theme-latest-content-list-block
+                query-name="all-company-content"
+                query-params={ companyId: id, includeContentTypes: ["Document", "Whitepaper"], withSite: false, limit: 5 }
+                title=`${i18n("Company Documents")}`
+                with-native-x-section=false
+                flush-x=false
+                class="mt-block"
+              >
+                <@node with-dates=false />
+              </theme-latest-content-list-block>
+
+              $ const videos = getAsArray(content, "videos.edges").map(({ node }) => node);
+              <marko-web-node-list class="mt-block node-list--featured-videos">
+                <@header>
+                  ${i18n("Featured Videos")}
+                </@header>
+                <@nodes|{ nodes }| nodes=videos>
+                  <theme-card-deck-flow cols=3 nodes=nodes modifiers=["featured-videos"]>
+                    <@slot|{ node, index }|>
+                      <div class="node-list__node">
+                        <theme-youtube-card-node
+                          node=node
+                          company-id=content.id
+                          image-position="top"
+                          link-attrs={
+                            "data-company-id": content.id,
+                            "data-company-name": content.name,
+                          }
+                        />
+                      </div>
+                    </@slot>
+                  </theme-card-deck-flow>
+                </@nodes>
+                <@footer>
+                  $ const url = get(content, "youtube.url");
+                  <a href=url target="_blank" rel="noopener" class="btn btn-sm btn-block btn-secondary">
+                    ${i18n("View all videos")} &gt;
+                  </a>
+                </@footer>
+              </marko-web-node-list>
+
+              <${input.afterBody}
+                aliases=aliases
+                block-name=blockName
+                content=content
+              />
             </theme-page-contents>
           </div>
-
-          $ const images = getAsArray(content, 'images.edges').map(({ node }) => node);
-
-          $ const inCarouselImages = images.filter(image => image.inCarousel);
-          <if(inCarouselImages.length)>
-            <marko-web-node-list class="mt-block" collapsible=false modifiers=["photos"]>
-              <@header>
-                Photos
-              </@header>
-              <@body>
-                <site-image-slider images=inCarouselImages />
-              </@body>
-            </marko-web-node-list>
-          </if>
-
-          <site-section-listed-in-block
-            title="Categories Listed In"
-            schedules=content.websiteSchedules
-            root-alias="product-categories"
-            full-name-find="Product Categories > "
-            full-name-replace=""
-          />
-
-
-          <theme-latest-content-list-block
-            query-name="all-company-content"
-            query-params={ companyId: id, includeContentTypes: ["Document", "Whitepaper"], withSite: false, limit: 5 }
-            title=`${i18n("Company Documents")}`
-            with-native-x-section=false
-            flush-x=false
-            class="mt-block"
-          >
-            <@node with-dates=false />
-          </theme-latest-content-list-block>
-
-          $ const videos = getAsArray(content, "videos.edges").map(({ node }) => node);
-          <marko-web-node-list class="mt-block node-list--featured-videos">
-            <@header>
-              ${i18n("Featured Videos")}
-            </@header>
-            <@nodes|{ nodes }| nodes=videos>
-              <theme-card-deck-flow cols=3 nodes=nodes modifiers=["featured-videos"]>
-                <@slot|{ node, index }|>
-                  <div class="node-list__node">
-                    <theme-youtube-card-node
-                      node=node
-                      company-id=content.id
-                      image-position="top"
-                      link-attrs={
-                        "data-company-id": content.id,
-                        "data-company-name": content.name,
-                      }
-                    />
-                  </div>
-                </@slot>
-              </theme-card-deck-flow>
-            </@nodes>
-            <@footer>
-              $ const url = get(content, "youtube.url");
-              <a href=url target="_blank" rel="noopener" class="btn btn-sm btn-block btn-secondary">
-                ${i18n("View all videos")} &gt;
-              </a>
-            </@footer>
-          </marko-web-node-list>
-
-          <${input.afterBody}
-            aliases=aliases
-            block-name=blockName
-            content=content
-          />
         </if>
         <div class="content-page-latest-content">
           $ const latestTitle = (p.page > 1) ? `${i18n("More From")} ${content.name} - Page ${p.page}` : `${i18n("More From")} ${content.name}`;
