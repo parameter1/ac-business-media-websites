@@ -61,6 +61,25 @@
         }
       }
     }
+    .page-contents {
+      &__content-sidebars {
+        @include theme-content-body();
+        display: flex;
+        flex-direction: column;
+        [data-embed-type=image] img {
+          border-radius: initial;
+        }
+      }
+      &__content-sidebar {
+        background-color: initial;
+        border-left: none;
+        [data-embed-type][data-embed-align=left],
+        [data-embed-type][data-embed-align=right] {
+          width: calc(50% - .75rem);
+        }
+
+      }
+    }
     .node-list {
       &--section-feed {
         > .node-list__header {

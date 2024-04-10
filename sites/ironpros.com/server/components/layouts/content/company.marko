@@ -37,7 +37,7 @@ $ const displayInquiry = (content) => {
       </div>
     </div>
   </@section>
-  <@section|{ aliases, blockName, content }| modifiers=["content-header"]>
+  <@section|{ aliases, content }| modifiers=["content-header"]>
     $ const { primarySection } = content;
     <div>
       <div class="content-page-header  content-page-header--full-width">
@@ -67,7 +67,7 @@ $ const displayInquiry = (content) => {
       </div>
     </div>
   </@section>
-  <@section|{ aliases, blockName, content }| modifiers=["content-body"]>
+  <@section|{ aliases, content }| modifiers=["content-body"]>
     <div class="row">
       <if(p.page === 1)>
         <div class="col-12">
@@ -81,88 +81,93 @@ $ const displayInquiry = (content) => {
       <div class="col-lg-8">
         <if(p.page === 1)>
           <div class="content-page-body">
-            <marko-web-node-list collapsible=false class="page-details">
-              <@body>
-                $ const companyDetailFields = [
-                  { key: "yearsInOperation", label: "Years in business", tag: "span", title: "General Information" },
-                  { key: "numberOfEmployees", label: "Number of employees", tag: "span" },
-                  { key: "body", title: `About ${content.name}` },
-                  { key: "salesRegion", tag: "span", title: "Geographic sales distribution" },
-                  { key: "salesChannels", title: "Sales Channel", tag: "span" },
-                  { key: "warrantyInformation", title: "Warranty/Guarantee", tag: "p" },
-                  { key: "serviceInformation", title: "Service, support & spare parts", tag: "p" },
-                  { key: "trainingInformation", title: "Training", tag: "p" },
-                  { key: "servicesProvided", title: "Other services", tag: "p" },
-                ];
-                $ let showTitle = false;
-                <for|field| of=companyDetailFields>
-                  $ const value = get(content, field.key);
-                  <if(field.key === "body")>
-                    <label class="content-section-header content-section-header--border">${field.title}</label>
-                    <marko-web-content-body block-name=blockName obj=content />
-                  </if>
-                  <else-if(value)>
-                      <if(field.title)>
-                        <label class="content-section-header content-section-header--border">${field.title}</label>
-                      </if>
-                      <div class="page-details__field">
-                        <if(field.label)>
-                          <span class="page-details__label">${i18n(field.label)}: </span>
+            <theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
+              <marko-web-node-list collapsible=false class="page-details">
+                <@body>
+                  $ const companyDetailFields = [
+                    { key: "yearsInOperation", label: "Years in business", tag: "span", title: "General Information" },
+                    { key: "numberOfEmployees", label: "Number of employees", tag: "span" },
+                    { key: "body", title: `About ${content.name}` },
+                    { key: "salesRegion", tag: "span", title: "Geographic sales distribution" },
+                    { key: "salesChannels", title: "Sales Channel", tag: "span" },
+                    { key: "warrantyInformation", title: "Warranty/Guarantee", tag: "p" },
+                    { key: "serviceInformation", title: "Service, support & spare parts", tag: "p" },
+                    { key: "trainingInformation", title: "Training", tag: "p" },
+                    { key: "servicesProvided", title: "Other services", tag: "p" },
+                  ];
+                  $ let showTitle = false;
+                  <for|field| of=companyDetailFields>
+                    $ const value = get(content, field.key);
+                    <if(field.key === "body")>
+                      <label class="content-section-header content-section-header--border">${field.title}</label>
+                      <marko-web-content-body block-name=blockName obj=content />
+                    </if>
+                    <else-if(value)>
+                        <if(field.title)>
+                          <label class="content-section-header content-section-header--border">${field.title}</label>
                         </if>
-                        <marko-web-obj-text tag=field.tag obj=content field=field.key type="content" html=true />
-                      </div>
-                  </else-if>
-                </for>
-              </@body>
-            </marko-web-node-list>
+                        <div class="page-details__field">
+                          <if(field.label)>
+                            <span class="page-details__label">${i18n(field.label)}: </span>
+                          </if>
+                          <marko-web-obj-text tag=field.tag obj=content field=field.key type="content" html=true />
+                        </div>
+                    </else-if>
+                  </for>
+                </@body>
+              </marko-web-node-list>
 
-            <marko-web-node-list collapsible=false class="page-company-contacts">
-              <@body>
-                <label class="content-section-header content-section-header--border">${i18n("Contact Information")}</label>
-                $ const { socialLinks, website,  ...contentSansSocial } = content;
-                <theme-content-contact-details
-                  obj=contentSansSocial
-                  website-link-attrs=eventLinkAttrs({
-                    category: "Company Profile Page",
-                    label: "Company Website",
-                    entity: eventEntity(content.id, "company"),
-                  })
-                  lang=lang
-                />
-              </@body>
-            </marko-web-node-list>
+              $ const sidebars = getAsArray(content, "sidebars").map((sidebar) => sidebar.body);
+              <marko-web-content-sidebars block-name=blockName obj={ sidebars } />
 
-            $ const inquiry = site.getAsObject('inquiry');
-            <if(displayInquiry(content))>
-              <!-- only expand when on company content pages IE page 2 or better -->
-              <div class="page-company-inquiry">
-                <theme-company-inquiry-form-block
-                  modifiers=["flush-x"]
-                  content=content
-                  consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes')
-                  initially-expanded=true
-                />
-              </div>
-            </if>
+              <marko-web-node-list collapsible=false class="page-company-contacts">
+                <@body>
+                  <label class="content-section-header content-section-header--border">${i18n("Contact Information")}</label>
+                  $ const { socialLinks, website,  ...contentSansSocial } = content;
+                  <theme-content-contact-details
+                    obj=contentSansSocial
+                    website-link-attrs=eventLinkAttrs({
+                      category: "Company Profile Page",
+                      label: "Company Website",
+                      entity: eventEntity(content.id, "company"),
+                    })
+                    lang=lang
+                  />
+                </@body>
+              </marko-web-node-list>
 
-            $ const contacts = getAsArray(content, "contacts.edges").map(({ node }) => node);
-            <marko-web-node-list class="page-company-contacts">
-              <@body>
-                <label class="content-section-header content-section-header--border">
-                  <if(contacts.length > 1)>
-                    ${i18n("Key Contacts")}
-                  </if>
-                  <else>
-                    ${i18n("Key Contact")}
-                  </else>
-                </label>
-              </@body>
-              <@nodes|{ nodes }| nodes=contacts>
-                <for|node| of=nodes>
-                  <theme-author-card-node node=node with-email=true />
-                </for>
-              </@nodes>
-            </marko-web-node-list>
+              $ const inquiry = site.getAsObject('inquiry');
+              <if(displayInquiry(content))>
+                <!-- only expand when on company content pages IE page 2 or better -->
+                <div class="page-company-inquiry">
+                  <theme-company-inquiry-form-block
+                    modifiers=["flush-x"]
+                    content=content
+                    consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes')
+                    initially-expanded=true
+                  />
+                </div>
+              </if>
+
+              $ const contacts = getAsArray(content, "contacts.edges").map(({ node }) => node);
+              <marko-web-node-list class="page-company-contacts">
+                <@body>
+                  <label class="content-section-header content-section-header--border">
+                    <if(contacts.length > 1)>
+                      ${i18n("Key Contacts")}
+                    </if>
+                    <else>
+                      ${i18n("Key Contact")}
+                    </else>
+                  </label>
+                </@body>
+                <@nodes|{ nodes }| nodes=contacts>
+                  <for|node| of=nodes>
+                    <theme-author-card-node node=node with-email=true />
+                  </for>
+                </@nodes>
+              </marko-web-node-list>
+            </theme-page-contents>
           </div>
 
           $ const images = getAsArray(content, 'images.edges').map(({ node }) => node);
