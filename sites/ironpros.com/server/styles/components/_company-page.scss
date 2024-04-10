@@ -70,6 +70,7 @@
           border-radius: initial;
         }
       }
+
       &__content-sidebar {
         background-color: initial;
         border-left: none;
@@ -77,7 +78,21 @@
         [data-embed-type][data-embed-align=right] {
           width: calc(50% - .75rem);
         }
-
+        h2 {
+          &::before {
+            height: 0;
+            width: 0;
+          }
+          background-color: $gray-100;
+          color: $gray-800;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          padding-left: map-get($spacers, 3);
+          border-radius: 4px;
+          font-size: 16px;
+          line-height: 1.25rem;
+          text-transform: uppercase;
+        }
       }
     }
     .node-list {
@@ -142,7 +157,34 @@
           display: none;
         }
       }
+      .carousel {
+        @include media-breakpoint-up(lg) {
+          margin-right: 0;
+          margin-left: 0;
+        }
+      }
     }
-
+    .content-page-latest-content {
+      .content-card-deck {
+        &__header {
+          &::before {
+            height: 0;
+            width: 0;
+          }
+          background-color: $gray-100;
+          color: $gray-800;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          padding-left: map-get($spacers, 3);
+          border-radius: 4px;
+          font-size: 16px;
+          line-height: 1.25rem;
+          text-transform: uppercase;
+        }
+        .card-deck-flow__node {
+          padding: map-get($spacers, block);
+        }
+      }
+    }
   }
 }
