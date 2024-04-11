@@ -102,7 +102,7 @@ $ const displayInquiry = (content) => {
                     $ const value = get(content, field.key);
                     <if(field.key === "body")>
                       <label class="content-section-header content-section-header--border">${field.title}</label>
-                      <marko-web-content-body block-name=blockName obj=content />
+                      <marko-web-content-body obj=content />
                     </if>
                     <else-if(value)>
                         <if(field.title)>
