@@ -94,6 +94,14 @@
           border-radius: initial;
         }
       }
+      .page-company-contacts,
+      .node-list--company-categories-feed,
+      .page-company-contact-info,
+      .page-company-inquiry {
+        @include media-breakpoint-up(lg) {
+          display: none;
+        }
+      }
     }
     .node-list {
       .node-list__header {
@@ -159,6 +167,22 @@
           width: calc(50% - .75rem);
         }
       }
+
+      &.page-company-contacts {
+        .node-list__nodes{
+          height: 0;
+          overflow: hidden;
+        }
+        &--open {
+          .node-list__nodes{
+            height: auto;
+            transition: height 1s ease;
+            -moz-transition: height 1s ease;
+            -webkit-transition: height 1s ease;
+            -o-transition: height 1s ease;
+          }
+        }
+      }
     }
     // display logic for show hide block on desktop vs mobile
     // @todo revist ordering of block to see if we can utilize display flex and positioning instead
@@ -167,8 +191,10 @@
       padding-top: 12px;
 
       .page-company-contacts,
+      .node-list--company-categories-feed,
+      .page-company-contact-info,
       .page-company-inquiry {
-        @include media-breakpoint-down(sm) {
+        @include media-breakpoint-down(lg) {
           display: none;
         }
       }
@@ -186,12 +212,6 @@
       }
     }
     .content-page-body {
-      .page-company-contacts,
-      .page-company-inquiry {
-        @include media-breakpoint-up(sm) {
-          display: none;
-        }
-      }
       .carousel {
         @include media-breakpoint-up(lg) {
           margin-right: 0;

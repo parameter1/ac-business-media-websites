@@ -143,14 +143,38 @@ $ const displayInquiry = (content) => {
                     modifiers=["flush-x"]
                     content=content
                     consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes')
-                    initially-expanded=true
+                    initially-expanded=false
                   />
                 </div>
               </if>
 
+              <site-section-listed-in-block
+                title="Categories Listed In"
+                schedules=content.websiteSchedules
+                root-alias="product-categories"
+                full-name-find="Product Categories > "
+                full-name-replace=""
+              />
+
               $ const contacts = getAsArray(content, "contacts.edges").map(({ node }) => node);
-              <marko-web-node-list class="page-company-contacts">
-                <@body>
+              $ const contactsLabel = (contacts.length > 1) ? "Key Contacts" : "Key Contact";
+              <marko-web-node-list class="page-company-contacts mt-block">
+                <@header>
+                  <marko-web-browser-component
+                    name="ThemeMenuToggleButton"
+                    props={
+                      className: 'node-list__header',
+                      before: contactsLabel,
+                      targets: ['.content-page-body .node-list.page-company-contacts'],
+                      toggleClass: 'page-company-contacts--open',
+                      iconName: 'chevron-down',
+                      initiallyExpanded: false,
+                      expandedIconName: 'chevron-up',
+                    }
+                    ssr=true
+                  />
+                </@header>
+                <!-- <@body>
                   <label class="content-section-header content-section-header--border">
                     <if(contacts.length > 1)>
                       ${i18n("Key Contacts")}
@@ -159,7 +183,7 @@ $ const displayInquiry = (content) => {
                       ${i18n("Key Contact")}
                     </else>
                   </label>
-                </@body>
+                </@body> -->
                 <@nodes|{ nodes }| nodes=contacts>
                   <for|node| of=nodes>
                     <theme-author-card-node node=node with-email=true />
@@ -180,15 +204,6 @@ $ const displayInquiry = (content) => {
                   </@body>
                 </marko-web-node-list>
               </if>
-
-              <site-section-listed-in-block
-                title="Categories Listed In"
-                schedules=content.websiteSchedules
-                root-alias="product-categories"
-                full-name-find="Product Categories > "
-                full-name-replace=""
-              />
-
 
               <theme-latest-content-list-block
                 query-name="all-company-content"
@@ -315,7 +330,7 @@ $ const displayInquiry = (content) => {
           />
         </if>
         <if(p.page === 1)>
-          <marko-web-node-list collapsible=false class="page-company-contacts">
+          <marko-web-node-list collapsible=false class="page-company-contact-info">
             <@body>
               <label class="content-section-header content-section-header--border">${i18n("Contact Information")}</label>
               $ const { socialLinks, website,  ...contentSansSocial } = content;
@@ -344,9 +359,33 @@ $ const displayInquiry = (content) => {
               </div>
             </if>
 
+            <site-section-listed-in-block
+              title="Categories Listed In"
+              schedules=content.websiteSchedules
+              root-alias="product-categories"
+              full-name-find="Product Categories > "
+              full-name-replace=""
+            />
+
             $ const contacts = getAsArray(content, "contacts.edges").map(({ node }) => node);
-            <marko-web-node-list class="page-company-contacts">
-              <@body>
+            $ const contactsLabel = (contacts.length > 1) ? "Key Contacts" : "Key Contact";
+            <marko-web-node-list class="page-company-contacts mt-block">
+              <@header>
+                <marko-web-browser-component
+                  name="ThemeMenuToggleButton"
+                  props={
+                    className: 'node-list__header',
+                    before: contactsLabel,
+                    targets: ['.page-rail .node-list.page-company-contacts'],
+                    toggleClass: 'page-company-contacts--open',
+                    iconName: 'chevron-down',
+                    initiallyExpanded: false,
+                    expandedIconName: 'chevron-up',
+                  }
+                  ssr=true
+                />
+              </@header>
+              <!-- <@body>
                 <label class="content-section-header content-section-header--border">
                   <if(contacts.length > 1)>
                     ${i18n("Key Contacts")}
@@ -355,7 +394,7 @@ $ const displayInquiry = (content) => {
                     ${i18n("Key Contact")}
                   </else>
                 </label>
-              </@body>
+              </@body> -->
               <@nodes|{ nodes }| nodes=contacts>
                 <for|node| of=nodes>
                   <theme-author-card-node node=node with-email=true />
