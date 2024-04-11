@@ -39,8 +39,10 @@ $ const displayInquiry = (content) => {
   </@section>
   <@section|{ aliases, content }| modifiers=["content-header"]>
     $ const { primarySection } = content;
-    <div>
-      <div class="content-page-header  content-page-header--full-width">
+    $ const isTitanium = getAsArray(content, "labels").includes('Titanium');
+    $ const headerClass = isTitanium ? "content-page-header content-page-header--titanium" : "content-page-header";
+    <div >
+      <div class=headerClass>
         <div class="row">
           <div class="col-md-9 col-sm-12 col-lg-10">
             <div class="ldp">
