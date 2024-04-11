@@ -5,8 +5,8 @@
         margin-right: -20px;
         margin-left: -20px;
         @media (min-width: $marko-web-document-container-max-width) {
-          margin-left: calc(-50vw - -620px);
-          margin-right: calc(-50vw - -620px);
+          margin-left: calc(-50vw - -630px);
+          margin-right: calc(-50vw - -630px);
         }
         justify-self: end;
         width: 100vw;
@@ -53,6 +53,30 @@
           margin-top: map-get($spacers, 2);
         }
       }
+      &--titanium {
+        .ldp__title {
+          position: relative;
+          padding-right: 75px;
+          @include media-breakpoint-down(md) {
+            padding-right: 30px;
+          }
+          &:after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background:url("https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/titanium-check.png");
+            background-size: contain;
+            top: 5px;
+            right: 5px;
+            position: absolute;
+            display: inline-block;
+            @include media-breakpoint-down(md) {
+              width: 25px;
+              height: 25px;
+            }
+          }
+        }
+      }
       // Only set this way to match avobe media query logic
       .page-wrapper__company-social-info {
         margin-top: -40px;
@@ -70,32 +94,33 @@
           border-radius: initial;
         }
       }
-
-      &__content-sidebar {
-        background-color: initial;
-        border-left: none;
-        [data-embed-type][data-embed-align=left],
-        [data-embed-type][data-embed-align=right] {
-          width: calc(50% - .75rem);
-        }
-        h2 {
-          &::before {
-            height: 0;
-            width: 0;
-          }
-          background-color: $gray-100;
-          color: $gray-800;
-          padding-top: 12px;
-          padding-bottom: 12px;
-          padding-left: map-get($spacers, 3);
-          border-radius: 4px;
-          font-size: 16px;
-          line-height: 1.25rem;
-          text-transform: uppercase;
-        }
-      }
     }
     .node-list {
+      .node-list__header {
+        button.node-list__header {
+          border: none;
+          margin: 0;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          padding: 0;
+        }
+      }
+      &--company-categories-feed {
+        .node-list__nodes{
+          height: 0;
+          overflow: hidden;
+        }
+        &.node-list--open {
+          .node-list__nodes{
+            height: auto;
+            transition: height 1s ease;
+            -moz-transition: height 1s ease;
+            -webkit-transition: height 1s ease;
+            -o-transition: height 1s ease;
+          }
+        }
+      }
       &--section-feed {
         > .node-list__header {
           margin-bottom: 0;
@@ -122,6 +147,16 @@
       .page-details {
         &__label {
           font-weight: $font-weight-bold;
+        }
+      }
+      .page-contents__content-sidebar {
+        background-color: initial;
+        border-left: none;
+        padding: 0;
+        margin-bottom: 0;
+        [data-embed-type][data-embed-align=left],
+        [data-embed-type][data-embed-align=right] {
+          width: calc(50% - .75rem);
         }
       }
     }

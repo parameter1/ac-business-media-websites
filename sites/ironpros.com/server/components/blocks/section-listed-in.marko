@@ -5,23 +5,30 @@ $ const schedules = defaultValue(input.schedules, []);
 $ const title = defaultValue(input.title, "Listed In");
 $ const fullNameFind = defaultValue(input.fullNameFind, "");
 $ const fullNameReplace = defaultValue(input.fullNameReplace, "");
-$ const useLabel = defaultValue(input.useLabel, false);
+$ const initiallyExpanded = defaultValue(input.initiallyExpanded, false);
 $ const { i18n } = out.global;
+$ const modifiers = initiallyExpanded ? ["section-feed", "company-categories-feed", "node-list--open"] : ["section-feed", "company-categories-feed"];
+
 
 <if(schedules.length)>
   $ const sections = getSectionsFromSchedules(schedules, rootAlias);
   <if(sections.length)>
-    <marko-web-node-list flush-x=false flush-y=false modifiers=["section-feed", "company-categories-feed"] >
-      <if(useLabel)>
-        <@body>
-          <label class="content-section-header content-section-header--border">${i18n(title)}</label>
-        </@body>
-      </if>
-      <else>
-        <@header>
-          ${title}
-        </@header>
-      </else>
+    <marko-web-node-list flush-x=false flush-y=false modifiers=modifiers >
+      <@header>
+        <marko-web-browser-component
+          name="ThemeMenuToggleButton"
+          props={
+            className: 'node-list__header',
+            before: 'Categories Listed In',
+            targets: ['.node-list.node-list--company-categories-feed'],
+            toggleClass: 'node-list--open',
+            iconName: 'chevron-down',
+            initiallyExpanded,
+            expandedIconName: 'chevron-up',
+          }
+          ssr=true
+        />
+      </@header>
       <@nodes nodes=sections>
         <@slot|{ node }|>
           $ const name = (fullNameFind) ? node.fullName.replace(fullNameFind, fullNameReplace) : node.fullName;
