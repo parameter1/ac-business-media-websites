@@ -229,8 +229,20 @@ $ const displayInquiry = (content) => {
                 </@footer>
               </marko-web-node-list>
 
-              $ const sidebars = getAsArray(content, "sidebars").map((sidebar) => sidebar.body);
-              <marko-web-content-sidebars block-name=blockName obj={ sidebars } />
+              $ const sidebars = getAsArray(content, "sidebars");
+              <for|sidebar, index| of=sidebars>
+                <marko-web-node-list collapsible=false class=`mt-block node-list--sidebar node-list--sidebar-${index}`>
+                <if(sidebar.name)>
+                  <@header>
+                    ${sidebar.name}
+                  </@header>
+                </if>
+                <@body>
+                  $ const obj = { sidebars: [sidebar.body] };
+                  <marko-web-content-sidebars block-name=blockName obj=obj />
+                </@body>
+              </marko-web-node-list>
+              </for>
 
               <${input.afterBody}
                 aliases=aliases
