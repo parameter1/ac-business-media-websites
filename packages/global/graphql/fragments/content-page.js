@@ -90,17 +90,17 @@ const factory = ({ useLinkInjectedBody = false, withMagazineSchedules = false } 
         }
       }
 
-      videos: youtubeVideos(input: { pagination: { limit: 3 } }) {
-        edges {
-          node {
-            id
-            url
-            title
-            published
-            thumbnail(input: { size: high })
-          }
-        }
-      }
+      # videos: youtubeVideos(input: { pagination: { limit: 3 } }) {
+      #   edges {
+      #     node {
+      #       id
+      #       url
+      #       title
+      #       published
+      #       thumbnail(input: { size: high })
+      #     }
+      #   }
+      # }
       websiteSchedules {
         section {
           id
