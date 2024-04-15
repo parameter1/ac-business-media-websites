@@ -5,7 +5,6 @@ module.exports = {
       alias: 'default',
       map: {
         lb1: 'default/lb1',
-        'lb-sticky-bottom': 'default/lb1',
         rail1: 'default/rail1',
         rail2: 'default/rail1',
         'infinite-rail': 'default/rail1',
@@ -18,7 +17,6 @@ module.exports = {
       alias: 'equipment',
       map: {
         lb1: 'equipment/lb1',
-        'lb-sticky-bottom': 'equipment/lb1',
         rail1: 'equipment/rail1',
         rail2: 'equipment/rail1',
         'infinite-rail': 'equipment/rail1',
@@ -31,7 +29,6 @@ module.exports = {
       alias: 'equipment/compaction',
       map: {
         lb1: 'equipment/compaction/lb1',
-        'lb-sticky-bottom': 'equipment/compaction/lb1',
         rail1: 'equipment/compaction/rail1',
         rail2: 'equipment/compaction/rail1',
         'infinite-rail': 'equipment/compaction/rail1',
@@ -44,7 +41,6 @@ module.exports = {
       alias: 'equipment/earthmoving-compact',
       map: {
         lb1: 'equipment/earthmoving-compact/lb1',
-        'lb-sticky-bottom': 'equipment/earthmoving-compact/lb1',
         rail1: 'equipment/earthmoving-compact/rail1',
         rail2: 'equipment/earthmoving-compact/rail1',
         'infinite-rail': 'equipment/earthmoving-compact/rail1',
@@ -57,7 +53,6 @@ module.exports = {
       alias: 'equipment/earthmoving',
       map: {
         lb1: 'equipment/earthmoving/lb1',
-        'lb-sticky-bottom': 'equipment/earthmoving/lb1',
         rail1: 'equipment/earthmoving/rail1',
         rail2: 'equipment/earthmoving/rail1',
         'infinite-rail': 'equipment/earthmoving/rail1',
@@ -70,7 +65,6 @@ module.exports = {
       alias: 'equipment/fleet-maintenance',
       map: {
         lb1: 'equipment/fleet-maintenance/lb1',
-        'lb-sticky-bottom': 'equipment/fleet-maintenance/lb1',
         rail1: 'equipment/fleet-maintenance/rail1',
         rail2: 'equipment/fleet-maintenance/rail1',
         'infinite-rail': 'equipment/fleet-maintenance/rail1',
@@ -83,7 +77,6 @@ module.exports = {
       alias: 'trucks',
       map: {
         lb1: 'trucks/lb1',
-        'lb-sticky-bottom': 'trucks/lb1',
         rail1: 'trucks/rail1',
         rail2: 'trucks/rail1',
         'infinite-rail': 'trucks/rail1',
@@ -96,7 +89,6 @@ module.exports = {
       alias: 'rental',
       map: {
         lb1: 'rental/lb1',
-        'lb-sticky-bottom': 'rental/lb1',
         rail1: 'rental/rail1',
         rail2: 'rental/rail1',
         'infinite-rail': 'rental/rail1',
@@ -109,7 +101,6 @@ module.exports = {
       alias: 'rental/lifting-equipment',
       map: {
         lb1: 'rental/lifting-equipment/lb1',
-        'lb-sticky-bottom': 'rental/lb1',
         rail1: 'rental/lifting-equipment/rail1',
         rail2: 'rental/lifting-equipment/rail1',
         'infinite-rail': 'rental/lifting-equipment/rail1',
@@ -122,7 +113,6 @@ module.exports = {
       alias: 'concrete',
       map: {
         lb1: 'concrete/lb1',
-        'lb-sticky-bottom': 'concrete/lb1',
         rail1: 'concrete/rail1',
         rail2: 'concrete/rail1',
         'infinite-rail': 'concrete/rail1',
@@ -135,7 +125,6 @@ module.exports = {
       alias: 'asphalt',
       map: {
         lb1: 'asphalt/lb1',
-        'lb-sticky-bottom': 'asphalt/lb1',
         rail1: 'asphalt/rail1',
         rail2: 'asphalt/rail1',
         'infinite-rail': 'asphalt/rail1',
@@ -148,7 +137,6 @@ module.exports = {
       alias: 'pavement-maintenance',
       map: {
         lb1: 'pavement-maintenance/lb1',
-        'lb-sticky-bottom': 'pavement-maintenance/lb1',
         rail1: 'pavement-maintenance/rail1',
         rail2: 'pavement-maintenance/rail1',
         'infinite-rail': 'pavement-maintenance/rail1',
@@ -161,7 +149,6 @@ module.exports = {
       alias: 'pavement-maintenance/preservation-maintenance',
       map: {
         lb1: 'pavement-maintenance/preservation-maintenance/lb1',
-        'lb-sticky-bottom': 'pavement-maintenance/preservation-maintenance/lb1',
         rail1: 'pavement-maintenance/preservation-maintenance/rail1',
         rail2: 'pavement-maintenance/preservation-maintenance/rail1',
         'infinite-rail': 'pavement-maintenance/preservation-maintenance/rail1',
@@ -174,7 +161,6 @@ module.exports = {
       alias: 'equipment-management',
       map: {
         lb1: 'equipment-management/lb1',
-        'lb-sticky-bottom': 'equipment-management/lb1',
         rail1: 'equipment-management/rail1',
         rail2: 'equipment-management/rail1',
         'infinite-rail': 'equipment-management/rail1',
@@ -187,7 +173,6 @@ module.exports = {
       alias: 'construction-technology',
       map: {
         lb1: 'construction-technology/lb1',
-        'lb-sticky-bottom': 'construction-technology/lb1',
         rail1: 'construction-technology/rail1',
         rail2: 'construction-technology/rail1',
         'infinite-rail': 'construction-technology/rail1',
@@ -200,7 +185,6 @@ module.exports = {
       alias: 'business',
       map: {
         lb1: 'business/lb1',
-        'lb-sticky-bottom': 'business/lb1',
         rail1: 'business/rail1',
         rail2: 'business/rail1',
         'infinite-rail': 'business/rail1',
@@ -213,7 +197,6 @@ module.exports = {
       alias: 'conexpo',
       map: {
         lb1: 'conexpo/lb1',
-        'lb-sticky-bottom': 'conexpo/lb1',
         rail1: 'conexpo/rail1',
         rail2: 'conexpo/rail1',
         'infinite-rail': 'conexpo/rail1',
@@ -226,7 +209,6 @@ module.exports = {
       alias: 'profit-matters',
       map: {
         lb1: 'profit-matters/lb1',
-        'lb-sticky-bottom': 'profit-matters/lb1',
         rail1: 'profit-matters/rail1',
         rail2: 'profit-matters/rail1',
         'infinite-rail': 'profit-matters/rail1',
