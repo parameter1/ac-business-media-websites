@@ -11,6 +11,11 @@ const factory = ({ useLinkInjectedBody = false, withMagazineSchedules = false } 
   fragment LocalContentPageFragment on Content {
     ... on ContentCompany {
       bannerImagePath: customAttribute(input: { path: "bannerImagePath" })
+      sidebars: sidebarStubs {
+        name
+        body
+        label
+      }
       address1
       address2
       cityStateZip

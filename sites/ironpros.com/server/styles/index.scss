@@ -84,6 +84,9 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
       &:first-child {
         margin-top: -20px;
       }
+      &:last-child {
+        margin-bottom: -20px;
+      }
     }
   }
   > #{ $self }__section--with-cover-image + #{ $self }__section {
