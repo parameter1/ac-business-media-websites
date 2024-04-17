@@ -64,30 +64,7 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
           <@section>
             <div class="section-list-deck section-list-deck--graphical-sections">
               <div class="section-list-deck__row">
-                $ const sections = [
-                  {
-                    name: 'Equipment',
-                    alias: 'equipment',
-                    icon: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/home-section-icons/equipment.png',
-                    // icon: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/2024/04/equipment_icon.661ff3d54142e.png',
-                    descriptioin: 'Insight and research over 2,000 new in-market machines for the heavy equipment Industry',
-                  },
-                  {
-                    name: 'Technology',
-                    alias: 'technology',
-                    icon: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/home-section-icons/technology.png',
-                    // icon: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/2024/04/technology_icon.661ff75887aa8.png',
-                    descriptioin: 'Insight and research over 2,000 new in-market machines for the heavy equipment Industry',
-                  },
-                  {
-                    name: 'Workwear',
-                    alias: 'workwear',
-                    icon: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/home-section-icons/workwear.png',
-                    // icon: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/2024/04/equipment_icon.661ff3d54142e.png',
-                    descriptioin: 'Insight and research over 2,000 new in-market machines for the heavy equipment Industry',
-                  },
-                ];
-                <for|{ name, alias: sectionAlias, icon, description }| of=sections>
+                <for|sectionAlias| of=["equipment", "technology", "workwear"]>
                   <div class="section-list-deck__col">
                     <site-home-section-list-block alias=sectionAlias/>
                   </div>
