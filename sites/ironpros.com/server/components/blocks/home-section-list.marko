@@ -49,31 +49,15 @@ $ const blockName = "section-list";
     </@header>
     <@nodes nodes=nodes>
       <@slot|{ node, index }|>
-        <!-- <if(index === 0)>
-          <theme-content-node
-            image-position="top"
-            card=true
-            flush=true
-            modifiers=[`${blockName}-card`]
-            with-teaser=false
-            with-dates=false
-            with-section=withSection
-            node=node
-          >
-            <@image fluid=true width=330 ar="3:2" />
-          </theme-content-node>
-        </if>
-        <else> -->
-          <theme-content-node
-            display-image=false
-            flush=true
-            modifiers=[`${blockName}-item`]
-            with-teaser=false
-            with-dates=false
-            with-section=withSection
-            node=node
-          />
-        <!-- </else> -->
+        <theme-content-node
+          display-image=false
+          flush=true
+          modifiers=[`${blockName}-item`]
+          with-teaser=false
+          with-dates=false
+          with-section=withSection
+          node=node
+        />
       </@slot>
     </@nodes>
     <if(withViewMore)>
