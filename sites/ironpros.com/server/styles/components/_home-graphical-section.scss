@@ -1,22 +1,26 @@
 .section-list-deck {
   &--graphical-sections {
-    .node-list {
-      &--section-list {
-        .node-list__body {
-          max-width: 320px;
-          width: 100%;
-          aspect-ratio: 407 / 562;
-          margin-left: auto;
-          margin-right: auto;
-          img {
-            width: 100%;
-          }
-        }
+    .section-list__logo-link {
+      background-color: $primary;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      margin: 60px;
+
+      .section-list__logo {
+        max-width: 100%;
+        padding: 10%;
+        aspect-ratio: 1 / 1;
+        filter: brightness(0) invert(1);
       }
-      &__body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    }
+    .node-list--section-list .node-list__header {
+      .section-list__website-section-description {
+        @include skin-typography($style: "teaser-text-1");
+        @include marko-web-node-list-border(border-bottom);
+        padding-bottom: map-get($spacers, block);
+        text-align: center;
       }
     }
   }
