@@ -59,7 +59,7 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
             </div>
           </@section>
           <@section>
-            <div class="section-list-deck">
+            <div class="section-list-deck section-list-deck--graphical-sections">
               <div class="section-list-deck__row">
                 $ const sections = ['equipment', 'technology', 'workwear'];
                 <for|alias| of=sections>
@@ -67,7 +67,7 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
                     <div class="node-list node-list--section-list node-list--flush-x node-list--flush-y node-list--inner-justified">
                       <div class="node-list__body">
                         <marko-web-link href=`/${alias}` title=`${alias}`>
-                          $ const src = buildImgixUrl(`https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/home-section-icons/${alias}.png`, { w: 300 });
+                          $ const src = buildImgixUrl(`https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/home-section-icons/${alias}.png`, { w: 600 });
                           $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
                           <marko-web-img
                             src=src
