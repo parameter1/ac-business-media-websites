@@ -5,5 +5,8 @@
   "<site-image-slider>": {
     "template": "./image-slider.marko",
     "@images" : "array"
+  },
+  "<site-home-section-list-block>": {
+    "template": "./home-section-list.marko"
   }
 }
