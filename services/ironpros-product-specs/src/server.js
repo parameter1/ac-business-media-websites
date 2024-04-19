@@ -1,6 +1,7 @@
 const http = require('http');
 const express = require('express');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
+const { collection } = require('./mongodb');
 
 const { error } = console;
 const app = express();
@@ -10,8 +11,28 @@ app.get('/hello-world', express.json(), asyncRoute(async (req, res) => {
   res.send('hello world');
 }));
 
+app.post('/load-spec', express.json(), asyncRoute(async (req, res) => {
+  const { id } = req.body;
+  // console.log(req, req.body, 'ids: ', ids)
+  if (!id) {
+    return res.status(400).send({ message: 'No "id" parameter was provided.' });
+  }
+  const coll = await collection();
+  const doc = await coll.findOne({
+    _id: id,
+  }, { sort: { _id: -1 } });
+
+  if (!doc) {
+    return res.status(404).send({
+      message: `Unable to find a Prodcut Specs for payload id: ${id}.`,
+    });
+  }
+  return res.send({
+    ...doc,
+    // @todo Additional fields, text ad lookup/etc?
+  });
+}));
 app.use((req, res) => {
-  console.log('hitting 404');
   res.status(404);
   res.send();
 });
