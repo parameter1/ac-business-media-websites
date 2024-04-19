@@ -54,6 +54,7 @@ x-site-command: &site-cmd
   command: ["dev"]
 
 volumes:
+  mongodb: {}
   yarn-cache: {}
 
 services:
@@ -191,6 +192,8 @@ services:
     ports:
       - "9723:80"
       - "19723:19723"
+    depends_on:
+      - ironpros-product-specs
 
   ironpros-product-specs:
     <<: *node
@@ -202,8 +205,18 @@ services:
       HOST: ironpros-product-specs-api.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 23355
-      MONGO_URL: ${MONGO_URL-}
+      MONGO_URL: ${MONGO_URL-mongodb://mongodb}
       MONGO_DB: ${MONGO_DB-ironpros}
     hostname: ironpros-product-specs-api.dev.parameter1.com
     ports:
       - "23355:80"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    tty: true
+    image: mongo:5
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - "10000:27017"
