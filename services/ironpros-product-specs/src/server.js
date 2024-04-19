@@ -32,6 +32,20 @@ app.post('/load-spec', express.json(), asyncRoute(async (req, res) => {
     // @todo Additional fields, text ad lookup/etc?
   });
 }));
+
+app.post('/load-specs', express.json(), asyncRoute(async (req, res) => {
+  const { ids } = req.body;
+
+  if (!ids || !ids.length) {
+    return res.status(400).send({ message: 'No "ids" parameter was provided.' });
+  }
+
+  const coll = await collection();
+  const docs = await coll.find({ _id: { $in: ids } });
+  const specs = await docs.toArray();
+  return res.send({ specs });
+}));
+
 app.use((req, res) => {
   res.status(404);
   res.send();
