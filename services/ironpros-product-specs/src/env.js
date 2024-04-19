@@ -12,5 +12,5 @@ module.exports = cleanEnv(process.env, {
   PORT: port({ desc: 'The port that the service will run on.', default: 80 }),
   EXPOSED_PORT: port({ desc: 'The port that the service will run on.', default: 80 }),
   MONGO_URL: str({ desc: 'The MongoDB connection string' }),
-  MONGO_DB: str({ default: 'arizent-webhook-payloads-production' }),
+  MONGO_DB: str({ default: 'ironpros' }),
 });
