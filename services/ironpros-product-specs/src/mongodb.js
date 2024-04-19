@@ -11,7 +11,7 @@ module.exports = {
   db: (options = {}) => client.db({ name: MONGO_DB, options }),
   collection: (options = {}) => client.collection({
     dbName: MONGO_DB,
-    name: 'post-requests',
+    name: 'product-specs',
     options,
   }),
 };
