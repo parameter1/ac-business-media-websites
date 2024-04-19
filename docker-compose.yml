@@ -204,6 +204,6 @@ services:
       EXPOSED_PORT: 23355
       MONGO_URL: ${MONGO_URL-}
       MONGO_DB: ${MONGO_DB-ironpros}
-    hostname: ironpros-product-spec-api.dev.parameter1.com
+    hostname: ironpros-product-specs-api.dev.parameter1.com
     ports:
       - "23355:80"
