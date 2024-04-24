@@ -32,6 +32,10 @@ $ const displayInquiry = (content) => {
     </div>
   </@section>
 
+  <@section|{ content }|>
+    <site-spec-comparison-tool-wrapper content=content />
+  </@section>
+
   <@section|{ aliases, content, authors, resolved }| modifiers=["content-body"]>
     $ const { primarySection } = content;
     <div class="row">

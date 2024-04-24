@@ -1,0 +1,91 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+
+import appendSpecs from "../../utils/append-specs-to-products";
+import productFragment from "../../graphql/fragments/spec-product";
+import loadProductSpec from "../../utils/load-product-spec";
+import loadSpecs from "../../utils/load-specs";
+import getSpecList from "../../utils/generate-spec-list";
+
+$ const specKeyToSkip = [
+  "externalproductid",
+  "companyexternalid",
+  "productSKU",
+  "productName",
+  "immediate",
+  "preorder",
+];
+
+$ const { content } = input;
+$ const { primarySection } = content;
+
+$ const productsParams = {
+  limit: 5,
+  sectionAlias: primarySection.alias,
+  includeContentTypes: ["Product"],
+  // includeLabels: ['Titanium'],
+  queryFragment: productFragment
+};
+
+<marko-web-query|{ nodes }| name="website-scheduled-content" params=productsParams collapsible=false>
+  $ const products = [
+    content,
+    ...nodes,
+  ]
+  $ const productIds = products.map(({id}) => id);
+
+  <marko-web-resolve|{ resolved }| promise=loadSpecs({ ids: productIds }) >
+    $ const specsToAppend = getAsArray(resolved, "specs");
+    $ const specList = getSpecList({ specsToAppend });
+    <!-- $ console.log('SpecList', specsToAppend, specList) -->
+    $ const constNodesWithSpecs = appendSpecs({products: nodes, specsToAppend });
+    <table class="table-responsive table-striped mw-full">
+      <tbody>
+        <tr>
+          <td>
+            Categfory Thing goes here
+          </td>
+          <for|node| of=constNodesWithSpecs>
+            <td v-for="node in nodes">
+              <marko-web-node
+                type="product-content"
+                image-position="top"
+                card=true
+                full-height=true
+                attrs=input.attrs
+              >
+                <@image
+                  src=content.primaryImage.src
+                  alt=content.primaryImage.alt
+                  is-logo=content.primaryImage.isLogo
+                  fluid=true
+                  ar="4:3"
+                  width=(input.imageWidth || 300)
+                />
+                <@body>
+                  <@title tag="h5" modifiers=input.titleModifiers>
+                    <marko-core-text value=content.name />
+                  </@title>
+                  <@text>
+                    <theme-content-attribution obj=content elements=["company"] />
+                  </@text>
+                </@body>
+              </marko-web-node>
+            </td>
+          </for>
+        </tr>
+        <for|spec| of=specList>
+          <tr v-for="spec in specRows">
+            <th>${spec.label}</th>
+            <for|node| of=constNodesWithSpecs>
+              $ const nodeSpecs = getAsArray(node, 'specs');
+              $ const displaySpec = nodeSpecs.filter((s) => s.key === spec.key)[0] || {}
+              <td>
+                ${displaySpec.value}
+              </td>
+            </for>
+          </tr>
+        </for>
+      </tbody>
+    </table>
+  </marko-web-resolve>
+</marko-web-query>
