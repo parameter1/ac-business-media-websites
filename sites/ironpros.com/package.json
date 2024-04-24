@@ -47,6 +47,9 @@
     "@parameter1/base-cms-marko-web-theme-monorail": "^4.54.2",
     "@parameter1/base-cms-object-path": "^4.40.3",
     "@parameter1/base-cms-utils": "^4.40.3",
-    "@parameter1/base-cms-web-cli": "^4.40.3"
+    "@parameter1/base-cms-web-cli": "^4.40.3",
+    "node-fetch": "^2.6.1",
+    "graphql": "^14.5.4",
+    "graphql-tag": "^2.10.1"
   }
 }
