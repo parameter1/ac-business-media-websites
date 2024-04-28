@@ -102,3 +102,27 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
     }
   }
 }
+
+
+.spec-comparison-tool {
+  th,
+  td {
+    margin-left: map-get($spacers, block);
+    margin-right: map-get($spacers, block);
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+    }
+  }
+  tr > *:first-child {
+    margin-left: 0;
+    position: sticky;
+    left:0;
+    z-index: 990;
+    background-color: $gray-100;
+    padding: map-get($spacers, 2);
+    padding-right: map-get($spacers, block);
+  }
+}

@@ -9,7 +9,7 @@
   "<site-home-section-list-block>": {
     "template": "./home-section-list.marko"
   },
-  "<site-spec-comparison-tool-wrapper>": {
-    "template": "./spec-comparison-tool-wrapper.marko"
+  "<site-spec-comparison-tool>": {
+    "template": "./spec-comparison-tool.marko"
   }
 }
