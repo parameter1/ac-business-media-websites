@@ -100,12 +100,6 @@ export default {
     productIds() {
       return this.products.map(({ id }) => id);
     },
-    productWithSpecs() {
-      return appendSpecs({
-        product: this.products,
-        specsToAppend: this.specsToAppend,
-      });
-    },
     specList() {
       return generateSpecList({ specsToAppend: this.specsToAppend });
     },
