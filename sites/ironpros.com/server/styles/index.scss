@@ -107,8 +107,9 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 .spec-comparison-tool {
   th,
   td {
-    margin-left: map-get($spacers, block);
-    margin-right: map-get($spacers, block);
+    padding: map-get($spacers, 2);
+    border-right: 12px solid $white;
+    width: 300px;
     @include media-breakpoint-up(md) {
       @include make-col(4);
     }
@@ -124,5 +125,8 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
     background-color: $gray-100;
     padding: map-get($spacers, 2);
     padding-right: map-get($spacers, block);
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
   }
 }
