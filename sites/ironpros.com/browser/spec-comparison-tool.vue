@@ -11,7 +11,7 @@
             name="company"
             autocomplete="company"
             class="custom-select"
-            @change="updateSelectableProdcuts()"
+            @change="updateSelectableProducts()"
           >
             <option value=""> Select Company... </option>
             <option
@@ -41,7 +41,7 @@
           </select>
           <button
             class="spec-comparison-tool__add-btn"
-            title="Add Prodcut"
+            title="Add Product"
             @click="updateSelectedProducts()"
           >
             Add &amp; Compare
@@ -70,7 +70,7 @@
           <button
             v-if="(index !== 0)"
             class="spec-comparison-tool__remove-btn"
-            title="Remove Prodcut"
+            title="Remove Product"
             @click="removeSelectedProduct(p.id)"
           >
             &times;
@@ -201,7 +201,7 @@ export default {
   },
   async created() {
     await this.loadCompanies();
-    await this.updateSelectableProdcuts();
+    await this.updateSelectableProducts();
     await this.loadSpecAndAppend();
   },
   methods: {
@@ -232,8 +232,8 @@ export default {
       }
     },
 
-    // Update & load the list of Prodcut in the product drop down
-    async updateSelectableProdcuts() {
+    // Update & load the list of Product in the product drop down
+    async updateSelectableProducts() {
       const companyId = this.$el.querySelector('#spec-comparison-tool-company').value;
       this.isLoading = true;
       this.error = null;
