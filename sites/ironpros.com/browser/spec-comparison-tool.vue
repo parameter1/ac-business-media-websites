@@ -2,7 +2,7 @@
   <table class="table-responsive table-striped mw-full spec-comparison-tool">
     <tbody>
       <tr>
-        <td>
+        <td class="spec-comparison-tool__form">
           <label for="company">
             Select brand
           </label>
@@ -40,9 +40,9 @@
             </option>
           </select>
           <button
-            class="specComparison-product__add-btn"
+            class="spec-comparison-tool__add-btn"
             title="Add Prodcut"
-            @click="updateSelectedProducts()"
+            @click="updateSelectedProducts(p.id)"
           >
             Add &amp; Compare
           </button>
@@ -54,7 +54,7 @@
         >
           <button
             v-if="(index !== 0)"
-            class="specComparison-product__remove-btn"
+            class="spec-comparison-tool__remove-btn"
             title="Remove Prodcut"
             @click="removeSelectedProduct(p.id)"
           >
@@ -64,7 +64,7 @@
             v-if="p.siteContext.path"
             :href="p.siteContext.path"
             title="View Product"
-            class="spec-comparison-product-link"
+            class="spec-comparison-product__link"
             @change="emitProductClick('Product Link', ...arguments)"
           >
             <img

@@ -105,6 +105,24 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 
 
 .spec-comparison-tool {
+  &__form {
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    label {
+      font-weight: $font-weight-bold;
+    }
+    select {
+      margin-bottom: map-get($spacers, block);
+    }
+    button {
+      margin-top: map-get($spacers, block);
+      margin-bottom: map-get($spacers, block);
+    }
+  }
+  td.product-spec--image {
+    background-color: $white;
+  }
   th,
   td {
     padding: map-get($spacers, 2);
@@ -128,5 +146,10 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
     width: 300px;
     min-width: 300px;
     max-width: 300px;
+    &.spec-comparison-tool {
+      &__form {
+        background-color: $white;
+      }
+    }
   }
 }
