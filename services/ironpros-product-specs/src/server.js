@@ -24,7 +24,7 @@ app.post('/load-spec', express.json(), asyncRoute(async (req, res) => {
 
   if (!doc) {
     return res.status(404).send({
-      message: `Unable to find a Prodcut Specs for payload id: ${id}.`,
+      message: `Unable to find a Product Specs for payload id: ${id}.`,
     });
   }
   return res.send({
