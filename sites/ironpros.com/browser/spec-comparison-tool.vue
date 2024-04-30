@@ -42,7 +42,7 @@
           <button
             class="spec-comparison-tool__add-btn"
             title="Add Prodcut"
-            @click="updateSelectedProducts(p.id)"
+            @click="updateSelectedProducts()"
           >
             Add &amp; Compare
           </button>
@@ -52,14 +52,6 @@
           :key="p.key"
           class="product-spec--image"
         >
-          <button
-            v-if="(index !== 0)"
-            class="spec-comparison-tool__remove-btn"
-            title="Remove Prodcut"
-            @click="removeSelectedProduct(p.id)"
-          >
-            &times;
-          </button>
           <common-link
             v-if="p.siteContext.path"
             :href="p.siteContext.path"
@@ -75,6 +67,14 @@
               width="250"
             >
           </common-link>
+          <button
+            v-if="(index !== 0)"
+            class="spec-comparison-tool__remove-btn"
+            title="Remove Prodcut"
+            @click="removeSelectedProduct(p.id)"
+          >
+            &times;
+          </button>
         </td>
       </tr>
       <tr>

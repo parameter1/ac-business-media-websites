@@ -122,6 +122,19 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
   }
   td.product-spec--image {
     background-color: $white;
+    position: relative;
+    button {
+      position: absolute;
+      right: -3px;
+      top: 3px;
+      background: $gray-100;
+      border: solid $white 1px;
+      border-radius: 12px;
+    }
+    a {
+      display: flex;
+      border: solid 1px $gray-100;
+    }
   }
   th,
   td {
