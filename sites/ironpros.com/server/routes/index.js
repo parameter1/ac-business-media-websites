@@ -4,6 +4,7 @@ const home = require('./home');
 const content = require('./content');
 const dynamicPages = require('./dynamic-page');
 const websiteSections = require('./website-section');
+const specs = require('./specs');
 
 module.exports = (app) => {
   // Homepage
@@ -44,4 +45,6 @@ module.exports = (app) => {
 
   // Website Sections
   websiteSections(app);
+
+  specs(app);
 };

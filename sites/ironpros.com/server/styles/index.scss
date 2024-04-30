@@ -102,3 +102,67 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
     }
   }
 }
+
+
+.spec-comparison-tool {
+  &__form {
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    label {
+      font-weight: $font-weight-bold;
+    }
+    select {
+      margin-bottom: map-get($spacers, block);
+    }
+    button {
+      margin-top: map-get($spacers, block);
+      margin-bottom: map-get($spacers, block);
+    }
+  }
+  td.product-spec--image {
+    background-color: $white;
+    position: relative;
+    button {
+      position: absolute;
+      right: -3px;
+      top: 3px;
+      background: $gray-100;
+      border: solid $white 1px;
+      border-radius: 12px;
+    }
+    a {
+      display: flex;
+      border: solid 1px $gray-100;
+    }
+  }
+  th,
+  td {
+    padding: map-get($spacers, 2);
+    border-right: 12px solid $white;
+    width: 300px;
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+    }
+  }
+  tr > *:first-child {
+    margin-left: 0;
+    position: sticky;
+    left:0;
+    z-index: 990;
+    background-color: $gray-100;
+    padding: map-get($spacers, 2);
+    padding-right: map-get($spacers, block);
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    &.spec-comparison-tool {
+      &__form {
+        background-color: $white;
+      }
+    }
+  }
+}
