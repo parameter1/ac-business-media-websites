@@ -1117,10 +1117,10 @@
   dependencies:
     "@parameter1/base-cms-object-path" "^4.40.3"
 
-"@parameter1/base-cms-marko-web-gam@^4.40.3":
-  version "4.40.3"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-gam/-/base-cms-marko-web-gam-4.40.3.tgz#cd9a2f8e9f3210bc35f611f84b7dd24cfe11ccc1"
-  integrity sha512-otcgBqSfMfSkZCTaDX9XsZfuod4d+wczV3s5dIx9W3wPbYXxxgkpYY2FeG68ReDmWcji945T25Gd3v+1BYeDeQ==
+"@parameter1/base-cms-marko-web-gam@^4.55.1":
+  version "4.55.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-gam/-/base-cms-marko-web-gam-4.55.1.tgz#185a3ae5b152e2a6a3bc3c1d0c035de338f8af6e"
+  integrity sha512-dspR9gNVoXcHOCsc82piGC9d8iJXjU9hADy4SzSIwu0XoIHcKIzlivvBqKx9rExiEpeW2mNZH/6VS/kxTNsiBA==
   dependencies:
     "@parameter1/base-cms-marko-web-deferred-script-loader" "^4.40.3"
     "@parameter1/base-cms-object-path" "^4.40.3"
@@ -1339,16 +1339,16 @@
     graphql-tag "^2.12.6"
     object-path "^0.11.8"
 
-"@parameter1/base-cms-marko-web-theme-monorail@^4.54.2":
-  version "4.54.2"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.54.2.tgz#836d80c3e6dbc001f8eac9589807a40b31981f17"
-  integrity sha512-LvR2xGitr/i/tTIh7wsKO5kJVjNaLbddmpUaSuqB3peiaCUxCRPXPpWmcztleLwvbxl+SfH+UGOYg1GTXbCwXw==
+"@parameter1/base-cms-marko-web-theme-monorail@^4.55.1":
+  version "4.55.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.55.1.tgz#2ca86fe1da4bd46edfd63a6053c9bb5ac199231a"
+  integrity sha512-vCrPzLqyH1k/QLTqARk8V/5PKbMSl2wtE6GsLWCGiyW+j8yI28pT/vLKRSJKRoMCyxjyD4cWxtjVgnM4BhL2zQ==
   dependencies:
     "@parameter1/base-cms-dayjs" "^4.5.12"
     "@parameter1/base-cms-image" "^4.47.1"
     "@parameter1/base-cms-inflector" "^4.5.12"
     "@parameter1/base-cms-marko-web-deferred-script-loader" "^4.40.3"
-    "@parameter1/base-cms-marko-web-gam" "^4.40.3"
+    "@parameter1/base-cms-marko-web-gam" "^4.55.1"
     "@parameter1/base-cms-marko-web-gtm" "^4.40.3"
     "@parameter1/base-cms-marko-web-html-sitemap" "^4.40.3"
     "@parameter1/base-cms-marko-web-icons" "^4.36.8"
@@ -1376,10 +1376,10 @@
     node-fetch "^2.6.9"
     ua-parser-js "^1.0.33"
 
-"@parameter1/base-cms-marko-web@^4.54.2":
-  version "4.54.2"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.54.2.tgz#3a96260c6f16c2fdd2729ecf7d78489888bda06a"
-  integrity sha512-kKOtriMmpnHrH73SmyjN1JJ12ZzCsJmSC1bBpFUsOeTmkYsQxmqF3R4eQYviAp71l50Ee5NYpNv+JVn9O4bkxQ==
+"@parameter1/base-cms-marko-web@^4.55.2":
+  version "4.55.2"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.55.2.tgz#2d8b5bcd9099eac6a22b1888af28bc22100b3555"
+  integrity sha512-TyYWPnOuJs/rGRWHNjMect/k3KJuTGynHF4jRjyes94KVg4zXNlv3Gk0yx+07NHFsOMQ26XHz6nSZELz95M/Bg==
   dependencies:
     "@godaddy/terminus" "^4.11.2"
     "@parameter1/base-cms-apollo-ssr" "^4.5.12"
@@ -8663,25 +8663,7 @@ proto-list@~1.2.1:
   resolved "https://registry.yarnpkg.com/proto-list/-/proto-list-1.2.4.tgz#212d5bfe1318306a420f6402b8e26ff39647a849"
   integrity sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==
 
-protobufjs@^7.0.0:
-  version "7.2.6"
-  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-7.2.6.tgz#4a0ccd79eb292717aacf07530a07e0ed20278215"
-  integrity sha512-dgJaEDDL6x8ASUZ1YqWciTRrdOuYNzoOf27oHNfdyvKqHr5i0FV7FSLU+aIeFjyFgVxrpTOtQUi0BLLBymZaBw==
-  dependencies:
-    "@protobufjs/aspromise" "^1.1.2"
-    "@protobufjs/base64" "^1.1.2"
-    "@protobufjs/codegen" "^2.0.4"
-    "@protobufjs/eventemitter" "^1.1.0"
-    "@protobufjs/fetch" "^1.1.0"
-    "@protobufjs/float" "^1.0.2"
-    "@protobufjs/inquire" "^1.1.0"
-    "@protobufjs/path" "^1.1.2"
-    "@protobufjs/pool" "^1.1.0"
-    "@protobufjs/utf8" "^1.1.0"
-    "@types/node" ">=13.7.0"
-    long "^5.0.0"
-
-protobufjs@^7.2.4:
+protobufjs@^7.0.0, protobufjs@^7.2.4:
   version "7.2.6"
   resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-7.2.6.tgz#4a0ccd79eb292717aacf07530a07e0ed20278215"
   integrity sha512-dgJaEDDL6x8ASUZ1YqWciTRrdOuYNzoOf27oHNfdyvKqHr5i0FV7FSLU+aIeFjyFgVxrpTOtQUi0BLLBymZaBw==

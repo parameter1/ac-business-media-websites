@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@parameter1/base-cms-marko-core": "^4.54.2",
-    "@parameter1/base-cms-marko-web": "^4.54.2",
-    "@parameter1/base-cms-marko-web-gam": "^4.40.3",
+    "@parameter1/base-cms-marko-web": "^4.55.2",
+    "@parameter1/base-cms-marko-web-gam": "^4.55.1",
     "@parameter1/base-cms-marko-web-gtm": "^4.40.3",
     "@parameter1/base-cms-marko-web-icons": "^4.36.8",
     "@parameter1/base-cms-marko-web-leaders": "^4.43.2",
