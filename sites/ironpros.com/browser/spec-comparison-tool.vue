@@ -13,7 +13,9 @@
             class="custom-select"
             @change="updateSelectableProducts()"
           >
-            <option value=""> Select Company... </option>
+            <option value="">
+              Select Company...
+            </option>
             <option
               v-for="(c) in companies"
               :key="c.id"
@@ -40,6 +42,7 @@
             </option>
           </select>
           <button
+            :disabled="canAdd"
             class="spec-comparison-tool__add-btn"
             title="Add Product"
             @click="updateSelectedProducts()"
@@ -176,6 +179,10 @@ export default {
     productToCompare: [],
   }),
   computed: {
+    canAdd() {
+      if (this.isLoading) return false;
+      return Object.keys(this.productsToCompare).length === 5;
+    },
     productsToCompare() {
       if (this.isLoading) return this.productsWithSpecs;
       return this.productsWithSpecs;
