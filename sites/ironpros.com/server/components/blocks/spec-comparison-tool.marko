@@ -1,10 +1,16 @@
 $ const { content } = input;
 $ const specServiceUrl = process.env.IRONPROS_PRODUCT_SPECS_SERVICE_UR
-
-<marko-web-browser-component
-  name="SiteSpecComparison"
-  props={
-    product: content,
-    specServiceUrl
-  }
-/>
+<div class="node-list node-list--section-feed node-list--flush-x">
+  <div class="node-list__header">
+    Spec & Compare.
+  </div>
+  <div class="node-list__nodes">
+    <marko-web-browser-component
+      name="SiteSpecComparison"
+      props={
+        product: content,
+        specServiceUrl
+      }
+    />
+  </div>
+</div>
