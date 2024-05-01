@@ -81,7 +81,7 @@
         </td>
       </tr>
       <tr>
-        <th />
+        <th class="product-spec--name" />
         <td
           v-for="(p) in productsWithSpecs"
           :key="p.id"

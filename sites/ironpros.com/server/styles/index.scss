@@ -159,10 +159,16 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
     width: 300px;
     min-width: 300px;
     max-width: 300px;
+    border-bottom: solid 1px $gray-300;
     &.spec-comparison-tool {
       &__form {
         background-color: $white;
+        border-bottom: none;
       }
+    }
+    &.product-spec--name {
+      background-color: $white;
+      border-bottom: none;
     }
   }
 }
