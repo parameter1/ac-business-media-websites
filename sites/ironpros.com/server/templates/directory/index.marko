@@ -1,0 +1,210 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+import { set, get, getAsArray } from "@parameter1/base-cms-object-path";
+
+import queryFragment from "@ac-business-media/package-global/graphql/fragments/directory-section-featured-feed-block";
+
+$ const { id, alias, name, pageNode } = input;
+
+
+$ const { $markoWebSearch: search, GAM, i18n } = out.global;
+$ if (alias !== get(search, "config.rootAlias")) {
+  set(out.global.$markoWebSearch, 'input.assignedToWebsiteSectionIds', [id]);
+  set(out.global.$markoWebSearch, 'query.assignedToWebsiteSectionIds', `${id}`);
+}
+$ const currentPage = search.getCurrentPage();
+
+<theme-website-section-page id=id alias=alias name=name>
+  <@head>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <marko-web-p1-events-track-website-section node=section />
+      <global-gam-section-targeting|{ adChannels: ad_channels }| obj=section>
+        <marko-web-gtm-website-section-context|{ context }| alias=alias>
+          $ context.ad_channels = ad_channels;
+          <marko-web-gtm-push data=context />
+        </marko-web-gtm-website-section-context>
+      </global-gam-section-targeting>
+    </marko-web-resolve-page>
+    <${input.head} />
+  </@head>
+  <if(GAM && GAM.enableRevealAd)>
+    <@above-container>
+      <marko-web-resolve-page|{ data: section }| node=pageNode>
+        $ const aliases = hierarchyAliases(section);
+        <theme-reveal-ad-handler select-all-targets=true path=GAM.getAdUnit({ name: "reskin", aliases }).path id="reveal-ad" />
+      </marko-web-resolve-page>
+    </@above-container>
+  </if>
+  <@page>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      $ const childAliases = section.children.edges.map((edge) => edge.node.alias).sort();
+      <marko-web-page-wrapper modifiers=["directory"]>
+        <!-- @todo figure out how to configure this or hide outside ironPros -->
+        <@section>
+          <global-partners-block alias=alias title="Titanium Partners" />
+        </@section>
+        <@section|{ blockName }|>
+          <theme-breadcrumbs modifiers=["directory", "content-page"]>
+            $ const children = getAsArray(section, "hierarchy");
+            <for|child| of=children>
+                <@item>
+                  $ const link = search.input.searchQuery ? `/${child.alias}?searchQuery=${search.input.searchQuery}` : `/${child.alias}`;
+                  <marko-web-link title=child.name href=link>${child.name}</marko-web-link>
+                </@item>
+            </for>
+          </theme-breadcrumbs>
+          <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
+            <if(currentPage > 1)>${value}: Page ${currentPage}</if>
+            <else>${value}</else>
+          </marko-web-website-section-name>
+          <marko-web-website-section-description block-name=blockName obj=section />
+        </@section>
+        <@section>
+          <div class="row">
+            <div class="col-lg-3">
+              <marko-web-search-filter-container title={ value: "Filters" }>
+                <marko-web-search-content-types-filter />
+                <marko-web-search-website-sections-by-alias-filter>
+                  <@title value="Categories" />
+                </marko-web-search-website-sections-by-alias-filter>
+              </marko-web-search-filter-container>
+              <if(GAM)>
+                <div class="mb-block">
+                  <theme-gam-define-display-ad
+                    name="top-rotation"
+                    position="section_page"
+                    aliases=aliases
+                    modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+                    class="mb-0"
+                  />
+                  <theme-gam-define-display-ad
+                    name="rotation-rail"
+                    position="section_page"
+                    aliases=aliases
+                    modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+                    class="mb-0"
+                  />
+                </div>
+              </if>
+            </div>
+            <div class="col-lg-9">
+              <div class="row">
+                <div class="col-xl-9">
+                  <marko-web-search-form>
+                    <@block class="search-form" />
+                    <div class="form-group search-form__group">
+                      <label for="search-phrase" class="sr-only">Enter search phrase</label>
+                      <marko-web-search-input
+                        id="search-phrase"
+                        class="form-control"
+                        placeholder="Enter search phrase..."
+                      />
+                    </div>
+                    <button type="submit" class="btn btn-primary search-form__btn">
+                      Search
+                    </button>
+                  </marko-web-search-form>
+                </div>
+                <div class="col-xl-3">
+                  <global-directory-sort-by />
+                </div>
+              </div>
+              <if(currentPage === 1)>
+                <!-- Set featured alias to directory or rootLevel Alias(directory/rootLevel) -->
+                $ const featuredAlias = alias.split('/').length >= 3 ? alias.split('/').slice(0,2).join('/') : alias;
+                $ const featuredQueryParams = {
+                  sectionAlias: featuredAlias,
+                  limit: 25,
+                  optionName: 'Pinned' ,
+                  queryFragment,
+                }
+                <marko-web-query|{ nodes: featuredNodes }| name='website-scheduled-content' params=featuredQueryParams>
+                  <if(featuredNodes.length)>
+                    <div class="directory-featured-listing__item--wrapper directory-featured-listing__item--open">
+                      <marko-web-node-list
+                        inner-justified=false
+                        flush-x=false
+                        flush-y=false
+                        modifiers=["directory-section-feed", "featured-listings"]
+                      >
+                        <@header>
+                          Featured
+                          <theme-menu-toggle-button
+                            class='directory-featured-listing__toggle'
+                            targets=['.directory-featured-listing__item--wrapper']
+                            toggle-class='directory-featured-listing__item--open'
+                            initially-expanded=true
+                            icon-modifiers=["sm"]
+                            icon-name="chevron-up"
+                            expanded-icon-name="chevron-down"
+                          />
+                        </@header>
+                        <@nodes nodes=featuredNodes>
+                          <@slot|{ node }|>
+                            <theme-section-feed-content-node node=node />
+                          </@slot>
+                        </@nodes>
+                      </marko-web-node-list>
+                    </div>
+                  </if>
+                </marko-web-query>
+              </if>
+              <if(search.input.searchQuery || alias !== 'directory')>
+                <!-- Enforce it this way to not mess with the config, changing at the config level will auto apply sort -->
+                $ const sortField = (search.input.sortField === "SCORE" && search.input.searchQuery === '') ? "NAME" : search.input.sortField;
+                $ const sortOrder = sortField === 'NAME' ? 'ASC' : search.input.sortOrder;
+                <marko-web-search-query|{ nodes, totalCount }|
+                  limit=search.getLimit()
+                  skip=search.getSkip()
+                  sortField=sortField
+                  sortOrder=sortOrder
+                  content-types=search.input.contentTypes
+                  search-query=search.input.searchQuery
+                  assigned-to-website-section-ids=[section.id]
+                  query-fragment=queryFragment
+                >
+                  <marko-web-page-wrapper modifiers=["no-padding-x"]>
+                    <@section modifiers=["search-results"]>
+                      <div>${new Intl.NumberFormat().format(totalCount)} ${i18n("Results")}</div>
+                      <marko-web-search-selected-filters />
+                    </@section>
+                    <if(nodes.length)>
+                      <@section>
+                        <marko-web-node-list
+                          inner-justified=true
+                          flush-x=true
+                          flush-y=false
+                          modifiers=["directory-section-feed"]
+                        >
+                          <@nodes nodes=nodes>
+                            <@slot|{ node }|>
+                              <theme-directory-section-feed-content-node node=node with-teaser=true display-image=true with-dates=false />
+                            </@slot>
+                          </@nodes>
+                        </marko-web-node-list>
+                        <marko-web-search-pagination-controls total-count=totalCount>
+                          <@link class="btn btn-primary" />
+                        </marko-web-search-pagination-controls>
+                      </@section>
+                    </if>
+                  </marko-web-page-wrapper>
+                </marko-web-search-query>
+              </if>
+              <else-if(alias === 'directory')>
+                <for|childAlias| of=childAliases>
+                    <theme-content-card-deck-block
+                      alias=childAlias
+                      query-params={ includeContentTypes: ["Product"], limit: 4 }
+                    />
+                </for>
+              </else-if>
+            </div>
+          </div>
+        </@section>
+        <@section>
+          <site-titanium-product-carousel-block section-id=id/>
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+</theme-website-section-page>
