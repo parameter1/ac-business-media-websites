@@ -110,6 +110,9 @@ const factory = ({ useLinkInjectedBody = false, withMagazineSchedules = false } 
         }
       }
     }
+    ... on ContentProduct {
+      downloadUrl
+    }
     company {
       id
       labels

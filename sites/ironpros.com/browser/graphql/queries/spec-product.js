@@ -5,6 +5,11 @@ fragment SpecProductFragment on Content {
   id
   type
   name
+
+  ... on ContentProduct {
+    downloadUrl
+  }
+
   company {
     id
     name
