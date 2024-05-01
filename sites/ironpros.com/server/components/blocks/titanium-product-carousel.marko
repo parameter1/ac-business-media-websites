@@ -4,7 +4,7 @@ import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql
 import loadTitaniumCompanyProducts from "../../loaders/titanium-company-products";
 
 $ const withViewMore = defaultValue(input.withViewMore, true);
-$ const { title, alias } = input;
+$ const { title = "Featrue Products", alias } = input;
 $ const { apollo } = out.global;
 
 $ const blockName = "node-carousel";
@@ -27,15 +27,6 @@ $ const promise = loadTitaniumCompanyProducts(apollo, {
     <if(title)>
       <@header block-name=blockName modifiers=modifiers>
         <marko-web-website-section-name block-name=blockName obj={ name: title, canonicalPath: alias } link=true  />
-        <marko-web-element block-name=blockName name="header-right">
-          <if(withViewMore && alias)>
-            <marko-web-element block-name=blockName name="view-more">
-              <marko-web-link href=alias>
-                View more &raquo;
-              </marko-web-link>
-            </marko-web-element>
-          </if>
-        </marko-web-element>
       </@header>
     </if>
     <@body block-name=blockName modifiers=modifiers>
