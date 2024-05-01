@@ -166,3 +166,11 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
     }
   }
 }
+
+.sticky-top {
+  .newsletter-form {
+    label[for="sign-on-email"] {
+      display: none;
+    }
+  }
+}
