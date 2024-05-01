@@ -11,5 +11,8 @@
   },
   "<site-spec-comparison-tool>": {
     "template": "./spec-comparison-tool.marko"
+  },
+  "<site-titanium-product-carousel-block>": {
+    "template": "./titanium-product-carousel.marko"
   }
 }

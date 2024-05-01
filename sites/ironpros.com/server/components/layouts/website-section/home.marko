@@ -72,15 +72,8 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
               </div>
             </div>
           </@section>
-          <!-- <@section>
-            <global-node-carousel-block title="IronPros TV" with-teaser=true query-params={ contentTypes: ["Product"], limit: 12 } modifiers=["dark"] />
-          </@section> -->
           <@section>
-            <global-node-carousel-block
-              title="Featured Products"
-              with-teaser
-              query-params={ contentTypes: ["Product"], limit: 12 }
-            />
+            <site-titanium-product-carousel-block />
           </@section>
           <if(!hasUser)>
             <@section|{ aliases }| modifiers=["break-container"]>
