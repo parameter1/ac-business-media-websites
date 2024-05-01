@@ -7,7 +7,6 @@ const websiteSections = require('./website-section');
 const specs = require('./specs');
 const directoryTemplate = require('../templates/directory/index');
 
-
 module.exports = (app) => {
   // Homepage
   home(app);
