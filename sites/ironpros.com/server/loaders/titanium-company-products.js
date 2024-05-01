@@ -38,7 +38,7 @@ module.exports = async (apolloClient, {
   });
 
   const companyIds = shuffle(companies.nodes.map((node) => node.id));
-  const cIds = companyIds.length > 5 ? shuffle(companyIds).slice(0, 5) : shuffle(companyIds);
+  const cIds = companyIds.length > 5 ? companyIds.slice(0, 5) : shuffle(companyIds);
   const productNodes = [];
   if (cIds && cIds.length !== 0) {
     const productLimit = Math.ceil(25 / cIds.length);
