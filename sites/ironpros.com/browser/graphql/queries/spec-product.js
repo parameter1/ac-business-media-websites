@@ -13,7 +13,7 @@ fragment SpecProductFragment on Content {
   siteContext { path }
   primaryImage {
     id
-    src(input: { options: { auto: "format,compress", q: 70, h: 100, w: 100, mask: "ellipse", fit: "facearea", facepad: 3 } })
+    src(input: { options: { auto: "format,compress", q: 70, h: 300, w: 300, fit: "fillmax" } })
   }
 }
 `;
