@@ -5,6 +5,7 @@ const content = require('./content');
 const dynamicPages = require('./dynamic-page');
 const websiteSections = require('./website-section');
 const specs = require('./specs');
+const directoryTemplate = require('../templates/directory/index');
 
 module.exports = (app) => {
   // Homepage
@@ -38,6 +39,7 @@ module.exports = (app) => {
       215627,
       215628,
     ],
+    template: directoryTemplate,
   });
 
   // Native-X story rendering

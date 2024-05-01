@@ -7,12 +7,14 @@ const omeda = require('./omeda');
 const omedaIdentityX = require('./omeda-identity-x');
 const identityXOptInHooks = require('./identity-x-opt-in-hooks');
 const pageDetails = require('./page-details');
+const newsletter = require('./newsletter');
 const search = require('./search');
 
 module.exports = {
   headerTagName: 'iron-site-header',
   footerTagName: 'iron-site-footer',
   // Module configs
+  newsletter,
   useLinkInjectedBody: false,
   contentMeter,
   identityX,

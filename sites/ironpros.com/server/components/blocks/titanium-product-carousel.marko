@@ -4,56 +4,42 @@ import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql
 import loadTitaniumCompanyProducts from "../../loaders/titanium-company-products";
 
 $ const withViewMore = defaultValue(input.withViewMore, true);
-$ const { title, alias } = input;
+$ const { title = "Featured Products", sectionId } = input;
 $ const { apollo } = out.global;
 
 $ const blockName = "node-carousel";
 $ const modifiers = getAsArray(input, "modifiers");
 
 $ const promise = loadTitaniumCompanyProducts(apollo, {
-  // ...(sectionId && {sectionId: sectionId})
+  ...(sectionId && {sectionId: sectionId})
 });
 <marko-web-resolve|{ resolved }| promise=promise>
   $ const nodes = getAsArray(resolved, "products.nodes");
-  <marko-web-node-list
-    inner-justified=true
-    flush-x=true
-    flush-y=false
-    block-name=blockName
-    modifiers=modifiers
-    collapsible=false
-    header=title
-  >
-    <if(title)>
-      <@header block-name=blockName modifiers=modifiers>
-        <marko-web-website-section-name block-name=blockName obj={ name: title, canonicalPath: alias } link=true  />
-        <marko-web-element block-name=blockName name="header-right">
-          <if(withViewMore && alias)>
-            <marko-web-element block-name=blockName name="view-more">
-              <marko-web-link href=alias>
-                View more &raquo;
-              </marko-web-link>
-            </marko-web-element>
-          </if>
-        </marko-web-element>
-      </@header>
-    </if>
-    <@body block-name=blockName modifiers=modifiers>
-      <marko-web-browser-component
-        name="GlobalNodeCarousel"
-        props={
-          nodes,
-          withTeaser: input.withTeaser
-        }
-        ssr=true
-      />
-    </@body>
-    <if(withViewMore && alias)>
-      <@footer block-name=blockName modifiers=[...modifiers, "view-more"]>
-        <marko-web-website-section-name obj={ name: title, canonicalPath: alias } link=true>
-          View More &raquo;
-        </marko-web-website-section-name>
-      </@footer>
-    </if>
-  </marko-web-node-list>
+  <if(nodes && nodes.length)>
+    <marko-web-node-list
+      inner-justified=true
+      flush-x=true
+      flush-y=false
+      block-name=blockName
+      modifiers=modifiers
+      collapsible=false
+      header=title
+    >
+      <if(title)>
+        <@header block-name=blockName modifiers=modifiers>
+          <marko-web-website-section-name block-name=blockName obj={ name: title } />
+        </@header>
+      </if>
+      <@body block-name=blockName modifiers=modifiers>
+        <marko-web-browser-component
+          name="GlobalNodeCarousel"
+          props={
+            nodes,
+            withTeaser: input.withTeaser
+          }
+          ssr=true
+        />
+      </@body>
+    </marko-web-node-list>
+  </if>
 </marko-web-resolve>
