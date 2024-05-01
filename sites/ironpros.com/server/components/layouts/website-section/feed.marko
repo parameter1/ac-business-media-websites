@@ -180,6 +180,10 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
     </else>
   </@section>
 
+  <@section>
+    <site-titanium-product-carousel-block section-id=id/>
+  </@section>
+
   <for|s| of=sections>
     <@section|{ blockName, section, aliases }| modifiers=s.modifiers>
       <${s.renderBody}
