@@ -32,8 +32,8 @@
   "dependencies": {
     "@ac-business-media/package-directory": "^2.9.2",
     "@ac-business-media/refresh-theme": "^2.9.3",
-    "@parameter1/base-cms-marko-core": "^4.54.2",
-    "@parameter1/base-cms-marko-web": "^4.55.2",
+    "@parameter1/base-cms-marko-core": "^4.55.4",
+    "@parameter1/base-cms-marko-web": "^4.55.4",
     "@parameter1/base-cms-object-path": "^4.40.3",
     "@parameter1/base-cms-utils": "^4.40.3",
     "@parameter1/base-cms-web-cli": "^4.40.3",
