@@ -253,7 +253,8 @@ export default {
           // headers: {},
         });
         getAsArray(data, 'data.websiteScheduledContent.edges').forEach((doc) => companies.push(doc.node));
-        this.companies = companies;
+        // @todo figure out below sort this if we continut to use websitreScheduledContent
+        this.companies = companies.sort((a, b) => a.name.localeCompare(b.name));
       } catch (error) {
         this.error = error.message;
       } finally {
@@ -284,6 +285,8 @@ export default {
           variables: { input },
         });
         getAsArray(data, 'data.websiteScheduledContent.edges').forEach((doc) => this.selectableProducts.push(doc.node));
+        this.selectableProducts = this.selectableProducts
+          .sort((a, b) => a.name.localeCompare(b.name));
       } catch (error) {
         this.error = error.message;
       } finally {
