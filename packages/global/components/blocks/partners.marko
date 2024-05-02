@@ -15,7 +15,7 @@ $ const queryParams = {
 };
 $ const { title } = input;
 $ const blockName = "partners";
-$ const queryName = input.alias ? "website-scheduled-content" : "all-published-content";
+$ const queryName = "website-scheduled-content";
 
 <marko-web-query|{ nodes: allNodes }| name=queryName params=queryParams>
   <marko-web-block name=blockName>
