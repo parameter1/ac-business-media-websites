@@ -1,0 +1,20 @@
+.node-carousel {
+  &--titanium-prodcuts {
+    .node__contents .node__body--carousel {
+      padding-bottom: 0;
+      .node__title {
+        -webkit-line-clamp: 2;
+        height: 5ex;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        overflow: hidden;
+      }
+    }
+    .node__company {
+      &::before {
+        content: "From: ";
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+}
