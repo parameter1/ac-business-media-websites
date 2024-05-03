@@ -23,9 +23,6 @@ module.exports = {
   omeda,
   omedaIdentityX,
   identityXOptInHooks,
-  gcse: {
-    id: 'NOT-SETUP', // '@TODO-Configure '003355913687346718228:la4zrhjf2r9',
-  },
   // Site configs
   idxNavItems: {
     enable: process.env.IDX_NAV_ENABLE || false,
@@ -61,7 +58,7 @@ module.exports = {
   ],
   podcastLinks: [],
   gtm: {
-    containerId: 'GTM-NOTSET',
+    containerId: 'GTM-KZ2ZT5J',
   },
   inquiry: {
     enabled: true,
