@@ -8,7 +8,7 @@ $ const { title = "Featured Products", sectionId } = input;
 $ const { apollo } = out.global;
 
 $ const blockName = "node-carousel";
-$ const modifiers = ["titanium-prodcuts", ...getAsArray(input, "modifiers")];
+$ const modifiers = ["titanium-products", ...getAsArray(input, "modifiers")];
 
 $ const promise = loadTitaniumCompanyProducts(apollo, {
   ...(sectionId && {sectionId: sectionId})
