@@ -69,9 +69,12 @@ $theme-section-header-font: $theme-header-font-family;
 .node-list--section-feed .node-list__header,
 .section-list-deck .node-list__header,
 .node-carousel .node-carousel__header,
+.node-carousel .node__title,
 .related-stories .related-stories__header,
 .partners .partners__header,
-.node-list .node__title {
+.node-list .node__title,
+.page--website-section .page-wrapper__website-section-name,
+.welcome-box__title {
   font-family: $theme-header-font-family
 }
 
