@@ -71,7 +71,8 @@ $theme-section-header-font: $theme-header-font-family;
 .node-carousel .node-carousel__header,
 .related-stories .related-stories__header,
 .partners .partners__header,
-.node-list .node__title {
+.node-list .node__title,
+.page--website-section .page-wrapper__website-section-name {
   font-family: $theme-header-font-family
 }
 
