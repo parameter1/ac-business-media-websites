@@ -81,7 +81,7 @@
         </td>
       </tr>
       <tr>
-        <th />
+        <th class="product-spec--name" />
         <td
           v-for="(p) in productsWithSpecs"
           :key="p.id"
@@ -117,6 +117,26 @@
           </common-link>
         </td>
       </tr>
+      <tr>
+        <th class="product-spec--download-url">
+          Download URL:
+        </th>
+        <td
+          v-for="(p) in productsWithSpecs"
+          :key="p.id"
+          class="product-spec--download-url"
+        >
+          <common-link
+            v-if="p.downloadUrl"
+            :href="p.downloadUrl"
+            title="Product URL"
+            class="spec-comparison-product-download-url"
+            @click="emitProdurctDownloadUrlClick('Product Download URL', ...arguments)"
+          >
+            <desktop-download />
+          </common-link>
+        </td>
+      </tr>
       <tr v-for="(s) in specList" :key="s.key">
         <th>{{ s.label }}</th>
         <td v-for="(p) in productsWithSpecs" :key="p.id">
@@ -140,6 +160,7 @@
 </template>
 
 <script>
+import DesktopDownload from '@parameter1/base-cms-marko-web-icons/browser/desktop-download.vue';
 import CommonLink from './common/link.vue';
 import ProductSpec from './common/product-spec.vue';
 import appendSpecs from './utils/append-specs-to-products';
@@ -150,6 +171,7 @@ import specProductQuery from './graphql/queries/spec-product';
 
 export default {
   components: {
+    DesktopDownload,
     ProductSpec,
     CommonLink,
   },
@@ -231,7 +253,8 @@ export default {
           // headers: {},
         });
         getAsArray(data, 'data.websiteScheduledContent.edges').forEach((doc) => companies.push(doc.node));
-        this.companies = companies;
+        // @todo figure out below sort this if we continut to use websitreScheduledContent
+        this.companies = companies.sort((a, b) => a.name.localeCompare(b.name));
       } catch (error) {
         this.error = error.message;
       } finally {
@@ -262,6 +285,8 @@ export default {
           variables: { input },
         });
         getAsArray(data, 'data.websiteScheduledContent.edges').forEach((doc) => this.selectableProducts.push(doc.node));
+        this.selectableProducts = this.selectableProducts
+          .sort((a, b) => a.name.localeCompare(b.name));
       } catch (error) {
         this.error = error.message;
       } finally {

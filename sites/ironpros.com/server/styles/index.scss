@@ -1,32 +1,29 @@
 // https://stackoverflow.com/questions/17248915/css-attribute-selector-for-existing-but-non-empty-attributes
 /**
- * Requires
- */
- @use "sass:meta";
-
- /**
-  * Select current scope only if a given attribute is set
-  * @param {string} $attribute - Attribute name, default: 'class'
-  * @param {boolean} $empty - Allow empty attribute
-  * @param {string} $error - Error message prefix
-  * @output Wraps given content styles to apply only if the current scope element has the given attribute
-  */
- @mixin attr-isset($attribute: 'class', $empty: false, $error: 'attr-isset::') {
-   @if meta.content-exists() != true {
-     @error '#{$error}@content is required';
-   }
-   @if $empty {
-     &[#{$attribute}] {
-       @content;
-     }
-   } @else {
-     &[#{$attribute}]:not([#{$attribute}='']) {
-       @content;
-     }
-   }
- }
-
-
+* Requires
+*/
+@use "sass:meta";
+/**
+* Select current scope only if a given attribute is set
+* @param {string} $attribute - Attribute name, default: 'class'
+* @param {boolean} $empty - Allow empty attribute
+* @param {string} $error - Error message prefix
+* @output Wraps given content styles to apply only if the current scope element has the given attribute
+*/
+@mixin attr-isset($attribute: 'class', $empty: false, $error: 'attr-isset::') {
+  @if meta.content-exists() != true {
+    @error '#{$error}@content is required';
+  }
+  @if $empty {
+    &[#{$attribute}] {
+      @content;
+    }
+  } @else {
+    &[#{$attribute}]:not([#{$attribute}='']) {
+      @content;
+    }
+  }
+}
 $theme-site-header-breakpoints: (
   hide-primary: 1100px,
   hide-secondary: 700px,
@@ -58,11 +55,25 @@ $theme-site-footer-primary-bg-color:    $primary !default;
 $theme-site-footer-secondary-bg-color:  #6f7c90 !default;
 
 // Fonts
+@import "./fonts";
 $skin-font-family-primary: "DM Sans", sans-serif;
 $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 
+$theme-header-font-family: "integralcf-demibold", sans-serif !default;
+
+$theme-section-header-font: $theme-header-font-family;
 
 @import "@ac-business-media/package-global/scss/core";
+
+.node-list .node-list__header,
+.node-list--section-feed .node-list__header,
+.section-list-deck .node-list__header,
+.node-carousel .node-carousel__header,
+.related-stories .related-stories__header,
+.partners .partners__header,
+.node-list .node__title {
+  font-family: $theme-header-font-family
+}
 
 @import "@parameter1/base-cms-marko-web-photoswipe/scss/main";
 
@@ -73,6 +84,8 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 @import "./components/page-cover-image";
 @import "./components/content-page";
 @import "./components/company-page";
+@import "./components/spec-comparison-tool";
+@import "./components/titanium-products";
 
 .page-wrapper {
   $self: &;
@@ -103,74 +116,17 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
   }
 }
 
-
-.spec-comparison-tool {
-  &__form {
-    background-color: $white;
-    display: flex;
-    flex-direction: column;
-    label {
-      font-weight: $font-weight-bold;
-    }
-    select {
-      margin-bottom: map-get($spacers, block);
-    }
-    button {
-      margin-top: map-get($spacers, block);
-      margin-bottom: map-get($spacers, block);
-    }
-  }
-  td.product-spec--image {
-    background-color: $white;
-    position: relative;
-    button {
-      position: absolute;
-      right: -3px;
-      top: 3px;
-      background: $gray-100;
-      border: solid $white 1px;
-      border-radius: 12px;
-    }
-    a {
-      display: flex;
-      border: solid 1px $gray-100;
-    }
-  }
-  th,
-  td {
-    padding: map-get($spacers, 2);
-    border-right: 12px solid $white;
-    width: 300px;
-    @include media-breakpoint-up(md) {
-      @include make-col(4);
-    }
-    @include media-breakpoint-up(lg) {
-      @include make-col(4);
-    }
-  }
-  tr > *:first-child {
-    margin-left: 0;
-    position: sticky;
-    left:0;
-    z-index: 990;
-    background-color: $gray-100;
-    padding: map-get($spacers, 2);
-    padding-right: map-get($spacers, block);
-    width: 300px;
-    min-width: 300px;
-    max-width: 300px;
-    &.spec-comparison-tool {
-      &__form {
-        background-color: $white;
-      }
-    }
-  }
-}
-
 .sticky-top {
   .newsletter-form {
     label[for="sign-on-email"] {
       display: none;
     }
+  }
+}
+
+.site-navbar {
+  $self: &;
+  &__logo {
+    height: 60px;
   }
 }

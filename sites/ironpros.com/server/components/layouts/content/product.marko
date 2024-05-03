@@ -28,7 +28,19 @@ $ const displayInquiry = (content) => {
       <theme-content-page-breadcrumbs section=primarySection />
       <marko-web-content-name tag="h1" block-name=blockName obj=content />
       <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
-      <theme-content-attribution obj=content elements=["company"] />
+      <div class="page-attribution">
+        $ const { company } = content;
+        <div class="page-attribution__content-company-name">
+          <if(company.primaryImage && company.primaryImage.src)>
+            <marko-web-content-name tag="span" block-name="page-attribution" obj=company link=true>
+              <global-company-logo content=company />
+            </marko-web-content-name>
+          </if>
+          <else>
+            <marko-web-content-name tag="span" block-name="page-attribution" obj=company link=true />
+          </else>
+        </div>
+      </div>
     </div>
   </@section>
 
