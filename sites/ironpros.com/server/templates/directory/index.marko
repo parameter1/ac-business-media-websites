@@ -5,8 +5,9 @@ import queryFragment from "@ac-business-media/package-global/graphql/fragments/d
 
 $ const { id, alias, name, pageNode } = input;
 
+$ const { $markoWebSearch: search, GAM, i18n, site } = out.global;
+$ const pageDetails = site.getAsObject("pageDetails");
 
-$ const { $markoWebSearch: search, GAM, i18n } = out.global;
 $ if (alias !== get(search, "config.rootAlias")) {
   set(out.global.$markoWebSearch, 'input.assignedToWebsiteSectionIds', [id]);
   set(out.global.$markoWebSearch, 'query.assignedToWebsiteSectionIds', `${id}`);
@@ -43,6 +44,7 @@ $ const currentPage = search.getCurrentPage();
         <@section>
           <global-partners-block alias=alias title="Titanium Partners" />
         </@section>
+
         <@section|{ blockName }|>
           <theme-breadcrumbs modifiers=["directory", "content-page"]>
             $ const children = getAsArray(section, "hierarchy");
@@ -88,6 +90,11 @@ $ const currentPage = search.getCurrentPage();
               </if>
             </div>
             <div class="col-lg-9">
+              <if(pageDetails[alias] && pageDetails[alias].body && currentPage === 1)>
+                <div class="row">
+                  <global-page-details-block content=pageDetails[alias] />
+                </div>
+              </if>
               <div class="row">
                 <div class="col-xl-9">
                   <marko-web-search-form>
@@ -204,6 +211,12 @@ $ const currentPage = search.getCurrentPage();
         <@section>
           <site-titanium-product-carousel-block section-id=id/>
         </@section>
+        <if(pageDetails[alias] && pageDetails[alias].expandedBody && currentPage === 1)>
+          <@section>
+            $ const expandedBodyModel = { ...pageDetails[alias], body: pageDetails[alias].expandedBody }
+            <global-page-details-block content=expandedBodyModel />
+          </@section>
+        </if>
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
   </@page>
