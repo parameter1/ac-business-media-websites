@@ -214,7 +214,7 @@ $ const currentPage = search.getCurrentPage();
         <if(pageDetails[alias] && pageDetails[alias].expandedBody && currentPage === 1)>
           <@section>
             $ const expandedBodyModel = { ...pageDetails[alias], body: pageDetails[alias].expandedBody }
-            <global-page-details-block content=expandedBodyModel />
+            $!{pageDetails[alias].expandedBody}
           </@section>
         </if>
       </marko-web-page-wrapper>
