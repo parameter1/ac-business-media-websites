@@ -1,3 +1,4 @@
+const { asyncRoute } = require('@parameter1/base-cms-utils');
 const directory = require('@ac-business-media/package-global/routes/directory');
 const nativeX = require('@ac-business-media/package-global/routes/native-x');
 const home = require('./home');
@@ -8,6 +9,17 @@ const specs = require('./specs');
 const directoryTemplate = require('../templates/directory/index');
 
 module.exports = (app) => {
+  /**
+   * Redirect the Baluun long path to the short path
+   * short path should be redirected to the correct new URL
+   */
+  app.use(asyncRoute(async (req, res, next) => {
+    const { path: p } = req;
+    if (p.match(/^\/(en-us|company)/) && p.match(/\/company\/[a-z0-9]{32}\/.+?\/[a-z0-9]{32}$/)) {
+      res.redirect(301, p.replace(/\/[a-z0-9]{32}$/, ''));
+    }
+    return next();
+  }));
   // Homepage
   home(app);
 
