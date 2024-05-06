@@ -1,5 +1,5 @@
 import convert from "@parameter1/base-cms-marko-web-native-x/utils/convert-story-to-content";
-import { getAsArray } from "@parameter1/base-cms-object-path";
+import { getAsArray, getAsObject } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 $ const {
@@ -86,6 +86,44 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
   <@section|{ blockName, section, aliases }|>
     <global-partners-block title="Titanium Partners" />
   </@section>
+  <if(p.page === 1)>
+    <@section|{ blockName, section, aliases }|>
+      $ const { tocSections } = getAsObject(site, `config.pageDetails.${alias}`);
+      <for|{ header, nodes, index }| of=tocSections >
+        <div class="node-list node-list--section-list node-list--section-list-toc">
+          <div class="node-list__header">
+            ${header.name}
+          </div>
+        </div>
+
+        <div class="card-deck-flow card-deck-flow--section-list-toc card-deck-flow--6-cols">
+          $ console.log(header, nodes, index);
+          <for|{ name, href, src }| of=nodes>
+            <div class="card-deck-flow__node">
+              <div class="node node--image-top node--flush node--card node--full-height node--article-content-type">
+                <div class="node__contents">
+                  <div class="node__image-wrapper node__image-wrapper--align-top">
+                    <a href=href class="node__image-inner-wrapper node__image-inner-wrapper--fluid-3by2">
+                      <img src=src class="node__image" alt=name width="250" height="250">
+                    </a>
+                  </div>
+                  <div class="node__body">
+                    <div class="node__contents node__contents--body">
+                      <h5 class="node__title">
+                        <a href=href>
+                          ${name}
+                        </a>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </for>
+        </div>
+      </for>
+    </@section>
+  </if>
   <@section|{ blockName, section, aliases }|>
     <if(alias !== "premium-content" || !nxConfig.domainName)>
       <global-section-feed-wrapper
