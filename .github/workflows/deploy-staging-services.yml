@@ -1,0 +1,90 @@
+name: Deploy services (Staging)
+
+on:
+  push:
+    branches: [ staging ]
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+    - id: tag_version
+      run: |
+        REF=$(echo $GITHUB_REF | cut -d / -f 3)
+        [[ "$GITHUB_REF" =~ ^refs/tags.*$ ]] && VERSION="$REF" || VERSION="${REF}-${GITHUB_SHA::7}"
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+    outputs:
+      version: ${{ steps.tag_version.outputs.version }}
+
+  notify-start:
+    needs: [version]
+    uses: parameter1/actions/.github/workflows/notify-start.yml@main
+    secrets: inherit
+    with:
+      version: ${{ needs.version.outputs.version }}
+
+  post-deploy-failure:
+    if: failure()
+    needs:
+      - notify-start
+      - deploy-services
+    uses: parameter1/actions/.github/workflows/notify-fail.yml@main
+    secrets: inherit
+    with:
+      slack-thread: ${{ needs.notify-start.outputs.slack-thread }}
+
+  post-deploy-complete:
+    if: success()
+    needs:
+      - notify-start
+      - deploy-services
+    uses: parameter1/actions/.github/workflows/notify-complete.yml@main
+    secrets: inherit
+    with:
+      slack-thread: ${{ needs.notify-start.outputs.slack-thread }}
+
+  build:
+    needs:
+    - version
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - { path: services/ironpros-product-specs, name: ironpros-product-specs }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v2
+        name: Login to ECR
+        with:
+          registry: ${{ vars.AWS_ECR_REGISTRY }}
+          username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Build docker image
+        uses: docker/build-push-action@v3
+        with:
+          file: ${{ matrix.service.path }}/Dockerfile
+          context: ./
+          push: true
+          tags: ${{ vars.AWS_ECR_REGISTRY }}/base-cms-websites:acbm-${{ matrix.service.name }}-${{ needs.version.outputs.version }}
+
+  deploy-services:
+    needs:
+    - version
+    - build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - { path: services/ironpros-product-specs, name: ironpros-product-specs, namespace: staging-websites-leonis }
+          - { path: services/ironpros-product-specs, name: ironpros-product-specs, namespace: staging-websites-tauron }
+    steps:
+      - name: Deploy to Kubernetes
+        run: |
+          npx @parameter1/rancher2cli dl \
+            --wait --namespace ${{ matrix.service.namespace }} \
+            basecms-website-service	acbm-${{ matrix.service.name }} \
+            ${{ vars.AWS_ECR_REGISTRY }}/base-cms-websites:acbm-${{ matrix.service.name }}-${{ needs.version.outputs.version }}
+        env:
+          RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
+          RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
+          RANCHER_URL: ${{ secrets.RANCHER_URL }}

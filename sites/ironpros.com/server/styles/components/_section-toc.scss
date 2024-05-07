@@ -1,0 +1,24 @@
+.card-deck-flow {
+  $self: &;
+
+  &--6-cols {
+    #{ $self } {
+      &__node {
+        // account for smaller container max-width and break earlier than normal
+        @include media-breakpoint-up(sm) {
+          @include make-col(12);
+        }
+        @include media-breakpoint-up(md) {
+          @include make-col(3);
+        }
+        @include media-breakpoint-up(lg) {
+          @include make-col(2);
+        }
+      }
+    }
+  }
+  &--section-list-toc {
+    @include marko-web-node-list-border(border-bottom);
+    margin-bottom: map-get($spacers, block);
+  }
+}

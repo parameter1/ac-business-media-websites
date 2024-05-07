@@ -13,10 +13,10 @@ module.exports = {
     'Whitepaper',
   ],
   assignedToWebsiteSectionIds: [
-    215556, // Equipment
-    215523, // Technology
-    215537, // Workwear
-    215519, // Product Category
+    87673, // Equipment
+    87640, // Technology
+    87654, // Workwear
+    87636, // Product Category
   ],
   defaultSortField: 'SCORE',
 };

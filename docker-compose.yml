@@ -54,6 +54,7 @@ x-site-command: &site-cmd
   command: ["dev"]
 
 volumes:
+  mongodb: {}
   yarn-cache: {}
 
 services:
@@ -179,14 +180,43 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/ironpros.com
     environment:
-      <<: [*env, *env-leonis]
+      <<: [*env, *env-tauron]
       PORT: 80
       EXPOSED_PORT: 9723
       LIVERELOAD_PORT: 19723
       OMEDA_INPUT_ID: ${IP_OMEDA_INPUT_ID-(unset)}
-      BASE_BROWSE_GRAPHQL_URI: ${IP_BASE_BROWSE_GRAPHQL_URI-https://base-browse.leonis.base.parameter1.com/graphql}
+      IRONPROS_PRODUCT_SPECS_SERVICE_URL: ${IRONPROS_PRODUCT_SPECS_SERVICE_URL-http://ironpros-product-specs}
+      BASE_BROWSE_GRAPHQL_URI: ${IP_BASE_BROWSE_GRAPHQL_URI-https://base-browse.tauron.base.parameter1.com/graphql}
       HOST: www-acbm-ip.dev.parameter1.com
     hostname: www-acbm-ip.dev.parameter1.com
     ports:
       - "9723:80"
       - "19723:19723"
+    depends_on:
+      - ironpros-product-specs
+
+  ironpros-product-specs:
+    <<: *node
+    working_dir: /root/services/ironpros-product-specs
+    entrypoint: ["yarn"]
+    command: ["dev"]
+    environment:
+      <<: *env
+      HOST: ironpros-product-specs.dev.parameter1.com
+      PORT: 80
+      EXPOSED_PORT: 23355
+      MONGO_URL: ${MONGO_URL-mongodb://mongodb}
+      MONGO_DB: ${MONGO_DB-ironpros}
+    hostname: ironpros-product-specs.dev.parameter1.com
+    ports:
+      - "23355:80"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    tty: true
+    image: mongo:5
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - "10200:27017"

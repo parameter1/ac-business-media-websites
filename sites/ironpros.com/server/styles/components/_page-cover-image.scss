@@ -5,7 +5,7 @@
       background: linear-gradient(-90deg, rgba(0,0,0,0.4),rgba(0,0,0,1)), #000000;
       background-repeat: no-repeat;
       height: 270px;
-      background-position-x: right;
+      background-position-x: center;
       background-position-y: center;
       max-width: none;
       background-size: auto 400px;
@@ -51,7 +51,7 @@
   &--website-section {
     .page-cover-image{
       &__wrapper {
-        background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/bucket.png');
+        background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/ip_home.6637e368f3449.png');
       }
     }
   }
@@ -77,48 +77,21 @@
   }
 }
 
-// Temp seciton overrides as examples.  with need to look at pulling off of section or parent sections somehow and setting as inline style.
-.page--website-section-214147 {
-  .page-cover-image{
-    &__wrapper {
-      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/crane.png');
-    }
-  }
-}
-.page--website-section-54436 {
-  .page-cover-image{
-    &__wrapper {
-      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/crane.png');
-    }
-  }
-}
-.page--website-section-214161 {
-  .page-cover-image{
-    &__wrapper {
-      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/skidsteer.png');
-    }
-  }
-}
-.page--website-section-54468 {
-  .page-cover-image{
-    &__wrapper {
-      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/skidsteer.png');
-    }
-  }
-}
-
-
 
 // homepage artwork
 .page {
-  &--website-section-215599 {
-    .page-cover-image{
+  &--website-section-87716 {
+    .page-cover-image {
       &__wrapper {
-        background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/ip-home.png');
+        background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/ip-home.png');
         background-position: center;
       }
       &__contents {
         text-align: center;
+        .page-wrapper__website-section-name,
+        .page-wrapper__website-section-description {
+          text-align: center;
+        }
         @media (min-width: $marko-web-document-container-max-width) {
           .page-wrapper__website-section-name {
             font-size: 60px;

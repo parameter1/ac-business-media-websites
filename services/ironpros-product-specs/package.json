@@ -1,0 +1,38 @@
+{
+  "name": "@ac-business-media/ironpros-product-spec",
+  "version": "1.1.3",
+  "author": "Josh Worden <josh@parameter1.com>",
+  "repository": "https://github.com/parameter1/ac-business-media/tree/master/services/ironpros-product-spec",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "gulp",
+    "lint": "eslint --ext .js --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint"
+  },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "dependencies": {
+    "@imgix/js-core": "3.8.0",
+    "@parameter1/base-cms-utils": "^4.40.3",
+    "@parameter1/mongodb": "^1.6.0",
+    "@parameter1/terminus": "^1.10.0",
+    "dayjs": "^1.11.7",
+    "envalid": "^7.2.1",
+    "express": "^4.18.2",
+    "newrelic": "^9.10.1"
+  },
+  "devDependencies": {
+    "@parameter1/gulp": "^1.1.21",
+    "eslint": "^8.34.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5"
+  }
+}

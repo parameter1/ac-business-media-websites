@@ -28,28 +28,35 @@ $ const displayInquiry = (content) => {
       <theme-content-page-breadcrumbs section=primarySection />
       <marko-web-content-name tag="h1" block-name=blockName obj=content />
       <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
-      <theme-content-attribution obj=content elements=["company"] />
+      <div class="page-attribution">
+        $ const { company } = content;
+        <div class="page-attribution__content-company-name">
+          <if(company.primaryImage && company.primaryImage.src)>
+            <marko-web-content-name tag="span" block-name="page-attribution" obj=company link=true>
+              <global-company-logo content=company />
+            </marko-web-content-name>
+          </if>
+          <else>
+            <marko-web-content-name tag="span" block-name="page-attribution" obj=company link=true />
+          </else>
+        </div>
+      </div>
     </div>
   </@section>
 
-  <@section|{ aliases, content, authors, resolved }| modifiers=["content-body"]>
+   <@section|{ aliases, content, authors }| modifiers=["content-body"]>
     $ const { primarySection } = content;
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-8">
         <global-content-contact-details obj=content />
         <div class="content-page-body">
           <theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
             $ let forceDisplay;
             $ if (type === "product") forceDisplay = "right";
-            <if(type === "product" && resolved.getEdgeNodesFor("images").length > 1)>
-              <marko-web-image-slider images=resolved.getEdgeNodesFor("images") image-options={ fit: "fill", fillColor: "#ffffff", ar: "16:9"} />
-            </if>
-            <else>
-              <theme-primary-image-block
-                obj=content.primaryImage
-                force-display=forceDisplay
-              />
-            </else>
+            <theme-primary-image-block
+              obj=content.primaryImage
+              force-display=forceDisplay
+            />
 
             $ const bodyId = `content-body-${content.id}`;
             <theme-body-with-injection
@@ -68,16 +75,22 @@ $ const displayInquiry = (content) => {
                 print-path=`/print/content/${content.id}`
               />
             </if>
-            $ const inquiry = site.getAsObject('inquiry');
-            <if(displayInquiry(content))>
-              <div class="mb-block">
-                <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
-              </div>
-            </if>
           </theme-page-contents>
         </div>
       </div>
+      <div class="col-lg-4 page-rail">
+        $ const inquiry = site.getAsObject('inquiry');
+        <if(displayInquiry(content))>
+          <div class="mb-block">
+            <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
+          </div>
+        </if>
+      </div>
     </div>
+  </@section>
+
+  <@section|{ content }|>
+    <site-spec-comparison-tool content=content />
   </@section>
 
   <@section|{ content, aliases }|>

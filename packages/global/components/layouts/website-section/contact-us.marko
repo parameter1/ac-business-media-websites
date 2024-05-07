@@ -1,0 +1,150 @@
+import convert from "@parameter1/base-cms-marko-web-native-x/utils/convert-story-to-content";
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { pagination: p, nativeX: nxConfig, site } = out.global;
+
+$ const { id, alias, name, pageNode } = input;
+$ const withNativeX = defaultValue(input.withNativeX, true);
+$ const sections = getAsArray(input, "sections");
+$ const perPage = 24;
+$ const withAds = alias === "premium-content" ? false : defaultValue(input.withAds, true);
+
+<global-website-section-default-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+  with-ads=withAds
+>
+  <@head>
+    <theme-section-feed-block|{ totalCount }| alias=alias count-only=true>
+      <theme-pagination-controls
+        per-page=perPage
+        total-count=totalCount
+        path=alias
+        as-rels=true
+      />
+    </theme-section-feed-block>
+  </@head>
+
+  <@section|{ blockName, section, aliases }|>
+    <theme-website-section-breadcrumbs
+      section=section
+      display-home=false
+      display-self=false
+      modifiers=["website-section"]
+    />
+
+    <if(input.beforeName)>
+      <${input.beforeName}
+        aliases=aliases
+        block-name=blockName
+        section=section
+      />
+    </if>
+
+    <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
+      <if(p.page > 1)>${value}: Page ${p.page}</if>
+      <else>${value}</else>
+    </marko-web-website-section-name>
+
+    <if(input.afterName)>
+      <${input.afterName}
+        aliases=aliases
+        block-name=blockName
+        section=section
+      />
+    </if>
+
+    $ const pageDetails = site.getAsObject("pageDetails");
+    <if(pageDetails[alias])>
+      <global-page-details-block content=pageDetails[alias] />
+    </if>
+    <else>
+      <marko-web-website-section-description obj=section />
+    </else>
+    <if(alias !== "premium-content" || !nxConfig.domainName)>
+      <global-section-feed-wrapper
+        aliases=aliases
+        alias=alias
+        flow=input.feedFlow
+        with-ads=withAds
+        query-params=input.queryParams
+        above-the-fold=true
+        ad-name=input.adName
+      >
+        <@node ...input.node />
+        <if(withNativeX)>
+          <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
+        </if>
+        <@rail>
+          <contact-us-form config-name="notificationDefaults" title=title />
+        </@rail>
+        <@rail/>
+      </global-section-feed-wrapper>
+    </if>
+    <else>
+      <div class="row">
+        <div class="col-lg-8">
+          <marko-web-native-x-publisher-stories|{ nodes, pageInfo }|
+            domain-name=nxConfig.domainName
+          >
+            <marko-web-node-list
+              inner-justified=true
+              flush-x=true
+              flush-y=false
+              modifiers=["section-feed"]
+            >
+              <@nodes nodes=nodes>
+                <@slot|{ node }|>
+                  <theme-section-feed-content-node
+                    node=convert(node)
+                    display-image=true
+                    with-section=false
+                    lazyload=false
+                    with-dates=true
+                    ...input.node
+                  />
+                </@slot>
+              </@nodes>
+            </marko-web-node-list>
+          </marko-web-native-x-publisher-stories>
+        </div>
+        <div class="col-lg-4">
+          <marko-web-identity-x-context|{ hasUser }|>
+            <if(!hasUser)>
+              <div class="sticky-top mb-block">
+                <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
+              </div>
+            </if>
+          </marko-web-identity-x-context>
+          <div class="mb-block">
+            <if(withAds)>
+              <theme-gam-define-display-ad
+                name="top-rotation"
+                position="section_page"
+                aliases=["premium-content"]
+                modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+                class="mb-0"
+              />
+            </if>
+            <else>
+              <theme-client-side-most-popular-list-block class="sticky-top" />
+            </else>
+          </div>
+        </div>
+      </div>
+    </else>
+  </@section>
+
+  <for|s| of=sections>
+    <@section|{ blockName, section, aliases }| modifiers=s.modifiers>
+      <${s.renderBody}
+        block-name=blockName
+        section=section
+        aliases=aliases
+      />
+    </@section>
+  </for>
+</global-website-section-default-layout>
