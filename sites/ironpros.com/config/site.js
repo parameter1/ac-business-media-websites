@@ -68,6 +68,25 @@ module.exports = {
     logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000',
   },
+  contactUs: {
+    title: 'Submit a comment.',
+    notificationDefaults: {
+      to: 'brian@parameter1.com',
+      branding: {
+        logo: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
+      },
+      support: {
+        email: 'support@ironpros.com',
+      },
+    },
+    to: 'brian@parameter1.com',
+    branding: {
+      logo: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
+    },
+    support: {
+      email: 'support@ironpros.com',
+    },
+  },
   pageDetails,
   search,
 };

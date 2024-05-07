@@ -18,6 +18,7 @@
     "@parameter1/base-cms-inflector": "^4.5.12",
     "@parameter1/base-cms-marko-core": "^4.55.4",
     "@parameter1/base-cms-marko-web": "^4.55.4",
+    "@parameter1/base-cms-marko-web-contact-us": "^4.40.3",
     "@parameter1/base-cms-marko-web-deferred-script-loader": "^4.40.3",
     "@parameter1/base-cms-marko-web-gam": "^4.55.1",
     "@parameter1/base-cms-marko-web-gcse": "^4.40.3",

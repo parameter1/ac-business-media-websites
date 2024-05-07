@@ -36,6 +36,7 @@
     "@ac-business-media/package-global": "^2.9.2",
     "@parameter1/base-cms-marko-core": "^4.55.4",
     "@parameter1/base-cms-marko-web": "^4.55.4",
+    "@parameter1/base-cms-marko-web-contact-us": "^4.40.3",
     "@parameter1/base-cms-marko-web-gtm": "^4.40.3",
     "@parameter1/base-cms-marko-web-icons": "^4.36.8",
     "@parameter1/base-cms-marko-web-identity-x": "^4.51.2",
