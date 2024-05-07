@@ -37,5 +37,19 @@
     "@with-featured": "boolean",
     "@latest-title": "string",
     "@more-prefix": "string"
+  },
+  "<site-website-section-webinars-feed-layout>": {
+    "template": "./webinars-feed.marko",
+    "@sections <section>[]": {},
+    "<before-name>": {},
+    "<after-name>": {},
+    "@feed-flow": "object",
+    "@id": "number",
+    "@ad-name": "string",
+    "@alias": "string",
+    "@name": "string",
+    "@page-node": "object",
+    "@node": "object",
+    "@with-ads": "boolean"
   }
 }
