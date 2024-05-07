@@ -90,9 +90,9 @@ $ const currentPage = search.getCurrentPage();
               </if>
             </div>
             <div class="col-lg-9">
-              <if(pageDetails[alias] && pageDetails[alias].body && currentPage === 1)>
+              <if(pageDetails[alias] && pageDetails[alias].introHTML && currentPage === 1)>
                 <div class="row">
-                  <global-page-details-block content=pageDetails[alias] />
+                  $!{pageDetails[alias].introHTML}
                 </div>
               </if>
               <div class="row">
@@ -211,10 +211,9 @@ $ const currentPage = search.getCurrentPage();
         <@section>
           <site-titanium-product-carousel-block section-id=id/>
         </@section>
-        <if(pageDetails[alias] && pageDetails[alias].expandedBody && currentPage === 1)>
+        <if(pageDetails[alias] && pageDetails[alias].expandedHTML && currentPage === 1)>
           <@section>
-            $ const expandedBodyModel = { ...pageDetails[alias], body: pageDetails[alias].expandedBody }
-            $!{pageDetails[alias].expandedBody}
+            $!{pageDetails[alias].expandedHTML}
           </@section>
         </if>
       </marko-web-page-wrapper>

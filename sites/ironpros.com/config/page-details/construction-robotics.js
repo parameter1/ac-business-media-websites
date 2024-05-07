@@ -1,0 +1,3 @@
+module.exports = {
+  introHTML: '<div><div class="node-list node-list--section-list">  <div class="node-list__header">    What are Construction Robotics?  </div>  <div class="node-list__body">    <p>While traditional construction equipment is advancing in automation, construction robots are coming to market to perform specific tasks that had previously not been addressed by traditional equipment. Contractors today can consider line marketing or layout robots, robots that perform dangerous or dirty functions, robots that lift or hold more weight than humans could, operate underwater or in enclosed spaces, or automate tasks ranging from drywall placement to roadway repair.</p></div></div></div>',
+};

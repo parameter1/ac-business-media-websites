@@ -35,15 +35,15 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress',
+      src: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=60&auto=format,compress',
       srcset: [
-        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=90&auto=format,compress 2x',
+        'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=120&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress',
+      src: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress',
       srcset: [
-        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=90&auto=format,compress 2x',
+        'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=90&auto=format,compress 2x',
       ],
     },
     corporate: corporate.logo,
@@ -65,7 +65,7 @@ module.exports = {
     directSend: true,
     sendTo: 'requestmoreinfo@acbusinessmedia.com',
     sendFrom: 'IronsPros.com <noreply@parameter1.com>',
-    logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
+    logo: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000',
   },
   pageDetails,

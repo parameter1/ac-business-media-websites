@@ -7,7 +7,7 @@ const { error } = console;
 const app = express();
 
 app.get('/hello-world', express.json(), asyncRoute(async (req, res) => {
-  console.log('hitting hellow wolrd: ');
+  // console.log('hitting hellow wolrd: ');
   res.send('hello world');
 }));
 

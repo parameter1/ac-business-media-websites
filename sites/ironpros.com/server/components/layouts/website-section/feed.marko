@@ -97,13 +97,12 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
         </div>
 
         <div class="card-deck-flow card-deck-flow--section-list-toc card-deck-flow--6-cols">
-          $ console.log(header, nodes, index);
           <for|{ name, href, src }| of=nodes>
             <div class="card-deck-flow__node">
               <div class="node node--image-top node--flush node--card node--full-height node--article-content-type">
                 <div class="node__contents">
                   <div class="node__image-wrapper node__image-wrapper--align-top">
-                    <a href=href class="node__image-inner-wrapper node__image-inner-wrapper--fluid-3by2">
+                    <a href=href class="node__image-inner-wrapper node__image-inner-wrapper--fluid-1by1">
                       <img src=src class="node__image" alt=name width="250" height="250">
                     </a>
                   </div>
