@@ -9,14 +9,20 @@ const specs = require('./specs');
 const directoryTemplate = require('../templates/directory/index');
 
 module.exports = (app) => {
-  /**
-   * Redirect the Baluun long path to the short path
-   * short path should be redirected to the correct new URL
-   */
   app.use(asyncRoute(async (req, res, next) => {
     const { path: p } = req;
+    /**
+   * Redirect the Balluun long path to the short path
+   * short path should be redirected to the correct new URL
+   */
     if (p.match(/^\/(en-us|company)/) && p.match(/\/company\/[a-z0-9]{32}\/.+?\/[a-z0-9]{32}$/)) {
       res.redirect(301, p.replace(/\/[a-z0-9]{32}$/, ''));
+    }
+    /**
+     * Redirect urls with /showroom/ to the respective company page
+     */
+    if (p.match(/^\/(en-us|company)/) && p.match(/\/showroom\//)) {
+      res.redirect(301, p.replace(/\/showroom\//, '/'));
     }
     return next();
   }));
