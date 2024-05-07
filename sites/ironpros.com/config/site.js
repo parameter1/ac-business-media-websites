@@ -63,9 +63,9 @@ module.exports = {
   inquiry: {
     enabled: true,
     directSend: true,
-    sendTo: 'requestmoreinfo@acbusinessmedia.com',
-    sendFrom: 'IronsPros.com <noreply@parameter1.com>',
-    logo: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
+    sendTo: 'sales@ironpros.com',
+    sendFrom: 'IronsPros.com <noreply@ironpros.com>',
+    logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000',
   },
   pageDetails,
