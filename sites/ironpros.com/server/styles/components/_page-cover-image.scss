@@ -77,26 +77,21 @@
   }
 }
 
-// Temp seciton overrides as examples.  with need to look at pulling off of section or parent sections somehow and setting as inline style.
-.page--website-section-214147 {
-  .page-cover-image{
-    &__wrapper {
-      background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/software.66351cb68452a.png');
-    }
-  }
-}
-
 
 // homepage artwork
 .page {
   &--website-section-87716 {
-    .page-cover-image{
+    .page-cover-image {
       &__wrapper {
         background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/ip-home.png');
         background-position: center;
       }
       &__contents {
         text-align: center;
+        .page-wrapper__website-section-name,
+        .page-wrapper__website-section-description {
+          text-align: center;
+        }
         @media (min-width: $marko-web-document-container-max-width) {
           .page-wrapper__website-section-name {
             font-size: 60px;
