@@ -1,5 +1,5 @@
 module.exports = {
-  body: '<p>IronPros is building the largest single collection of reviews, research and direct-purchase opportunities for workwear and consumable products in construction. Register for Free to gain full-access to deep software, SaaS and systems that can power your organization\'s efficiency and profits by utilising the most impactful con-tech in the market today.</p>',
+  body: '<p>IRONPROS is building the largest single collection of reviews, research and direct-purchase opportunities for workwear and consumable products in construction. Register for Free to gain full-access to deep software, SaaS and systems that can power your organization\'s efficiency and profits by utilising the most impactful con-tech in the market today.</p>',
   tocSections: [
     {
       header: {
