@@ -31,23 +31,6 @@ $ const blockName = "section-list";
   >
     <@header>
       <marko-web-website-section-name block-name=blockName obj=section link=true />
-      <marko-web-link class=`${blockName}__logo-link` href=`/${sectionAlias}` title=section.name >
-        <if(section.logo)>
-          $ const src = buildImgixUrl(section.logo.src, { w: 600 });
-          $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
-          <marko-web-img
-            src=src
-            srcset=srcset
-            alt=section.name
-            class=`${blockName}__logo`
-            lazyload=true
-          />
-        </if>
-      </marko-web-link>
-      $ const obj = { ...section, ...inputSection };
-
-      <marko-web-website-section-description block-name=blockName obj=section />
-
     </@header>
     <@nodes nodes=nodes>
       <@slot|{ node, index }|>
