@@ -9,7 +9,7 @@ const topics = [
 
 const secondary = [
   { href: '/webinars', label: 'Virtual Events' },
-  { href: '/page/tv', label: 'IronPros TV' },
+  { href: '/page/tv', label: 'IRONPROS TV' },
   { href: '/page/balboa-equipment-finance-calculator', label: 'Finance' },
 ];
 
