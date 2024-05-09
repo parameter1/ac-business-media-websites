@@ -1,6 +1,6 @@
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import { getAsObject } from "@parameter1/base-cms-object-path";
-import listFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-list-block";
+import cardFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-list-card-block";
 import sectionFragment from "@ac-business-media/package-global/graphql/fragments/section-info";
 import { buildImgixUrl } from "@parameter1/base-cms-image";
 
@@ -13,9 +13,9 @@ $ const withViewMore = defaultValue(input.withViewMore, true);
 $ const sectionAlias = inputSection && inputSection.alias ? inputSection.alias : alias;
 
 $ const queryParams = {
-  limit: 4,
+  limit: 3,
   ...getAsObject(input, "queryParams"),
-  queryFragment: listFragment,
+  queryFragment: cardFragment,
   sectionFragment,
   sectionAlias,
 };
@@ -33,16 +33,22 @@ $ const blockName = "section-list";
       <marko-web-website-section-name block-name=blockName obj=section link=true />
     </@header>
     <@nodes nodes=nodes>
-      <@slot|{ node, index }|>
+      <@slot|{node, index}|>
+        $ const withImage = !index ? true : false;
+        $ const modifiers = withImage ? [`${blockName}-card`] : [`${blockName}-item`];
+        $ const imagePosition = withImage ? "top" : "";
         <theme-content-node
-          display-image=false
+          display-image=withImage
+          image-position=imagePosition
           flush=true
-          modifiers=[`${blockName}-item`]
+          modifiers=modifiers
           with-teaser=false
           with-dates=false
           with-section=withSection
           node=node
-        />
+        >
+          <@image fluid=true width=400 />
+        </theme-content-node>
       </@slot>
     </@nodes>
     <if(withViewMore)>
