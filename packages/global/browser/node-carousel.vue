@@ -44,7 +44,7 @@
               </div>
             </a>
             <a
-              :href="node.company.cononicalPath"
+              :href="node.company.canonicalPath"
               :v-if="withCompany"
               class="node__company"
             >
