@@ -60,10 +60,10 @@
       &__wrapper {
         height: 100px;
         @include attr-isset('cover-image-path') {
-          height: 350px;
+          height: 270px;
           background-position-x: center;
           background-position-y: top;
-          background-size: auto 350px;
+          background-size: auto 270px;
         }
       }
     }
