@@ -9,7 +9,7 @@
     "id": "53ca8d671784f8066eb2c949",
     "tenant": "acbm_fcp",
     "account": "acbm",
-    "stack": "leonis",
+    "stack": "tauron",
     "key": "fcp",
     "deploy": {
       "staging": true
