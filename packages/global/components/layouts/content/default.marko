@@ -33,9 +33,10 @@ $ const displayPublishedDate = ["company", "contact", "whitepaper"].includes(typ
 $ const displayReadNext = showReadNextBlock && ["article"].includes(type);
 $ const displaySocialShare = ["contact"].includes(type) ? false : true;
 $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type);
+$ const displayRecommended = (displayOverlay) ? false : defaultValue(input.displayRecommended, true);
 
-$ const withAds = !showOverlay && !idxFormId;
-$ const loadMore = !showOverlay && !idxFormId;
+$ const withAds = !showOverlay; // && !idxFormId;
+$ const loadMore = !showOverlay; // && !idxFormId;
 
 <global-content-wrapper-layout
   id=id
@@ -287,6 +288,17 @@ $ const loadMore = !showOverlay && !idxFormId;
         </div>
       </div>
       <div class="col-lg-4 page-rail">
+        <if(withAds)>
+          <div class="mb-block">
+            <theme-gam-define-display-ad
+              name="top-rotation"
+              position="content_page"
+              aliases=aliases
+              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+              class="mb-0"
+            />
+          </div>
+        </if>
         <if(!idxFormId)>
           $ const excludeContentTypes = ["Contact", "Company", "Document", "TextAd", "Promotion"];
           <theme-latest-content-list-block
@@ -298,6 +310,12 @@ $ const loadMore = !showOverlay && !idxFormId;
             <@native-x index=1 name="related-content" aliases=aliases />
           </theme-latest-content-list-block>
         </if>
+        <else-if(displayRecommended)>
+          <div class="sticky-top">
+            <global-recommended-content-block query-params={ excludeContentIds: [content.id] } alias=primarySection.alias aliases=aliases />
+          </div>
+        </else-if>
+
       </div>
     </div>
   </@section>
