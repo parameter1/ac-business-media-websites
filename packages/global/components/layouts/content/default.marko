@@ -122,7 +122,6 @@ $ const loadMore = !showOverlay && !idxFormId;
               enabled=requiresRegistration
               required-access-level-ids=accessLevels
             >
-              $ console.log( idxFormId, displayIdxForm, contentIdxFormState)
               <if(idxFormId)>
                 <if(displayIdxForm)>
                   $ const body = getContentPreview({ body: content.body, selector: "p:lt(3)" });

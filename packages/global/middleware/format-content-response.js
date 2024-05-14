@@ -18,8 +18,6 @@ const formatContentResponse = ({ res, content }) => {
     res.locals.contentIdxFormState.cookie = cookie;
   }
 
-  // console.log('locals: ', res.locals.contentIdxFormState, surveyId, surveyType, content);
-
   if (res.locals.newsletterState) {
     const {
       initiallyExpanded,
