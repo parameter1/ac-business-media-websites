@@ -3,7 +3,7 @@ import { getAsArray, getAsObject, get } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
 import { shouldOverlay, restrictContentByReg, shouldTruncate } from "@parameter1/base-cms-marko-web-theme-monorail/utils/content-meter-helpers";
-import contentIframe from "../../../utils/content-iframe";
+import contentIframe from "@parameter1/base-cms-marko-web-theme-monorail/utils/content-iframe";
 
 $ const {
   site,
@@ -76,6 +76,9 @@ $ const loadMore = !showOverlay && !idxFormId;
         </default-theme-page-dates>
       </else-if>
       <global-sponsored-section-logo alias=primarySection.alias modifiers=["content-page"] class="mt-3" />
+      <if(content.magazineSchedules.length && site.get("magazine"))>
+        <a href="/subscribe" class="btn btn-primary mt-3 magazine-subscribe">Subscribe to Magazine</a>
+      </if>
       <if(displaySocialShare)>
         <marko-web-social-sharing
           path=content.siteContext.path
