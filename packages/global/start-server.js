@@ -81,8 +81,8 @@ module.exports = (options = {}) => {
       const i18n = (v) => v;
       set(app.locals, 'i18n', options.i18n || i18n);
 
-       // Install custom content gating middleware
-       contentGating(app);
+      // Install custom content gating middleware
+      contentGating(app);
 
       // Recaptcha
       set(app.locals, 'recaptcha', recaptcha);
