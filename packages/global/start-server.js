@@ -12,6 +12,7 @@ const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
 const sharedRoutes = require('./routes');
+const contentGating = require('./middleware/content-gating');
 const paginated = require('./middleware/paginated');
 // const omedaConfig = require('./config/omeda');
 const redirectHandler = require('./redirect-handler');
@@ -79,6 +80,9 @@ module.exports = (options = {}) => {
       // i18n
       const i18n = (v) => v;
       set(app.locals, 'i18n', options.i18n || i18n);
+
+       // Install custom content gating middleware
+       contentGating(app);
 
       // Recaptcha
       set(app.locals, 'recaptcha', recaptcha);
