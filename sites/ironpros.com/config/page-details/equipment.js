@@ -1,5 +1,5 @@
 module.exports = {
-  body: '<p>IronPros is the largest online database for research, intel and demo engagement for over 1,300 new in-market machines for the heavy equipment and construction industry. Register for Free to gain full-access to deep software, Saas and systems that can power your organization\'s efficiency and profits by utilising the most imactful con-tech in the market.</p>',
+  body: '<p>IRONPROS is the largest online database for research, intel and demo engagement for over 1,300 new in-market machines for the heavy equipment and construction industry. Register for Free to gain full-access to deep software, Saas and systems that can power your organization\'s efficiency and profits by utilising the most imactful con-tech in the market.</p>',
   tocSections: [
     {
       header: {

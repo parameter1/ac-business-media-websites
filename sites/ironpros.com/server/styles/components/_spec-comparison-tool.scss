@@ -53,6 +53,10 @@
     width: 300px;
     min-width: 300px;
     max-width: 300px;
+    @include media-breakpoint-down(sm) {
+      min-width: calc(50vw - 40px);
+      max-width: calc(50vw - 40px);
+    }
     border-bottom: solid 1px $gray-300;
     &.spec-comparison-tool {
       &__form {
