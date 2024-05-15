@@ -1,40 +1,49 @@
-import { getAsArray, get } from "@parameter1/base-cms-object-path";
+import { buildImgixUrl } from "@parameter1/base-cms-image";
+import { getAsArray, getAsObject, get } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
+import { shouldOverlay, restrictContentByReg, shouldTruncate } from "@parameter1/base-cms-marko-web-theme-monorail/utils/content-meter-helpers";
 import contentIframe from "@ac-business-media/package-global/utils/content-iframe";
 
-$ const { site, apollo, contentMeterState, GAM } = out.global;
-$ const { id, type, pageNode, ...rest } = input;
+$ const {
+  site,
+  contentGatingHandler,
+  contentMeterState,
+  contentIdxFormState,
+  req,
+  config,
+} = out.global;
+
+<!-- update contentIdxFormStateDisplayBase on the req cookies being present -->
+<!-- @todo figure out how to do this ahead of time within the content route if possible -->
+$ contentIdxFormState.displayForm = !Boolean(get(req, `cookies.${get(contentIdxFormState, 'cookie.name')}`));
+$ const { formId: idxFormId, displayForm: displayIdxForm, cookie: idxSuveyCookie } = contentIdxFormState;
+
+$ const showOverlay = shouldOverlay(contentMeterState);
+
+$ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStoryBlock, ...rest } = input;
 $ const sections = getAsArray(input, "sections");
 
 $ const displayOverlay = (contentMeterState) ? defaultValue(contentMeterState.displayOverlay, false) : false;
-$ const adInjectionContentTypes = ["article", "blog", "media-gallery", "news", "product"];
-$ const withAdInjection = false; //(displayOverlay) ? false : defaultValue(input.withAdInjection, adInjectionContentTypes.includes(type));
-$ const withAds = (displayOverlay) ? false : defaultValue(input.withAds, true);
 $ const withComments = (displayOverlay) ? false : defaultValue(input.withComments, true);
-$ const withCompany = defaultValue(input.withCompany, ["press-release", "product"].includes(type));
-$ const withLoadMore = (displayOverlay) ? false : defaultValue(input.withLoadMore, true);
-$ const withNewsletterSignup = (displayOverlay) ? false : defaultValue(input.withNewsletterSignup, true);
-$ const withPrimaryImage = defaultValue(input.withPrimaryImage, ["media-gallery"].includes(type) ? false : true);
-$ const withPublishedDate = defaultValue(input.withPublishedDate, ["company", "whitepaper"].includes(type) ? false : true);
-$ const withRecommended = (displayOverlay) ? false : defaultValue(input.withRecommended, true);
-$ const withRelatedStories = (displayOverlay) ? false : defaultValue(input.withRelatedStories, true);
-$ const withSocialShare = (displayOverlay) ? false : defaultValue(input.withSocialShare, ["contact"].includes(type) ? false : true);
-$ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
 
-$ const displayInquiry = (content) => {
-  if (site.get("inquiry.enabled") === false) return false;
-  if (type === "company" && get(content, "enableRmi") === true) return true;
-  if (type === "product" && get(content, "company.enableRmi") === true) return true;
-  return get(content, "company.enableRmi") || false;
-}
+$ const displayPrimaryImage = ["media-gallery"].includes(type) ? false : true;
+$ const displayPhotoswipe = ["media-gallery"].includes(type) || req.query.displayPhotoswipe ? true : false;
+$ const displayPublishedDate = ["company", "contact", "whitepaper"].includes(type) ? false : true;
+$ const displayReadNext = showReadNextBlock && ["article"].includes(type);
+$ const displaySocialShare = ["contact"].includes(type) ? false : true;
+$ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type);
+$ const displayRecommended = (displayOverlay) ? false : defaultValue(input.displayRecommended, true);
+
+$ const withAds = !showOverlay; // && !idxFormId;
+$ const loadMore = !showOverlay; // && !idxFormId;
 
 <global-content-wrapper-layout
   id=id
   type=type
   page-node=pageNode
   with-ads=withAds
-  load-more=withLoadMore
+  load-more=loadMore
   ...rest
 >
   <@section|{ blockName, content, aliases, authors }| modifiers=["content-header"]>
@@ -42,51 +51,48 @@ $ const displayInquiry = (content) => {
     <div class="content-page-header">
       <theme-content-page-breadcrumbs section=primarySection />
       <marko-web-content-name tag="h1" block-name=blockName obj=content />
-      <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
-      <if(withCompany)>
-        <theme-content-attribution obj=content elements=["company"] />
-      </if>
       <if(type !== "contact")>
         <if(authors.length === 1)>
-          <theme-author-published-node author=authors[0] content=content lazyload=false display-updated-date=false format=dateFormat />
+          <theme-author-published-node author=authors[0] content=content lazyload=false display-updated-date=false />
         </if>
-        <else-if(authors.length > 1)>
-          <theme-content-attribution obj=content elements=["authors"] />
-        </else-if>
+        <else>
+          <default-theme-content-attribution obj=content />
+        </else>
       </if>
-      <if(type === "news")>
-        <theme-content-attribution obj=content elements=["byline"] />
-      </if>
-      <if(type === "event" || type === "webinar")>
-        <theme-page-dates|{ blockName }|>
+      <if(type === "event")>
+        <default-theme-page-dates|{ blockName }|>
           <marko-web-content-starts tag="span" block-name=blockName obj=content />
           <if(content.starts !== content.ends)>
             <marko-web-content-ends tag="span" block-name=blockName obj=content />
           </if>
-        </theme-page-dates>
+        </default-theme-page-dates>
       </if>
-      <else-if(withPublishedDate && authors.length !== 1)>
-        <theme-page-dates|{ blockName }|>
-          <theme-content-published-node block-name=blockName obj=content display-updated-date=false format=dateFormat />
-        </theme-page-dates>
+      <else-if(displayPublishedDate && authors.length !== 1)>
+        <default-theme-page-dates|{ blockName }|>
+          <theme-content-published-node block-name=blockName obj=content display-updated-date=false />
+        </default-theme-page-dates>
       </else-if>
-
       <global-sponsored-section-logo alias=primarySection.alias modifiers=["content-page"] class="mt-3" />
       <if(content.magazineSchedules.length && site.get("magazine"))>
         <a href="/subscribe" class="btn btn-primary mt-3 magazine-subscribe">Subscribe to Magazine</a>
+      </if>
+      <if(displaySocialShare)>
+        <marko-web-social-sharing
+          path=content.siteContext.path
+          providers=["print", "facebook", "linkedin", "twitter", "pinterest"]
+          print-path=`/print/content/${content.id}`
+        />
       </if>
     </div>
   </@section>
 
   <@section|{ aliases, content, authors }| modifiers=["content-body"]>
-    $ const labels = getAsArray(content, "labels");
-    $ const isSponsored = labels.includes("Sponsored");
     $ const { primarySection } = content;
     <div class="row">
       <div class="col-lg-8">
         <global-content-contact-details obj=content />
         <div class="content-page-body">
-          <theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
+          <default-theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
             <if(content.embedCode)>
               $ const iframeContent = contentIframe(content);
               <marko-web-content-embed-code block-name=blockName obj=iframeContent />
@@ -94,7 +100,7 @@ $ const displayInquiry = (content) => {
             <else-if(type === "media-gallery")>
               <!-- <marko-web-image-slider images=images /> -->
             </else-if>
-            <else-if(withPrimaryImage)>
+            <else-if(displayPrimaryImage)>
               $ let forceDisplay;
               $ if (type === "contact") forceDisplay = "left";
               $ if (type === "video") forceDisplay = "none";
@@ -110,11 +116,75 @@ $ const displayInquiry = (content) => {
               </marko-web-link>
             </if>
 
-            $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired");
-            <marko-web-identity-x-access|context| enabled=requiresRegistration>
-              <if(!context.canAccess || context.requiresUserInput)>
-              <!-- <if(false)> -->
-                $ const body = getContentPreview({ body: content.body, selector: "p:nth-of-type(1)" });
+            $ const requiresRegistration = contentGatingHandler({ content }) || restrictContentByReg(contentMeterState, contentGatingHandler, content);
+            $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
+            <marko-web-identity-x-access|context|
+              enabled=requiresRegistration
+              required-access-level-ids=accessLevels
+            >
+              <if(idxFormId)>
+                <if(displayIdxForm)>
+                  $ const body = getContentPreview({ body: content.body, selector: "p:lt(3)" });
+                  <marko-web-content-body block-name=blockName obj={ body } />
+                  <div class="content-page-preview-overlay" />
+                  <marko-web-content-body block-name=blockName attrs={ style: "display: none;" } obj=content modifiers=["ld-json"] />
+                  <marko-web-identity-x-context|{ hasUser, user, application }|>
+                    <if(hasUser)>
+                      <marko-web-identity-x-form-access
+                        content=content
+                        user=user
+                        formId=idxFormId
+                        application=application
+                      />
+                    </if>
+                    <else>
+                      <marko-web-identity-x-non-auth-identify|{ user: identifiedUser }|>
+                        <marko-web-identity-x-form-access
+                          content=content
+                          user=identifiedUser
+                          formId=idxFormId
+                          application=application
+                        />
+                      </marko-web-identity-x-non-auth-identify>
+                    </else>
+                  </marko-web-identity-x-context>
+                </if>
+                <else>
+                  $ const bodyId = `content-body-${content.id}`;
+                  <theme-body-with-injection
+                    content=content
+                    aliases=[]
+                    block-name=blockName
+                    selector=bodyId
+                    preventHTMLInjection=true
+                  />
+                </else>
+              </if>
+              <else-if(shouldTruncate(contentMeterState))>
+                $ const body = showOverlay ? getContentPreview({ body: content.body, selector: "p:lt(3)" }) : getContentPreview({ body: content.body, selector: "p:nth-of-type(1)" });
+                <marko-web-content-body block-name=blockName obj={ body } >
+                  <@embed-options lazyloadImages=false/>
+                </marko-web-content-body>
+
+                <div class="content-page-preview-overlay" />
+                <if(!showOverlay)>
+                  <theme-content-page-gate
+                    can-access=context.canAccess
+                    is-logged-in=context.isLoggedIn
+                    has-required-access-level=context.hasRequiredAccessLevel
+                    requires-access-level=context.requiresAccessLevel
+                    requires-user-input=context.requiresUserInput
+                    messages=context.messages
+                    user-input-title="Step 2 of 2"
+                    profile-call-to-action=""
+                    profile-button-label="Create Account"
+                    profile-event-name="content_meter_profile"
+                  />
+                </if>
+                <marko-web-content-body block-name=blockName attrs={ style: "display: none;" } obj=content modifiers=["ld-json"] />
+              </else-if>
+              <else-if(!context.canAccess || context.requiresUserInput)>
+                $ const body = getContentPreview({ body: content.body, selector: "p:lt(3)" });
                 <marko-web-content-body block-name=blockName obj={ body } />
 
                 <div class="content-page-preview-overlay" />
@@ -128,19 +198,21 @@ $ const displayInquiry = (content) => {
                   messages=context.messages
                   content-gate-type="default"
                 />
-              </if>
+                <marko-web-content-body block-name=blockName attrs={ style: "display: none;" } obj=content modifiers=["ld-json"] />
+              </else-if>
               <else>
                 $ const bodyId = `content-body-${content.id}`;
-                $ const lazyloadFirstImage = withPrimaryImage && content.primaryImage;
                 <theme-body-with-injection
                   content=content
                   aliases=aliases
                   block-name=blockName
                   selector=bodyId
-                  preventHTMLInjection=(!withAdInjection && !isSponsored)
-                  mobile-leaderboard-ad-name="top-rotation-mobile"
-                  lazyload-first-image=lazyloadFirstImage
+                  preventHTMLInjection=!shouldInjectAds
                 />
+
+                $ const transcriptId = `content-transcript-${content.id}`;
+
+                <!-- Add Transcripts and allow for the ad injection -->
                 <if(content.transcript)>
                   $ const transcriptId = `content-transcript-${content.id}`;
                   <div id=`transcript-${id}` class="page-contents__content-transcript">
@@ -152,10 +224,11 @@ $ const displayInquiry = (content) => {
                       aliases=aliases
                       block-name=blockName
                       selector=transcriptId
-                      preventHTMLInjection=(!withAdInjection && !isSponsored)
+                      preventHTMLInjection=!shouldInjectAds
                     />
                   </div>
                 </if>
+
                 <!-- needs input -->
                 <if(input.afterBody)>
                   <${input.afterBody}
@@ -165,27 +238,13 @@ $ const displayInquiry = (content) => {
                   />
                 </if>
 
-                $ const sidebars = getAsArray(content, "sidebars").map((sidebar) => sidebar.body);
+                $ const sidebars = getAsArray(content, "sidebars").filter((sidebar) => sidebar.name !== "Table of Contents").map((sidebar) => sidebar.body);
                 <marko-web-content-sidebars block-name=blockName obj={ sidebars } />
-
-                <if(type === "webinar")>
-                  $ const isUpcoming = new Date(content.startDate) > Date.now();
-                  $ const btnLabel = (isUpcoming) ? "Register for Webinar" : "View Webinar";
-                  <marko-web-link
-                    class="my-block mb-block btn btn-primary btn-lg"
-                    href=content.linkUrl
-                    title=btnLabel
-                    target="_blank"
-                  >
-                    ${btnLabel}
-                  </marko-web-link>
-                </if>
-
                 <if(type === "document" || type === "whitepaper")>
-                  <theme-content-download obj=content>
-                    <@wufoo user-name=site.get("wufoo.userName") />
-                    <@link class="btn btn-primary" />
-                  </theme-content-download>
+                    <default-theme-content-download obj=content>
+                      <@wufoo user-name=site.get("wufoo.userName") />
+                      <@link class="btn btn-primary" />
+                    </default-theme-content-download>
                 </if>
                 <if(type !== "contact")>
                   <for|author| of=authors>
@@ -195,33 +254,41 @@ $ const displayInquiry = (content) => {
                   </for>
                 </if>
 
-                <if(withSocialShare)>
+                <if(displayReadNext)>
+                  <theme-read-next-block
+                    content-id=id
+                    section-id=primarySection.id
+                    published=content.published
+                  />
+                </if>
+
+                <theme-content-attribution obj=content elements=["company"] />
+
+                <if(displaySocialShare)>
                   <marko-web-social-sharing
                     path=content.siteContext.path
                     providers=["print", "facebook", "linkedin", "twitter", "pinterest"]
                     print-path=`/print/content/${content.id}`
                   />
                 </if>
+
+                <marko-web-identity-x-context|{ hasUser }|>
+                  <if(!hasUser)>
+                    <identity-x-newsletter-form-inline type="inlineContent" with-image=true />
+                  </if>
+                </marko-web-identity-x-context>
               </else>
             </marko-web-identity-x-access>
 
-            <if(content.magazineSchedules.length && site.get("magazine"))>
-              <a href="/subscribe" class="btn btn-primary mt-3 magazine-subscribe">Subscribe to Magazine</a>
-            </if>
-
-            <marko-web-identity-x-context|{ hasUser }|>
-              <if(!hasUser && withNewsletterSignup && !requiresRegistration)>
-                <global-identity-x-newsletter-form-inline type="inlineContent" with-image=false />
-              </if>
-            </marko-web-identity-x-context>
-            <if(withComments)>
+            <if(withComments && !idxFormId)>
               <theme-identity-x-comment-stream content=content />
             </if>
-          </theme-page-contents>
+
+          </default-theme-page-contents>
         </div>
       </div>
       <div class="col-lg-4 page-rail">
-        <if(withAds && !isSponsored)>
+        <if(withAds)>
           <div class="mb-block">
             <theme-gam-define-display-ad
               name="top-rotation"
@@ -232,46 +299,39 @@ $ const displayInquiry = (content) => {
             />
           </div>
         </if>
-        $ const inquiry = site.getAsObject('inquiry');
-
-        <if(displayInquiry(content))>
-          <div class="mb-block">
-            <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
-          </div>
+        <if(!idxFormId)>
+          $ const excludeContentTypes = ["Contact", "Company", "Document", "TextAd", "Promotion"];
+          <theme-latest-content-list-block
+            title=`Latest in ${primarySection.name}`
+            alias=primarySection.alias
+            query-params={ excludeContentTypes, excludeContentIds: [content.id] }
+            class="sticky-top"
+          >
+            <@native-x index=1 name="related-content" aliases=aliases />
+          </theme-latest-content-list-block>
         </if>
-        <if(withRecommended)>
+        <else-if(displayRecommended)>
           <div class="sticky-top">
             <global-recommended-content-block query-params={ excludeContentIds: [content.id] } alias=primarySection.alias aliases=aliases />
           </div>
-        </if>
+        </else-if>
+
       </div>
     </div>
   </@section>
 
-  <if(withRelatedStories)>
-    <@section|{ content }|>
+  <@section|{ aliases, content }|>
+    <if(!idxFormId)>
       <theme-related-stories-block
         content-id=content.id
         section-id=content.primarySection.id
         published=content.published
         with-native-x=true
-        native-x={ sectionName: 'Sponsored' }
-      />
-    </@section>
-  </if>
-
-  <if(!displayOverlay)>
-    <@section|{ content, aliases }|>
-      $ const showLeaderboardLabel = defaultValue(GAM.showLeaderboardLabel, false);
-      <theme-gam-define-display-ad
-        name="middle-leaderboard"
-        position="content_page"
-        aliases=aliases
-        show-label=true
-        modifiers=["inline-leaderboard"]
-      />
-    </@section>
-  </if>
+      >
+        <@native-x index=3 name="related-content" aliases=aliases />
+      </theme-related-stories-block>
+    </if>
+  </@section>
 
   <for|s| of=sections>
     <@section|{ blockName, content, aliases }| modifiers=s.modifiers>
