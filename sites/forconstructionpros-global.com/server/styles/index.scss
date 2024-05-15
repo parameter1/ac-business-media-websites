@@ -48,7 +48,8 @@ $info: #6c757d;
 
     &__name,
     &__description,
-    label {
+    label,
+    a {
       color: $white;
     }
     .btn-primary,
@@ -60,7 +61,8 @@ $info: #6c757d;
       background-color: #3F4043;
       .newsletter-signup-banner__name,
       .newsletter-signup-banner__description,
-      label {
+      label,
+      a {
         color: $white;
       }
       .btn-primary,
