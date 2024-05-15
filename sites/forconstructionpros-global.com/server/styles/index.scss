@@ -40,3 +40,34 @@ $info: #6c757d;
     @include button-variant($color, $color);
   }
 }
+
+.newsletter-form {
+  > .newsletter-signup-banner {
+    background-color: #3F4043;
+    color: $white;
+
+    &__name,
+    &__description,
+    label {
+      color: $white;
+    }
+    .btn-primary,
+    .btn-primary:hover {
+      background-color: $primary;
+      color: $black;
+    }
+    &--large {
+      background-color: #3F4043;
+      .newsletter-signup-banner__name,
+      .newsletter-signup-banner__description,
+      label {
+        color: $white;
+      }
+      .btn-primary,
+      .btn-primary:hover {
+        background-color: $primary;
+        color: $black;
+      }
+    }
+  }
+}
