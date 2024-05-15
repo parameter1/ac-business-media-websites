@@ -13,7 +13,7 @@ const form = {
 form.fieldRows.push(
   [
     {
-      label: 'Job Titile',
+      label: 'Job Title',
       id: '664370dc0635be5a37ae38f5',
       type: 'custom-select',
       required: true,
