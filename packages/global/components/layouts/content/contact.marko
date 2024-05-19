@@ -55,7 +55,7 @@ $ const perPage = 12;
     <global-section-feed-wrapper query-name="all-author-content" query-params={ contactId: id } path=req.path>
       <@header>${latestTitle}</@header>
       <@rail>
-        <theme-client-side-most-popular-list-block class="sticky-top" />
+        <theme-client-side-most-popular-list-block class="sticky-top" limit=5 />
       </@rail>
     </global-section-feed-wrapper>
   </@section>
