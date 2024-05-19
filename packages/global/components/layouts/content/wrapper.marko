@@ -92,7 +92,7 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
                   <@query-params excludeContentIds=[content.id] />
                   <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
                   <@rail>
-                    <theme-client-side-most-popular-list-block class="sticky-top" />
+                    <theme-client-side-most-popular-list-block class="sticky-top" limit=5 />
                   </@rail>
                 </global-section-feed-wrapper>
               </@section>
