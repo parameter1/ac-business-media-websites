@@ -298,7 +298,7 @@ $ const loadMore = !showOverlay; // && !idxFormId;
             query-params={ excludeContentTypes, excludeContentIds: [content.id] }
             class="sticky-top"
           >
-            <@native-x index=1 name="related-content" aliases=aliases />
+            <!-- <@native-x index=1 name="default" aliases=aliases /> -->
           </theme-latest-content-list-block>
         </if>
         <else-if(displayRecommended)>
@@ -319,7 +319,7 @@ $ const loadMore = !showOverlay; // && !idxFormId;
         published=content.published
         with-native-x=true
       >
-        <@native-x index=3 name="related-content" aliases=aliases />
+        <!-- <@native-x index=3 name="default" aliases=aliases /> -->
       </theme-related-stories-block>
     </if>
   </@section>

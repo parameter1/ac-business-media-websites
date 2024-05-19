@@ -2,7 +2,7 @@ const configureNativeX = require('@ac-business-media/package-global/config/nativ
 
 const config = configureNativeX();
 
-config.enabled = true;
+config.enabled = false;
 config.domainName = 'www.forconstructionpros.com';
 
 config
