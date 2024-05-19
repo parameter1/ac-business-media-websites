@@ -8,9 +8,9 @@ module.exports = ({
   const config = new GAMConfiguration(accountId, { basePath });
   config.enabled = enabled;
   config.lazyLoad = {
-    enabled: false, // set to true to enable lazy loading
-    fetchMarginPercent: 200, // fetch ad when one viewport away
-    renderMarginPercent: 100, // render ad when half viewport away
+    enabled: true, // set to true to enable lazy loading
+    fetchMarginPercent: 100, // fetch ad when one viewport away
+    renderMarginPercent: 50, // render ad when half viewport away
     mobileScaling: 2, // double these on mobile
   };
 
