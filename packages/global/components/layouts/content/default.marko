@@ -25,7 +25,7 @@ $ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStory
 $ const sections = getAsArray(input, "sections");
 
 $ const displayOverlay = (contentMeterState) ? defaultValue(contentMeterState.displayOverlay, false) : false;
-$ const withComments = (displayOverlay) ? false : defaultValue(input.withComments, true);
+$ const withComments = (displayOverlay) ? false : defaultValue(input.withComments, false);
 
 $ const displayPrimaryImage = ["media-gallery"].includes(type) ? false : true;
 $ const displayPhotoswipe = ["media-gallery"].includes(type) || req.query.displayPhotoswipe ? true : false;
