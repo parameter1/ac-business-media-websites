@@ -76,13 +76,6 @@ $ const loadMore = !showOverlay; // && !idxFormId;
       <if(content.magazineSchedules.length && site.get("magazine"))>
         <a href="/subscribe" class="btn btn-primary mt-3 magazine-subscribe">Subscribe to Magazine</a>
       </if>
-      <if(displaySocialShare)>
-        <marko-web-social-sharing
-          path=content.siteContext.path
-          providers=["print", "facebook", "linkedin", "twitter", "pinterest"]
-          print-path=`/print/content/${content.id}`
-        />
-      </if>
     </div>
   </@section>
 
