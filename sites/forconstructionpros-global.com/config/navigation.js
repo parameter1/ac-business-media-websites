@@ -18,7 +18,7 @@ const topics = [
 
 const secondary = [
   { href: '/directory', label: 'New Equipment Directory' },
-  { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
+  { href: 'https://www.ironpros.com', label: 'IRONPROS', target: '_blank' },
   { href: '/videos', label: 'Video Network' },
   { href: '/magazine', label: 'Magazines' },
   { href: '/events', label: 'Events' },
@@ -30,7 +30,7 @@ const secondary = [
 
 const exclusives = [
   { href: '/directory', label: 'New Equipment Directory' },
-  { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
+  { href: 'https://www.ironpros.com', label: 'IRONPROS', target: '_blank' },
   { href: '/specguide', label: 'Spec Guides' },
   { href: '/premium-content', label: 'Premium Content' },
   { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
