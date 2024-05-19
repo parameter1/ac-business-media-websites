@@ -44,14 +44,6 @@ $ const promise = homePageTopStoriesLoader(apollo, {
         />
         $ const aliases = hierarchyAliases(section);
         <marko-web-page-wrapper>
-          <@section|{ aliases }| modifiers=["first-sm"]>
-            <theme-gam-define-display-ad
-              name="top-leaderboard"
-              position="section-page"
-              aliases=aliases
-              modifiers=["inter-block"]
-            />
-          </@section>
           <@section class=["mt-3", "mb-3"]>
             <div class="row top-stories-row">
               $ const rowOneClass = (withFeatured) ? "col-lg-5" : "col-lg-6";
@@ -117,6 +109,14 @@ $ const promise = homePageTopStoriesLoader(apollo, {
                 </div>
               </div>
             </div>
+          </@section>
+
+          <@section|{ aliases }| modifiers=["first-sm"]>
+            <theme-gam-define-display-ad
+              name="top-leaderboard"
+              position="section-page"
+              aliases=aliases
+            />
           </@section>
 
           <@section>
