@@ -161,32 +161,6 @@ $ const promise = homePageTopStoriesLoader(apollo, {
               </@rail>
             </global-section-feed-wrapper>
           </@section>
-          <@section>
-            $ const adRows = [0, 1, 2];
-            <div class="content-card-deck__header">Sponsor Content</div>
-            <div class="row native-ad-row">
-              <for|rows| of=adRows>
-                <div class="col-lg-6">
-                  <theme-gam-define-display-ad
-                    name="sponsored-link"
-                    position="home_page"
-                    aliases=aliases
-                    modifiers=["center", "margin-auto-x"]
-                    show-label=false
-                  />
-                </div>
-                <div class="col-lg-6">
-                  <theme-gam-define-display-ad
-                    name="sponsored-link"
-                    position="home_page"
-                    aliases=aliases
-                    modifiers=["center", "margin-auto-x"]
-                    show-label=false
-                  />
-                </div>
-              </for>
-            </div>
-          </@section>
         </marko-web-page-wrapper>
       </marko-web-resolve-page>
     </@page>
