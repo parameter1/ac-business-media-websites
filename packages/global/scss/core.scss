@@ -392,9 +392,6 @@ label {
 .btn-secondary {
   @include skin-button($style: "secondary");
 }
-.sticky-top, .marko-web-search-filter-container--sticky {
-  top: 112px;
-}
 .sticky-top {
   z-index: initial;
 }
