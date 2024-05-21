@@ -168,4 +168,22 @@
       display: none;
     }
   }
+  &__items--seller {
+    font-size: 13px;
+    margin-top: initial;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-transform: initial;
+    padding-right: 15px;
+    a,
+    a:hover,
+    a:active,
+    a:visited {
+      color: $theme-site-navbar-primary-link-color;
+    }
+    @media (max-width: map-get($theme-site-header-breakpoints, hide-secondary)) {
+      display: none;
+    }
+  }
 }
