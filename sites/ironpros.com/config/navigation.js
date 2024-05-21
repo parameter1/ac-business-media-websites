@@ -11,6 +11,8 @@ const secondary = [
   { href: '/webinars', label: 'Virtual Events' },
   { href: '/page/tv', label: 'IRONPROS TV' },
   { href: '/page/balboa-equipment-finance-calculator', label: 'Finance' },
+  { href: '/premium-content', label: 'Premium Content' },
+  { href: 'https://www.ironprosforsellers.com/why-contribute-to-ironpros/', label: 'Expert Columns' },
 ];
 
 const utilities = [
