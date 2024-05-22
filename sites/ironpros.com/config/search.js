@@ -2,6 +2,7 @@ module.exports = {
   contentTypes: [
     'Article',
     'Blog',
+    'Company',
     'Event',
     'MediaGallery',
     'News',
