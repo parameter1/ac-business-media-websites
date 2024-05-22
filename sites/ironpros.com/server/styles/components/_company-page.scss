@@ -5,8 +5,8 @@
         margin-right: -20px;
         margin-left: -20px;
         @media (min-width: $marko-web-document-container-max-width) {
-          margin-left: calc(-50vw - -620px);
-          margin-right: calc(-50vw - -620px);
+          margin-left: calc(-50vw - -630px);
+          margin-right: calc(-50vw - -630px);
         }
         justify-self: end;
         width: 100vw;
@@ -30,12 +30,16 @@
           flex-direction: column;
         }
         &__logo {
-          margin-top: -100px;
+          min-height: 100px;
           padding: map-get($spacers, 1);
-          background-color: $white;
+          margin-top: -100px;
           margin-right: map-get($spacers, block);
+          display: flex;
+          align-items: center;
+          background-color: $white;
           img {
             margin-right: initial;
+            width: 100%;
           }
           @include media-breakpoint-down(sm) {
             margin-top: -50px;
@@ -50,6 +54,30 @@
           margin-top: map-get($spacers, 2);
         }
       }
+      &--titanium {
+        .ldp__title {
+          position: relative;
+          padding-right: 75px;
+          @include media-breakpoint-down(md) {
+            padding-right: 30px;
+          }
+          &:after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background:url("https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/titanium-check.png");
+            background-size: contain;
+            top: 5px;
+            right: 5px;
+            position: absolute;
+            display: inline-block;
+            @include media-breakpoint-down(md) {
+              width: 25px;
+              height: 25px;
+            }
+          }
+        }
+      }
       // Only set this way to match avobe media query logic
       .page-wrapper__company-social-info {
         margin-top: -40px;
@@ -58,7 +86,50 @@
         }
       }
     }
+    .page-contents {
+      &__content-sidebars {
+        @include theme-content-body();
+        display: flex;
+        flex-direction: column;
+        [data-embed-type=image] img {
+          border-radius: initial;
+        }
+      }
+      .page-company-contacts,
+      .node-list--company-categories-feed,
+      .page-company-contact-info,
+      .page-company-inquiry {
+        @include media-breakpoint-up(lg) {
+          display: none;
+        }
+      }
+    }
     .node-list {
+      .node-list__header {
+        button.node-list__header {
+          border: none;
+          margin: 0;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          padding: 0;
+        }
+      }
+      &--company-categories-feed {
+        .node-list__nodes{
+          height: 0;
+          overflow: hidden;
+        }
+        &.node-list--open {
+          .node-list__nodes{
+            height: auto;
+            transition: height 1s ease;
+            -moz-transition: height 1s ease;
+            -webkit-transition: height 1s ease;
+            -o-transition: height 1s ease;
+          }
+        }
+      }
       &--section-feed {
         > .node-list__header {
           margin-bottom: 0;
@@ -77,6 +148,42 @@
           overflow: scroll;
         }
       }
+      &--featured-videos {
+        .node-list__nodes {
+          margin-top: map-get($spacers, block);
+        }
+      }
+      .page-details {
+        &__label {
+          font-weight: $font-weight-bold;
+        }
+      }
+      .page-contents__content-sidebar {
+        background-color: initial;
+        border-left: none;
+        padding: 0;
+        margin-bottom: 0;
+        [data-embed-type][data-embed-align=left],
+        [data-embed-type][data-embed-align=right] {
+          width: calc(50% - .75rem);
+        }
+      }
+
+      &.page-company-contacts {
+        .node-list__nodes{
+          height: 0;
+          overflow: hidden;
+        }
+        &--open {
+          .node-list__nodes{
+            height: auto;
+            transition: height 1s ease;
+            -moz-transition: height 1s ease;
+            -webkit-transition: height 1s ease;
+            -o-transition: height 1s ease;
+          }
+        }
+      }
     }
     // display logic for show hide block on desktop vs mobile
     // @todo revist ordering of block to see if we can utilize display flex and positioning instead
@@ -84,14 +191,20 @@
 
       padding-top: 12px;
 
-      .page-company-details,
+      .page-company-contacts,
+      .node-list--company-categories-feed,
+      .page-company-contact-info,
       .page-company-inquiry {
-        @include media-breakpoint-down(sm) {
+        @include media-breakpoint-down(lg) {
           display: none;
         }
       }
-      .page-company-details {
+      .page-company-contacts {
         margin-bottom: 0;
+        .node-list__body {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
       }
       .page-company-inquiry {
         .node-list__header {
@@ -100,13 +213,34 @@
       }
     }
     .content-page-body {
-      .page-company-details,
-      .page-company-inquiry {
-        @include media-breakpoint-up(sm) {
-          display: none;
+      .carousel {
+        @include media-breakpoint-up(lg) {
+          margin-right: 0;
+          margin-left: 0;
         }
       }
     }
-
+    .content-page-latest-content {
+      .content-card-deck {
+        &__header {
+          &::before {
+            height: 0;
+            width: 0;
+          }
+          background-color: $gray-100;
+          color: $gray-800;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          padding-left: map-get($spacers, 3);
+          border-radius: 4px;
+          font-size: 16px;
+          line-height: 1.25rem;
+          text-transform: uppercase;
+        }
+        .card-deck-flow__node {
+          padding: map-get($spacers, block);
+        }
+      }
+    }
   }
 }

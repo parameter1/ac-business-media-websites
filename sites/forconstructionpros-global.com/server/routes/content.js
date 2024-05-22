@@ -1,7 +1,8 @@
 const contentMetering = require('@parameter1/base-cms-marko-web-theme-monorail/middleware/content-metering');
 
-const { withContent } = require('@parameter1/base-cms-marko-web/middleware');
-const { newsletterState, formatContentResponse } = require('@ac-business-media/package-global/middleware/newsletter-state');
+const withContent = require('@ac-business-media/package-global/middleware/with-content');
+const { formatContentResponse } = require('@ac-business-media/package-global/middleware/format-content-response');
+const { newsletterState } = require('@ac-business-media/package-global/middleware/newsletter-state');
 const loaderFragment = require('@ac-business-media/package-global/graphql/fragments/content-primary-section');
 const qf = require('@ac-business-media/package-global/graphql/fragments/content-page');
 const company = require('@ac-business-media/package-global/templates/content/company');

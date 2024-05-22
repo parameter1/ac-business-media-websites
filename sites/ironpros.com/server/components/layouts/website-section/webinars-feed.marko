@@ -1,0 +1,147 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+
+$ const { pagination: p, nativeX: nxConfig, site } = out.global;
+
+$ const { id, alias, name, pageNode } = input;
+$ const sections = getAsArray(input, "sections");
+$ const perPage = 12;
+$ const now = Date.now();
+
+$ const queryParams = {
+  includeContentTypes: ["Webinar"],
+};
+
+$ const upcomingQueryParams = {
+  ...queryParams,
+  beginningAfter: now,
+  sort: {
+    field: "startDate",
+    order: "asc",
+  },
+};
+
+$ const archiveQueryParams = {
+  ...queryParams,
+  beginningBefore: now,
+  sort: {
+    field: "startDate",
+    order: "desc",
+  },
+};
+
+<global-website-section-default-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+  with-ads=false
+>
+  <@head>
+    <theme-section-feed-block|{ totalCount }| alias=alias count-only=true>
+      <theme-pagination-controls
+        per-page=perPage
+        total-count=totalCount
+        path=alias
+        as-rels=true
+      />
+    </theme-section-feed-block>
+  </@head>
+
+  <@section|{ blockName, section, aliases }|>
+    <theme-website-section-breadcrumbs
+      section=section
+      display-home=false
+      display-self=false
+      modifiers=["website-section"]
+    />
+
+    <if(input.beforeName)>
+      <${input.beforeName}
+        aliases=aliases
+        block-name=blockName
+        section=section
+      />
+    </if>
+
+    <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
+      <if(p.page > 1)>${value}: Page ${p.page}</if>
+      <else>${value}</else>
+    </marko-web-website-section-name>
+
+    <if(input.afterName)>
+      <${input.afterName}
+        aliases=aliases
+        block-name=blockName
+        section=section
+      />
+    </if>
+
+    $ const pageDetails = site.getAsObject("pageDetails");
+    <if(pageDetails[alias])>
+      <global-page-details-block content=pageDetails[alias] />
+    </if>
+    <else>
+      <marko-web-website-section-description obj=section />
+    </else>
+
+    <if(p.page === 1)>
+      <div class="row" style="margin-bottom: 2rem;">
+        <div class="col-lg-8">
+          <theme-section-feed-block ...input.feedFlow alias=alias modifiers=["upcoming"]>
+            <@header>
+              Upcoming
+            </@header>
+            <@node
+              ...input.node
+              // multiDateFormats=[
+              //  { dateFormat: "MMMM D, YYYY h:mm a z", timezone: "America/Chicago"},
+              //  { dateFormat: "h:mm a", timezone: "Europe/London" },
+              //  { dateFormat: "h:mm a", timezone: "Asia/Shanghai" },
+              // ]
+            />
+            <@query-params ...upcomingQueryParams />
+          </theme-section-feed-block>
+        </div>
+        <div class="col-lg-4">
+        </div>
+      </div>
+    </if>
+
+    <global-section-feed-wrapper
+      aliases=aliases
+      alias=alias
+      flow=input.feedFlow
+      with-ads=false
+      query-params=archiveQueryParams
+      above-the-fold=true
+      ad-name=input.adName
+    >
+      <@header>
+        On Demand
+      </@header>
+      <@node ...input.node dateFormat="MMMM D, YYYY" />
+      <@rail>
+        <marko-web-identity-x-context|{ hasUser }|>
+          <if(!hasUser)>
+            <div class="sticky-top mt-2">
+              <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
+            </div>
+          </if>
+        </marko-web-identity-x-context>
+      </@rail>
+      <@rail>
+        <theme-client-side-most-popular-list-block class="sticky-top" />
+      </@rail>
+    </global-section-feed-wrapper>
+  </@section>
+
+  <for|s| of=sections>
+    <@section|{ blockName, section, aliases }| modifiers=s.modifiers>
+      <${s.renderBody}
+        block-name=blockName
+        section=section
+        aliases=aliases
+      />
+    </@section>
+  </for>
+</global-website-section-default-layout>

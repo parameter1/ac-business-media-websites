@@ -1,0 +1,62 @@
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import { getAsObject } from "@parameter1/base-cms-object-path";
+import cardFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-list-card-block";
+import sectionFragment from "@ac-business-media/package-global/graphql/fragments/section-info";
+import { buildImgixUrl } from "@parameter1/base-cms-image";
+
+$ const { i18n } = out.global;
+
+$ const { alias, section: inputSection } = input;
+
+$ const withSection = defaultValue(input.withSection, true);
+$ const withViewMore = defaultValue(input.withViewMore, true);
+$ const sectionAlias = inputSection && inputSection.alias ? inputSection.alias : alias;
+
+$ const queryParams = {
+  limit: 3,
+  ...getAsObject(input, "queryParams"),
+  queryFragment: cardFragment,
+  sectionFragment,
+  sectionAlias,
+};
+
+$ const blockName = "section-list";
+<marko-web-query|{ nodes, section }| name="website-scheduled-content" params=queryParams>
+  <marko-web-node-list
+    inner-justified=true
+    flush-x=true
+    flush-y=true
+    modifiers=[blockName]
+    ...input.nodeList
+  >
+    <@header>
+      <marko-web-website-section-name block-name=blockName obj=section link=true />
+    </@header>
+    <@nodes nodes=nodes>
+      <@slot|{node, index}|>
+        $ const withImage = !index ? true : false;
+        $ const modifiers = withImage ? [`${blockName}-card`] : [`${blockName}-item`];
+        $ const imagePosition = withImage ? "top" : "";
+        <theme-content-node
+          display-image=withImage
+          image-position=imagePosition
+          flush=true
+          modifiers=modifiers
+          with-teaser=false
+          with-dates=false
+          with-section=withSection
+          node=node
+        >
+          <@image fluid=true width=400 />
+        </theme-content-node>
+      </@slot>
+    </@nodes>
+    <if(withViewMore)>
+      <@footer modifiers=["view-more"]>
+        <marko-web-website-section-name obj=section link=true>
+          ${i18n("View More")} &raquo;
+        </marko-web-website-section-name>
+      </@footer>
+    </if>
+  </marko-web-node-list>
+</marko-web-query>

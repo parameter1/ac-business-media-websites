@@ -39,6 +39,10 @@ $ const currentPage = search.getCurrentPage();
       $ const aliases = hierarchyAliases(section);
       $ const childAliases = section.children.edges.map((edge) => edge.node.alias).sort();
       <marko-web-page-wrapper modifiers=["directory"]>
+        <!-- @todo figure out how to configure this or hide outside ironPros -->
+        <@section>
+          <global-partners-block alias=alias title="Titanium Partners" />
+        </@section>
         <@section|{ blockName }|>
           <theme-breadcrumbs modifiers=["directory", "content-page"]>
             $ const children = getAsArray(section, "hierarchy");

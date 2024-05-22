@@ -1,0 +1,45 @@
+.card-deck-flow {
+  $self: &;
+
+  &--6-cols {
+    #{ $self } {
+      &__node {
+        // account for smaller container max-width and break earlier than normal
+        @include media-breakpoint-up(sm) {
+          @include make-col(12);
+        }
+        @include media-breakpoint-up(md) {
+          @include make-col(3);
+        }
+        @include media-breakpoint-up(lg) {
+          @include make-col(2);
+        }
+      }
+    }
+  }
+  &--section-list-toc {
+    .node__title {
+      font-family: $theme-header-font-family;
+    }
+    #{ $self }__node {
+      .node {
+        padding: map-get($spacers, 2);
+        @include marko-web-node-list-border(border-top);
+        @include marko-web-node-list-border(border-right);
+        @include marko-web-node-list-border(border-bottom);
+        @include marko-web-node-list-border(border-left);
+      }
+    }
+  }
+
+}
+
+
+.node-list {
+  $self: &;
+  --section-list-toc {
+    #{ $self }__header {
+      margin-bottom: 0;
+    }
+  }
+}

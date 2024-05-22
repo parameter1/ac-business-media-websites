@@ -3,20 +3,21 @@ import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql
 import shuffle from "../../utils/shuffle-array";
 
 $ const { GAM } = out.global;
-$ const alias = defaultValue(input.alias, 'partners');
 
 $ const queryParams = {
   ...input.queryParams,
   includeContentTypes: ["Company"],
+  includeLabels:["Titanium"],
   requiresImage: true,
-  limit: 12,
-  sectionAlias: alias,
+  limit: 200,
+  ...(input.alias && { sectionAlias: input.alias }),
   queryFragment,
 };
 $ const { title } = input;
 $ const blockName = "partners";
+$ const queryName = "website-scheduled-content";
 
-<marko-web-query|{ nodes: allNodes }| name="website-scheduled-content" params=queryParams>
+<marko-web-query|{ nodes: allNodes }| name=queryName params=queryParams>
   <marko-web-block name=blockName>
     $ const nodes = shuffle(allNodes);
     <if(title)>

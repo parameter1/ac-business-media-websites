@@ -60,6 +60,20 @@
     "@node": "object",
     "@with-ads": "boolean"
   },
+  "<global-website-section-contact-us-layout>": {
+    "template": "./contact-us.marko",
+    "@sections <section>[]": {},
+    "<before-name>": {},
+    "<after-name>": {},
+    "@feed-flow": "object",
+    "@id": "number",
+    "@ad-name": "string",
+    "@alias": "string",
+    "@name": "string",
+    "@page-node": "object",
+    "@node": "object",
+    "@with-ads": "boolean"
+  },
   "<global-website-section-home-layout>": {
     "template": "./home.marko",
     "<head>": {},

@@ -5,6 +5,8 @@ import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql
 $ const withViewMore = defaultValue(input.withViewMore, true);
 $ const { title, alias } = input;
 
+$ const queryName = alias ? "website-scheduled-content" : "all-published-content";
+
 $ const queryParams = {
   requiresImage: true,
   ...(alias && { sectionAlias: alias }),
@@ -16,7 +18,7 @@ $ const queryParams = {
 $ const blockName = "node-carousel";
 $ const modifiers = getAsArray(input, "modifiers");
 
-<marko-web-query|{ nodes }| name="website-scheduled-content" params=queryParams>
+<marko-web-query|{ nodes }| name=queryName params=queryParams>
   <marko-web-node-list
     inner-justified=true
     flush-x=true
@@ -45,6 +47,7 @@ $ const modifiers = getAsArray(input, "modifiers");
         name="GlobalNodeCarousel"
         props={
           nodes,
+          withTeaser: input.withTeaser
         }
         ssr=true
       />

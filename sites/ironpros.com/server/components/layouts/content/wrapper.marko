@@ -25,7 +25,7 @@ $ const loadMore = defaultValue(input.loadMore, true);
     </marko-web-resolve-page>
   </@head>
   <@page>
-    <marko-web-resolve-page|{ data: content }| node=pageNode>
+    <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
       $ const bclSelector = defaultValue(input.bclSelector, '.page-contents__content-body');
       $ const bclLinkSelector = defaultValue(input.bclLinkSelector, '.bcl-injected-link');
       $ const aliases = hierarchyAliases(content.primarySection);
@@ -55,6 +55,7 @@ $ const loadMore = defaultValue(input.loadMore, true);
           <@section|{ blockName }| modifiers=s.modifiers>
             <${s.renderBody}
               block-name=blockName
+              resolved=resolved
               content=content
               aliases=aliases
               authors=authors
@@ -71,11 +72,13 @@ $ const loadMore = defaultValue(input.loadMore, true);
           $ const section = content.primarySection;
           $ const labels = getAsArray(content, "labels");
           $ const isSponsored = labels.includes("Sponsored");
+          $ const psAlias = get(content, 'primarySection.alias')
           $ const aliases = hierarchyAliases(section);
-          <if(loadMore)>
+          <!-- only show load more on IP when not primaried to home -->
+          <if(loadMore && psAlias !== "home")>
             <marko-web-page-wrapper>
               <@section>
-                <global-section-feed-wrapper aliases=aliases alias=content.primarySection.alias ad-name="rotation">
+                <global-section-feed-wrapper aliases=aliases alias=psAlias ad-name="rotation">
                   <@header>More in ${content.primarySection.name}</@header>
                   <@query-params excludeContentIds=[content.id] />
                   <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />

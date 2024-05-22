@@ -44,14 +44,6 @@ $ const promise = homePageTopStoriesLoader(apollo, {
         />
         $ const aliases = hierarchyAliases(section);
         <marko-web-page-wrapper>
-          <@section|{ aliases }| modifiers=["first-sm"]>
-            <theme-gam-define-display-ad
-              name="top-leaderboard"
-              position="section-page"
-              aliases=aliases
-              modifiers=["inter-block"]
-            />
-          </@section>
           <@section class=["mt-3", "mb-3"]>
             <div class="row top-stories-row">
               $ const rowOneClass = (withFeatured) ? "col-lg-5" : "col-lg-6";
@@ -119,6 +111,14 @@ $ const promise = homePageTopStoriesLoader(apollo, {
             </div>
           </@section>
 
+          <@section|{ aliases }| modifiers=["first-sm"]>
+            <theme-gam-define-display-ad
+              name="top-leaderboard"
+              position="section-page"
+              aliases=aliases
+            />
+          </@section>
+
           <@section>
             <global-section-feed-wrapper
               alias=section.alias
@@ -157,35 +157,9 @@ $ const promise = homePageTopStoriesLoader(apollo, {
                 </marko-web-identity-x-context>
               </@rail>
               <@rail>
-                <theme-client-side-most-popular-list-block class="sticky-top" />
+                <theme-client-side-most-popular-list-block class="sticky-top" limit=5 />
               </@rail>
             </global-section-feed-wrapper>
-          </@section>
-          <@section>
-            $ const adRows = [0, 1, 2];
-            <div class="content-card-deck__header">Sponsor Content</div>
-            <div class="row native-ad-row">
-              <for|rows| of=adRows>
-                <div class="col-lg-6">
-                  <theme-gam-define-display-ad
-                    name="sponsored-link"
-                    position="home_page"
-                    aliases=aliases
-                    modifiers=["center", "margin-auto-x"]
-                    show-label=false
-                  />
-                </div>
-                <div class="col-lg-6">
-                  <theme-gam-define-display-ad
-                    name="sponsored-link"
-                    position="home_page"
-                    aliases=aliases
-                    modifiers=["center", "margin-auto-x"]
-                    show-label=false
-                  />
-                </div>
-              </for>
-            </div>
           </@section>
         </marko-web-page-wrapper>
       </marko-web-resolve-page>
@@ -193,11 +167,12 @@ $ const promise = homePageTopStoriesLoader(apollo, {
     <@below-page>
       <marko-web-resolve-page|{ data: section }| node=pageNode>
         $ const aliases = hierarchyAliases(section);
-        <theme-gam-define-display-ad
-          name="footer-leaderboard"
-          position="section_page"
-          aliases=aliases
+        <theme-reveal-ad-handler
+          select-all-targets=true
+          path=GAM.getAdUnit({ name: "reskin", aliases }).path
+          id="reveal-ad"
         />
+        <theme-fixed-ad-bottom aliases=aliases />
       </marko-web-resolve-page>
     </@below-page>
     <!-- <@foot>

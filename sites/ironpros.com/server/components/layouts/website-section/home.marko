@@ -1,27 +1,29 @@
 import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import { buildImgixUrl } from "@parameter1/base-cms-image";
 
 $ const { config, site } = out.global;
-
 $ const { id, alias, name, pageNode } = input;
 $ const { GAM, i18n } = out.global;
-
 $ const morePrefix = defaultValue(input.morePrefix, "More from");
 
 <theme-website-section-page id=id alias=alias name=name>
   <@head>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
-      <marko-web-p1-events-track-website-section node=section />
+      <marko-web-p1-events-track-website-section node=section/>
       <if(GAM)>
-        <global-gam-section-targeting|{ adChannels: ad_channels }| obj={ alias: "home-page", hierarchy: [{ alias: "home-page"}] }>
+        <global-gam-section-targeting|{ adChannels: ad_channels }| obj={
+          alias: "home-page",
+          hierarchy: [{ alias: "home-page" }],
+        }>
           <marko-web-gtm-website-section-context|{ context }| alias=alias>
             $ context.ad_channels = ad_channels;
-            <marko-web-gtm-push data=context />
+            <marko-web-gtm-push data=context/>
           </marko-web-gtm-website-section-context>
         </global-gam-section-targeting>
       </if>
     </marko-web-resolve-page>
-    <${input.head} />
+    <${input.head}/>
   </@head>
   <@page>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
@@ -30,39 +32,147 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
         selector=".document-container"
       />
       $ const aliases = hierarchyAliases(section);
-      <marko-web-page-wrapper>
-        <@section|{ blockName, section, aliases }|>
-          <global-partners-block alias="equipment" title="Titanium Partners" />
-        </@section>
-        <@section>
-          <global-section-feed-wrapper
-            alias=section.alias
-            aliases=aliases
-            with-pagination=false
-            ad-name="rotation"
-          >
-            <@header>${i18n(morePrefix)} ${config.siteName()}</@header>
-            <@query-params
-              alias=section.alias
-              limit=3
-              optionName=["Pinned", "Standard"]
-              requires-image=true
-            />
-            <@rail>
-              <marko-web-identity-x-context|{ hasUser }|>
-                <if(!hasUser)>
-                  <div class="sticky-top mt-2">
-                    <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
+      <marko-web-identity-x-context|{ hasUser }|>
+        <marko-web-page-wrapper>
+          <@section|{ blockName, section, aliases }| modifiers=[
+            "with-cover-image",
+          ]>
+            <div class="page-cover-image__wrapper">
+              <div class="page-cover-image__contents">
+                $ {
+                  section = {
+                    name: "Research & Compare",
+                    description:
+                      "Discover over 8,000 product option in our heavy equipment, technology & workwear",
+                  };
+                }
+                <marko-web-website-section-name|{ value }|
+                  tag="h1"
+                  block-name=blockName
+                  obj=section
+                />
+                <marko-web-website-section-description
+                  block-name=blockName
+                  obj=section
+                />
+              </div>
+            </div>
+          </@section>
+          <@section>
+            <div class="section-list-deck section-list-deck--graphical-sections">
+              <div class="section-list-deck__row">
+                <div class="section-list-deck__col">
+                  <div align="center" class="node-list__header">
+                    Equipment
                   </div>
-                </if>
-              </marko-web-identity-x-context>
-            </@rail>
-            <@rail>
-              <theme-client-side-most-popular-list-block class="sticky-top" />
-            </@rail>
-          </global-section-feed-wrapper>
-        </@section>
-      </marko-web-page-wrapper>
+                  <div class="node-list node-list--section-list node-list--flush-x node-list--flush-y node-list--inner-justified">
+                    <a href="/equipment" title="Equipment" class="section-list__logo-link">
+                      <img
+                        src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/equipment_centered_icon.66351a8de5bb6.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/equipment_centered_icon.66351a8de5bb6.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/equipment_centered_icon.66351a8de5bb6.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x"
+                        class="section-list__logo lazyloaded"
+                        alt="Equipment"
+                        srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/equipment_centered_icon.66351a8de5bb6.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x">
+                    </a>
+                    <div class="section-list__website-section-description">
+                      IRONPROS is the largest online database for research, intel and demo engagement for over 1,300 new in-market machines for the heavy equipment and construction industry.
+                    </div>
+                  </div>
+                </div>
+                <div class="section-list-deck__col">
+                  <div align="center" class="node-list__header">
+                    Technology
+                  </div>
+                  <div class="node-list node-list--section-list node-list--flush-x node-list--flush-y node-list--inner-justified">
+                    <a href="/technology" title="Technology" class="section-list__logo-link">
+                      <img
+                        src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/technology_icon.66351b318eea8.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/technology_icon.66351b318eea8.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/technology_icon.66351b318eea8.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x"
+                        class="section-list__logo lazyloaded"
+                        alt="Technology"
+                        srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/technology_icon.66351b318eea8.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x">
+                    </a>
+                    <div class="section-list__website-section-description">
+                      IRONPROS is also the most comprehensive resource for research, intel and demo engagement for over 1,100 technology platforms, products and services tied to the construction industry.
+                    </div>
+                  </div>
+                </div>
+                <div class="section-list-deck__col">
+                  <div align="center" class="node-list__header">
+                    Workwear
+                  </div>
+                  <div class="node-list node-list--section-list node-list--flush-x node-list--flush-y node-list--inner-justified">
+                    <a href="/workwear" title="Workwear" class="section-list__logo-link">
+                      <img
+                        src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/workwear_icon.663522e9be329.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/workwear_icon.663522e9be329.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/workwear_icon.663522e9be329.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x"
+                        class="section-list__logo lazyloaded"
+                        alt="Workwear"
+                        srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/workwear_icon.663522e9be329.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x">
+                    </a>
+                    <div class="section-list__website-section-description">
+                      IRONPROS is building the largest single collection of reviews, research and direct-purchase opportunities for workwear and consumable products in construction.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </@section>
+
+          <@section|{ blockName, section, aliases }| modifiers=["break-container"]>
+            <global-partners-block title="Titanium Partners"/>
+          </@section>
+
+          <@section>
+            <div class="section-list-deck section-list-deck--graphical-sections">
+              <div class="section-list-deck__row">
+                <for|sectionAlias| of=["equipment", "technology", "workwear"]>
+                  <div class="section-list-deck__col">
+                    <site-home-section-list-block alias=sectionAlias/>
+                  </div>
+                </for>
+              </div>
+            </div>
+          </@section>
+
+          <@section>
+            <site-titanium-product-carousel-block />
+          </@section>
+          <if(!hasUser)>
+            <@section|{ aliases }| modifiers=["break-container"]>
+              <div class="welcome-box">
+                <div title="Welcome to IRONPROS" class="welcome-box__header">
+                  <h2 class="welcome-box__title">
+                    Join the IRONPROS Community for FREE
+                  </h2>
+                </div>
+                <div class="welcome-box__body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h3>Are you a Buyer or a Seller?</h3>
+                      <p>
+                        <strong>Unrestricted Access To:</strong>
+                      </p>
+                      <ul>
+                        <li>The IRONPROS Community</li>
+                        <li>Equipment Specs & Comparisons</li>
+                        <li>Live and On-Demand Webinars & Seminars</li>
+                        <li>Deep Product Insights From Our Editorial Team</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <marko-web-identity-x-form-login/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </@section>
+          </if>
+        </marko-web-page-wrapper>
+      </marko-web-identity-x-context>
     </marko-web-resolve-page>
   </@page>
 </theme-website-section-page>

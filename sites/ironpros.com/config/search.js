@@ -2,6 +2,7 @@ module.exports = {
   contentTypes: [
     'Article',
     'Blog',
+    'Company',
     'Event',
     'MediaGallery',
     'News',
@@ -13,10 +14,10 @@ module.exports = {
     'Whitepaper',
   ],
   assignedToWebsiteSectionIds: [
-    214180, // Equipment
-    214147, // Technology
-    214161, // Workwear
-    214143, // Product Category
+    87673, // Equipment
+    87640, // Technology
+    87654, // Workwear
+    87636, // Product Category
   ],
   defaultSortField: 'SCORE',
 };

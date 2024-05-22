@@ -42,7 +42,7 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
       />
       <marko-web-page-wrapper>
         <if(withAds)>
-          <@section|{ aliases }| modifiers=["first-sm"]>
+          <@section modifiers=["first-sm"]>
             <theme-gam-define-display-ad
               name="top-leaderboard"
               position="section-page"
@@ -92,7 +92,7 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
                   <@query-params excludeContentIds=[content.id] />
                   <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
                   <@rail>
-                    <theme-client-side-most-popular-list-block class="sticky-top" />
+                    <theme-client-side-most-popular-list-block class="sticky-top" limit=5 />
                   </@rail>
                 </global-section-feed-wrapper>
               </@section>
@@ -104,7 +104,7 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
               path=GAM.getAdUnit({ name: "reskin", aliases }).path
               id="reveal-ad"
             />
-            <theme-fixed-ad-bottom aliases=hierarchyAliases(content.primarySection) />
+            <theme-fixed-ad-bottom aliases=aliases />
           </if>
         </marko-web-resolve-page>
       </marko-web-page-container>
