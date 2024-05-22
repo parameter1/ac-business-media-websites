@@ -222,7 +222,17 @@ module.exports = {
   menu: [
     {
       label: 'Topics',
-      items: topics,
+      items: [
+        { href: '/warehousing', label: 'Warehousing' },
+        { href: '/transportation', label: 'Transportation' },
+        { href: '/software-technology', label: 'Software & Tech' },
+        { href: '/safety-security', label: 'Safety' },
+        { href: '/sustainability', label: 'Sustainability' },
+        { href: '/sourcing-procurement', label: 'Procurement' },
+        { href: '/professional-development', label: 'Prof Dev' },
+        { href: '/alexis-asks', label: 'Alexis Asks' },
+        { href: 'https://www.womeninsupplychainforum.com/', label: 'WISC Forum', target: '_blank' },
+      ],
     },
     {
       label: 'Resources',
