@@ -18,7 +18,28 @@
     }
   }
   &--section-list-toc {
-    @include marko-web-node-list-border(border-bottom);
-    margin-bottom: map-get($spacers, block);
+    .node__title {
+      font-family: $theme-header-font-family;
+    }
+    #{ $self }__node {
+      .node {
+        padding: map-get($spacers, 2);
+        @include marko-web-node-list-border(border-top);
+        @include marko-web-node-list-border(border-right);
+        @include marko-web-node-list-border(border-bottom);
+        @include marko-web-node-list-border(border-left);
+      }
+    }
+  }
+
+}
+
+
+.node-list {
+  $self: &;
+  --section-list-toc {
+    #{ $self }__header {
+      margin-bottom: 0;
+    }
   }
 }
