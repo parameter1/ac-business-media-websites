@@ -1,32 +1,29 @@
 // https://stackoverflow.com/questions/17248915/css-attribute-selector-for-existing-but-non-empty-attributes
 /**
- * Requires
- */
- @use "sass:meta";
-
- /**
-  * Select current scope only if a given attribute is set
-  * @param {string} $attribute - Attribute name, default: 'class'
-  * @param {boolean} $empty - Allow empty attribute
-  * @param {string} $error - Error message prefix
-  * @output Wraps given content styles to apply only if the current scope element has the given attribute
-  */
- @mixin attr-isset($attribute: 'class', $empty: false, $error: 'attr-isset::') {
-   @if meta.content-exists() != true {
-     @error '#{$error}@content is required';
-   }
-   @if $empty {
-     &[#{$attribute}] {
-       @content;
-     }
-   } @else {
-     &[#{$attribute}]:not([#{$attribute}='']) {
-       @content;
-     }
-   }
- }
-
-
+* Requires
+*/
+@use "sass:meta";
+/**
+* Select current scope only if a given attribute is set
+* @param {string} $attribute - Attribute name, default: 'class'
+* @param {boolean} $empty - Allow empty attribute
+* @param {string} $error - Error message prefix
+* @output Wraps given content styles to apply only if the current scope element has the given attribute
+*/
+@mixin attr-isset($attribute: 'class', $empty: false, $error: 'attr-isset::') {
+  @if meta.content-exists() != true {
+    @error '#{$error}@content is required';
+  }
+  @if $empty {
+    &[#{$attribute}] {
+      @content;
+    }
+  } @else {
+    &[#{$attribute}]:not([#{$attribute}='']) {
+      @content;
+    }
+  }
+}
 $theme-site-header-breakpoints: (
   hide-primary: 1100px,
   hide-secondary: 700px,
@@ -35,6 +32,7 @@ $theme-site-header-breakpoints: (
   small-text-secondary: 830px
 );
 
+$black: #456;
 // Colors
 $primary: #445566;
 $secondary: #c99227;
@@ -58,175 +56,90 @@ $theme-site-footer-primary-bg-color:    $primary !default;
 $theme-site-footer-secondary-bg-color:  #6f7c90 !default;
 
 // Fonts
+@import "./fonts";
 $skin-font-family-primary: "DM Sans", sans-serif;
 $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 
+$theme-header-font-family: "integralcf-demibold", sans-serif !default;
+
+$theme-section-header-font: $theme-header-font-family;
 
 @import "@ac-business-media/package-global/scss/core";
 
-
-.site-navbar--top .site-navbar__right .site-navbar__toggler {
-  background: transparent;
-  border: none;
+.node-list .node-list__header,
+.node-list--section-feed .node-list__header,
+.section-list-deck .node-list__header,
+.node-carousel .node-carousel__header,
+.node-carousel .node__title,
+.related-stories .related-stories__header,
+.partners .partners__header,
+.node-list .node__title,
+.page--website-section .page-wrapper__website-section-name,
+.welcome-box__title {
+  font-family: $theme-header-font-family
 }
-.page {
+
+@import "@parameter1/base-cms-marko-web-photoswipe/scss/main";
+
+@import "./components/home-graphical-section";
+@import "./components/welcome-box";
+@import "./components/site-navbar";
+@import "./components/site-menu";
+@import "./components/page-cover-image";
+@import "./components/content-page";
+@import "./components/company-page";
+@import "./components/spec-comparison-tool";
+@import "./components/section-toc";
+@import "./components/titanium-products";
+
+.page-wrapper {
   $self: &;
-  .page-cover-image {
-    &__wrapper {
-      background: linear-gradient(-90deg, rgba(0,0,0,0.4),rgba(0,0,0,1)), #000000;
-      background-repeat: no-repeat;
-      height: 270px;
-      background-position-x: right;
-      background-position-y: center;
-      max-width: none;
-      background-size: auto 400px;
+  &--break-container {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  > #{ $self }__section {
+    &--break-container {
       margin-right: -20px;
       margin-left: -20px;
       @media (min-width: $marko-web-document-container-max-width) {
-        margin-left: calc(-50vw - -638px);
-        margin-right: calc(-50vw - -638px);
+        margin-left: calc(-50vw - -630px);
+        margin-right: calc(-50vw - -630px);
       }
-      display: flex;
-      flex-direction: column;
-      margin-top: -20px;
-      padding-top: 20px;
-      .page-cover-image__contents {
-        padding-right: map-get($spacers, block);
-        padding-left: map-get($spacers, block);
-        max-width: 100%;
-        width: $marko-web-document-container-max-width;
-        align-self: center;
-        color: $light;
-        .page-wrapper__website-section-name {
-          color: $light;
-        }
+      &:first-child {
+        margin-top: -20px;
       }
-      .breadcrumb {
-        background-color: transparent;
-        a {
-          color: $light;
-        }
+      &:last-child {
+        margin-bottom: -20px;
       }
     }
   }
-  &--website-section {
-    .page-cover-image{
-      &__wrapper {
-        background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/bucket.png');
-      }
-    }
-  }
-  &--content-company {
-    .page-cover-image{
-      &__wrapper {
-        height: 100px;
-        @include attr-isset('cover-image-path') {
-          height: 270px;
-          background-position-x: center;
-          background-position-y: top;
-          background-size: auto 270px;
-        }
-      }
-    }
-    .page-wrapper {
-      &__section {
-        &:first-of-type {
-          margin-bottom: 0;
-        }
-      }
+  > #{ $self }__section--with-cover-image + #{ $self }__section {
+    &--break-container {
+      margin-top: -30px;
     }
   }
 }
 
-// Temp seciton overrides as examples.  with need to look at pulling off of section or parent sections somehow and setting as inline style.
-.page--website-section-214147 {
-  .page-cover-image{
-    &__wrapper {
-      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/crane.png');
-    }
-  }
-}
-.page--website-section-54436 {
-  .page-cover-image{
-    &__wrapper {
-      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/crane.png');
-    }
-  }
-}
-.page--website-section-214161 {
-  .page-cover-image{
-    &__wrapper {
-      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/skidsteer.png');
-    }
-  }
-}
-.page--website-section-54468 {
-  .page-cover-image{
-    &__wrapper {
-      background-image: url('https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/skidsteer.png');
+.sticky-top {
+  .newsletter-form {
+    label[for="sign-on-email"] {
+      display: none;
     }
   }
 }
 
+.site-navbar {
+  $self: &;
+  &__logo {
+    height: 60px;
+  }
+}
 
-.page {
-  &--content-company {
-    .page-wrapper__section.page-wrapper__section--content-header {
-      > div:first-of-type {
-        margin-right: -20px;
-        margin-left: -20px;
-        @media (min-width: $marko-web-document-container-max-width) {
-          margin-left: calc(-50vw - -620px);
-          margin-right: calc(-50vw - -620px);
-        }
-        justify-self: end;
-        width: 100vw;
-        display: inline-block;
-        display: flex;
-        flex-direction: column;
-        background-color: $gray-100;
-      }
-      .content-page-header {
-        max-width: 1300px;
-        align-self: center;
-        width: 100%;
-        padding-right: map-get($spacers, block);
-        padding-left: map-get($spacers, block);
-      }
-    }
-    // IRON Pros Company Page update::after
-    .content-page-header {
-      .ldp__logo {
-        margin-top: -100px;
-        padding: map-get($spacers, 1);
-        background-color: $white;
-        margin-right: map-get($spacers, block);
-        img {
-          margin-right: initial;
-        }
-        @include media-breakpoint-down(sm) {
-          margin-top: -30px;
-          margin-right: 0;
-          margin-bottom: map-get($spacers, block)
-        }
-        &:empty {
-          display: none;
-          visibility: hidden;
-        }
-      }
-
-      .ldp {
-        @include media-breakpoint-down(sm) {
-          flex-direction: column;
-        }
-      }
-      // Only set this way to match avobe media query logic
-      .page-wrapper__company-social-info {
-        margin-top: -70px;
-        @include media-breakpoint-down(sm) {
-          margin-top: initial;
-        }
-      }
+.page--content-21136085 {
+  .page-wrapper__content-name {
+    b {
+      color: $secondary;
     }
   }
 }

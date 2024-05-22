@@ -1,11 +1,31 @@
+const { asyncRoute } = require('@parameter1/base-cms-utils');
 const directory = require('@ac-business-media/package-global/routes/directory');
 const nativeX = require('@ac-business-media/package-global/routes/native-x');
 const home = require('./home');
 const content = require('./content');
 const dynamicPages = require('./dynamic-page');
 const websiteSections = require('./website-section');
+const specs = require('./specs');
+const directoryTemplate = require('../templates/directory/index');
 
 module.exports = (app) => {
+  app.use(asyncRoute(async (req, res, next) => {
+    const { path: p } = req;
+    /**
+   * Redirect the Balluun long path to the short path
+   * short path should be redirected to the correct new URL
+   */
+    if (p.match(/^\/(en-us|company)/) && p.match(/\/company\/[a-z0-9]{32}\/.+?\/[a-z0-9]{32}$/)) {
+      res.redirect(301, p.replace(/\/[a-z0-9]{32}$/, ''));
+    }
+    /**
+     * Redirect urls with /showroom/ to the respective company page
+     */
+    if (p.match(/^\/(en-us|company)/) && p.match(/\/showroom\//)) {
+      res.redirect(301, p.replace(/\/showroom\//, '/'));
+    }
+    return next();
+  }));
   // Homepage
   home(app);
 
@@ -20,23 +40,24 @@ module.exports = (app) => {
     rootAlias: 'product-categories',
     contentTypes: ['Product', 'Company'],
     assignedToWebsiteSectionIds: [
-      214237,
-      214238,
-      214239,
-      214240,
-      214241,
-      214242,
-      214243,
-      214244,
-      214245,
-      214246,
-      214247,
-      214248,
-      214249,
-      214250,
-      214251,
-      214252,
+      87730,
+      87731,
+      87733,
+      87732,
+      87734,
+      87735,
+      87736,
+      87737,
+      87739,
+      87738,
+      87740,
+      87742,
+      87741,
+      87743,
+      87744,
+      87745,
     ],
+    template: directoryTemplate,
   });
 
   // Native-X story rendering
@@ -44,4 +65,6 @@ module.exports = (app) => {
 
   // Website Sections
   websiteSections(app);
+
+  specs(app);
 };

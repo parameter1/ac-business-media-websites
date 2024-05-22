@@ -1,0 +1,15 @@
+.site-menu {
+  $self: &;
+  &__contents-desktop {
+    padding-left: map-get($spacers, block);
+    padding-right: map-get($spacers, block);
+    #{ $self }__section--search {
+      @media (min-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+        display: none;
+         +  #{ $self }__section {
+          margin-top: 0;
+         }
+      }
+    }
+  }
+}

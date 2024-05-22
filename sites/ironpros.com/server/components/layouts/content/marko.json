@@ -50,6 +50,15 @@
     "@type": "string",
     "@page-node": "object"
   },
+  "<site-content-product-layout>": {
+    "template": "./product.marko",
+    "<after-body>": {},
+    "<right-rail>": {},
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@type": "string",
+    "@page-node": "object"
+  },
   "<site-content-wrapper-layout>": {
     "template": "./wrapper.marko",
     "@sections <section>[]": {},

@@ -1,3 +1,4 @@
+import ContactUs from '@parameter1/base-cms-marko-web-contact-us/browser';
 import GCSE from '@parameter1/base-cms-marko-web-gcse/browser';
 import MonoRail from '@parameter1/base-cms-marko-web-theme-monorail/browser';
 import Leaders from '@parameter1/base-cms-marko-web-leaders/browser';
@@ -13,6 +14,7 @@ export default (Browser) => {
   const { EventBus } = Browser;
   GCSE(Browser);
   MonoRail(Browser);
+  ContactUs(Browser);
   Leaders(Browser);
   Browser.register('GlobalSpecGuideTable', GlobalSpecGuideTable);
   Browser.register('DynamicSiteMenuPositioner', DynamicSiteMenuPositioner);

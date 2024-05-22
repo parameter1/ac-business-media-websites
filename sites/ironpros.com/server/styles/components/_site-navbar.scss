@@ -1,0 +1,39 @@
+.site-navbar {
+  $self: &;
+  &--top {
+    @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+      height: 80px;
+    }
+    #{ $self }__container {
+      height: 100px;
+      @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+        height: 80px;
+      }
+    }
+    #{ $self }__right {
+      #{ $self }__toggler {
+        background: transparent;
+        border: none;
+      }
+      .element__section--search {
+        margin-left: map-get($spacers, block);
+        .btn {
+          background: rgba(0,0,0,0.25);
+          margin: 0;
+          height: auto;
+          border-radius: 0 4px 4px 0;
+        }
+        @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+          display: none;
+        }
+      }
+    }
+  }
+  &--primary {
+    #{ $self }__right {
+      @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+        display: none;
+      }
+    }
+  }
+}

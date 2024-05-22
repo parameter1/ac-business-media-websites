@@ -7,12 +7,15 @@ const omeda = require('./omeda');
 const omedaIdentityX = require('./omeda-identity-x');
 const identityXOptInHooks = require('./identity-x-opt-in-hooks');
 const pageDetails = require('./page-details');
+const newsletter = require('./newsletter');
+const search = require('./search');
 
 module.exports = {
   headerTagName: 'iron-site-header',
   footerTagName: 'iron-site-footer',
   // Module configs
-  useLinkInjectedBody: process.env.USE_LINK_INJECTED_BODY || true,
+  newsletter,
+  useLinkInjectedBody: false,
   contentMeter,
   identityX,
   nativeX,
@@ -20,9 +23,6 @@ module.exports = {
   omeda,
   omedaIdentityX,
   identityXOptInHooks,
-  gcse: {
-    id: 'NOT-SETUP', // '@TODO-Configure '003355913687346718228:la4zrhjf2r9',
-  },
   // Site configs
   idxNavItems: {
     enable: process.env.IDX_NAV_ENABLE || false,
@@ -35,15 +35,15 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress',
+      src: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=60&auto=format,compress',
       srcset: [
-        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=90&auto=format,compress 2x',
+        'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=120&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress',
+      src: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress',
       srcset: [
-        'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=90&auto=format,compress 2x',
+        'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=90&auto=format,compress 2x',
       ],
     },
     corporate: corporate.logo,
@@ -58,24 +58,35 @@ module.exports = {
   ],
   podcastLinks: [],
   gtm: {
-    containerId: 'GTM-NOTSET',
+    containerId: 'GTM-KZ2ZT5J',
   },
   inquiry: {
     enabled: true,
     directSend: true,
-    sendTo: 'requestmoreinfo@acbusinessmedia.com',
-    sendFrom: 'IronsPros.com <noreply@parameter1.com>',
-    logo: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress&bg=000000&pad=5',
+    sendTo: 'sales@ironpros.com',
+    sendFrom: 'IronsPros.com <noreply@ironpros.com>',
+    logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000',
   },
+  contactUs: {
+    title: 'Submit a comment.',
+    notificationDefaults: {
+      to: 'sales@ironpros.com',
+      branding: {
+        logo: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
+      },
+      support: {
+        email: 'support@ironpros.com',
+      },
+    },
+    to: 'sales@ironpros.com',
+    branding: {
+      logo: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress&bg=000000&pad=5',
+    },
+    support: {
+      email: 'support@ironpros.com',
+    },
+  },
   pageDetails,
-  showCompanySectionFilters: true,
-  sectionSearchIds: [
-    54289, // Asphalt
-    54300, // Business
-    54436, // Concrete
-    54319, // Construction Technology
-    54330, // Equipment
-    54468, // Pavement Maintenance
-  ],
+  search,
 };

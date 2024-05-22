@@ -1,0 +1,32 @@
+.section-list-deck {
+  &--graphical-sections {
+    .section-list__logo-link {
+      background-color: $primary;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      max-width: 50%;
+      margin: 12px auto;
+
+      .section-list__logo {
+        width: 100%;
+        height: 100%;
+        padding: 10%;
+        aspect-ratio: 1 / 1;
+        filter: brightness(0) invert(1);
+      }
+    }
+    .node-list--section-list .node-list__header {
+      .section-list__website-section-description {
+        @include skin-typography($style: "teaser-text-1");
+        @include marko-web-node-list-border(border-bottom);
+        padding-bottom: map-get($spacers, block);
+        text-align: center;
+      }
+    }
+    .node-list__header {
+      color: #456;
+    }
+  }
+}

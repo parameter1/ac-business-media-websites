@@ -23,10 +23,10 @@ $ const withSocialShare = (displayOverlay) ? false : defaultValue(input.withSoci
 $ const dateFormat = defaultValue(input.dateFormat, "MMMM D, YYYY");
 
 $ const displayInquiry = (content) => {
-  return false;
+  const isCompanyTitanium = getAsArray(content, "company.labels").includes("Titanium");
   if (site.get("inquiry.enabled") === false) return false;
-  if (type === "company" && get(content, "enableRmi") === true) return true;
-  if (type === "product" && get(content, "company.enableRmi") === true) return true;
+  // @todo vet this, but for now if titanium always enable this else look it up off of the company
+  if (isCompanyTitanium) return true;
   return get(content, "company.enableRmi") || false;
 }
 
@@ -44,8 +44,20 @@ $ const displayInquiry = (content) => {
       <theme-content-page-breadcrumbs section=primarySection />
       <marko-web-content-name tag="h1" block-name=blockName obj=content />
       <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
-      <if(withCompany)>
-        <theme-content-attribution obj=content elements=["company"] />
+      <if(content.company)>
+        <div class="page-attribution">
+          $ const { company } = content;
+          <div class="page-attribution__content-company-name">
+            <if(company.primaryImage && company.primaryImage.src)>
+              <marko-web-content-name tag="span" block-name="page-attribution" obj=company link=true>
+                <global-company-logo content=company />
+              </marko-web-content-name>
+            </if>
+            <else>
+              <marko-web-content-name tag="span" block-name="page-attribution" obj=company link=true />
+            </else>
+          </div>
+        </div>
       </if>
       <if(type !== "contact")>
         <if(authors.length === 1)>
@@ -79,12 +91,12 @@ $ const displayInquiry = (content) => {
     </div>
   </@section>
 
-  <@section|{ aliases, content, authors }| modifiers=["content-body"]>
+  <@section|{ aliases, content, authors, resolved }| modifiers=["content-body"]>
     $ const labels = getAsArray(content, "labels");
     $ const isSponsored = labels.includes("Sponsored");
     $ const { primarySection } = content;
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-12">
         <global-content-contact-details obj=content />
         <div class="content-page-body">
           <theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
@@ -92,8 +104,8 @@ $ const displayInquiry = (content) => {
               $ const iframeContent = contentIframe(content);
               <marko-web-content-embed-code block-name=blockName obj=iframeContent />
             </if>
-            <else-if(type === "media-gallery")>
-              <!-- <marko-web-image-slider images=images /> -->
+            <else-if(type === "product" && resolved.getEdgeNodesFor("images").length > 1)>
+              <marko-web-image-slider images=resolved.getEdgeNodesFor("images") image-options={ fit: "fill", fillColor: "#ffffff", ar: "16:9"} />
             </else-if>
             <else-if(withPrimaryImage)>
               $ let forceDisplay;
@@ -157,6 +169,13 @@ $ const displayInquiry = (content) => {
                     />
                   </div>
                 </if>
+
+                <if(displayInquiry(content))>
+                  <div class="mb-block">
+                    <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
+                  </div>
+                </if>
+
                 <!-- needs input -->
                 <if(input.afterBody)>
                   <${input.afterBody}
@@ -221,36 +240,12 @@ $ const displayInquiry = (content) => {
           </theme-page-contents>
         </div>
       </div>
-      <div class="col-lg-4 page-rail">
-        <if(withAds && !isSponsored)>
-          <div class="mb-block">
-            <theme-gam-define-display-ad
-              name="top-rotation"
-              position="content_page"
-              aliases=aliases
-              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-              class="mb-0"
-            />
-          </div>
-        </if>
-        $ const inquiry = site.getAsObject('inquiry');
 
-        <if(displayInquiry(content))>
-          <div class="mb-block">
-            <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
-          </div>
-        </if>
-        <if(withRecommended)>
-          <div class="sticky-top">
-            <global-recommended-content-block query-params={ excludeContentIds: [content.id] } alias=primarySection.alias aliases=aliases />
-          </div>
-        </if>
-      </div>
     </div>
   </@section>
 
   <if(withRelatedStories)>
-    <@section|{ content }|>
+    <@section|{ content }| modifiers=["break-container"]>
       <theme-related-stories-block
         content-id=content.id
         section-id=content.primarySection.id

@@ -47,29 +47,6 @@ const newsletterState = ({ setCookie = true } = {}) => (req, res, next) => {
   next();
 };
 
-const formatContentResponse = ({ res, content }) => {
-  if (!res.locals.newsletterState) return;
-  const {
-    initiallyExpanded,
-    canBeInitiallyExpanded,
-    hasCookie,
-    fromEmail,
-    disabled,
-    cookie,
-  } = res.locals.newsletterState;
-
-  if (get(content, 'userRegistration.isCurrentlyRequired') === true) {
-    res.locals.newsletterState.initiallyExpanded = false;
-  } else if (
-    canBeInitiallyExpanded
-    && (!initiallyExpanded && !hasCookie && !disabled && !fromEmail)
-  ) {
-    res.cookie(cookie.name, true, { maxAge: cookie.maxAge });
-    res.locals.newsletterState.initiallyExpanded = true;
-  }
-};
-
 module.exports = {
   newsletterState,
-  formatContentResponse,
 };

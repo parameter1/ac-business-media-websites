@@ -9,11 +9,12 @@ $marko-web-page-wrapper-padding: 0;
 $skin-font-family-primary: "Montserrat", montserrat-fallback, sans-serif !default;
 $skin-font-family-secondary: "Montserrat", montserrat-fallback, sans-serif !default;
 
-$theme-content-body-font: $skin-font-family-primary;
-$theme-header-font-family: $skin-font-family-primary;
 
-$black: #141414;
-$body-color: $black;
+$theme-content-body-font: $skin-font-family-primary !default;
+$theme-header-font-family: $skin-font-family-primary !default;
+
+$black: #141414 !default;
+$body-color: #141414;
 
 // Navbar
 $theme-site-navbar-primary-type: light !default;

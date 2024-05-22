@@ -52,15 +52,15 @@ export default {
       arrows: true,
       focusOnSelect: false,
       infinite: true,
-      slidesToShow: 6,
-      slidesToScroll: 6,
+      slidesToShow: 5,
+      slidesToScroll: 5,
       touchThreshold: 5,
       responsive: [
         {
           breakpoint: 1000,
           settings: {
-            slidesToShow: 4,
-            slidesToScroll: 4,
+            slidesToShow: 3,
+            slidesToScroll: 3,
           },
         },
         {
@@ -76,10 +76,10 @@ export default {
 
   methods: {
     getImgSrc(imagePath) {
-      return `${imagePath}?h=360&w=360&pad=5&q=70&fit=fill&fill=solid&fill-color=`;
+      return `${imagePath}&h=360&w=360&pad=5&q=70&fit=fill&fill=solid&fill-color=`;
     },
     getImgSrcSet(imagePath) {
-      return `${imagePath}?h=360&w=360&pad=5&q=70&fit=fill&fill=solid&fill-color=&dpr=2 2x`;
+      return `${imagePath}&h=360&w=360&pad=5&q=70&fit=fill&fill=solid&fill-color=&dpr=2 2x`;
     },
   },
 };

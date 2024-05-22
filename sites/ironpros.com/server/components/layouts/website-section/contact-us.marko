@@ -1,0 +1,93 @@
+import convert from "@parameter1/base-cms-marko-web-native-x/utils/convert-story-to-content";
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { pagination: p, nativeX: nxConfig, site } = out.global;
+
+$ const { id, alias, name, pageNode } = input;
+$ const withNativeX = defaultValue(input.withNativeX, true);
+$ const sections = getAsArray(input, "sections");
+$ const perPage = 24;
+$ const withAds = false;
+
+<global-website-section-default-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+  with-ads=withAds
+>
+  <@head>
+    <theme-section-feed-block|{ totalCount }| alias=alias count-only=true>
+      <theme-pagination-controls
+        per-page=perPage
+        total-count=totalCount
+        path=alias
+        as-rels=true
+      />
+    </theme-section-feed-block>
+  </@head>
+
+  <@section|{ blockName, section, aliases }|>
+    <theme-website-section-breadcrumbs
+      section=section
+      display-home=false
+      display-self=false
+      modifiers=["website-section"]
+    />
+
+    <if(input.beforeName)>
+      <${input.beforeName}
+        aliases=aliases
+        block-name=blockName
+        section=section
+      />
+    </if>
+
+    <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
+      <if(p.page > 1)>${value}: Page ${p.page}</if>
+      <else>${value}</else>
+    </marko-web-website-section-name>
+
+    <if(input.afterName)>
+      <${input.afterName}
+        aliases=aliases
+        block-name=blockName
+        section=section
+      />
+    </if>
+
+    $ const pageDetails = site.getAsObject("pageDetails");
+    <if(pageDetails[alias])>
+      <global-page-details-block content=pageDetails[alias] />
+    </if>
+    <else>
+      <marko-web-website-section-description obj=section />
+    </else>
+      <global-section-feed-wrapper
+        aliases=aliases
+        alias=alias
+        flow=input.feedFlow
+        with-ads=withAds
+        query-params=input.queryParams
+        above-the-fold=true
+        ad-name=input.adName
+      >
+        <@node ...input.node />
+        <@rail>
+          <contact-us-form config-name="notificationDefaults" title=site.get('contactUs.title') />
+        </@rail>
+        <@rail/>
+      </global-section-feed-wrapper>
+  </@section>
+
+  <for|s| of=sections>
+    <@section|{ blockName, section, aliases }| modifiers=s.modifiers>
+      <${s.renderBody}
+        block-name=blockName
+        section=section
+        aliases=aliases
+      />
+    </@section>
+  </for>
+</global-website-section-default-layout>

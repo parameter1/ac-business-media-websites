@@ -25,6 +25,9 @@ body.site-menu--open {
         font-weight: $font-weight-bold;
       }
     }
+    ~ #{ $self }__section {
+      margin-top: map-get($spacers, block);
+    }
   }
 
   &__item {

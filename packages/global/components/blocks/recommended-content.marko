@@ -1,6 +1,7 @@
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list";
 $ const { personasHandler } = out.global;
+$ const consentPolicy = '<p class="mb-2">By submitting this form, you acknowledge that use of your data is governed by our <a href="https://www.wattglobalmedia.com/privacy/" target="_blank">Privacy Policy.</a></p>';
 
 $ const title = defaultValue(input.title, "Recommended");
 
@@ -40,6 +41,7 @@ $ const title = defaultValue(input.title, "Recommended");
       name="Unlock Personalized Content!"
       description="Sign up and the recommendations below will be <strong>more personalized for you!</strong>"
       source="recommendedSignup"
+      consent-policy=consentPolicy
     />
     $ const queryParams = { ...input.queryParams, limit: 2 };
     <theme-latest-content-list-block title=customTitle query-params=queryParams class="recommended-content">
