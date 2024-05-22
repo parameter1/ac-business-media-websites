@@ -43,6 +43,13 @@
                 </div>
               </div>
             </a>
+            <a
+              :href="node.company.canonicalPath"
+              :v-if="withCompany"
+              class="node__company"
+            >
+              {{ node.company.name }}
+            </a>
           </div>
         </div>
       </vue-slick-carousel>
@@ -62,6 +69,10 @@ export default {
       required: true,
     },
     withTeaser: {
+      type: Boolean,
+      default: false,
+    },
+    withCompany: {
       type: Boolean,
       default: false,
     },

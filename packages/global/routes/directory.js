@@ -11,6 +11,7 @@ module.exports = (
     rootAlias = 'directory',
     contentTypes = ['Company', 'Product'],
     assignedToWebsiteSectionIds = [],
+    template = directory,
   },
 ) => {
   const config = new MarkoWebSearchConfig({
@@ -39,11 +40,11 @@ module.exports = (
   };
 
   app.get(`/:alias(${rootAlias})`, searchMiddleware, withWebsiteSection({
-    template: directory,
+    template,
     queryFragment,
   }));
   app.get(`/:alias(${rootAlias}/[a-z0-9-/]+)`, searchMiddleware, withWebsiteSection({
-    template: directory,
+    template,
     queryFragment,
   }));
 };

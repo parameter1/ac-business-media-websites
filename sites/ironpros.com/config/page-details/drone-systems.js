@@ -1,0 +1,3 @@
+module.exports = {
+  introHTML: '<div><div class="node-list node-list--section-list">  <div class="node-list__header">    What are Construction Drone Systems?  </div>  <div class="node-list__body">    <p>Construction drone software and systems interact with unmanned aerial vehicles (UAVs or drones) to marry them to important construction processes. Some construction drone systems will manage the flight of the drone, ensuring it captures specific project elements either in a horizontal flyover survey or a vertical scan of a building project. Other construction drone software and systems will.</p></div></div></div>',
+};

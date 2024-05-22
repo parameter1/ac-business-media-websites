@@ -58,9 +58,74 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
               </div>
             </div>
           </@section>
+          <@section>
+            <div class="section-list-deck section-list-deck--graphical-sections">
+              <div class="section-list-deck__row">
+                <div class="section-list-deck__col">
+                  <div align="center" class="node-list__header">
+                    Equipment
+                  </div>
+                  <div class="node-list node-list--section-list node-list--flush-x node-list--flush-y node-list--inner-justified">
+                    <a href="/equipment" title="Equipment" class="section-list__logo-link">
+                      <img
+                        src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/equipment_centered_icon.66351a8de5bb6.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/equipment_centered_icon.66351a8de5bb6.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/equipment_centered_icon.66351a8de5bb6.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x"
+                        class="section-list__logo lazyloaded"
+                        alt="Equipment"
+                        srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/equipment_centered_icon.66351a8de5bb6.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x">
+                    </a>
+                    <div class="section-list__website-section-description">
+                      IRONPROS is the largest online database for research, intel and demo engagement for over 1,300 new in-market machines for the heavy equipment and construction industry.
+                    </div>
+                  </div>
+                </div>
+                <div class="section-list-deck__col">
+                  <div align="center" class="node-list__header">
+                    Technology
+                  </div>
+                  <div class="node-list node-list--section-list node-list--flush-x node-list--flush-y node-list--inner-justified">
+                    <a href="/technology" title="Technology" class="section-list__logo-link">
+                      <img
+                        src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/technology_icon.66351b318eea8.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/technology_icon.66351b318eea8.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/technology_icon.66351b318eea8.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x"
+                        class="section-list__logo lazyloaded"
+                        alt="Technology"
+                        srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/technology_icon.66351b318eea8.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x">
+                    </a>
+                    <div class="section-list__website-section-description">
+                      IRONPROS is also the most comprehensive resource for research, intel and demo engagement for over 1,100 technology platforms, products and services tied to the construction industry.
+                    </div>
+                  </div>
+                </div>
+                <div class="section-list-deck__col">
+                  <div align="center" class="node-list__header">
+                    Workwear
+                  </div>
+                  <div class="node-list node-list--section-list node-list--flush-x node-list--flush-y node-list--inner-justified">
+                    <a href="/workwear" title="Workwear" class="section-list__logo-link">
+                      <img
+                        src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/workwear_icon.663522e9be329.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/workwear_icon.663522e9be329.png?auto=format%2Ccompress&amp;q=70&amp;w=600"
+                        data-srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/workwear_icon.663522e9be329.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x"
+                        class="section-list__logo lazyloaded"
+                        alt="Workwear"
+                        srcset="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/workwear_icon.663522e9be329.png?auto=format%2Ccompress&amp;dpr=2&amp;q=70&amp;w=600 2x">
+                    </a>
+                    <div class="section-list__website-section-description">
+                      IRONPROS is building the largest single collection of reviews, research and direct-purchase opportunities for workwear and consumable products in construction.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </@section>
+
           <@section|{ blockName, section, aliases }| modifiers=["break-container"]>
             <global-partners-block title="Titanium Partners"/>
           </@section>
+
           <@section>
             <div class="section-list-deck section-list-deck--graphical-sections">
               <div class="section-list-deck__row">
@@ -72,22 +137,16 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
               </div>
             </div>
           </@section>
-          <!-- <@section>
-            <global-node-carousel-block title="IronPros TV" with-teaser=true query-params={ contentTypes: ["Product"], limit: 12 } modifiers=["dark"] />
-          </@section> -->
+
           <@section>
-            <global-node-carousel-block
-              title="Featured Products"
-              with-teaser
-              query-params={ contentTypes: ["Product"], limit: 12 }
-            />
+            <site-titanium-product-carousel-block />
           </@section>
           <if(!hasUser)>
             <@section|{ aliases }| modifiers=["break-container"]>
               <div class="welcome-box">
-                <div title="Welcome to IronPros" class="welcome-box__header">
+                <div title="Welcome to IRONPROS" class="welcome-box__header">
                   <h2 class="welcome-box__title">
-                    Join the IronPros Community for FREE
+                    Join the IRONPROS Community for FREE
                   </h2>
                 </div>
                 <div class="welcome-box__body">
@@ -98,7 +157,7 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
                         <strong>Unrestricted Access To:</strong>
                       </p>
                       <ul>
-                        <li>The IronPros Community</li>
+                        <li>The IRONPROS Community</li>
                         <li>Equipment Specs & Comparisons</li>
                         <li>Live and On-Demand Webinars & Seminars</li>
                         <li>Deep Product Insights From Our Editorial Team</li>

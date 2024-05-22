@@ -39,17 +39,17 @@ const aliases = [
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
-  { name: 'top-leaderboard', templateName: 'LEADERBOARD', path: `${basePath}/${prefix}/lb1` },
-  { name: 'leaderboard', templateName: 'LEADERBOARD', path: `${basePath}/${prefix}/lb1` },
-  { name: 'footer-leaderboard', templateName: 'FOOTER-LEADERBOARD', path: `${basePath}/${prefix}/lb1` },
-  { name: 'rotation', templateName: 'ROTATION', path: `${basePath}/${prefix}/rail1` },
-  { name: 'rotation-rail', templateName: 'ROTATION-RAIL', path: `${basePath}/${prefix}/rail1` },
-  { name: 'top-rotation', templateName: 'TOP-ROTATION', path: `${basePath}/${prefix}/rail1` },
-  { name: 'top-rotation-mobile', templateName: 'TOP-ROTATION-MOBILE', path: `${basePath}/${prefix}/rail1` },
-  { name: 'top-rotation-desktop', templateName: 'TOP-ROTATION-DESKTOP', path: `${basePath}/${prefix}/rail1` },
-  { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: `${basePath}/${prefix}/rail1` },
-  { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: `${basePath}/${prefix}/rail1` },
-  { name: 'reskin', path: `${basePath}/${prefix}/reskin` },
+  { name: 'top-leaderboard', templateName: 'LEADERBOARD', path: `/${prefix}/lb1` },
+  { name: 'leaderboard', templateName: 'LEADERBOARD', path: `/${prefix}/lb1` },
+  { name: 'footer-leaderboard', templateName: 'FOOTER-LEADERBOARD', path: `/${prefix}/lb1` },
+  { name: 'rotation', templateName: 'ROTATION', path: `/${prefix}/rail1` },
+  { name: 'rotation-rail', templateName: 'ROTATION-RAIL', path: `/${prefix}/rail1` },
+  { name: 'top-rotation', templateName: 'TOP-ROTATION', path: `/${prefix}/rail1` },
+  { name: 'top-rotation-mobile', templateName: 'TOP-ROTATION-MOBILE', path: `/${prefix}/rail1` },
+  { name: 'top-rotation-desktop', templateName: 'TOP-ROTATION-DESKTOP', path: `/${prefix}/rail1` },
+  { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: `/${prefix}/rail1` },
+  { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: `/${prefix}/rail1` },
+  { name: 'reskin', path: `/${prefix}/reskin` },
 ]));
 
 module.exports = config;

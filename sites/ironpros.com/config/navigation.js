@@ -8,9 +8,9 @@ const topics = [
 ];
 
 const secondary = [
-  { href: '/#', label: 'Virtual Events' },
-  { href: '/page/tv', label: 'IronPros TV' },
-  { href: '#', label: 'Finance' },
+  { href: '/webinars', label: 'Virtual Events' },
+  { href: '/page/tv', label: 'IRONPROS TV' },
+  { href: '/page/balboa-equipment-finance-calculator', label: 'Finance' },
 ];
 
 const utilities = [

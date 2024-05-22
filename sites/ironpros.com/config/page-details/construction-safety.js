@@ -1,0 +1,3 @@
+module.exports = {
+  introHTML: '<div><div class="node-list node-list--section-list">  <div class="node-list__header">    What is Safety Software?  </div>  <div class="node-list__body">    <p>Contractors can use technology to improve site safety in a number of ways, and here are the software products that deliver best practices and formalized programs.</p><p>Construction safety software can identify and mitigate risks, and capture data from IoT devices to keep workers out of unsafe areas or avoid hitting them with heavy equipment.</p><p>Construction safety software, often included in overall project management or field productivity tools, will also help with compliance-related tasks.</p></div></div></div>',
+};

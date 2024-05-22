@@ -1,0 +1,3 @@
+module.exports = {
+  introHTML: '<div><div class="node-list node-list--section-list">  <div class="node-list__header">    What is Work Order Management Software?  </div>  <div class="node-list__body">    <p>Work orders are what a construction equipment maintenance shop uses to assign work to repair technicians for break-fix repair, equipment lifecycle extensions, installation of aftermarket equipment or inspections. GPS-enabled asset management software will use work orders, as will other software used to maintain heavy equipment. In a facilities management setting a good work order software system is essential to formalize similar processes for maintenance of the built asset.</p></div></div></div>',
+};

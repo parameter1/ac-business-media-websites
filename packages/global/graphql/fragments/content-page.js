@@ -110,12 +110,20 @@ const factory = ({ useLinkInjectedBody = false, withMagazineSchedules = false } 
         }
       }
     }
+    ... on ContentProduct {
+      downloadUrl
+    }
     company {
       id
       labels
       name
       canonicalPath
       enableRmi
+      primaryImage {
+        id
+        src(input: { options: { auto: "format,compress", q: 70, fillColor: "fff", fit: "fill", h: 125, w: 125, pad: 5, } })
+        alt
+      }
     }
     ...ContentPageFragment
   }

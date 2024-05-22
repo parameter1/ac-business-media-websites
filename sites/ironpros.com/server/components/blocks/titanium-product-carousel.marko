@@ -1,0 +1,46 @@
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
+import loadTitaniumCompanyProducts from "../../loaders/titanium-company-products";
+
+$ const withViewMore = defaultValue(input.withViewMore, true);
+$ const { title = "Featured Products", sectionId } = input;
+$ const { apollo } = out.global;
+
+$ const blockName = "node-carousel";
+$ const modifiers = ["titanium-products", ...getAsArray(input, "modifiers")];
+
+$ const promise = loadTitaniumCompanyProducts(apollo, {
+  ...(sectionId && {sectionId: sectionId})
+});
+<marko-web-resolve|{ resolved }| promise=promise>
+  $ const nodes = getAsArray(resolved, "products.nodes");
+  <if(nodes && nodes.length)>
+    <marko-web-node-list
+      inner-justified=true
+      flush-x=true
+      flush-y=false
+      block-name=blockName
+      modifiers=modifiers
+      collapsible=false
+      header=title
+    >
+      <if(title)>
+        <@header block-name=blockName modifiers=modifiers>
+          <marko-web-website-section-name block-name=blockName obj={ name: title } />
+        </@header>
+      </if>
+      <@body block-name=blockName modifiers=modifiers>
+        <marko-web-browser-component
+          name="GlobalNodeCarousel"
+          props={
+            nodes,
+            withTeaser: input.withTeaser,
+            withCompany: true,
+          }
+          ssr=true
+        />
+      </@body>
+    </marko-web-node-list>
+  </if>
+</marko-web-resolve>

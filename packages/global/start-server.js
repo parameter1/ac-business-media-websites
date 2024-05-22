@@ -3,6 +3,7 @@ const { startServer } = require('@parameter1/base-cms-marko-web');
 const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitemap/middleware/paginated');
+const contactUsHandler = require('@parameter1/base-cms-marko-web-contact-us');
 const identityX = require('@parameter1/base-cms-marko-web-identity-x');
 const omedaIdentityX = require('@parameter1/base-cms-marko-web-omeda-identity-x');
 
@@ -11,6 +12,7 @@ const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
 const sharedRoutes = require('./routes');
+const contentGating = require('./middleware/content-gating');
 const paginated = require('./middleware/paginated');
 // const omedaConfig = require('./config/omeda');
 const redirectHandler = require('./redirect-handler');
@@ -19,6 +21,8 @@ const recaptcha = require('./config/recaptcha');
 const idxNavItems = require('./config/identity-x-nav');
 
 const routes = (siteRoutes, siteConfig) => (app) => {
+  // load contact us route /__contact-us
+  contactUsHandler(app);
   // Handle submissions on /__inquiry
   loadInquiry(app);
   // Shared/global routes (all sites)
@@ -76,6 +80,9 @@ module.exports = (options = {}) => {
       // i18n
       const i18n = (v) => v;
       set(app.locals, 'i18n', options.i18n || i18n);
+
+      // Install custom content gating middleware
+      contentGating(app);
 
       // Recaptcha
       set(app.locals, 'recaptcha', recaptcha);

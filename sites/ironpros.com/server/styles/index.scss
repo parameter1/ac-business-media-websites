@@ -1,32 +1,29 @@
 // https://stackoverflow.com/questions/17248915/css-attribute-selector-for-existing-but-non-empty-attributes
 /**
- * Requires
- */
- @use "sass:meta";
-
- /**
-  * Select current scope only if a given attribute is set
-  * @param {string} $attribute - Attribute name, default: 'class'
-  * @param {boolean} $empty - Allow empty attribute
-  * @param {string} $error - Error message prefix
-  * @output Wraps given content styles to apply only if the current scope element has the given attribute
-  */
- @mixin attr-isset($attribute: 'class', $empty: false, $error: 'attr-isset::') {
-   @if meta.content-exists() != true {
-     @error '#{$error}@content is required';
-   }
-   @if $empty {
-     &[#{$attribute}] {
-       @content;
-     }
-   } @else {
-     &[#{$attribute}]:not([#{$attribute}='']) {
-       @content;
-     }
-   }
- }
-
-
+* Requires
+*/
+@use "sass:meta";
+/**
+* Select current scope only if a given attribute is set
+* @param {string} $attribute - Attribute name, default: 'class'
+* @param {boolean} $empty - Allow empty attribute
+* @param {string} $error - Error message prefix
+* @output Wraps given content styles to apply only if the current scope element has the given attribute
+*/
+@mixin attr-isset($attribute: 'class', $empty: false, $error: 'attr-isset::') {
+  @if meta.content-exists() != true {
+    @error '#{$error}@content is required';
+  }
+  @if $empty {
+    &[#{$attribute}] {
+      @content;
+    }
+  } @else {
+    &[#{$attribute}]:not([#{$attribute}='']) {
+      @content;
+    }
+  }
+}
 $theme-site-header-breakpoints: (
   hide-primary: 1100px,
   hide-secondary: 700px,
@@ -35,6 +32,7 @@ $theme-site-header-breakpoints: (
   small-text-secondary: 830px
 );
 
+$black: #456;
 // Colors
 $primary: #445566;
 $secondary: #c99227;
@@ -58,11 +56,28 @@ $theme-site-footer-primary-bg-color:    $primary !default;
 $theme-site-footer-secondary-bg-color:  #6f7c90 !default;
 
 // Fonts
+@import "./fonts";
 $skin-font-family-primary: "DM Sans", sans-serif;
 $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 
+$theme-header-font-family: "integralcf-demibold", sans-serif !default;
+
+$theme-section-header-font: $theme-header-font-family;
 
 @import "@ac-business-media/package-global/scss/core";
+
+.node-list .node-list__header,
+.node-list--section-feed .node-list__header,
+.section-list-deck .node-list__header,
+.node-carousel .node-carousel__header,
+.node-carousel .node__title,
+.related-stories .related-stories__header,
+.partners .partners__header,
+.node-list .node__title,
+.page--website-section .page-wrapper__website-section-name,
+.welcome-box__title {
+  font-family: $theme-header-font-family
+}
 
 @import "@parameter1/base-cms-marko-web-photoswipe/scss/main";
 
@@ -73,6 +88,9 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
 @import "./components/page-cover-image";
 @import "./components/content-page";
 @import "./components/company-page";
+@import "./components/spec-comparison-tool";
+@import "./components/section-toc";
+@import "./components/titanium-products";
 
 .page-wrapper {
   $self: &;
@@ -99,6 +117,29 @@ $skin-font-family-secondary: "Open Sans", open-sans-fallback, sans-serif;
   > #{ $self }__section--with-cover-image + #{ $self }__section {
     &--break-container {
       margin-top: -30px;
+    }
+  }
+}
+
+.sticky-top {
+  .newsletter-form {
+    label[for="sign-on-email"] {
+      display: none;
+    }
+  }
+}
+
+.site-navbar {
+  $self: &;
+  &__logo {
+    height: 60px;
+  }
+}
+
+.page--content-21136085 {
+  .page-wrapper__content-name {
+    b {
+      color: $secondary;
     }
   }
 }

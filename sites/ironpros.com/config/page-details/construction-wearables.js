@@ -1,0 +1,3 @@
+module.exports = {
+  introHTML: '<div><div class="node-list node-list--section-list">  <div class="node-list__header">    What Are Construction Wearables?  </div>  <div class="node-list__body">    <p>Construction wearables can extend technology into the field in ways other devices cannot. A wearable device can capture conditions in the field relating to safety, sense worker fatigue, or signal worker location to passing equipment. It can provide a hands-free interface for business software. Wearables can even augment the capabilities of the human worker either with augmented reality vision or mechanically enhanced strength for lifting.</p></div></div></div>',
+};

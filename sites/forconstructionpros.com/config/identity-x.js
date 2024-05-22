@@ -2,4 +2,7 @@ const configureIdentityX = require('@ac-business-media/refresh-theme/config/iden
 
 module.exports = configureIdentityX({
   appId: '5e28a2d858e67b162e55ae3b',
+  activeCustomFieldIds: [
+    '',
+  ],
 });
