@@ -64,7 +64,7 @@ module.exports = {
           src: 'https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/chippers.6637ac462c06d.png',
         },
         {
-          name: 'Cold Planners &amp; Millers',
+          name: 'Cold Planners & Millers',
           href: '/product-categories/asphalt-pavement/cold-planers-and-millers',
           src: 'https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/cold_planners_mllers.6637ace261211.png',
         },
