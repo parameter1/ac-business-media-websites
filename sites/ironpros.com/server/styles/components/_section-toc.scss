@@ -20,6 +20,9 @@
   &--section-list-toc {
     .node__title {
       font-family: $theme-header-font-family;
+      @include media-breakpoint-down(sm) {
+        font-size: .6rem;
+      }
     }
     #{ $self }__node {
       .node {
@@ -28,6 +31,9 @@
         @include marko-web-node-list-border(border-right);
         @include marko-web-node-list-border(border-bottom);
         @include marko-web-node-list-border(border-left);
+        @media(max-width: 720px) {
+          @include make-col(4);
+        }
       }
     }
   }
