@@ -17,12 +17,15 @@
         filter: brightness(0) invert(1);
       }
     }
-    .node-list--section-list .node-list__header {
+    .node-list--section-list {
       .section-list__website-section-description {
         @include skin-typography($style: "teaser-text-1");
         @include marko-web-node-list-border(border-bottom);
         padding-bottom: map-get($spacers, block);
         text-align: center;
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
       }
     }
     .node-list__header {
