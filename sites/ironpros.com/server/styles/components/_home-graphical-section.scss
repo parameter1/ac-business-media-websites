@@ -25,6 +25,13 @@
         text-align: center;
       }
     }
+    .node-list--section-list {
+      .section-list__website-section-description {
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
+      }
+    }
     .node-list__header {
       color: #456;
     }
