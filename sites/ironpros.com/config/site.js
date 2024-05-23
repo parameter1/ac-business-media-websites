@@ -41,9 +41,9 @@ module.exports = {
       ],
     },
     footer: {
-      src: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=45&auto=format,compress',
+      src: 'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=120&auto=format,compress',
       srcset: [
-        'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=90&auto=format,compress 2x',
+        'https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/ironpros-logo-white.png?h=240&auto=format,compress 2x',
       ],
     },
     corporate: corporate.logo,
