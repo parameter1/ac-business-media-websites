@@ -2,12 +2,15 @@
   $self: &;
 
   &--6-cols {
-    #{ $self } {
+    > #{ $self } {
       &__node {
-        // account for smaller container max-width and break earlier than normal
-        @include media-breakpoint-up(sm) {
-          @include make-col(12);
+        .node {
+          width: 100%;
+          // override default core setting of node width
+          max-width: 100% !important;
         }
+        // account for smaller container max-width and break earlier than normal
+        @include make-col(4);
         @include media-breakpoint-up(md) {
           @include make-col(3);
         }
@@ -39,7 +42,6 @@
   }
 
 }
-
 
 .node-list {
   $self: &;
