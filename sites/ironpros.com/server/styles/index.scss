@@ -143,3 +143,13 @@ $theme-section-header-font: $theme-header-font-family;
     }
   }
 }
+
+.site-footer {
+  &__brand {
+    margin-left: 0;
+  }
+  &__logo {
+    height: 120px;
+    filter: none;
+  }
+}

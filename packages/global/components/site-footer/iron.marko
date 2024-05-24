@@ -27,8 +27,6 @@ $ const useIdxNewsletterSignup = defaultValue(input.useIdxNewsletterSignup, true
           alt=config.website("name")
           src=site.get("logos.footer.src")
           srcset=site.getAsArray("logos.footer.srcset").join(", ")
-          width=site.get("logos.navbar.width")
-          height=site.get("logos.navbar.height")
           lazyload=true
         />
       </theme-site-navbar-brand>
@@ -39,7 +37,10 @@ $ const useIdxNewsletterSignup = defaultValue(input.useIdxNewsletterSignup, true
 
       <div class="row">
         <marko-web-element block-name=blockName name="section" attrs={ "aria-label": "Footer Disclaimer"}>
-          The "IRONPROS" name and logo are the trademarks and service marks of IRONMARKETS. As described in further detail in the Terms of Service, all other names, logos, and marks used on this website are the trademarks and service marks of their respective owners.
+          <div style="font-family:DM Sans,sans-serif;font-size:20px;font-weight:700;letter-spacing:.5px;line-height:1;margin-bottom:12px;text-transform:none;color:#fff;">
+            About Us
+          </div>
+          The <span style="color:#c99227;font-weight:bold;">"IRONPROS"</span> name and logo are the trademarks and service marks of IRONMARKETS. As described in further detail in the Terms of Service, all other names, logos, and marks used on this website are the trademarks and service marks of their respective owners.
         </marko-web-element>
         <marko-web-element block-name=blockName name="section" attrs={ "aria-label": "Social Media Links" }>
           <theme-social-follow dark=false modifiers=["site-footer"] />
