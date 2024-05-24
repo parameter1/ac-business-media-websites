@@ -124,97 +124,45 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
     </@section>
   </if>
   <@section|{ blockName, section, aliases }|>
-    <if(alias !== "premium-content" || !nxConfig.domainName)>
-      <global-section-feed-wrapper
-        aliases=aliases
-        alias=alias
-        flow=input.feedFlow
-        with-ads=withAds
-        query-params=input.queryParams
-        above-the-fold=true
-        ad-name=input.adName
-      >
-        <@node ...input.node />
-        <if(withNativeX)>
-          <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
-        </if>
-        <@rail>
-          <div class="mb-block">
-            <if(withAds)>
-              <theme-gam-define-display-ad
-                name="top-rotation"
-                position="section_page"
-                aliases=aliases
-                modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-                class="mb-0"
-              />
-            </if>
-          </div>
-          <marko-web-identity-x-context|{ hasUser }|>
-            <if(!hasUser)>
-              <div class="sticky-top mt-2">
-                <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
-              </div>
-            </if>
-          </marko-web-identity-x-context>
-        </@rail>
-        <@rail>
+    <global-section-feed-wrapper
+      aliases=aliases
+      alias=alias
+      flow=input.feedFlow
+      with-ads=withAds
+      query-params=input.queryParams
+      above-the-fold=true
+      ad-name=input.adName
+    >
+      <@node ...input.node />
+      <if(withNativeX)>
+        <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
+      </if>
+      <@rail>
+        <div class="mb-block">
+          <if(withAds)>
+            <theme-gam-define-display-ad
+              name="top-rotation"
+              position="section_page"
+              aliases=aliases
+              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+              class="mb-0"
+            />
+          </if>
+        </div>
+        <marko-web-identity-x-context|{ hasUser }|>
+          <if(!hasUser)>
+            <div class="sticky-top mt-2">
+              <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
+            </div>
+          </if>
+        </marko-web-identity-x-context>
+      </@rail>
+      <@rail>
+        <if(alias !== "premium-content")>
           <theme-client-side-most-popular-list-block class="sticky-top" />
-        </@rail>
-      </global-section-feed-wrapper>
-    </if>
-    <else>
-      <div class="row">
-        <div class="col-lg-8">
-          <marko-web-native-x-publisher-stories|{ nodes, pageInfo }|
-            domain-name=nxConfig.domainName
-          >
-            <marko-web-node-list
-              inner-justified=true
-              flush-x=true
-              flush-y=false
-              modifiers=["section-feed"]
-            >
-              <@nodes nodes=nodes>
-                <@slot|{ node }|>
-                  <theme-section-feed-content-node
-                    node=convert(node)
-                    display-image=true
-                    with-section=false
-                    lazyload=false
-                    with-dates=true
-                    ...input.node
-                  />
-                </@slot>
-              </@nodes>
-            </marko-web-node-list>
-          </marko-web-native-x-publisher-stories>
-        </div>
-        <div class="col-lg-4">
-          <marko-web-identity-x-context|{ hasUser }|>
-            <if(!hasUser)>
-              <div class="sticky-top mb-block">
-                <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
-              </div>
-            </if>
-          </marko-web-identity-x-context>
-          <div class="mb-block">
-            <if(withAds)>
-              <theme-gam-define-display-ad
-                name="top-rotation"
-                position="section_page"
-                aliases=["premium-content"]
-                modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-                class="mb-0"
-              />
-            </if>
-            <else>
-              <theme-client-side-most-popular-list-block class="sticky-top" />
-            </else>
-          </div>
-        </div>
-      </div>
-    </else>
+        </if>
+      </@rail>
+    </global-section-feed-wrapper>
   </@section>
 
   <@section>
