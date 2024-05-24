@@ -34,13 +34,9 @@
         @include marko-web-node-list-border(border-right);
         @include marko-web-node-list-border(border-bottom);
         @include marko-web-node-list-border(border-left);
-        @media(max-width: 720px) {
-          @include make-col(4);
-        }
       }
     }
   }
-
 }
 
 .node-list {
