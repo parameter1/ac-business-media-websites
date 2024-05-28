@@ -8,8 +8,6 @@ $ const { title = "Featured Products", sectionId } = input;
 $ const { apollo } = out.global;
 $ const withTeaser =  defaultValue(input.withTeaser, false);
 
-$ console.log(withTeaser)
-
 $ const blockName = "node-carousel";
 $ const modifiers = ["titanium-products", ...getAsArray(input, "modifiers")];
 
