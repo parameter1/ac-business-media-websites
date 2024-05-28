@@ -151,5 +151,8 @@ $theme-section-header-font: $theme-header-font-family;
   &__logo {
     height: 120px;
     filter: none;
+    @include media-breakpoint-down(sm) {
+      height: 65px;
+    }
   }
 }
