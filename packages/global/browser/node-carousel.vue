@@ -37,15 +37,15 @@
                   {{ node.shortName }}
                 </h5>
                 <div
-                  :v-if="withTeaser"
+                  v-if="withTeaser"
                   class="node__teaser">
                   {{ node.teaser }}
                 </div>
               </div>
             </a>
             <a
+              v-if="withCompany"
               :href="node.company.canonicalPath"
-              :v-if="withCompany"
               class="node__company"
             >
               {{ node.company.name }}
