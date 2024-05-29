@@ -38,6 +38,12 @@ $ const promise = loadTitaniumCompanyProducts(apollo, {
             nodes,
             withTeaser,
             withCompany: true,
+            imageOptions: {
+              h: 140,
+              w: 250,
+              fit: 'fillmax',
+              fill: 'solid',
+            }
           }
           ssr=true
         />

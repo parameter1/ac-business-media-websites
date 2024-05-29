@@ -22,8 +22,8 @@
                 :data-src="getImgSrc(node.primaryImage.src)"
                 :data-srcset="[getImgSrcSet(node.primaryImage.src)]"
                 :alt="node.shortName"
-                width="250"
-                height="140"
+                :width="imageOptions.w"
+                :height="imageOptions.h"
               >
             </a>
             <a
@@ -76,6 +76,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    imageOptions: {
+      type: Object,
+      default: () => ({
+        fit: 'crop',
+        w: 250,
+        h: 140,
+      }),
+    },
   },
 
   data: () => ({
@@ -118,11 +126,20 @@ export default {
   }),
 
   methods: {
+    getImagePath(imagePath, withDpr = false) {
+      const imageParams = new URLSearchParams({
+        ...this.imageOptions,
+      });
+      const src = imagePath.split('?')[0];
+      return withDpr
+        ? `${src}?${imageParams.toString()}&dpr=2 2x`
+        : `${src}?${imageParams.toString()}`;
+    },
     getImgSrc(imagePath) {
-      return `${imagePath}?auto=format%2Ccompress&fit=crop&h=140&q=70&w=250`;
+      return this.getImagePath(imagePath, false);
     },
     getImgSrcSet(imagePath) {
-      return `${imagePath}?auto=format%2Ccompress&fit=crop&h=140&q=70&w=250&dpr=2 2x`;
+      return this.getImagePath(imagePath, true);
     },
   },
 };
