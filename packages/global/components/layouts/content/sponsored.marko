@@ -106,6 +106,9 @@ $ const shouldInjectAds = false;
                   selector=bodyId
                   preventHTMLInjection=!shouldInjectAds
                   lazyload-first-image=lazyloadFirstImage
+                  // disable leadderboard ad inject to allow for Teads video injection from GTM
+                  desktop-leaderboard-ad-counts=[]
+                  mobile-leaderboard-ad-counts=[]
                 />
                 <if(content.transcript)>
                   $ const transcriptId = `content-transcript-${content.id}`;
