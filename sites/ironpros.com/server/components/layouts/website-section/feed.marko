@@ -107,41 +107,39 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
   </@section>
 
   <!-- Section content 3 card block -->
-  <@section>
-    <marko-web-query|{ nodes, section: querySection }| name=queryName params=queryParams>
-      $ const section = { ...querySection };
-      $ const title = section && section.name;
-      <marko-web-block name=blockName>
-        <if(title)>
-          <marko-web-element block-name=blockName name="header">
-            <marko-web-element block-name=blockName name="header-left">
-              <marko-web-element block-name=blockName name="title">
-                ${title}
-              </marko-web-element>
-            </marko-web-element>
-            <marko-web-element block-name=blockName name="header-right">
-              <marko-web-element block-name=blockName name="view-more">
-                <a href="#sectionList">
-                  ${i18n("View more")} &raquo;
-                </a>
-              </marko-web-element>
-            </marko-web-element>
-          </marko-web-element>
-        </if>
-
-        <theme-content-card-deck-col-flow
-          nodes=nodes
-          modifiers=[blockName]
-          cols=cols
-        >
-          <@node modifiers=[blockName] ...input.node />
-        </theme-content-card-deck-col-flow>
-      </marko-web-block>
-    </marko-web-query>
-  </@section>
 
   <if(p.page === 1)>
     <@section|{ blockName, section, aliases }|>
+      <marko-web-query|{ nodes, section: querySection }| name=queryName params=queryParams>
+        $ const section = { ...querySection };
+        $ const title = section && section.name;
+        <marko-web-block name=blockName>
+          <if(title)>
+            <marko-web-element block-name=blockName name="header">
+              <marko-web-element block-name=blockName name="header-left">
+                <marko-web-element block-name=blockName name="title">
+                  ${title}
+                </marko-web-element>
+              </marko-web-element>
+              <marko-web-element block-name=blockName name="header-right">
+                <marko-web-element block-name=blockName name="view-more">
+                  <a href="#sectionList">
+                    ${i18n("View more")} &raquo;
+                  </a>
+                </marko-web-element>
+              </marko-web-element>
+            </marko-web-element>
+          </if>
+
+          <theme-content-card-deck-col-flow
+            nodes=nodes
+            modifiers=[blockName]
+            cols=cols
+          >
+            <@node modifiers=[blockName] ...input.node />
+          </theme-content-card-deck-col-flow>
+        </marko-web-block>
+      </marko-web-query>
       $ const { tocSections } = getAsObject(site, `config.pageDetails.${alias}`);
       <for|{ header, nodes, index }| of=tocSections >
         <div class="node-list node-list--section-list node-list--section-list-toc">
@@ -178,7 +176,9 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
     </@section>
   </if>
   <@section|{ blockName, section, aliases }|>
-    <div id="sectionList" />
+    <if((p.page === 1))>
+      <div id="sectionList" />
+    </if>
     <global-section-feed-wrapper
       aliases=aliases
       alias=alias
