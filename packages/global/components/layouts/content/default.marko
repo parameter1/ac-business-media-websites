@@ -201,6 +201,9 @@ $ const loadMore = !showOverlay; // && !idxFormId;
                   block-name=blockName
                   selector=bodyId
                   preventHTMLInjection=!shouldInjectAds
+                  // disable leadderboard ad inject to allow for Teads video injection from GTM
+                  desktop-leaderboard-ad-counts=[]
+                  mobile-leaderboard-ad-counts=[]
                 />
 
                 $ const transcriptId = `content-transcript-${content.id}`;
