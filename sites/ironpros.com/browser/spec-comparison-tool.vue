@@ -188,6 +188,7 @@ export default {
     },
   },
   data: () => ({
+    prodToCompare: {},
     // loading & errors
     isLoading: false,
     hasLoaded: false,
@@ -211,24 +212,30 @@ export default {
     },
 
     products() {
-      return [this.product, ...this.selectedProducts];
+      return [this.prodToCompare, ...this.selectedProducts];
     },
     productIds() {
       return this.products.map(({ id }) => id);
     },
     company() {
-      const { company } = this.product;
+      const { company } = this.prodToCompare;
       return company;
     },
     sectionAlias() {
-      const { product } = this;
-      return product.primarySection.alias;
+      const { prodToCompare } = this;
+      return prodToCompare.primarySection.alias;
     },
     specList() {
       return generateSpecList({ specsToAppend: this.specsToAppend });
     },
   },
   async created() {
+    // set prod and adjust image;
+    this.prodToCompare = this.product;
+    if (this.prodToCompare.primaryImage && this.prodToCompare.primaryImage.src) {
+      const src = this.prodToCompare.primaryImage.src.split('?')[0];
+      this.prodToCompare.primaryImage.src = `${src}?auto=format%2Ccompress&fill=solid&fit=fillmax&h=300&q=70&w=300`;
+    }
     await this.loadCompanies();
     await this.updateSelectableProducts();
     await this.loadSpecAndAppend();
@@ -274,7 +281,7 @@ export default {
         const input = {
           sectionAlias: this.sectionAlias,
           company: Number(companyId),
-          excludeContentIds: [this.product.id],
+          excludeContentIds: [this.prodToCompare.id],
           includeContentTypes: ['Product'],
           pagination: {
             limit: 500,
@@ -369,7 +376,7 @@ export default {
         // @todo Figure out limits/skip display of all
         const input = {
           sectionAlias: this.sectionAlias,
-          excludeContentIds: [this.product.id],
+          excludeContentIds: [this.prodToCompare.id],
           includeContentTypes: ['Product'],
           pagination: {
             limit: 5,

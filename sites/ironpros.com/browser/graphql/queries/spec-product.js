@@ -18,7 +18,7 @@ fragment SpecProductFragment on Content {
   siteContext { path }
   primaryImage {
     id
-    src(input: { options: { auto: "format,compress", q: 70, h: 300, w: 300, fit: "fillmax" } })
+    src(input: { options: { auto: "format,compress", q: 70, h: 300, w: 300, fit: "fillmax", fill: "solid" } })
   }
 }
 `;
