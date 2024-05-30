@@ -1,14 +1,33 @@
 import convert from "@parameter1/base-cms-marko-web-native-x/utils/convert-story-to-content";
 import { getAsArray, getAsObject } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
-
+import { defaultValue } from "@parameter1/base-cms-marko-web/utils";
+import { getAsObject } from "@parameter1/base-cms-object-path";
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-card-deck-block";
+import sectionFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-info";
 $ const {
   pagination: p,
   nativeX: nxConfig,
   site,
   GAM,
+  i18n
 } = out.global;
 
+$ const viewMore = defaultValue(input.viewMore, true);
+$ const queryName = defaultValue(input.queryName, "website-scheduled-content");
+
+$ const queryParams = {
+  sectionAlias: input.alias,
+  requiresImage: true,
+  limit: 3,
+  ...input.queryParams,
+  queryFragment,
+  sectionFragment,
+};
+
+$ const cols = input.cols || queryParams.limit;
+$ const blockName = "content-card-deck";
+$ const link = getAsObject(input, "link");
 $ const { id, alias, name, pageNode } = input;
 $ const withNativeX = defaultValue(input.withNativeX, false);
 $ const sections = getAsArray(input, "sections");
@@ -75,19 +94,44 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
       </div>
     </div>
   </@section>
-  <!-- <@section modifiers=["background-color-dark"]>
-    <global-node-carousel-block title="Features" alias=alias modifiers=["dark"] />
-  </@section> -->
-
-  <!-- <@section>
-    <global-node-carousel-block title="Features" alias=alias />
-  </@section> -->
 
   <@section|{ blockName, section, aliases }|>
     <global-partners-block title="Titanium Partners" />
   </@section>
+
+
   <if(p.page === 1)>
     <@section|{ blockName, section, aliases }|>
+      <marko-web-query|{ nodes, section: querySection }| name=queryName params=queryParams>
+        $ const section = { ...querySection };
+        $ const title = section && section.name;
+        <marko-web-element block-name="content-card-deck" name="wrapper">
+          <if(title)>
+            <marko-web-element block-name="content-card-deck" name="header">
+              <marko-web-element block-name="content-card-deck" name="header-left">
+                <marko-web-element block-name="content-card-deck" name="title">
+                  ${title}
+                </marko-web-element>
+              </marko-web-element>
+              <marko-web-element block-name="content-card-deck" name="header-right">
+                <marko-web-element block-name="content-card-deck" name="view-more">
+                  <a href="#sectionList">
+                    ${i18n("View more")} &raquo;
+                  </a>
+                </marko-web-element>
+              </marko-web-element>
+            </marko-web-element>
+          </if>
+
+          <theme-content-card-deck-col-flow
+            nodes=nodes
+            modifiers=[blockName]
+            cols=cols
+          >
+            <@node modifiers=[blockName] ...input.node />
+          </theme-content-card-deck-col-flow>
+        </marko-web-element>
+      </marko-web-query>
       $ const { tocSections } = getAsObject(site, `config.pageDetails.${alias}`);
       <for|{ header, nodes, index }| of=tocSections >
         <div class="node-list node-list--section-list node-list--section-list-toc">
@@ -124,6 +168,9 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
     </@section>
   </if>
   <@section|{ blockName, section, aliases }|>
+    <if((p.page === 1))>
+      <div id="sectionList" />
+    </if>
     <global-section-feed-wrapper
       aliases=aliases
       alias=alias
@@ -166,11 +213,11 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
   </@section>
 
   <@section>
-    <site-titanium-product-carousel-block section-id=id/>
+    <site-titanium-product-carousel-block section-id=id />
   </@section>
 
   <for|s| of=sections>
-    <@section|{ blockName, section, aliases }| modifiers=s.modifiers>
+    <@section|{ blockName, section, aliases, id }| modifiers=s.modifiers>
       <${s.renderBody}
         block-name=blockName
         section=section

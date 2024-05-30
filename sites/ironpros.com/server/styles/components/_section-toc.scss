@@ -47,3 +47,8 @@
     }
   }
 }
+
+// hide the first three node as they are duplicate in most recent
+#sectionList + .row .node-list:first-of-type {
+  display: none;
+}
