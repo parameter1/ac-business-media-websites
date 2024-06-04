@@ -4,7 +4,7 @@ import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 import promotionQueryFragment from "../../graphql/fragments/content-promotion-list";
 
-$ const { GAM } = out.global;
+$ const { GAM, site } = out.global;
 
 $ const { id, alias, name, pageNode } = input;
 $ const sections = getAsArray(input, "sections");
@@ -42,6 +42,24 @@ $ const pageWrapperModifiers = defaultValue(input.pageWrapperModifiers, []);
             />
           </@section>
         </if>
+
+        <@section|{ blockName }|>
+          <theme-website-section-breadcrumbs
+            section=section
+            display-home=false
+            display-self=false
+            modifiers=["website-section"]
+          />
+          <marko-web-website-section-name tag="h1" block-name=blockName obj=section />
+
+          $ const pageDetails = site.getAsObject("pageDetails");
+          <if(pageDetails[alias])>
+            <global-page-details-block content=pageDetails[alias] />
+          </if>
+          <else>
+            <marko-web-website-section-description obj=section />
+          </else>
+        </@section>
 
 
         <@section modifiers=["card-deck"]>
