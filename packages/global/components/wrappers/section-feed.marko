@@ -7,7 +7,7 @@ $ const withPagination = defaultValue(input.withPagination, true);
 $ const perPage = 12;
 $ const skip = p.skip({ perPage });
 
-$ const { modifiers } = input;
+$ const { noRail, modifiers } = input;
 $ const path = input.path || input.alias || req.path;
 $ const withAds = GAM ? defaultValue(input.withAds, true) : false;
 $ const aboveTheFold = defaultValue(input.aboveTheFold, false);
@@ -71,6 +71,41 @@ $ const params = { ...queryParams, limit, skip };
       </div>
     </div>
   </if>
+  <else-if(noRail)>
+    <div class="row">
+      <div class="col-lg-12">
+        <for|nodeGroup, index| of=nodeGroups>
+          $ const isLast = index === nodeGroups.length - 1;
+          $ const header = index === 0 ? input.header : null;
+          $ const adName = index === 0 ? input.adName || "top-rotation" : input.adName || "rotation";
+          $ const flowInput = (index === 0 && aboveTheFold) ? { ...input.flow, lazyload: false } : input.flow;
+          $ const nativeX = index === 0 ? input.nativeX : undefined;
+          <section-feed-flow
+            nodes=nodeGroup
+            header=header
+            modifiers=modifiers
+            node=input.node
+            node-list=input.nodeList
+            aliases=input.aliases
+            flow=flowInput
+            with-ads=withAds
+            ad-name=adName
+            native-x=nativeX
+          />
+        </for>
+        <if(withPagination)>
+          <theme-section-feed-block|{ totalCount }| alias=input.alias query-name=queryName count-only=true>
+            <@query-params ...queryParams />
+            <theme-pagination-controls
+              per-page=limit
+              total-count=totalCount
+              path=path
+            />
+          </theme-section-feed-block>
+        </if>
+      </div>
+    </div>
+  </else-if>
   <else>
     $ const topNodeGroups = nodeGroups.slice(0, 2);
     $ const bottomNodeGroups = nodeGroups.slice(2);

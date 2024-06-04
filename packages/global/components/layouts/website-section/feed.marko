@@ -103,6 +103,20 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
         </@rail>
       </global-section-feed-wrapper>
     </if>
+    <else-if(alias === "premium-content")>
+      <global-section-feed-wrapper
+        aliases=aliases
+        alias=alias
+        flow=input.feedFlow
+        with-ads=withAds
+        query-params=input.queryParams
+        above-the-fold=true
+        ad-name=input.adName
+        no-rail=true
+      >
+        <@node ...input.node />
+      </global-section-feed-wrapper>
+    </else-if>
     <else>
       <div class="row">
         <div class="col-lg-8">
