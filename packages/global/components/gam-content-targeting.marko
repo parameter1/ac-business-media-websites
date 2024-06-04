@@ -40,7 +40,6 @@ $ const websiteSchedules = getAsArray(content, "websiteSchedules").filter((sched
 $ if (websiteSchedules.length !== 0) Channels.push(...getScheduleChannels(websiteSchedules));
 
 $ const { id, type, alias } = content;
-$ console.log('content: ', content)
 $ const companyIds = getAsArray(content, "companies.edges").map(({ node }) => node.id);
 $ const companyId = get(content, "company.id");
 $ const tags = gamContentTags(content);
