@@ -1,6 +1,6 @@
 import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
 
-$ const { site } = out.global;
+$ const { site, req } = out.global;
 $ const section = input.obj
 
 $ const aliasToChannel = site.get("gam.aliasToChannel") || {}
@@ -13,6 +13,7 @@ $ const getChannels = (section) => {
 
 $ const keyValues = {
   Channels: [...new Set(getChannels(section))],
+  uri: req.path,
 };
 
 <marko-web-gam-targeting key-values=keyValues />

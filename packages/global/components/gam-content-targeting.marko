@@ -2,7 +2,7 @@ import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-ali
 import { getAsObject, get, getAsArray } from "@parameter1/base-cms-object-path";
 import gamContentTags from "../utils/gam-content-tags";
 
-$ const { config, site } = out.global;
+$ const { config, site, req } = out.global;
 
 $ const siteId = get(config, "websiteContext.id");
 
@@ -39,7 +39,7 @@ $ const websiteSchedules = getAsArray(content, "websiteSchedules").filter((sched
 
 $ if (websiteSchedules.length !== 0) Channels.push(...getScheduleChannels(websiteSchedules));
 
-$ const { id, type } = content;
+$ const { id, type, alias } = content;
 $ const companyIds = getAsArray(content, "companies.edges").map(({ node }) => node.id);
 $ const companyId = get(content, "company.id");
 $ const tags = gamContentTags(content);
@@ -60,6 +60,7 @@ $ const keyValues = {
   ...(tags && { tag_list: tags }),
   ...(sponsored && { sponsored: "yes" }),
   Channels: [...new Set(Channels)],
+  uri: req.path,
 };
 
 <marko-web-gam-targeting key-values=keyValues />
