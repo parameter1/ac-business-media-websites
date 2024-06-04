@@ -5,7 +5,7 @@ import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 $ const { pagination: p, nativeX: nxConfig, site } = out.global;
 
 $ const { id, alias, name, pageNode } = input;
-$ const withNativeX = defaultValue(input.withNativeX, true);
+$ const withNativeX = nxConfig && nxConfig.enabled ? defaultValue(input.withNativeX, true) : false;
 $ const sections = getAsArray(input, "sections");
 $ const perPage = 24;
 $ const withAds = alias === "premium-content" ? false : defaultValue(input.withAds, true);
