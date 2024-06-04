@@ -58,8 +58,6 @@ $ const displayInquiry = (content) => {
 
             />
 
-            <div id="credspark-container" />
-
             <if(displaySocialShare)>
               <marko-web-social-sharing
                 path=content.siteContext.path
@@ -67,6 +65,8 @@ $ const displayInquiry = (content) => {
                 print-path=`/print/content/${content.id}`
               />
             </if>
+
+            <div id="credspark-container" />
           </theme-page-contents>
         </div>
       </div>
