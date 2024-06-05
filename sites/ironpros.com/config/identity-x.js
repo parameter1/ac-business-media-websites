@@ -30,7 +30,6 @@ module.exports = configureIdentityX({
     'givenName',
     'familyName',
     'organization',
-    'organizationTitle', // @todo make this a custom field somehow
     'regionCode', // Only require client-side for non-us/ca
     'countryCode',
     'postalCode', // Only require client-side for non-us/ca
