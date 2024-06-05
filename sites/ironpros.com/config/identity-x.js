@@ -26,7 +26,6 @@ formDefault.fieldRows.push(
 );
 
 module.exports = configureIdentityX({
-  // '@TODO-Configure',
   requiredClientFields: [
     'givenName',
     'familyName',
