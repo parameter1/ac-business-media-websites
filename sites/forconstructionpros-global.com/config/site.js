@@ -23,6 +23,9 @@ module.exports = {
   omeda,
   omedaIdentityX,
   identityXOptInHooks,
+  wufoo: {
+    userName: 'acbm',
+  },
   gcse: {
     id: '003355913687346718228:la4zrhjf2r9',
   },

@@ -266,11 +266,14 @@ $ const loadMore = !showOverlay; // && !idxFormId;
                   />
                 </if>
 
+                <div id="credspark-container" />
+
                 <marko-web-identity-x-context|{ hasUser }|>
                   <if(!hasUser)>
                     <identity-x-newsletter-form-inline type="inlineContent" with-image=true />
                   </if>
                 </marko-web-identity-x-context>
+
               </else>
             </marko-web-identity-x-access>
 
