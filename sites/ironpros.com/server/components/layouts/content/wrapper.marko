@@ -22,6 +22,11 @@ $ const loadMore = defaultValue(input.loadMore, true);
           </marko-web-gtm-content-context>
         </global-gam-content-targeting>
       </if>
+      <else>
+        <marko-web-gtm-content-context|{ context }| id=id>=
+          <marko-web-gtm-push data=context />
+        </marko-web-gtm-content-context>
+      </else>
     </marko-web-resolve-page>
   </@head>
   <@page>
