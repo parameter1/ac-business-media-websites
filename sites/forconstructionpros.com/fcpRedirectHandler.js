@@ -1715,7 +1715,6 @@ const redirectCompany = [
 
 module.exports = ({ from }) => {
   const found = redirectCompany.find((pair) => new RegExp(`${pair.from}`).test(from));
-  console.log(found);
   if (found) return found;
   return cufv1('update.forconstructionpros.com');
 };
