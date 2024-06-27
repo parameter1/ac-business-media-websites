@@ -20,7 +20,7 @@ const withoutAdsAliases = [
 ];
 
 module.exports = (app) => {
-  app.get('/:alias(podcasts|videos)', withWebsiteSection({
+  app.get('/:alias(podcasts|videos|awards)', withWebsiteSection({
     template: promoCards,
     queryFragment,
   }));

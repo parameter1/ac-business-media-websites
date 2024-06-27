@@ -41,15 +41,13 @@ $ const omedaConfig = site.get('omeda');
       enable-gam-plugin=true
     />
 
-    <if(GAM && GAM.enabled)>
-      <!-- init gam -->
-      <marko-web-gam-init
-        request-frame=true
-        target-tag="body"
-        on="load"
-      />
 
-    </if>
+    <!-- init gam && googletag which is used in other places -->
+    <marko-web-gam-init
+      request-frame=true
+      target-tag="body"
+      on="load"
+    />
 
     <!-- init native-x -->
     <marko-web-native-x-init
