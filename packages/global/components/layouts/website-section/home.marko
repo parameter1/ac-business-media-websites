@@ -2,6 +2,7 @@ import { getAsObject } from "@parameter1/base-cms-object-path";
 import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
 import { getAsArray } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import clFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list";
 import shuffleArray from "../../../utils/shuffle-array";
 
 import homePageTopStoriesLoader from "@ac-business-media/package-global/loaders/home-page-top-stories";
@@ -116,6 +117,28 @@ $ const promise = homePageTopStoriesLoader(apollo, {
               name="top-leaderboard"
               position="section-page"
               aliases=aliases
+            />
+          </@section>
+
+          <@section>
+            <marko-web-query|{ nodes }|
+              name="website-scheduled-content"
+              params={
+                limit: 4,
+                queryFragment: clFragment,
+                excludeContentTypes: ["Promotion", "Company", "TextAd"]
+              }
+            >
+              <theme-content-card-deck-block title="Recommended" nodes=nodes cols=4 />
+            </marko-web-query>
+          </@section>
+
+          <@section>
+            <theme-gam-define-display-ad
+              name="leaderboard"
+              position="section-page"
+              aliases=aliases
+              modifiers=[]
             />
           </@section>
 
