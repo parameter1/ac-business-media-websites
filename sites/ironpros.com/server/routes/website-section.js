@@ -14,7 +14,7 @@ module.exports = (app) => {
     template: webinars,
     queryFragment,
   }));
-  app.get('/:alias(videos)', withWebsiteSection({
+  app.get('/:alias(ironpros-tv)', withWebsiteSection({
     template: publishedVideos,
     queryFragment,
   }));
