@@ -17,3 +17,14 @@
     margin-bottom: map-get($spacers, block);
   }
 }
+
+.page-wrapper {
+  &__subtitle {
+    padding-top: 15px;
+    font-size: 1.5rem;
+    font-weight: $font-weight-bold;
+  }
+  &__explanation {
+    font-size: 1.25rem;
+  }
+}
