@@ -9,6 +9,9 @@
     "template": "./sponsors.marko",
     "@alias": "string"
   },
+  "<global-follow-us-block>": {
+    "template": "./follow-us.marko"
+  },
   "<global-identity-x-newsletter-form-inline>": {
     "template": "./newsletter-inline.marko"
   },
