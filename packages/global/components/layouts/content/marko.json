@@ -86,6 +86,7 @@
     "@type": "string",
     "@page-node": "object",
     "@load-more": "boolean",
-    "@with-ads": "boolean"
+    "@with-ads": "boolean",
+    "@with-feed-ads": "boolean"
   }
 }

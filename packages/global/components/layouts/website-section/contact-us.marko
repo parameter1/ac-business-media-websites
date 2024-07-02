@@ -6,6 +6,7 @@ $ const { pagination: p, nativeX: nxConfig, site } = out.global;
 
 $ const { id, alias, name, pageNode } = input;
 $ const withNativeX = nxConfig && nxConfig.enabled ? defaultValue(input.withNativeX, true) : false;
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
 $ const sections = getAsArray(input, "sections");
 $ const perPage = 24;
 $ const withAds = alias === "premium-content" ? false : defaultValue(input.withAds, true);
@@ -69,7 +70,7 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
         aliases=aliases
         alias=alias
         flow=input.feedFlow
-        with-ads=withAds
+        with-ads=withFeedAds
         query-params=input.queryParams
         above-the-fold=true
         ad-name=input.adName
