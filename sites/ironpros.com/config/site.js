@@ -89,4 +89,9 @@ module.exports = {
   },
   pageDetails,
   search,
+  login: {
+    description: 'Register or Login to IRONPROS',
+    subtitle: 'Register to Gain Full Access to IRONPROS',
+    explanation: 'As a registered user, you\'ll gain access to detailed and insightful assets which are essential to successful business decisions in the industry. Join our community of professionals to network, share insights, and stay ahead in the ever-evolving world of construction. Sign up today and start leveraging the full potential of IRONPROS!',
+  },
 };
