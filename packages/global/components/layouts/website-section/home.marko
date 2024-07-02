@@ -16,6 +16,7 @@ $ const withFeatured = defaultValue(input.withFeatured, true);
 $ const excludedSectionIds = [];
 $ const { GAM, apollo, i18n } = out.global;
 
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
 $ const latestTitle = defaultValue(input.latestTitle, "Latest News");
 $ const morePrefix = defaultValue(input.morePrefix, "More from");
 
@@ -147,6 +148,7 @@ $ const promise = homePageTopStoriesLoader(apollo, {
               alias=section.alias
               aliases=aliases
               with-pagination=false
+              with-ads=withFeedAds
               ad-name="rotation"
             >
               <@header>${i18n(morePrefix)} ${config.siteName()}</@header>

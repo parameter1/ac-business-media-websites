@@ -1,15 +1,42 @@
 import { getAsArray, get } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
 import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list";
 import contentIframe from "@ac-business-media/package-global/utils/content-iframe";
+import { shouldOverlay, restrictContentByReg, shouldTruncate } from "@parameter1/base-cms-marko-web-theme-monorail/utils/content-meter-helpers";
 
-$ const { site, apollo, contentMeterState, pagination: p, i18n } = out.global;
+
+$ const {
+  site,
+  contentGatingHandler,
+  contentMeterState,
+  contentIdxFormState,
+  req,
+  apollo,
+  config,
+  pagination: p,
+  i18n,
+} = out.global;
+
+<!-- update contentIdxFormStateDisplayBase on the req cookies being present -->
+<!-- @todo figure out how to do this ahead of time within the content route if possible -->
+$ contentIdxFormState.displayForm = !Boolean(get(req, `cookies.${get(contentIdxFormState, 'cookie.name')}`));
+$ const { formId: idxFormId, displayForm: displayIdxForm, cookie: idxSuveyCookie } = contentIdxFormState;
+
+$ const showOverlay = shouldOverlay(contentMeterState);
+
 $ const { id, type, pageNode, ...rest } = input;
+$ const sections = getAsArray(input, "sections");
 
 $ const lang = site.config.lang || "en";
 $ const perPage = 12;
+$ const displayOverlay = (contentMeterState) ? defaultValue(contentMeterState.displayOverlay, false) : false;
+$ const displayRecommended = (displayOverlay) ? false : defaultValue(input.displayRecommended, true);
 $ const displayPublishedDate = true;
 $ const displaySocialShare = true;
+$ const useCompanyLoadMore = defaultValue(input.useCompanyLoadMore, false);
+$ const withAds = !showOverlay; // && !idxFormId;
+$ const loadMore = !showOverlay; // && !idxFormId;
 
 $ const displayInquiry = (content) => {
   if (site.get("inquiry.enabled") === false) return false;
@@ -20,8 +47,10 @@ $ const displayInquiry = (content) => {
   id=id
   type=type
   page-node=pageNode
+  with-ads=withAds
+  with-feed-ads=false
+  load-more=!useCompanyLoadMore
   ...rest
-  load-more=false
 >
   <@section|{ blockName, content, aliases, authors }| modifiers=["content-header"]>
     $ const { primarySection } = content;
@@ -58,6 +87,13 @@ $ const displayInquiry = (content) => {
 
             />
 
+            $ const inquiry = site.getAsObject('inquiry');
+            <if(displayInquiry(content))>
+              <div class="mb-block">
+                <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
+              </div>
+            </if>
+
             <if(displaySocialShare)>
               <marko-web-social-sharing
                 path=content.siteContext.path
@@ -78,53 +114,100 @@ $ const displayInquiry = (content) => {
         </div>
       </div>
       <div class="col-lg-4 page-rail">
-        $ const inquiry = site.getAsObject('inquiry');
-        <if(displayInquiry(content))>
+        <if(withAds)>
           <div class="mb-block">
-            <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
+            <theme-gam-define-display-ad
+              name="rotation-rail"
+              position="content_page"
+              aliases=aliases
+              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+              class="mb-0"
+            />
+          </div>
+        </if>
+        <if(displayRecommended)>
+          <div class="mb-block">
+            <global-recommended-content-block query-params={ excludeContentIds: [content.id] } alias=primarySection.alias aliases=aliases />
+          </div>
+        </if>
+        <if(withAds)>
+          <div class="mb-block sticky-top">
+            <theme-gam-define-display-ad
+              name="rotation"
+              position="content_page"
+              aliases=aliases
+              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+              class="mb-0"
+            />
           </div>
         </if>
       </div>
     </div>
   </@section>
 
-  <@section|{ content, aliases }|>
-    <if(content.company)>
-      <div class="row">
-        <div class="col-lg-8">
-          $ const latestTitle = (p.page > 1) ? `${i18n("More From")} ${content.company.name} - Page ${p.page}` : `${i18n("More From")} ${content.company.name}`;
-          $ const params = {
-            companyId: content.company.id,
-            excludeContentTypes: ["Promotion"],
-            excludeContentIds: [content.id],
-            limit: perPage,
-            skip: p.skip({ perPage }),
-            withSite: false,
-            queryFragment,
-          };
-          <marko-web-query|{ nodes }| name="all-company-content" params=params>
-            <theme-section-feed-flow nodes=nodes>
-              <@header>${latestTitle}</@header>
-              <@node-list inner-justified=false />
-              <@node with-dates=false with-section=false />
-            </theme-section-feed-flow>
-          </marko-web-query>
-        </div>
-        <div class="col-lg-4">
-          <theme-gam-define-display-ad
-            name="top-rotation"
-            position="content_page"
-            aliases=aliases
-            modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-            class="mb-0"
-          />
-        </div>
-      </div>
+  <@section|{ aliases, content }|>
+    <if(!idxFormId)>
+      <theme-related-stories-block
+        content-id=content.id
+        section-id=content.primarySection.id
+        published=content.published
+        with-native-x=true
+      >
+        <@native-x index=3 name="related-content" aliases=aliases />
+      </theme-related-stories-block>
     </if>
-    <theme-gam-define-display-ad
-      name="footer-leaderboard"
-      position="content_page"
-      aliases=aliases
-    />
   </@section>
+
+  <if(useCompanyLoadMore)>
+    <@section|{ content, aliases }|>
+      <if(content.company)>
+        <div class="row">
+          <div class="col-lg-8">
+            $ const latestTitle = (p.page > 1) ? `${i18n("More From")} ${content.company.name} - Page ${p.page}` : `${i18n("More From")} ${content.company.name}`;
+            $ const params = {
+              companyId: content.company.id,
+              excludeContentTypes: ["Promotion"],
+              excludeContentIds: [content.id],
+              limit: perPage,
+              skip: p.skip({ perPage }),
+              withSite: false,
+              queryFragment,
+            };
+            <marko-web-query|{ nodes }| name="all-company-content" params=params>
+              <theme-section-feed-flow nodes=nodes>
+                <@header>${latestTitle}</@header>
+                <@node-list inner-justified=false />
+                <@node with-dates=false with-section=false />
+              </theme-section-feed-flow>
+            </marko-web-query>
+          </div>
+          <div class="col-lg-4">
+            <theme-gam-define-display-ad
+              name="top-rotation"
+              position="content_page"
+              aliases=aliases
+              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+              class="mb-0"
+            />
+          </div>
+        </div>
+        <theme-gam-define-display-ad
+          name="footer-leaderboard"
+          position="content_page"
+          aliases=aliases
+        />
+      </if>
+    </@section>
+  </if>
+
+  <for|s| of=sections>
+    <@section|{ blockName, content, aliases }| modifiers=s.modifiers>
+      <${s.renderBody}
+        block-name=blockName
+        content=content
+        aliases=aliases
+      />
+    </@section>
+  </for>
+
 </global-content-wrapper-layout>

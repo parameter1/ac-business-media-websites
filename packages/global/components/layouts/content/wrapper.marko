@@ -7,6 +7,7 @@ $ const { site, GAM } = out.global;
 $ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
 
 $ const withAds = defaultValue(input.withAds, true);
+$ const withFeedAds = withAds ? defaultValue(input.withFeedAds, true) : defaultValue(input.withFeedAds, false);
 $ const sections = getAsArray(input, "sections");
 $ const alias = get(input, "primarySection.alias");
 $ const loadMore = defaultValue(input.loadMore, true);
@@ -87,12 +88,26 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
           <if(loadMore)>
             <marko-web-page-wrapper>
               <@section>
-                <global-section-feed-wrapper aliases=aliases alias=content.primarySection.alias ad-name="rotation">
+                <global-section-feed-wrapper aliases=aliases alias=content.primarySection.alias with-ads=withFeedAds ad-name="rotation">
                   <@header>More in ${content.primarySection.name}</@header>
                   <@query-params excludeContentIds=[content.id] />
                   <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
                   <@rail>
-                    <theme-client-side-most-popular-list-block class="sticky-top" limit=5 />
+                    <!-- <theme-client-side-most-popular-list-block class="mb-block" limit=5 /> -->
+                    <div class="mb-block">
+                      <global-follow-us-block />
+                    </div>
+                    <if(withAds)>
+                      <div class="mb-block sticky-top">
+                        <theme-gam-define-display-ad
+                          name="top-rotation"
+                          position="content_page"
+                          aliases=aliases
+                          modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+                          class="mb-0"
+                        />
+                      </div>
+                    </if>
                   </@rail>
                 </global-section-feed-wrapper>
               </@section>
