@@ -5,6 +5,7 @@ import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql
 $ const { id, type, pageNode, ...rest } = input;
 
 $ const { site, pagination: p, req, i18n } = out.global;
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
 $ const lang = site.config.lang || "en";
 $ const perPage = 12;
 
@@ -54,7 +55,7 @@ $ const perPage = 12;
       skip: p.skip({ perPage }),
       queryFragment,
     };
-    <global-section-feed-wrapper query-name="all-author-content" query-params={ contactId: id } path=req.path>
+    <global-section-feed-wrapper query-name="all-author-content" with-ads=withFeedAds query-params={ contactId: id } path=req.path>
       <@header>${latestTitle}</@header>
       <@rail>
         <theme-client-side-most-popular-list-block class="sticky-top" limit=5 />
