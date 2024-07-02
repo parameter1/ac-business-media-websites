@@ -1,8 +1,11 @@
-$ const { config, req } = out.global;
+import { get } from "@parameter1/base-cms-object-path";
+$ const { config, req, site } = out.global;
 
 $ const type = "login";
 $ const title = "Log in";
-$ const description = `Log in to ${config.siteName()}`;
+$ const description = site.get("login.description") || `Log in to ${config.siteName()}`;
+$ const subtitle = site.get("login.subtitle");
+$ const explanation = site.get("login.explanation");
 
 <marko-web-default-page-layout type=type title=title description=description>
   <@head>
@@ -18,6 +21,8 @@ $ const description = `Log in to ${config.siteName()}`;
       <@section modifiers=["user-form"]>
         <h1 class="page-wrapper__title">${description}</h1>
         <marko-web-identity-x-form-login />
+        <div class="page-wrapper__subtitle">${subtitle}</div>
+        <div class="page-wrapper__explanation">${explanation}</div>
       </@section>
     </marko-web-page-wrapper>
   </@page>
