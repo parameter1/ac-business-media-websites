@@ -85,6 +85,7 @@ module.exports = {
         { href: '/webinars', label: 'Webinars' },
         { href: '/expert-columns', label: 'Expert Columns' },
         { href: '/awards', label: 'Awards' },
+        { href: '/40-year-anniversary', label: '40-Year Anniversary' },
       ],
     },
     {
