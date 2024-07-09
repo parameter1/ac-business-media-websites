@@ -9,7 +9,7 @@ module.exports = {
   image: {
     src: 'https://img.oemoffhighway.com/files/base/acbm/ooh/image/static/engine.png',
   },
-  downloadLink: '/22887010',
+  downloadLink: '/22911859',
   sheetSrc: 'https://content-sheets.googleapis.com/v4/spreadsheets/10EKomL-SVMZ4imnCaoO86t48T7ngVaopWXie04AveUo/values/Engine-2021',
   measures: {
     metric: { label: 'Metric' },
