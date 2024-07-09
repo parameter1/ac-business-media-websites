@@ -80,7 +80,7 @@ module.exports = {
         { href: '/podcasts', label: 'Podcasts' },
         { href: '/premium-content', label: 'Premium Content' },
         { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
-        { href: '/specguide', label: 'Spec Guides' },
+        { href: '/engines/document/22911859/2024-engine-spec-guide', label: 'Spec Guides' },
         { href: '/media-center/whitepapers-ebooks', label: 'White Papers & eBooks' },
         { href: '/webinars', label: 'Webinars' },
         { href: '/expert-columns', label: 'Expert Columns' },
