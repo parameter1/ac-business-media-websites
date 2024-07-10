@@ -43,11 +43,13 @@ $ const omedaConfig = site.get('omeda');
 
 
     <!-- init gam && googletag which is used in other places -->
-    <marko-web-gam-init
-      request-frame=true
-      target-tag="body"
-      on="load"
-    />
+    <if(GAM)>
+      <marko-web-gam-init
+        request-frame=true
+        target-tag="body"
+        on="load"
+      />
+    </if>
 
     <!-- init native-x -->
     <marko-web-native-x-init
@@ -73,10 +75,12 @@ $ const omedaConfig = site.get('omeda');
     <!-- start gtm -->
     <marko-web-gtm-start />
 
-    <!-- start gam -->
-    <marko-web-gam-enable>
-      <@lazy-load ...site.getAsObject("gam.lazyLoad") />
-    </marko-web-gam-enable>
+    <if(GAM)>
+      <!-- start gam -->
+      <marko-web-gam-enable>
+        <@lazy-load ...site.getAsObject("gam.lazyLoad") />
+      </marko-web-gam-enable>
+    </if>
   </@head>
   <@above-wrapper>
     <!-- Temp hack to Fix Top Leaderboard -->
