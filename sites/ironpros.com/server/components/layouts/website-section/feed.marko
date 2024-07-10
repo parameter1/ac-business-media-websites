@@ -54,7 +54,7 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
   </@head>
   <@section|{ blockName, section, aliases }|>
     $ const { coverImage } = section;
-    $ const coverStyle = (coverImage) ? { "background-image": `url(${coverImage.src})` } : {};
+    $ const coverStyle = (coverImage) ? { "background-image": `url(${buildImgixUrl(coverImage.src, { w: 2000, h: 325, auto: "format,compress" })})` } : {};
     <div class="page-cover-image__wrapper" style=coverStyle>
       <div class="page-cover-image__contents" >
         <theme-website-section-breadcrumbs
