@@ -37,7 +37,8 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
           <@section|{ blockName, section, aliases }| modifiers=[
             "with-cover-image",
           ]>
-            <div class="page-cover-image__wrapper">
+            $ const coverStyle = { "background-image": "url('https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/hompage_b__banner_2000x325__1.66421d482b9bd.png?auto=format%2Ccompress&h=325&w=2000&q=70')" };
+            <div class="page-cover-image__wrapper" style=coverStyle>
               <div class="page-cover-image__contents">
                 $ {
                   section = {
@@ -67,7 +68,6 @@ $ const morePrefix = defaultValue(input.morePrefix, "More from");
                   </div>
                   <div class="node-list node-list--section-list node-list--flush-x node-list--flush-y node-list--inner-justified">
                     <a href="/equipment" title="Equipment" class="section-list__logo-link">
-                      <!-- buildImgixUrl(src, { w: 250, h: 250, auto: "format,compress" }) -->
                       <img
                         src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/equipment_centered_icon.66351a8de5bb6.png?auto=format%2Ccompress&amp;q=70&amp;w=200"
                         data-src="https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/equipment_centered_icon.66351a8de5bb6.png?auto=format%2Ccompress&amp;q=70&amp;w=200"
