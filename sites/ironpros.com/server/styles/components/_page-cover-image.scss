@@ -48,13 +48,20 @@
       }
     }
   }
-  // &--website-section {
-  //   .page-cover-image{
-  //     &__wrapper {
-  //       background-image: url('files/base/acbm/fcp/image/static/logo/iron/section-headers/hompage_2000x325.jpg?auto=format%2Ccompress&h=325&w=2000&q=70');
-  //     }
-  //   }
-  // }
+  &--website-section {
+    .page-cover-image{
+      &__wrapper {
+        background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/hompage_2000x325.jpg?auto=format%2Ccompress&h=325&w=2000&q=70');
+        @media (max-width: $marko-web-document-container-max-width) {
+          background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/hompage_2000x325.jpg?auto=format%2Ccompress&h=325&w=1300&q=70&fit=crop');
+        }
+        @media (max-width: 700px) {
+          background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/hompage_2000x325.jpg?auto=format%2Ccompress&h=325&w=700&q=70&fit=crop');
+        }
+
+      }
+    }
+  }
   &--content-company {
     .page-cover-image{
       &__wrapper {

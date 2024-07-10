@@ -56,9 +56,7 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
     $ const { coverImage } = section;
     $ const coverStyle = (coverImage) ? {
       "background-image": `url(${buildImgixUrl(coverImage.src, { w: 2000, h: 325, auto: "format,compress" })})`
-      } : {
-        "background-image": "url('files/base/acbm/fcp/image/static/logo/iron/section-headers/hompage_2000x325.jpg?auto=format%2Ccompress&h=325&w=2000&q=70')"
-      };
+      } : { };
     <div class="page-cover-image__wrapper" style=coverStyle>
       <div class="page-cover-image__contents" >
         <theme-website-section-breadcrumbs
