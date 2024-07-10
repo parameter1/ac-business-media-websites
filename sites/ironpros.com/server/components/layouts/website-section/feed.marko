@@ -1,3 +1,4 @@
+import { buildImgixUrl } from "@parameter1/base-cms-image";
 import convert from "@parameter1/base-cms-marko-web-native-x/utils/convert-story-to-content";
 import { getAsArray, getAsObject } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
@@ -147,7 +148,7 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
                 <div class="node__contents">
                   <div class="node__image-wrapper node__image-wrapper--align-top">
                     <a href=href class="node__image-inner-wrapper node__image-inner-wrapper--fluid-1by1">
-                      <img src=src class="node__image" alt=name width="250" height="250">
+                      <img src=buildImgixUrl(src, { w: 250, h: 250, auto: "format,compress" }) class="node__image" alt=name width="250" height="250">
                     </a>
                   </div>
                   <div class="node__body">
