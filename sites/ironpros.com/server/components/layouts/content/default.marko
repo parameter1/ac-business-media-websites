@@ -152,7 +152,7 @@ $ const displayInquiry = (content) => {
                   selector=bodyId
                   preventHTMLInjection=(!withAdInjection && !isSponsored)
                   mobile-leaderboard-ad-name="top-rotation-mobile"
-                  lazyload-first-image=false
+                  lazyload-first-image=lazyloadFirstImage
                 />
                 <if(content.transcript)>
                   $ const transcriptId = `content-transcript-${content.id}`;
