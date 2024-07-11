@@ -305,7 +305,7 @@ $ const loadMore = !showOverlay; // && !idxFormId;
             query-params={ excludeContentTypes, excludeContentIds: [content.id] }
             class="mb-block"
           >
-            <@native-x index=1 name="related-content" aliases=aliases />
+            <@native-x indexes=[0,2] name="related-content" aliases=aliases />
           </theme-latest-content-list-block>
         </if>
         <else-if(displayRecommended)>

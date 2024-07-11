@@ -127,7 +127,15 @@ $ const displayInquiry = (content) => {
         </if>
         <if(displayRecommended)>
           <div class="mb-block">
-            <global-recommended-content-block query-params={ excludeContentIds: [content.id] } alias=primarySection.alias aliases=aliases />
+            $ const excludeContentTypes = ["Contact", "Company", "Document", "TextAd", "Promotion"];
+            <theme-latest-content-list-block
+              title=`Latest in ${primarySection.name}`
+              alias=primarySection.alias
+              query-params={ excludeContentTypes, excludeContentIds: [content.id] }
+              class="mb-block"
+            >
+              <@native-x indexes=[0,2] name="related-content" aliases=aliases />
+            </theme-latest-content-list-block>
           </div>
         </if>
         <if(withAds)>
