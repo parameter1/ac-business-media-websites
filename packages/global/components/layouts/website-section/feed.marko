@@ -6,6 +6,7 @@ $ const { pagination: p, nativeX: nxConfig, site } = out.global;
 
 $ const { id, alias, name, pageNode } = input;
 $ const withNativeX = nxConfig && nxConfig.enabled ? defaultValue(input.withNativeX, true) : false;
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
 $ const sections = getAsArray(input, "sections");
 $ const perPage = 12;
 $ const withAds = alias === "premium-content" ? false : defaultValue(input.withAds, true);
@@ -69,7 +70,7 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
         aliases=aliases
         alias=alias
         flow=input.feedFlow
-        with-ads=withAds
+        with-ads=withFeedAds
         query-params=input.queryParams
         above-the-fold=true
         ad-name=input.adName
@@ -80,6 +81,9 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
         </if>
         <@rail>
           <div class="mb-block">
+            <global-follow-us-block />
+          </div>
+          <div class="mb-block sticky-top">
             <if(withAds)>
               <theme-gam-define-display-ad
                 name="top-rotation"
@@ -90,6 +94,8 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
               />
             </if>
           </div>
+        </@rail>
+        <!-- <@rail>
           <marko-web-identity-x-context|{ hasUser }|>
             <if(!hasUser)>
               <div class="sticky-top mt-2">
@@ -97,10 +103,8 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
               </div>
             </if>
           </marko-web-identity-x-context>
-        </@rail>
-        <@rail>
           <theme-client-side-most-popular-list-block class="sticky-top" limit=5 />
-        </@rail>
+        </@rail> -->
       </global-section-feed-wrapper>
     </if>
     <else-if(alias === "premium-content")>
@@ -108,7 +112,7 @@ $ const withAds = alias === "premium-content" ? false : defaultValue(input.withA
         aliases=aliases
         alias=alias
         flow=input.feedFlow
-        with-ads=withAds
+        with-ads=withFeedAds
         query-params=input.queryParams
         above-the-fold=true
         ad-name=input.adName

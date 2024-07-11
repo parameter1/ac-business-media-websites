@@ -32,7 +32,7 @@ $ const displayPhotoswipe = ["media-gallery"].includes(type) || req.query.displa
 $ const displayPublishedDate = ["company", "contact", "whitepaper"].includes(type) ? false : true;
 $ const displayReadNext = showReadNextBlock && ["article"].includes(type);
 $ const displaySocialShare = ["contact"].includes(type) ? false : true;
-$ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type);
+$ const shouldInjectAds = false; // ["article", "video", "news", "podcast"].includes(type);
 $ const displayRecommended = (displayOverlay) ? false : defaultValue(input.displayRecommended, true);
 
 $ const withAds = !showOverlay; // && !idxFormId;
@@ -44,6 +44,7 @@ $ const loadMore = !showOverlay; // && !idxFormId;
   page-node=pageNode
   with-ads=withAds
   load-more=loadMore
+  with-feed-ads=false
   ...rest
 >
   <@section|{ blockName, content, aliases, authors }| modifiers=["content-header"]>
@@ -288,7 +289,7 @@ $ const loadMore = !showOverlay; // && !idxFormId;
         <if(withAds)>
           <div class="mb-block">
             <theme-gam-define-display-ad
-              name="top-rotation"
+              name="rotation-rail"
               position="content_page"
               aliases=aliases
               modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
@@ -302,16 +303,27 @@ $ const loadMore = !showOverlay; // && !idxFormId;
             title=`Latest in ${primarySection.name}`
             alias=primarySection.alias
             query-params={ excludeContentTypes, excludeContentIds: [content.id] }
-            class="sticky-top"
+            class="mb-block"
           >
-            <@native-x index=1 name="related-content" aliases=aliases />
+            <@native-x indexes=[0,2] name="related-content" aliases=aliases />
           </theme-latest-content-list-block>
         </if>
         <else-if(displayRecommended)>
-          <div class="sticky-top">
+          <div class="mb-block">
             <global-recommended-content-block query-params={ excludeContentIds: [content.id] } alias=primarySection.alias aliases=aliases />
           </div>
         </else-if>
+        <if(withAds)>
+          <div class="mb-block sticky-top">
+            <theme-gam-define-display-ad
+              name="rotation"
+              position="content_page"
+              aliases=aliases
+              modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+              class="mb-0"
+            />
+          </div>
+        </if>
 
       </div>
     </div>

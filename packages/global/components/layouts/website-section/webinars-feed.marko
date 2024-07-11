@@ -1,8 +1,11 @@
 import { getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 $ const { pagination: p, nativeX: nxConfig, site } = out.global;
 
 $ const { id, alias, name, pageNode } = input;
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
+
 $ const sections = getAsArray(input, "sections");
 $ const perPage = 12;
 $ const now = Date.now();
@@ -111,7 +114,7 @@ $ const archiveQueryParams = {
       aliases=aliases
       alias=alias
       flow=input.feedFlow
-      with-ads=input.withAds
+      with-ads=input.withFeedAds
       query-params=archiveQueryParams
       above-the-fold=true
       ad-name=input.adName
