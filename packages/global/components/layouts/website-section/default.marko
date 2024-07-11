@@ -42,10 +42,11 @@ $ const pageWrapperModifiers = defaultValue(input.pageWrapperModifiers, []);
           </@section>
           <@section>
             <marko-web-query|{ nodes }|
-              name="website-scheduled-content"
+              name="all-published-content"
               params={
                 limit: 4,
                 queryFragment: clFragment,
+                requiresImage: true,
                 excludeContentTypes: ["Promotion", "Company", "TextAd"]
               }
             >

@@ -123,10 +123,11 @@ $ const promise = homePageTopStoriesLoader(apollo, {
 
           <@section>
             <marko-web-query|{ nodes }|
-              name="website-scheduled-content"
+              name="all-published-content"
               params={
                 limit: 4,
                 queryFragment: clFragment,
+                requiresImage: true,
                 excludeContentTypes: ["Promotion", "Company", "TextAd"]
               }
             >
