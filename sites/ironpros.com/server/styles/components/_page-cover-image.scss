@@ -50,15 +50,17 @@
   }
   &--website-section {
     .page-cover-image{
-      &__wrapper {
-        background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/hompage_2000x325.jpg?auto=format%2Ccompress&h=325&w=2000&q=70');
-        @media (max-width: $marko-web-document-container-max-width) {
-          background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/hompage_2000x325.jpg?auto=format%2Ccompress&h=325&w=1300&q=70&fit=crop');
-        }
-        @media (max-width: 700px) {
-          background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/static/logo/iron/section-headers/hompage_2000x325.jpg?auto=format%2Ccompress&h=325&w=700&q=70&fit=crop');
-        }
 
+      &__wrapper {
+        position: relative;
+        overflow: hidden;
+      }
+
+      &__img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
   }
@@ -91,6 +93,7 @@
     .page-cover-image {
       &__contents {
         text-align: center;
+        z-index: 1;
         .page-wrapper__website-section-name,
         .page-wrapper__website-section-description {
           text-align: center;
