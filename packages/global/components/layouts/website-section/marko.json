@@ -30,6 +30,20 @@
     "@page-wrapper-modifiers": "array",
     "@with-ads": "boolean"
   },
+  "<global-website-section-static-directory-layout>": {
+    "template": "./static-directory.marko",
+    "<head>": {},
+    "<directory>": {
+      "@facets": "array"
+    },
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@alias": "string",
+    "@name": "string",
+    "@page-node": "object",
+    "@page-wrapper-modifiers": "array",
+    "@with-ads": "boolean"
+  },
   "<global-website-section-feed-layout>": {
     "template": "./feed.marko",
     "@sections <section>[]": {},
