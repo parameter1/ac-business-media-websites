@@ -40,27 +40,6 @@ $ const pageWrapperModifiers = defaultValue(input.pageWrapperModifiers, []);
               modifiers=[]
             />
           </@section>
-          <@section>
-            <marko-web-query|{ nodes }|
-              name="all-published-content"
-              params={
-                limit: 4,
-                queryFragment: clFragment,
-                requiresImage: true,
-                excludeContentTypes: ["Promotion", "Company", "TextAd"]
-              }
-            >
-              <theme-content-card-deck-block title="Recommended" nodes=nodes cols=4 />
-            </marko-web-query>
-          </@section>
-          <@section>
-            <theme-gam-define-display-ad
-              name="leaderboard"
-              position="section-page"
-              aliases=aliases
-              modifiers=[]
-            />
-          </@section>
         </if>
         <for|s| of=sections>
           <@section|{ blockName }| modifiers=s.modifiers>
