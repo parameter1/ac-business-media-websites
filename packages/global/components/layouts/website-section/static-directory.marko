@@ -31,10 +31,17 @@ $ const section = { title: 'Directory', description: 'Set in config', alias: 'di
       />
       $ const aliases = hierarchyAliases(section);
       <marko-web-page-wrapper modifiers=pageWrapperModifiers>
+        <@section modifiers=["first-sm"]>
+          <theme-gam-define-display-ad
+            name="top-leaderboard"
+            position="section-page"
+            aliases=aliases
+            modifiers=[]
+          />
+        </@section>
         <@section>
           <div class="row">
             <div class="col">
-              <default-theme-website-section-breadcrumbs section=section display-self=false />
               <marko-web-website-section-name tag="h1" class="page-wrapper__title" obj=section />
               <marko-web-website-section-description tag="p" class="page-wrapper__deck" obj=section />
             </div>
