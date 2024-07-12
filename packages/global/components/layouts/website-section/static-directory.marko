@@ -65,6 +65,28 @@ $ const section = { title: 'Directory', description: 'Set in config', alias: 'di
             </div>
           </div>
         </@section>
+        <@section>
+          <div class="row">
+            <div class="col-lg-12">
+              <marko-web-query|{ aliases, nodes }|
+                name="all-published-content"
+                params={
+                  limit: 12,
+                  skip: 5,
+                  requiresImage: true,
+                  contentTypes: ["Product"],
+                  queryFragment: clFragment,
+                }
+              >
+                <section-feed-flow
+                  nodes=nodes
+                  aliases=aliases
+                  with-ads=false
+                />
+              </marko-web-query>
+            </div>
+          </div>
+        </@section>
         <for|s| of=sections>
           <@section|{ blockName }| modifiers=s.modifiers>
             <${s.renderBody}
