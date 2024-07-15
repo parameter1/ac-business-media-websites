@@ -7,6 +7,7 @@ const section = require('@ac-business-media/package-global/templates/website-sec
 const promoCards = require('@ac-business-media/package-global/templates/website-section/promo-cards');
 const sectionWithoutNativeX = require('@ac-business-media/package-global/templates/website-section/without-native-x');
 const sectionWithoutAds = require('@ac-business-media/package-global/templates/website-section/feed-without-ads');
+const staticDirectory = require('../templates/website-section/static-directory');
 
 const withoutNativeXAlias = [
 ];
@@ -46,6 +47,10 @@ module.exports = (app) => {
   }));
   app.get('/:alias(blogs)', withWebsiteSection({
     template: blogs,
+    queryFragment,
+  }));
+  app.get('/:alias(directory)', withWebsiteSection({
+    template: staticDirectory,
     queryFragment,
   }));
   app.get('/:alias([a-z0-9-/]+)', withWebsiteSection({

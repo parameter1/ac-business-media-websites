@@ -16,6 +16,9 @@ $info: #6c757d;
 @import "@ac-business-media/package-global/scss/core";
 
 /*! purgecss start ignore */
+/*! critical:start|website-section.directory */
+@import "@ac-business-media/package-global/scss/components/directory-static";
+/*! critical:end|website-section.directory */
 // Will most likely move to sites.
 @import "@ac-business-media/package-global/scss/components/reveal-ad";
 /*! purgecss end ignore */

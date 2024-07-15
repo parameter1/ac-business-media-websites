@@ -1,0 +1,12 @@
+{
+  "taglib-imports": [
+    "./facet-container/marko.json",
+    "./facet-list/marko.json"
+  ],
+  "<directory-facets>": {
+    "template": "./facets.marko",
+    "@facets": "array",
+    "@active-id": "expression",
+    "@title": "string"
+  }
+}

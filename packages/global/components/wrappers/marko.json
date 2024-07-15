@@ -1,5 +1,7 @@
 {
-  "taglib-imports": [],
+  "taglib-imports": [
+    "./components/marko.json"
+  ],
   "<global-section-feed-wrapper>": {
     "template": "./section-feed.marko",
     "<flow>": {},
