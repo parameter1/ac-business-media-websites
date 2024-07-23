@@ -200,6 +200,18 @@ $ const params = { ...queryParams, limit, skip };
   <else>
     $ const topNodeGroups = nodeGroups.slice(0, 2);
     $ const bottomNodeGroups = nodeGroups.slice(2);
+    <if(withAds)>
+      <div class="row">
+        <div class="col-lg-12">
+          <theme-gam-define-display-ad
+            name="top-leaderboard"
+            position="section-page"
+            aliases=aliases
+            modifiers=[]
+          />
+        </div>
+      </div>
+    </if>
     <div class="row">
       <div class="col-lg-8">
         <for|nodeGroup, index| of=topNodeGroups>
@@ -283,5 +295,17 @@ $ const params = { ...queryParams, limit, skip };
         </else>
       </div>
     </div>
+    <if(withAds)>
+      <div class="row">
+        <div class="col-lg-12">
+          <theme-gam-define-display-ad
+            name="leaderboard"
+            position="section-page"
+            aliases=aliases
+            modifiers=[]
+          />
+        </div>
+      </div>
+    </if>
   </else>
 </marko-web-query>
