@@ -33,7 +33,8 @@ $ const { id, alias, name, pageNode } = input;
 $ const withNativeX = defaultValue(input.withNativeX, false);
 $ const sections = getAsArray(input, "sections");
 $ const perPage = 12;
-$ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(input.withAds, false);
+$ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(input.withAds, true);
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
 
 <site-website-section-default-layout
   id=id
@@ -179,6 +180,7 @@ $ const withAds = !GAM || alias === "premium-content" ? false : defaultValue(inp
       alias=alias
       flow=input.feedFlow
       with-ads=withAds
+      with-feed-ads=withFeedAds
       query-params=input.queryParams
       above-the-fold=true
       ad-name=input.adName

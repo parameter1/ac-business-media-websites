@@ -5,7 +5,8 @@ import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 $ const { id, type, pageNode } = input;
 $ const { site, GAM } = out.global;
 
-$ const withAds = defaultValue(input.withAds, true);
+$ const withAds = GAM ? defaultValue(input.withAds, true) : defaultValue(input.withAds, false);
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
 $ const sections = getAsArray(input, "sections");
 $ const alias = get(input, "primarySection.alias");
 $ const loadMore = defaultValue(input.loadMore, true);
@@ -83,7 +84,13 @@ $ const loadMore = defaultValue(input.loadMore, true);
           <if(loadMore && psAlias !== "home")>
             <marko-web-page-wrapper>
               <@section>
-                <global-section-feed-wrapper aliases=aliases alias=psAlias ad-name="rotation">
+                <global-section-feed-wrapper
+                  aliases=aliases
+                  alias=psAlias
+                  ad-name="rotation"
+                  with-ads=withAds
+                  with-feed-ads=withFeedAds
+                >
                   <@header>More in ${content.primarySection.name}</@header>
                   <@query-params excludeContentIds=[content.id] />
                   <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />

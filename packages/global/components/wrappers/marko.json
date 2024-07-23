@@ -10,6 +10,7 @@
     "@with-pagination": "boolean",
     "@modifiers": "array",
     "@with-ads": "boolean",
+    "@with-feed-ads": "boolean",
     "@ad-name": "string",
     "@alias": "string",
     "@header": "string",

@@ -2,13 +2,16 @@ import convert from "@parameter1/base-cms-marko-web-native-x/utils/convert-story
 import { getAsArray } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
-$ const { pagination: p, nativeX: nxConfig, site } = out.global;
+$ const { pagination: p, nativeX: nxConfig, site, GAM } = out.global;
+
+$ const withAds = GAM ? defaultValue(input.withAds, true) : defaultValue(input.withAds, false);
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
 
 $ const { id, alias, name, pageNode } = input;
 $ const withNativeX = defaultValue(input.withNativeX, true);
 $ const sections = getAsArray(input, "sections");
 $ const perPage = 24;
-$ const withAds = false;
+
 
 <global-website-section-default-layout
   id=id
@@ -72,6 +75,8 @@ $ const withAds = false;
         query-params=input.queryParams
         above-the-fold=true
         ad-name=input.adName
+        with-ads=withAds
+        with-feed-ads=withFeedAds
       >
         <@node ...input.node />
         <@rail>
