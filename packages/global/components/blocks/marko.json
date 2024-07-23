@@ -2,6 +2,11 @@
   "<global-recommended-content-block>": {
     "template": "./recommended-content.marko"
   },
+  "<global-section-hero-block>": {
+    "template": "./section-hero.marko",
+    "@aliases": "array",
+    "@nodes": "array"
+  },
   "<global-page-details-block>": {
   "template": "./page-details.marko"
   },
