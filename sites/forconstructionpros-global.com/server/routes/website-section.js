@@ -1,5 +1,5 @@
 const { withWebsiteSection } = require('@parameter1/base-cms-marko-web/middleware');
-const queryFragment = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/website-section-page');
+const queryFragment = require('@ac-business-media/package-global/graphql/fragments/website-section-page');
 const blogs = require('@ac-business-media/package-global/templates/website-section/blogs');
 const webinars = require('@ac-business-media/package-global/templates/website-section/webinars');
 const upcomingEvents = require('@ac-business-media/package-global/templates/website-section/upcoming-events');
