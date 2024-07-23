@@ -58,6 +58,7 @@
     "@node": "object",
     "@with-ads": "boolean",
     "@with-native-x": "boolean",
+    "@with-page-hero": "boolean",
     "@query-params": "object"
   },
   "<global-website-section-webinars-feed-layout>": {
