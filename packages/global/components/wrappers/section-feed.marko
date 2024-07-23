@@ -21,7 +21,8 @@ $ const queryParams = {
   }),
 };
 
-$ const chunkLengths = p.page === 1 ? [6, 3, 3] : [3, 3, 3, 3];
+<!-- only on page#1 and with single rail for now -->
+$ const chunkLengths = p.page === 1 && (input.rails && input.rails.length === 1) ? [6, 3, 3] : [3, 3, 3, 3];
 $ const limit = chunkLengths.reduce((n, length) => (n + length), 0);
 $ const params = { ...queryParams, limit, skip };
 
