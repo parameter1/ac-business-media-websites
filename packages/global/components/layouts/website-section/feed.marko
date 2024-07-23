@@ -10,6 +10,7 @@ $ const sections = getAsArray(input, "sections");
 $ const perPage = 12;
 $ const withAds = alias === "premium-content" || !GAM ? false : defaultValue(input.withAds, true);
 $ const withFeedAds = defaultValue(input.withFeedAds, false);
+$ const withPageHero = defaultValue(input.withPageHero, true);
 
 <global-website-section-default-layout
   id=id
@@ -75,7 +76,9 @@ $ const withFeedAds = defaultValue(input.withFeedAds, false);
         query-params=input.queryParams
         above-the-fold=true
         ad-name=input.adName
+        with-page-hero=withPageHero
       >
+        <@header>More in ${section.name}</@header>
         <@node ...input.node />
         <if(withNativeX)>
           <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />

@@ -22,7 +22,8 @@
     "@node-list": "object",
     "@path": "string",
     "@above-the-fold": "boolean",
-    "@no-rail": "boolean"
+    "@no-rail": "boolean",
+    "@with-page-hero": "boolean"
   },
   "<global-native-x-section-feed-wrapper>": {
     "template": "./native-x-section-feed.marko"
