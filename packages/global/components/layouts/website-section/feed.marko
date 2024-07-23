@@ -6,10 +6,10 @@ $ const { pagination: p, nativeX: nxConfig, site, GAM } = out.global;
 
 $ const { id, alias, name, pageNode } = input;
 $ const withNativeX = nxConfig && nxConfig.enabled ? defaultValue(input.withNativeX, true) : false;
-$ const withFeedAds = defaultValue(input.withFeedAds, true);
 $ const sections = getAsArray(input, "sections");
 $ const perPage = 12;
 $ const withAds = alias === "premium-content" || !GAM ? false : defaultValue(input.withAds, true);
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
 
 <global-website-section-default-layout
   id=id
@@ -70,7 +70,8 @@ $ const withAds = alias === "premium-content" || !GAM ? false : defaultValue(inp
         aliases=aliases
         alias=alias
         flow=input.feedFlow
-        with-ads=withFeedAds
+        with-ads=withAds
+        with-feed-ads=withFeedAds
         query-params=input.queryParams
         above-the-fold=true
         ad-name=input.adName
@@ -112,7 +113,8 @@ $ const withAds = alias === "premium-content" || !GAM ? false : defaultValue(inp
         aliases=aliases
         alias=alias
         flow=input.feedFlow
-        with-ads=withFeedAds
+        with-ads=withAds
+        with-feed-ads=withFeedAds
         query-params=input.queryParams
         above-the-fold=true
         ad-name=input.adName

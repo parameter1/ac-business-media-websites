@@ -10,6 +10,7 @@ $ const skip = p.skip({ perPage });
 $ const { noRail, modifiers } = input;
 $ const path = input.path || input.alias || req.path;
 $ const withAds = GAM ? defaultValue(input.withAds, true) : false;
+$ const withFeedAds = GAM ? defaultValue(input.withFeedAds, false) : false;
 $ const aboveTheFold = defaultValue(input.aboveTheFold, false);
 $ const queryName = input.queryName ? input.queryName : "website-scheduled-content";
 $ const queryParams = {
@@ -71,7 +72,7 @@ $ const params = { ...queryParams, limit, skip };
               node-list=input.nodeList
               aliases=input.aliases
               flow=flowInput
-              with-ads=(!isLast && withAds)
+              with-ads=(!isLast && withFeedAds)
               ad-name=adName
               native-x=nativeX
             >
@@ -97,7 +98,7 @@ $ const params = { ...queryParams, limit, skip };
           <${input.rails[0].renderBody} />
         </div>
       </div>
-      <if(withAds)>
+      <if(GAM)>
         <div class="row">
           <div class="col-lg-12">
             <theme-gam-define-display-ad
@@ -127,7 +128,7 @@ $ const params = { ...queryParams, limit, skip };
               node-list=input.nodeList
               aliases=input.aliases
               flow=flowInput
-              with-ads=(!isLast && withAds)
+              with-ads=(!isLast && withFeedAds)
               ad-name=adName
               native-x=nativeX
             />
@@ -178,7 +179,7 @@ $ const params = { ...queryParams, limit, skip };
             node-list=input.nodeList
             aliases=input.aliases
             flow=flowInput
-            with-ads=withAds
+            with-ads=withFeedAds
             ad-name=adName
             native-x=nativeX
           />
@@ -213,7 +214,7 @@ $ const params = { ...queryParams, limit, skip };
             node=input.node
             node-list=input.nodeList
             aliases=input.aliases
-            with-ads=withAds
+            with-ads=withFeedAds
             ad-name=adName
             flow=flowInput
             native-x=nativeX
@@ -258,7 +259,7 @@ $ const params = { ...queryParams, limit, skip };
             node=input.node
             node-list=input.nodeList
             aliases=input.aliases
-            with-ads=(!isLast && withAds)
+            with-ads=(!isLast && withFeedAds)
             flow=input.flow
           />
         </for>

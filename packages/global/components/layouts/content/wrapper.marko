@@ -6,8 +6,8 @@ $ const { id, type, pageNode } = input;
 $ const { site, GAM } = out.global;
 $ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
 
-$ const withAds = defaultValue(input.withAds, true);
-$ const withFeedAds = withAds ? defaultValue(input.withFeedAds, true) : defaultValue(input.withFeedAds, false);
+$ const withAds = GAM ? defaultValue(input.withAds, true) : defaultValue(input.withAds, false);
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
 $ const sections = getAsArray(input, "sections");
 $ const alias = get(input, "primarySection.alias");
 $ const loadMore = defaultValue(input.loadMore, true);
@@ -88,7 +88,7 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
           <if(loadMore)>
             <marko-web-page-wrapper>
               <@section>
-                <global-section-feed-wrapper aliases=aliases alias=content.primarySection.alias with-ads=withFeedAds ad-name="rotation">
+                <global-section-feed-wrapper aliases=aliases alias=content.primarySection.alias with-ads=withAds with-feed-ads=withFeedAds ad-name="rotation">
                   <@header>More in ${content.primarySection.name}</@header>
                   <@query-params excludeContentIds=[content.id] />
                   <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
