@@ -46,7 +46,7 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
           <@section modifiers=["first-sm"]>
             <theme-gam-define-display-ad
               name="top-leaderboard"
-              position="section-page"
+              position="content-page"
               aliases=aliases
               modifiers=[]
             />
@@ -87,6 +87,16 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
           $ const aliases = hierarchyAliases(section);
           <if(loadMore)>
             <marko-web-page-wrapper>
+              <if(withAds)>
+                <@section modifiers=["first-sm"]>
+                  <theme-gam-define-display-ad
+                    name="leaderboard"
+                    position="section-page"
+                    aliases=aliases
+                    modifiers=[]
+                  />
+                </@section>
+              </if>
               <@section>
                 <global-section-feed-wrapper aliases=aliases alias=content.primarySection.alias with-ads=withAds with-feed-ads=withFeedAds ad-name="rotation">
                   <@header>More in ${content.primarySection.name}</@header>

@@ -12,11 +12,8 @@ $ const heroImageNode = {
 };
 $ const listNodes = nodes.slice(1);
 
-<div class="row">
+<div class="row top-stories-row">
   <div class="col-lg-8">
-    <marko-web-element tag="h1" block-name="top-stories" name="header">
-      Top Story
-    </marko-web-element>
     <marko-web-element block-name="top-story" name="row">
       <marko-web-element block-name="top-story" name="col" modifiers=["hero"]>
         <theme-content-node
@@ -44,9 +41,8 @@ $ const listNodes = nodes.slice(1);
     </marko-web-element>
   </div>
   <div class="col-lg-4 page-rail">
-    <theme-latest-content-list-block nodes=listNodes title="Latest" >
+    <theme-latest-content-list-block nodes=listNodes title="">
       <@native-x indexes=[0] name="default" aliases=aliases />
     </theme-latest-content-list-block>
-    <!-- <global-video-player /> -->
   </div>
 </div>

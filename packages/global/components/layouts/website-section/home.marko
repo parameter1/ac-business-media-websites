@@ -124,17 +124,17 @@ $ const promise = homePageTopStoriesLoader(apollo, {
           </@section>
 
           <@section>
-            <marko-web-query|{ nodes }|
-              name="all-published-content"
-              params={
-                limit: 4,
-                queryFragment: clFragment,
-                requiresImage: true,
-                excludeContentTypes: ["Promotion", "Company", "TextAd"]
-              }
-            >
-              <theme-content-card-deck-block title="Recommended" nodes=nodes cols=4 />
-            </marko-web-query>
+            <global-recommended-block section-alias=alias >
+              <@native-x indexes=[3] name="default" aliases=aliases />
+            </global-recommended-block>
+          </@section>
+
+          <@section|{ aliases }|>
+            <theme-gam-define-display-ad
+              name="leaderboard"
+              position="section-page"
+              aliases=aliases
+            />
           </@section>
 
           <@section>

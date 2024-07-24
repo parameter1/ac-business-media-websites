@@ -452,6 +452,21 @@ label {
   }
 }
 
+.site-navbar {
+  $self: &;
+  &--top {
+    #{ $self }__right {
+      .btn,
+      .site-navbar__toggler {
+        background-color: transparent;
+        svg {
+          fill: #fff;
+        }
+      }
+    }
+  }
+}
+
 .ad-container {
   $self: &;
   &--with-label>:first-child:before {

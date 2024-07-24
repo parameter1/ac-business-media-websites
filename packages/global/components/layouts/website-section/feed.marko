@@ -36,6 +36,19 @@ $ const withPageHero = defaultValue(input.withPageHero, true);
 
     $ const useSectionLogos = get(site, "config.useSectionLogos");
 
+    <if(withAds && p.page !== 1)>
+      <div class="row">
+        <div class="col-lg-12 mb-block">
+          <theme-gam-define-display-ad
+            name="top-leaderboard"
+            position="section-page"
+            aliases=aliases
+            modifiers=[]
+          />
+        </div>
+      </div>
+    </if>
+
     <if(!logo || !useSectionLogos)>
       <theme-website-section-breadcrumbs
         section=section
@@ -53,7 +66,7 @@ $ const withPageHero = defaultValue(input.withPageHero, true);
       />
     </if>
 
-    <div class="row website-section-header">
+    <div class="row website-section-header mb-block">
       <if(logo && useSectionLogos)>
         $ const obj = { ...logo, alt: `${channel.name} Logo` };
         <marko-web-page-image
@@ -88,9 +101,10 @@ $ const withPageHero = defaultValue(input.withPageHero, true);
     <if(pageDetails[alias])>
       <global-page-details-block content=pageDetails[alias] />
     </if>
-    <else>
+    <!-- <else>
       <marko-web-website-section-description obj=section />
-    </else>
+    </else> -->
+
     <if(alias !== "premium-content" || !nxConfig.domainName)>
       <global-section-feed-wrapper
         aliases=aliases

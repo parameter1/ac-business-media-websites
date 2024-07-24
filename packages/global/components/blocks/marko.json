@@ -2,6 +2,9 @@
   "<global-recommended-content-block>": {
     "template": "./recommended-content.marko"
   },
+  "<global-recommended-block>": {
+    "template": "./recommended.marko"
+  },
   "<global-section-hero-block>": {
     "template": "./section-hero.marko",
     "@aliases": "array",
