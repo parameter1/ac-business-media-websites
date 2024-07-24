@@ -104,18 +104,6 @@ $ const params = { ...queryParams, limit, skip };
       </div>
     </if>
     <else>
-      <if(withAds)>
-        <div class="row">
-          <div class="col-lg-12 mb-block">
-            <theme-gam-define-display-ad
-              name="top-leaderboard"
-              position="section-page"
-              aliases=aliases
-              modifiers=[]
-            />
-          </div>
-        </div>
-      </if>
       <div class="row">
         <div class="col-lg-8">
           <for|nodeGroup, index| of=nodeGroups>
@@ -204,18 +192,6 @@ $ const params = { ...queryParams, limit, skip };
   <else>
     $ const topNodeGroups = nodeGroups.slice(0, 2);
     $ const bottomNodeGroups = nodeGroups.slice(2);
-    <if(withAds)>
-      <div class="row">
-        <div class="col-lg-12 mb-block">
-          <theme-gam-define-display-ad
-            name="top-leaderboard"
-            position="section-page"
-            aliases=aliases
-            modifiers=[]
-          />
-        </div>
-      </div>
-    </if>
     <div class="row">
       <div class="col-lg-8">
         <for|nodeGroup, index| of=topNodeGroups>

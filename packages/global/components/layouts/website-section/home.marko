@@ -129,6 +129,14 @@ $ const promise = homePageTopStoriesLoader(apollo, {
             </global-recommended-block>
           </@section>
 
+          <@section|{ aliases }| modifiers=["first-sm"]>
+            <theme-gam-define-display-ad
+              name="leaderboard"
+              position="section-page"
+              aliases=aliases
+            />
+          </@section>
+
           <@section>
             <global-section-feed-wrapper
               alias=section.alias
