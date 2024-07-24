@@ -36,20 +36,23 @@ $ const params = { ...queryParams, limit, skip };
   }, []);
 
   <if(input.rails && input.rails.length === 1)>
-    <if(withAds)>
-      <div class="row">
-        <div class="col-lg-12 mb-block">
-          <theme-gam-define-display-ad
-            name="top-leaderboard"
-            position="section-page"
-            aliases=aliases
-            modifiers=[]
-          />
-        </div>
-      </div>
-    </if>
     <if(p.page === 1 && withPageHero)>
       <global-section-hero-block nodes=nodeGroups[0] aliases=aliases/>
+      <if(withAds)>
+        <div class="row">
+          <div class="col-lg-12 mb-block">
+            <theme-gam-define-display-ad
+              name="top-leaderboard"
+              position="section-page"
+              aliases=aliases
+              modifiers=[]
+            />
+          </div>
+        </div>
+      </if>
+      <global-recommended-block section-alias=input.alias >
+        <@native-x indexes=[3] name="default" aliases=aliases />
+      </global-recommended-block>
       <if(withAds)>
         <div class="row">
           <div class="col-lg-12 mb-block">
@@ -101,6 +104,18 @@ $ const params = { ...queryParams, limit, skip };
       </div>
     </if>
     <else>
+      <if(withAds)>
+        <div class="row">
+          <div class="col-lg-12 mb-block">
+            <theme-gam-define-display-ad
+              name="top-leaderboard"
+              position="section-page"
+              aliases=aliases
+              modifiers=[]
+            />
+          </div>
+        </div>
+      </if>
       <div class="row">
         <div class="col-lg-8">
           <for|nodeGroup, index| of=nodeGroups>

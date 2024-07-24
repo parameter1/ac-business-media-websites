@@ -53,7 +53,7 @@ $ const withPageHero = defaultValue(input.withPageHero, true);
       />
     </if>
 
-    <div class="row website-section-header">
+    <div class="row website-section-header mb-block">
       <if(logo && useSectionLogos)>
         $ const obj = { ...logo, alt: `${channel.name} Logo` };
         <marko-web-page-image
@@ -88,9 +88,10 @@ $ const withPageHero = defaultValue(input.withPageHero, true);
     <if(pageDetails[alias])>
       <global-page-details-block content=pageDetails[alias] />
     </if>
-    <else>
+    <!-- <else>
       <marko-web-website-section-description obj=section />
-    </else>
+    </else> -->
+
     <if(alias !== "premium-content" || !nxConfig.domainName)>
       <global-section-feed-wrapper
         aliases=aliases
