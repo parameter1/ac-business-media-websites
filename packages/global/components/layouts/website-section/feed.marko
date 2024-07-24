@@ -1,5 +1,5 @@
 import convert from "@parameter1/base-cms-marko-web-native-x/utils/convert-story-to-content";
-import { getAsArray } from "@parameter1/base-cms-object-path";
+import { get, getAsArray } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 $ const { pagination: p, nativeX: nxConfig, site, GAM } = out.global;
@@ -31,12 +31,19 @@ $ const withPageHero = defaultValue(input.withPageHero, true);
   </@head>
 
   <@section|{ blockName, section, aliases }|>
-    <theme-website-section-breadcrumbs
-      section=section
-      display-home=false
-      display-self=false
-      modifiers=["website-section"]
-    />
+    $ const channel = getAsArray(section, "hierarchy")[0];
+    $ const { logo } = channel;
+
+    $ const useSectionLogos = get(site, "config.useSectionLogos");
+
+    <if(!logo || !useSectionLogos)>
+      <theme-website-section-breadcrumbs
+        section=section
+        display-home=false
+        display-self=false
+        modifiers=["website-section"]
+      />
+    </if>
 
     <if(input.beforeName)>
       <${input.beforeName}
@@ -46,10 +53,28 @@ $ const withPageHero = defaultValue(input.withPageHero, true);
       />
     </if>
 
-    <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
-      <if(p.page > 1)>${value}: Page ${p.page}</if>
-      <else>${value}</else>
-    </marko-web-website-section-name>
+    <div class="row website-section-header">
+      <if(logo && useSectionLogos)>
+        $ const obj = { ...logo, alt: `${channel.name} Logo` };
+        <marko-web-page-image
+          width=125
+          fluid=false
+          modifiers=["section-logo"]
+          ...input.image
+          obj=obj
+        />
+        <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section modifiers=[`${channel.alias}`]>
+          <if(p.page > 1)>${value}: Page ${p.page}</if>
+          <else>${value}</else>
+        </marko-web-website-section-name>
+      </if>
+      <else>
+        <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
+          <if(p.page > 1)>${value}: Page ${p.page}</if>
+          <else>${value}</else>
+        </marko-web-website-section-name>
+      </else>
+    </div>
 
     <if(input.afterName)>
       <${input.afterName}
@@ -78,7 +103,7 @@ $ const withPageHero = defaultValue(input.withPageHero, true);
         ad-name=input.adName
         with-page-hero=withPageHero
       >
-        <@header>More in ${section.name}</@header>
+        <!-- <@header>More in ${section.name}</@header> -->
         <@node ...input.node />
         <if(withNativeX)>
           <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
