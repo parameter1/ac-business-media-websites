@@ -1446,10 +1446,10 @@
     graphql-tag "^2.12.6"
     object-path "^0.11.8"
 
-"@parameter1/base-cms-marko-web-theme-monorail@^4.58.3":
-  version "4.58.3"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.58.3.tgz#96bf8e3b27ad9ea23656dc85f47b7f243d9527c6"
-  integrity sha512-spgns4vXmKlb5kF9Ua93FA4E2vMBBho8OjFthmCZU7xdIZjlWrkoLpSmLsX3ifd7TaO2VsgQ3VlckIVFDwHN1g==
+"@parameter1/base-cms-marko-web-theme-monorail@^4.59.1":
+  version "4.59.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.59.1.tgz#0433fc1cbb3cbf636a0c20ce8d8844d33baf2290"
+  integrity sha512-dTmCFA6LZ2mq9oBxxhRmfdmYDA/wC89V12e7hDzX+rBXb555fomsFk9E2Ni8KJ+WzkW38V5IUSMykef9pSP8+g==
   dependencies:
     "@parameter1/base-cms-dayjs" "^4.5.12"
     "@parameter1/base-cms-image" "^4.47.1"
@@ -1483,10 +1483,10 @@
     node-fetch "^2.6.9"
     ua-parser-js "^1.0.33"
 
-"@parameter1/base-cms-marko-web@^4.55.4":
-  version "4.55.4"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.55.4.tgz#381902ee4af96dce5b736641eff586be4ed53d2e"
-  integrity sha512-gQczDTtb4JJoCjwxxPeKIOXVfit8qGCeDPDl9gYf5OuzZZBMOw5SAAEvGdpDrRs4O7BjH9EskSRdNVNQebZcxQ==
+"@parameter1/base-cms-marko-web@^4.59.1":
+  version "4.59.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.59.1.tgz#a5ce41b49ceb95324e26ef284bbda02518f2bcd9"
+  integrity sha512-K1w5UJupV0MCOy84OXlbDkKkCJSzavMMER1qZC0Qa6zcxSz0eb57RFiJHfxz34qXXjjwam3NnI4pyRA6DZmdyA==
   dependencies:
     "@godaddy/terminus" "^4.11.2"
     "@parameter1/base-cms-apollo-ssr" "^4.5.12"
