@@ -1,0 +1,18 @@
+{
+  "<facet-container>": {
+    "template": "./facet-container.marko",
+    "@facets": {
+      "type": "array",
+      "required": true
+    },
+    "@title": "string",
+    "@active-id": {
+      "type": "string",
+      "required": true
+    },
+    "@active-ids": {
+      "type": "array",
+      "required": true
+    }
+  }
+}

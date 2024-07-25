@@ -2,12 +2,23 @@
   "<global-recommended-content-block>": {
     "template": "./recommended-content.marko"
   },
+  "<global-recommended-block>": {
+    "template": "./recommended.marko"
+  },
+  "<global-section-hero-block>": {
+    "template": "./section-hero.marko",
+    "@aliases": "array",
+    "@nodes": "array"
+  },
   "<global-page-details-block>": {
   "template": "./page-details.marko"
   },
   "<global-sponsors-block>": {
     "template": "./sponsors.marko",
     "@alias": "string"
+  },
+  "<global-follow-us-block>": {
+    "template": "./follow-us.marko"
   },
   "<global-identity-x-newsletter-form-inline>": {
     "template": "./newsletter-inline.marko"

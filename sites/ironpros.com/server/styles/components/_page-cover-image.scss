@@ -50,8 +50,17 @@
   }
   &--website-section {
     .page-cover-image{
+
       &__wrapper {
-        background-image: url('https://img.ironpros.com/files/base/acbm/fcp/image/2024/05/hompage_b__banner_2000x325__1.66421d482b9bd.png');
+        position: relative;
+        overflow: hidden;
+      }
+
+      &__img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
   }
@@ -84,6 +93,7 @@
     .page-cover-image {
       &__contents {
         text-align: center;
+        z-index: 1;
         .page-wrapper__website-section-name,
         .page-wrapper__website-section-description {
           text-align: center;

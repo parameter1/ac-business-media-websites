@@ -18,9 +18,7 @@ $ const omedaConfig = site.get('omeda');
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <marko-web-google-font family="Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400" />
-
-    <marko-web-google-font family="DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400" />
+    <marko-web-google-font family="Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400" />
 
     <marko-web-deferred-script-loader-init />
 
@@ -43,11 +41,13 @@ $ const omedaConfig = site.get('omeda');
 
 
     <!-- init gam && googletag which is used in other places -->
-    <marko-web-gam-init
-      request-frame=true
-      target-tag="body"
-      on="load"
-    />
+    <if(GAM)>
+      <marko-web-gam-init
+        request-frame=true
+        target-tag="body"
+        on="load"
+      />
+    </if>
 
     <!-- init native-x -->
     <marko-web-native-x-init
@@ -73,10 +73,12 @@ $ const omedaConfig = site.get('omeda');
     <!-- start gtm -->
     <marko-web-gtm-start />
 
-    <!-- start gam -->
-    <marko-web-gam-enable>
-      <@lazy-load ...site.getAsObject("gam.lazyLoad") />
-    </marko-web-gam-enable>
+    <if(GAM)>
+      <!-- start gam -->
+      <marko-web-gam-enable>
+        <@lazy-load ...site.getAsObject("gam.lazyLoad") />
+      </marko-web-gam-enable>
+    </if>
   </@head>
   <@above-wrapper>
     <!-- Temp hack to Fix Top Leaderboard -->

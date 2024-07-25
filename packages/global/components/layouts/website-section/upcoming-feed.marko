@@ -9,7 +9,9 @@ $ const wufooUserName = site.get("wufoo.userName");
 $ const wufooFormTitle = site.get(`wufoo.${alias}.title`) || 'Drop us a line!';
 $ const wufooFormHash = site.get(`wufoo.${alias}.hash`);
 
-$ const withAds = defaultValue(input.withAds, false);
+$ const withAds = GAM ? defaultValue(input.withAds, true) : defaultValue(input.withAds, false);
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
+
 $ const now = Date.now();
 $ const queryParams = {
   includeContentTypes: ["Event"],
@@ -71,7 +73,7 @@ $ const perPage = 12;
       <marko-web-website-section-description obj=section />
     </else>
 
-    <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"] with-ads=withAds>
+    <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"] with-ads=withAds with-feed-ads=withFeedAds>
       <@node ...input.node />
       <@query-params ...queryParams />
       <@rail>

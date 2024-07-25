@@ -66,10 +66,9 @@ module.exports = ({
       ],
     })
     .setTemplate('ROTATION', {
-      size: [[728, 90], [600, 200], [300, 250], [300, 240]],
+      size: [[300, 600]],
       sizeMapping: [
-        { viewport: [980, 0], size: [[728, 90], [600, 200], [300, 250]] },
-        { viewport: [300, 0], size: [[300, 250], [300, 240]] },
+        { viewport: [300, 0], size: [[300, 600]] },
       ],
     })
     .setTemplate('TOP-ROTATION', {

@@ -9,6 +9,7 @@ const GlobalSpecGuideTable = () => import(/* webpackChunkName: "global-spec-guid
 const DynamicSiteMenuPositioner = () => import(/* webpackChunkName: "dynamic-site-menu-positioner" */ './dynamic-site-menu-positioner.vue');
 const GlobalPartners = () => import(/* webpackChunkName: "global-partners" */ './partners.vue');
 const GlobalNodeCarousel = () => import(/* webpackChunkName: "global-node-carousel" */ './node-carousel.vue');
+const GlobalDirectoryAutoScroll = () => import(/* webpackChunkName: "global-directory-auto-scroll" */ './auto-scroll.vue');
 
 export default (Browser) => {
   const { EventBus } = Browser;
@@ -20,6 +21,7 @@ export default (Browser) => {
   Browser.register('DynamicSiteMenuPositioner', DynamicSiteMenuPositioner);
   Browser.register('GlobalPartners', GlobalPartners);
   Browser.register('GlobalNodeCarousel', GlobalNodeCarousel);
+  Browser.registerComponent('GlobalDirectoryAutoScroll', GlobalDirectoryAutoScroll);
   Browser.register('GlobalCompanySearch', GlobalCompanySearch, {
     provide: { EventBus },
   });

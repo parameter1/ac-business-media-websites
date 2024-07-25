@@ -30,16 +30,6 @@ $ const pageWrapperModifiers = defaultValue(input.pageWrapperModifiers, []);
       />
       $ const aliases = hierarchyAliases(section);
       <marko-web-page-wrapper modifiers=pageWrapperModifiers>
-        <if(withAds)>
-          <@section modifiers=["first-sm"]>
-            <theme-gam-define-display-ad
-              name="top-leaderboard"
-              position="section-page"
-              aliases=aliases
-              modifiers=[]
-            />
-          </@section>
-        </if>
         <for|s| of=sections>
           <@section|{ blockName }| modifiers=s.modifiers>
             <${s.renderBody}

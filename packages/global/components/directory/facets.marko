@@ -1,0 +1,12 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import findActiveFacet from "./find-active-facet";
+
+$ const facets = getAsArray(input, "facets");
+$ const activeFacet = findActiveFacet(facets, input.activeId);
+
+<facet-container
+  facets=facets
+  title=input.title
+  active-id=input.activeId
+  active-ids=activeFacet.activeIds
+/>

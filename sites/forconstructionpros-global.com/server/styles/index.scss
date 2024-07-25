@@ -6,6 +6,7 @@ $theme-site-header-breakpoints: (
   small-text-secondary: 830px
 );
 
+
 // Colors
 $primary: #F26522;
 $secondary: #495057;
@@ -13,9 +14,14 @@ $light: #e9ecef;
 $dark: #212529;
 $info: #6c757d;
 
+$skin-block-header-overline-color: $dark;
+
 @import "@ac-business-media/package-global/scss/core";
 
 /*! purgecss start ignore */
+/*! critical:start|website-section.directory */
+@import "@ac-business-media/package-global/scss/components/directory-static";
+/*! critical:end|website-section.directory */
 // Will most likely move to sites.
 @import "@ac-business-media/package-global/scss/components/reveal-ad";
 /*! purgecss end ignore */
@@ -87,3 +93,63 @@ body .document-container > .page--spec-guide:first-of-type,
 body .document-container > .page--without-ads:first-of-type  {
   margin-top: 0;
 }
+// Site Section Colors
+$website-section-colors: (
+  equipment: #ffc20a,
+  trucks: #ffa200,
+  rental: #e72725,
+  concrete: #2483c6,
+  asphalt: #9acb3c,
+  pavement-maintenance: #f26522,
+  profit-matters: #e9a422,
+  equipment-management: #98002e,
+  ironpros: #c2933f,
+);
+
+/*! purgecss start ignore */
+/*! critical:start */
+
+.website-section-header {
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 0;
+
+  & .page-image--section-logo {
+    width: 135px;
+    padding-right: 10px;
+    margin-bottom: 0;
+  }
+
+  & > .page-wrapper__website-section-name {
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
+    padding-left: 10px;
+    margin-bottom: 0;
+
+    border-left: solid $primary 4px;
+    @each $section, $color in $website-section-colors {
+      // page-wrapper__website-section-name--#54497
+      &--#{$section} {
+        border-left: solid $color 4px;
+      }
+    }
+  }
+}
+
+.site-navbar {
+  $self: &;
+  &--primary,
+  &--secondary {
+    @each $section, $color in $website-section-colors {
+      #{ $self } {
+        &__link[href*="#{$section}"]:hover,
+        &__link--active[href*="#{$section}"] {
+          color: $color;
+        }
+      }
+    }
+  }
+}
+/*! purgecss end ignore */
+/*! critical:end */

@@ -1,0 +1,122 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import clFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list";
+
+$ const { GAM } = out.global;
+
+$ const { id, alias, name, pageNode, directory } = input;
+$ const sections = getAsArray(input, "sections");
+$ const withAds = defaultValue(input.withAds, true);
+$ const pageWrapperModifiers = defaultValue(input.pageWrapperModifiers, []);
+$ const section = { title: 'Directory', description: 'Set in config', alias: 'directory' };
+<theme-default-page id=id alias=alias name=name>
+  <@head>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <marko-web-p1-events-track-website-section node=section />
+      <global-gam-section-targeting|{ adChannels: ad_channels }| obj=section>
+        <marko-web-gtm-website-section-context|{ context }| alias=alias>
+          $ context.ad_channels = ad_channels;
+          <marko-web-gtm-push data=context />
+        </marko-web-gtm-website-section-context>
+      </global-gam-section-targeting>
+    </marko-web-resolve-page>
+    <${input.head} />
+  </@head>
+  <@page>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <marko-web-p1-events-track-website-section-scroll-depth
+        section=section
+        selector=".document-container"
+      />
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-page-wrapper modifiers=pageWrapperModifiers>
+        <@section modifiers=["first-sm"]>
+          <theme-gam-define-display-ad
+            name="top-leaderboard"
+            position="section-page"
+            aliases=aliases
+            modifiers=[]
+          />
+        </@section>
+        <@section>
+          <div class="row">
+            <div class="col">
+              <marko-web-website-section-name tag="h1" class="page-wrapper__title" obj=section />
+              <marko-web-website-section-description tag="p" class="page-wrapper__deck" obj=section />
+            </div>
+          </div>
+        </@section>
+        <@section>
+          <div class="row">
+            <div class="col-lg-4 page-rail mb-block">
+              $ console.log('id: ', id)
+              <directory-facets ...directory active-id=id />
+              <marko-web-gam-display-ad id="gpt-ad-rail1" />
+            </div>
+            <div class="col-lg-8 mb-block">
+              $ const queryParams = { alias, queryFragment: clFragment, includeContentTypes: ["Company"], limit: 3, optionName: "Pinned" };
+              <marko-web-query|{ nodes }| name="website-scheduled-content" params=queryParams>
+                <theme-content-list-flow nodes=nodes inner-justified=false modifiers=["directory-featured-companies"]>
+                  <@header>Featured Companies</@header>
+                  <@node image-position="left" with-teaser=true />
+                </theme-content-list-flow>
+              </marko-web-query>
+
+              <marko-web-query|{ nodes }| name="all-published-content" params={ contentTypes: ["Product"], limit: 5, queryFragment: clFragment }>
+                <theme-content-list-flow nodes=nodes inner-justified=false>
+                  <@header>Latest</@header>
+                  <@node image-position="left" with-teaser=true />
+                </theme-content-list-flow>
+              </marko-web-query>
+            </div>
+          </div>
+        </@section>
+        <@section>
+          <div class="row">
+            <div class="col-lg-12">
+              <marko-web-query|{ aliases, nodes }|
+                name="all-published-content"
+                params={
+                  limit: 12,
+                  skip: 5,
+                  requiresImage: true,
+                  contentTypes: ["Product"],
+                  queryFragment: clFragment,
+                }
+              >
+                <section-feed-flow
+                  nodes=nodes
+                  aliases=aliases
+                  with-ads=false
+                />
+              </marko-web-query>
+            </div>
+          </div>
+        </@section>
+        <for|s| of=sections>
+          <@section|{ blockName }| modifiers=s.modifiers>
+            <${s.renderBody}
+              block-name=blockName
+              section=section
+              aliases=aliases
+            />
+          </@section>
+        </for>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+  <@below-page>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <if(withAds)>
+        <theme-reveal-ad-handler
+          select-all-targets=true
+          path=GAM.getAdUnit({ name: "reskin", aliases }).path
+          id="reveal-ad"
+        />
+        <theme-fixed-ad-bottom aliases=aliases />
+      </if>
+    </marko-web-resolve-page>
+  </@below-page>
+</theme-default-page>

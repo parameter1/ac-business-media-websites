@@ -33,10 +33,10 @@
     "@ac-business-media/package-directory": "^2.10.0",
     "@ac-business-media/refresh-theme": "^2.11.11",
     "@parameter1/base-cms-marko-core": "^4.55.4",
-    "@parameter1/base-cms-marko-web": "^4.55.4",
+    "@parameter1/base-cms-marko-web": "^4.59.1",
     "@parameter1/base-cms-object-path": "^4.40.3",
     "@parameter1/base-cms-utils": "^4.40.3",
-    "@parameter1/base-cms-web-cli": "^4.40.3",
+    "@parameter1/base-cms-web-cli": "^4.57.1",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
   }

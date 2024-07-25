@@ -452,6 +452,21 @@ label {
   }
 }
 
+.site-navbar {
+  $self: &;
+  &--top {
+    #{ $self }__right {
+      .btn,
+      .site-navbar__toggler {
+        background-color: transparent;
+        svg {
+          fill: #fff;
+        }
+      }
+    }
+  }
+}
+
 .ad-container {
   $self: &;
   &--with-label>:first-child:before {
@@ -578,6 +593,23 @@ label {
   max-width: 100%;
 }
 /*! critical:end */
+
+.follow-us {
+  .node-list__header {
+    @include skin-block-header-overline();
+  }
+  &__icons {
+    padding-bottom: 20px;
+    @include marko-web-node-list-border(border-bottom);
+
+    > a {
+      margin-right: 14px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
 
 .section-feed-content-node {
   $self: &;

@@ -2,6 +2,7 @@ import { getAsObject } from "@parameter1/base-cms-object-path";
 import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
 import { getAsArray } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import clFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list";
 import shuffleArray from "../../../utils/shuffle-array";
 
 import homePageTopStoriesLoader from "@ac-business-media/package-global/loaders/home-page-top-stories";
@@ -14,6 +15,9 @@ $ const sections = getAsArray(input, "sections");
 $ const withFeatured = defaultValue(input.withFeatured, true);
 $ const excludedSectionIds = [];
 $ const { GAM, apollo, i18n } = out.global;
+
+$ const withAds = GAM ? defaultValue(input.withAds, true) : defaultValue(input.withAds, false);
+$ const withFeedAds = defaultValue(input.withFeedAds, false);
 
 $ const latestTitle = defaultValue(input.latestTitle, "Latest News");
 $ const morePrefix = defaultValue(input.morePrefix, "More from");
@@ -120,10 +124,26 @@ $ const promise = homePageTopStoriesLoader(apollo, {
           </@section>
 
           <@section>
+            <global-recommended-block section-alias=alias >
+              <@native-x indexes=[3] name="default" aliases=aliases />
+            </global-recommended-block>
+          </@section>
+
+          <@section|{ aliases }|>
+            <theme-gam-define-display-ad
+              name="leaderboard"
+              position="section-page"
+              aliases=aliases
+            />
+          </@section>
+
+          <@section>
             <global-section-feed-wrapper
               alias=section.alias
               aliases=aliases
               with-pagination=false
+              with-ads=withAds
+              with-feed-ads=withFeedAds
               ad-name="rotation"
             >
               <@header>${i18n(morePrefix)} ${config.siteName()}</@header>

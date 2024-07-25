@@ -22,14 +22,14 @@ $ const title = defaultValue(input.title, "Recommended");
         params=queryParams
       >
         <theme-latest-content-list-block nodes=nodes title=customTitle query-params=input.queryParams class="recommended-content">
-          <@native-x indexes=[0] name="default" aliases=input.aliases ...input.nativeX />
+          <@native-x indexes=[0,2] name="default" aliases=input.aliases ...input.nativeX />
           <@node with-section=true with-dates=false ...input.node />
         </theme-latest-content-list-block>
       </marko-web-query>
     </if>
     <else>
       <theme-latest-content-list-block title="Recommended for You" query-params=input.queryParams class="recommended-content">
-        <@native-x indexes=[0] name="default" aliases=input.aliases ...input.nativeX />
+        <@native-x indexes=[0,2] name="default" aliases=input.aliases ...input.nativeX />
         <@node with-section=true with-dates=false ...input.node />
       </theme-latest-content-list-block>
     </else>
@@ -45,7 +45,7 @@ $ const title = defaultValue(input.title, "Recommended");
     />
     $ const queryParams = { ...input.queryParams, limit: 2 };
     <theme-latest-content-list-block title=customTitle query-params=queryParams class="recommended-content">
-      <@native-x indexes=[0] name="default" aliases=input.aliases ...input.nativeX />
+      <@native-x indexes=[0,2] name="default" aliases=input.aliases ...input.nativeX />
       <@node with-section=true with-dates=false ...input.node />
     </theme-latest-content-list-block>
 

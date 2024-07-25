@@ -1,5 +1,7 @@
 {
-  "taglib-imports": [],
+  "taglib-imports": [
+    "./components/marko.json"
+  ],
   "<global-section-feed-wrapper>": {
     "template": "./section-feed.marko",
     "<flow>": {},
@@ -8,6 +10,7 @@
     "@with-pagination": "boolean",
     "@modifiers": "array",
     "@with-ads": "boolean",
+    "@with-feed-ads": "boolean",
     "@ad-name": "string",
     "@alias": "string",
     "@header": "string",
@@ -19,7 +22,8 @@
     "@node-list": "object",
     "@path": "string",
     "@above-the-fold": "boolean",
-    "@no-rail": "boolean"
+    "@no-rail": "boolean",
+    "@with-page-hero": "boolean"
   },
   "<global-native-x-section-feed-wrapper>": {
     "template": "./native-x-section-feed.marko"
