@@ -30,6 +30,7 @@ module.exports = {
     id: '003355913687346718228:la4zrhjf2r9',
   },
   // Site configs
+  useRecommendedSectionAlias: true,
   idxNavItems: {
     enable: process.env.IDX_NAV_ENABLE || false,
   },
