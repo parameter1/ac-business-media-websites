@@ -27,7 +27,7 @@ $ const chunkLengths = withPageHero &&  p.page === 1 && (input.rails && input.ra
 $ const limit = chunkLengths.reduce((n, length) => (n + length), 0);
 $ const params = { ...queryParams, limit, skip };
 
-<marko-web-query|{ aliases, nodes }| name=queryName params=params>
+<marko-web-query|{ nodes }| name=queryName params=params>
   $ const nodeGroups = chunkLengths.reduce((chunked, length, index) => {
     const start = length * index;
     const end = start + length;
@@ -37,21 +37,21 @@ $ const params = { ...queryParams, limit, skip };
 
   <if(input.rails && input.rails.length === 1)>
     <if(p.page === 1 && withPageHero)>
-      <global-section-hero-block nodes=nodeGroups[0] aliases=aliases/>
+      <global-section-hero-block nodes=nodeGroups[0] aliases=input.aliases />
       <if(withAds)>
         <div class="row">
           <div class="col-lg-12 mb-block">
             <theme-gam-define-display-ad
               name="top-leaderboard"
               position="section-page"
-              aliases=aliases
+              aliases=input.aliases
               modifiers=[]
             />
           </div>
         </div>
       </if>
       <global-recommended-block section-alias=input.alias >
-        <@native-x indexes=[3] name="default" aliases=aliases />
+        <@native-x indexes=[3] name="default" aliases=input.aliases />
       </global-recommended-block>
       <if(withAds)>
         <div class="row">
@@ -59,7 +59,7 @@ $ const params = { ...queryParams, limit, skip };
             <theme-gam-define-display-ad
               name="leaderboard"
               position="section-page"
-              aliases=aliases
+              aliases=input.aliases
               modifiers=[]
             />
           </div>
@@ -147,7 +147,7 @@ $ const params = { ...queryParams, limit, skip };
           <theme-gam-define-display-ad
             name="leaderboard"
             position="section-page"
-            aliases=aliases
+            aliases=input.aliases
             modifiers=[]
           />
         </div>
@@ -230,7 +230,7 @@ $ const params = { ...queryParams, limit, skip };
                 <theme-gam-define-display-ad
                   name="top-rotation"
                   position="content_page"
-                  aliases=aliases
+                  aliases=input.aliases
                   modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
                   class="mb-0"
                 />
@@ -281,7 +281,7 @@ $ const params = { ...queryParams, limit, skip };
           <theme-gam-define-display-ad
             name="leaderboard"
             position="section-page"
-            aliases=aliases
+            aliases=input.aliases
             modifiers=[]
           />
         </div>
