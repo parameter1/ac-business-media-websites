@@ -1,0 +1,15 @@
+import { getAsObject, get } from "@parameter1/base-cms-object-path";
+
+$ const req = get(out, "global.req")
+$ const path = get(input, "section.canonicalPath") || req.originalUrl;
+$ const url = `${req.protocol}://${req.headers.host}/${path.replace(/^\//, '')}`;
+$ const image = getAsObject(input, "section.logo");
+$ const payload = {
+  "@context": "http://schema.org",
+  "@type": "WebPage",
+  headline: get(input, "section.name"),
+  url,
+  ...(image.src && { thumbnailUrl: image.src }),
+};
+
+<script type="application/ld+json">${JSON.stringify(payload)}</script>

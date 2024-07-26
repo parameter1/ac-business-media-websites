@@ -1,0 +1,26 @@
+{
+  "<global-parsely-page>": {
+    "template": "./page.marko",
+    "@headline": "string"
+  },
+  "<global-parsely-website-section>": {
+    "template": "./website-section.marko",
+    "@section": "object"
+  },
+  "<global-parsely-dynamic-page>": {
+    "template": "./dynamic-page.marko",
+    "@page": "object"
+  },
+  "<global-parsely-magazine-issue>": {
+    "template": "./magazine-issue.marko",
+    "@issue": "object"
+  },
+  "<global-parsely-magazine-publication>": {
+    "template": "./magazine-publication.marko",
+    "@publication": "object"
+  },
+  "<global-parsely-content>": {
+    "template": "./content.marko",
+    "@content": "object"
+  }
+}

@@ -1,0 +1,13 @@
+import { getAsObject, get } from "@parameter1/base-cms-object-path";
+
+$ const { headline } = input;
+$ const req = get(out, "global.req")
+$ const url = `${req.protocol}://${req.headers.host}${req.originalUrl}`;
+$ const payload = {
+  "@context": "http://schema.org",
+  "@type": "WebPage",
+  headline,
+  url,
+};
+
+<script type="application/ld+json">${JSON.stringify(payload)}</script>
