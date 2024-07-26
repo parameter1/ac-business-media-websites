@@ -13,10 +13,9 @@ $ const nodes = Object.keys(specGuides.guides).map((alias) => {
       <marko-web-gtm-push data=context />
     </marko-web-gtm-default-context>
   </@head>
-  <!-- @todo Parsley -->
-  <!-- <@above-container>
-    <refresh-theme-parsely-page headline=title />
-  </@above-container> -->
+  <@above-container>
+    <global-parsely-page headline=title />
+  </@above-container>
   <@page>
     <marko-web-page-wrapper>
       <@section|{ aliases }|>
