@@ -79,14 +79,14 @@ module.exports = {
         bgColor: '#1a93f9',
         logo: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=60&auto=format,compress',
       },
-      to: 'jsage@acbusinessmedia.com',
+      to: 'jsmith@iron.markets',
       from: 'Food Logistics <noreply@foodlogistics.com>',
     },
     branding: {
       bgColor: '#1a93f9',
       logo: 'https://img.foodlogistics.com/files/base/acbm/fl/image/static/logo/site_logo_large.png?h=60&auto=format,compress',
     },
-    to: 'jsage@acbusinessmedia.com',
+    to: 'jsmith@iron.markets',
   },
   inquiry: {
     enabled: true,
