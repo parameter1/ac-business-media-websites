@@ -1,5 +1,7 @@
 import createOmedaIdentityBuilder from "@parameter1/base-cms-marko-web-p1-events/utils/create-omeda-identity-builder";
 import { getAsObject } from "@parameter1/base-cms-object-path";
+import parseIdentityId from "../utils/parse-sapience-identity";
+
 
 $ const {
   site,
@@ -78,6 +80,9 @@ $ const omedaConfig = site.get('omeda');
       <marko-web-gam-enable>
         <@lazy-load ...site.getAsObject("gam.lazyLoad") />
       </marko-web-gam-enable>
+      $ const sapience = parseIdentityId(req);
+      $ const gamKeyValues = { uri: req.path, ...(sapience && { sapience }) };
+      <marko-web-gam-targeting key-values=gamKeyValues />
     </if>
   </@head>
   <@above-wrapper>
