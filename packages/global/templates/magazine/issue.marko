@@ -14,6 +14,9 @@ $ const excludeContentTypes = ["Company", "Product"];
     <marko-web-gtm-magazine-issue-context|{ context }| id=id>
       <marko-web-gtm-push data=context />
     </marko-web-gtm-magazine-issue-context>
+    <marko-web-resolve-page|{ data: issue }| node=pageNode>
+      <global-parsely-magazine-issue issue=issue />
+    </marko-web-resolve-page>
   </@head>
   <@page>
     <marko-web-resolve-page|{ data: issue }| node=pageNode>

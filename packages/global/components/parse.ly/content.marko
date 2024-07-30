@@ -1,0 +1,25 @@
+import { getAsArray, getAsObject, get } from "@parameter1/base-cms-object-path";
+
+$ const content = getAsObject(input, "content");
+$ const image = getAsObject(input, "content.primaryImage");
+$ const primarySection = getAsObject(input, "content.primarySection");
+$ const authors = getAsArray(content, "authors.edges").map(edge => get(edge, "node.name"));
+$ const taxonomy = getAsArray(content, "taxonomy.edges").map(edge => get(edge, "node.name"));
+$ const datePublished = (new Date(content.published)).toISOString();
+$ const siteUrl = get(content, "siteContext.url");
+$ const canonicalUrl = get(content, "siteContext.canonicalUrl");
+$ const payload = {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  headline: content.name,
+  // If multi-site, make the parsely url the site url and network the canonical
+  url: canonicalUrl,
+  ...(siteUrl !== canonicalUrl && { url: siteUrl, isBasedOn: canonicalUrl}),
+  ...(image.src && { thumbnailUrl: image.src }),
+  datePublished,
+  articleSection: primarySection.name,
+  ...(authors.length && { creator: authors }),
+  ...(taxonomy.length && { keywords: taxonomy }),
+};
+
+<script type="application/ld+json">${JSON.stringify(payload)}</script>

@@ -3,6 +3,7 @@
     "./blocks/marko.json",
     "./directory/marko.json",
     "./layouts/marko.json",
+    "./parse.ly/marko.json",
     "./site-footer/marko.json",
     "./spec-guide/marko.json",
     "./wrappers/marko.json"
