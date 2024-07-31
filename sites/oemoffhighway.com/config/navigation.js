@@ -59,7 +59,7 @@ module.exports = {
       primary: {
         items: [
           { href: '/engines/cooling', label: 'Cooling' },
-          { href: '/engines/engines', label: 'Engine' },
+          { href: '/engines/engines', label: 'Engines' },
           { href: '/engines/filtration', label: 'Filtration' },
           { href: '/engines/fuels-fluids', label: 'Fuels & Fluids' },
         ],
@@ -186,6 +186,7 @@ module.exports = {
         { href: '/premium-content', label: 'Premium Content' },
         { href: '/specguide', label: 'Engine Spec Guide' },
         { href: '/awards', label: 'Awards' },
+        { href: '/videos', label: 'Videos' },
         { href: '/events', label: 'Event Calendar' },
         { href: '/directory', label: 'Component Directory' },
         { href: '/media-center/whitepapers-ebooks', label: 'White Papers & E-Books' },
