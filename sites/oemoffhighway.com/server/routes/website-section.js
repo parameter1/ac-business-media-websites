@@ -15,7 +15,6 @@ const leaders = require('@ac-business-media/refresh-theme/templates/website-sect
 const awards = require('@ac-business-media/refresh-theme/templates/website-section/awards');
 const continuingEducation = require('@ac-business-media/refresh-theme/templates/website-section/continuing-education');
 
-const equipmentMarketOutlook = require('../templates/website-section/market-analysis/equipment-market-outlook');
 const directory = require('../templates/website-section/directory');
 const mediaCenter = require('../templates/website-section/media-center');
 
@@ -66,10 +65,6 @@ module.exports = (app) => {
   }));
   app.get('/:alias(videos/*)', withWebsiteSection({
     template: feed,
-    queryFragment,
-  }));
-  app.get('/:alias(market-analysis/equipment-market-outlook)', withWebsiteSection({
-    template: equipmentMarketOutlook,
     queryFragment,
   }));
   app.get('/:alias(expert-columns)', withWebsiteSection({
