@@ -14,7 +14,9 @@ $ const lang = site.config.lang || "en";
 
 $ const displayInquiry = (content) => {
   if (site.get("inquiry.enabled") === false) return false;
-  return get(content, "company.enableRmi");
+  if (type === "company" && get(content, "enableRmi")) return true;
+  if (type === "product" && get(content, "company.enableRmi")) return true;
+  return false;
 }
 
 <global-content-wrapper-layout
