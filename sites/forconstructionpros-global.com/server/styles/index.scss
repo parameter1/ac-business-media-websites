@@ -138,6 +138,9 @@ $website-section-colors: (
 }
 
 .site-navbar {
+  &__logo {
+    height: 45px;
+  }
   $self: &;
   &--primary,
   &--secondary {
