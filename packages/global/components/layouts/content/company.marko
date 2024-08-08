@@ -194,28 +194,21 @@ $ const displayInquiry = (content) => {
       </div>
 
       <div class="col-lg-4 pt-block">
-        <!-- $ const topCompany = aliases.includes("top-feed-companies"); -->
-        <theme-gam-define-display-ad
-          name="top-rotation"
-          position="content_page"
-          aliases=aliases
-          modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-          class="mb-0"
-        />
         $ const inquiry = site.getAsObject('inquiry');
         <if(displayInquiry(content))>
           <div class="mb-block">
             <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
           </div>
         </if>
-
-        <theme-gam-define-display-ad
-          name="rotation-rail"
-          position="content_page"
-          aliases=aliases
-          modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-          class="mb-0"
-        />
+        <else-if(withAds && !isSponsored)>
+          <theme-gam-define-display-ad
+            name="top-rotation"
+            position="content_page"
+            aliases=aliases
+            modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+            class="mb-0"
+          />
+        </else-if>
       </div>
     </div>
   </@section>
