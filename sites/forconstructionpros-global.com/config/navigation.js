@@ -13,7 +13,8 @@ const topics = [
   { href: '/pavement-maintenance', label: 'Pavement' },
   { href: '/construction-technology', label: 'Technology' },
   { href: '/business', label: 'Business' },
-  { href: 'https://www.pavexshow.com/', label: 'PAVE/X', target: '_blank' },
+  { href: '/infrastructure', label: 'Infrastructure' },
+  { href: '/sustainability', label: 'Sustainability' },
 ];
 
 const secondary = [
@@ -33,17 +34,21 @@ const exclusives = [
   { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
   { href: '/specguide', label: 'Spec Guides' },
   { href: '/premium-content', label: 'Premium Content' },
-  { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
-];
-
-const expertInsights = [
-  { href: '/blogs', label: 'Blogs' },
-  { href: '/events', label: 'Events' },
-  { href: '/magazine', label: 'Magazine' },
+  { href: 'https://www.pavexshow.com/', label: 'PAVE/X', target: '_blank' },
   { href: '/podcasts', label: 'Podcasts' },
   { href: '/videos', label: 'Videos' },
   { href: '/webinars', label: 'Webinars' },
+  // { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
+];
+
+const expertInsights = [
+  // { href: '/blogs', label: 'Blogs' },
+  { href: '/events', label: 'Events' },
+  { href: '/magazine', label: 'Magazine' },
   { href: '/whitepapers', label: 'White Papers' },
+  { href: '/expert-columns', label: 'Expert Columns' },
+  { href: '/awards', label: 'Awards' },
+  { href: '/profit-matters', label: 'Profit Matters' },
 ];
 
 const utilities = [
