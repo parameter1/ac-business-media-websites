@@ -79,7 +79,7 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
     </marko-web-resolve-page>
   </@page>
   <@below-page>
-    <if(type !== "page" && (loadMore || withAds))>
+    <if(type !== "page" && loadMore)>
       <marko-web-page-container for="content" tag="div" id=id type=type modifiers=["below"]>
         <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
           $ const section = content.primarySection;

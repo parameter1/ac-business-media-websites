@@ -14,7 +14,9 @@ $ const lang = site.config.lang || "en";
 
 $ const displayInquiry = (content) => {
   if (site.get("inquiry.enabled") === false) return false;
-  return get(content, "company.enableRmi");
+  if (type === "company" && get(content, "enableRmi")) return true;
+  if (type === "product" && get(content, "company.enableRmi")) return true;
+  return false;
 }
 
 <global-content-wrapper-layout
@@ -126,8 +128,8 @@ $ const displayInquiry = (content) => {
 
           <theme-latest-content-list-block
             query-name="all-company-content"
-            query-params={ companyId: id, includeContentTypes: ["Document", "Whitepaper"], withSite: false, limit: 5 }
-            title=`${i18n("Company Documents")}`
+            query-params={ companyId: id, includeContentTypes: ["Article", "Blog", "News"], withSite: false, limit: 5 }
+            title=`${i18n("Articles & News")}`
             with-native-x-section=false
             flush-x=false
             class="mt-block"
@@ -135,6 +137,27 @@ $ const displayInquiry = (content) => {
             <@node with-dates=false />
           </theme-latest-content-list-block>
 
+          <theme-latest-content-list-block
+            query-name="all-company-content"
+            query-params={ companyId: id, includeContentTypes: ["Product", "PressRelease"], withSite: false, limit: 5 }
+            title=`${i18n("Products & Press Releases")}`
+            with-native-x-section=false
+            flush-x=false
+            class="mt-block"
+          >
+            <@node with-dates=false />
+          </theme-latest-content-list-block>
+
+          <theme-latest-content-list-block
+            query-name="all-company-content"
+            query-params={ companyId: id, includeContentTypes: ["Video", "Whitepaper", "Webinar", "Document", "MediaGallery", "Podcast"], withSite: false, limit: 5 }
+            title=`${i18n("Videos & Resources")}`
+            with-native-x-section=false
+            flush-x=false
+            class="mt-block"
+          >
+            <@node with-dates=false />
+          </theme-latest-content-list-block>
 
           <${input.afterBody}
             aliases=aliases
@@ -192,28 +215,21 @@ $ const displayInquiry = (content) => {
       </div>
 
       <div class="col-lg-4 pt-block">
-        <!-- $ const topCompany = aliases.includes("top-feed-companies"); -->
-        <theme-gam-define-display-ad
-          name="top-rotation"
-          position="content_page"
-          aliases=aliases
-          modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-          class="mb-0"
-        />
         $ const inquiry = site.getAsObject('inquiry');
         <if(displayInquiry(content))>
           <div class="mb-block">
             <theme-company-inquiry-form-block modifiers=["flush-x"] content=content consent-checkboxes=getAsArray(site, 'config.inquiry.consentCheckboxes') />
           </div>
         </if>
-
-        <theme-gam-define-display-ad
-          name="rotation-rail"
-          position="content_page"
-          aliases=aliases
-          modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-          class="mb-0"
-        />
+        <else-if(withAds && !isSponsored)>
+          <theme-gam-define-display-ad
+            name="top-rotation"
+            position="content_page"
+            aliases=aliases
+            modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+            class="mb-0"
+          />
+        </else-if>
       </div>
     </div>
   </@section>
