@@ -128,8 +128,8 @@ $ const displayInquiry = (content) => {
 
           <theme-latest-content-list-block
             query-name="all-company-content"
-            query-params={ companyId: id, includeContentTypes: ["Document", "Whitepaper"], withSite: false, limit: 5 }
-            title=`${i18n("Company Documents")}`
+            query-params={ companyId: id, includeContentTypes: ["Article", "Blog", "News"], withSite: false, limit: 5 }
+            title=`${i18n("Articles & News")}`
             with-native-x-section=false
             flush-x=false
             class="mt-block"
@@ -137,6 +137,27 @@ $ const displayInquiry = (content) => {
             <@node with-dates=false />
           </theme-latest-content-list-block>
 
+          <theme-latest-content-list-block
+            query-name="all-company-content"
+            query-params={ companyId: id, includeContentTypes: ["Product", "PressRelease"], withSite: false, limit: 5 }
+            title=`${i18n("Products & Press Releases")}`
+            with-native-x-section=false
+            flush-x=false
+            class="mt-block"
+          >
+            <@node with-dates=false />
+          </theme-latest-content-list-block>
+
+          <theme-latest-content-list-block
+            query-name="all-company-content"
+            query-params={ companyId: id, includeContentTypes: ["Video", "Whitepaper", "Webinar", "Document", "MediaGallery", "Podcast"], withSite: false, limit: 5 }
+            title=`${i18n("Videos & Resources")}`
+            with-native-x-section=false
+            flush-x=false
+            class="mt-block"
+          >
+            <@node with-dates=false />
+          </theme-latest-content-list-block>
 
           <${input.afterBody}
             aliases=aliases
