@@ -9,7 +9,6 @@ const company = require('@ac-business-media/package-global/templates/content/com
 const contact = require('@ac-business-media/package-global/templates/content/contact');
 const product = require('@ac-business-media/package-global/templates/content/product');
 const webinar = require('@ac-business-media/package-global/templates/content/webinar');
-const whitepaper = require('@ac-business-media/package-global/templates/content/whitepaper');
 const content = require('@ac-business-media/package-global/templates/content/default');
 const redirectHandler = require('@ac-business-media/package-global/redirect-handler');
 
@@ -49,7 +48,7 @@ module.exports = (app) => {
     },
     { // document
       regex: '/*?document/:id(\\d{8})*',
-      template: whitepaper,
+      template: content,
       queryFragment,
       loaderFragment,
     },
@@ -67,7 +66,7 @@ module.exports = (app) => {
     },
     { // whitepaper
       regex: '/*?whitepaper/:id(\\d{8})*',
-      template: whitepaper,
+      template: content,
       queryFragment,
       loaderFragment,
     },
