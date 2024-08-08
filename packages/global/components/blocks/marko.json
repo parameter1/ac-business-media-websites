@@ -18,7 +18,8 @@
     "@alias": "string"
   },
   "<global-follow-us-block>": {
-    "template": "./follow-us.marko"
+    "template": "./follow-us.marko",
+    "@aliases": "array"
   },
   "<global-identity-x-newsletter-form-inline>": {
     "template": "./newsletter-inline.marko"
