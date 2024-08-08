@@ -124,16 +124,16 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
               </@section>
             </marko-web-page-wrapper>
           </if>
+          <if(withAds && !isSponsored)>
+            <theme-reveal-ad-handler
+              select-all-targets=true
+              path=GAM.getAdUnit({ name: "reskin", aliases }).path
+              id="reveal-ad"
+            />
+            <theme-fixed-ad-bottom aliases=aliases />
+          </if>
         </marko-web-resolve-page>
       </marko-web-page-container>
-      <if(withAds && !isSponsored)>
-        <theme-reveal-ad-handler
-          select-all-targets=true
-          path=GAM.getAdUnit({ name: "reskin", aliases }).path
-          id="reveal-ad"
-        />
-        <theme-fixed-ad-bottom aliases=aliases />
-      </if>
     </if>
   </@below-page>
 </theme-content-page>
