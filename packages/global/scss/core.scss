@@ -439,11 +439,6 @@ label {
 // }
 
 .site-navbar {
-  &__items {
-    &--primary {
-      justify-content: center;
-    }
-  }
   &--primary {
     border-top: 1px solid #e5e7eb;
   }
