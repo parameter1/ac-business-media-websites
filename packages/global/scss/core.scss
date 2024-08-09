@@ -689,3 +689,12 @@ label {
 }
 /*! purgecss end ignore */
 /*! critical:end */
+
+/*! critical:start|contact-us */
+/*! purgecss start ignore */
+.contact-us-form__header {
+  @include skin-typography($style: "header-2");
+  @include skin-block-header-overline($flex: true, $text-lg: false);
+}
+/*! purgecss end ignore */
+/*! critical:end */

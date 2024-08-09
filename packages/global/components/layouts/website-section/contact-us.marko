@@ -6,7 +6,7 @@ $ const { pagination: p, nativeX: nxConfig, site, GAM } = out.global;
 
 $ const { id, alias, name, pageNode } = input;
 $ const withNativeX = nxConfig && nxConfig.enabled ? defaultValue(input.withNativeX, true) : false;
-$ const withAds = GAM defaultValue(input.withAds, false);
+$ const withAds = defaultValue(input.withAds, false);
 $ const withFeedAds = defaultValue(input.withFeedAds, false);
 $ const sections = getAsArray(input, "sections");
 $ const perPage = 24;
@@ -81,7 +81,7 @@ $ const perPage = 24;
           <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
         </if>
         <@rail>
-          <contact-us-form config-name="notificationDefaults" title=title />
+          <contact-us-form config-name="notificationDefaults" title=site.get('contactUs.title') />
         </@rail>
         <@rail/>
       </global-section-feed-wrapper>

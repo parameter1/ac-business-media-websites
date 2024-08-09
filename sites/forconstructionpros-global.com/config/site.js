@@ -69,7 +69,7 @@ module.exports = {
     { provider: 'youtube', href: 'https://www.youtube.com/user/ForConstructionPros', target: '_blank' },
     { provider: 'flipboard', href: 'https://flipboard.com/@FCPnews', target: '_blank' },
   ],
-  socialMediaLinksByChannel: {
+  socialMediaLinksByAlias: {
     asphalt: [
       { provider: 'facebook', href: 'https://www.facebook.com/Asphalt.Contractor', target: '_blank' },
       { provider: 'twitter', href: 'https://twitter.com/AsphaltContrctr', target: '_blank' },
@@ -104,6 +104,21 @@ module.exports = {
   podcastLinks: [],
   gtm: {
     containerId: 'GTM-PNBSZL4',
+  },
+  contactUs: {
+    notificationDefaults: {
+      branding: {
+        bgColor: '#000',
+        logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress',
+      },
+      to: 'support@forconstructionpros.com',
+      from: 'For Construction Pros <noreply@forconstructionpros.com>',
+    },
+    branding: {
+      bgColor: '#000',
+      logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress',
+    },
+    to: 'support@forconstructionpros.com',
   },
   inquiry: {
     enabled: true,
