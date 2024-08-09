@@ -38,7 +38,8 @@
                 </h5>
                 <div
                   v-if="withTeaser"
-                  class="node__teaser">
+                  class="node__teaser"
+                >
                   {{ node.teaser }}
                 </div>
               </div>

@@ -109,7 +109,7 @@ module.exports = {
       alias: 'rental/lifting-equipment',
       map: {
         lb1: 'rental/lifting-equipment/lb1',
-        'lb-sticky-bottom': 'rental/lb1',
+        'lb-sticky-bottom': 'rental/lifting-equipment/lb1',
         rail1: 'rental/lifting-equipment/rail1',
         rail2: 'rental/lifting-equipment/rail1',
         'infinite-rail': 'rental/lifting-equipment/rail1',
