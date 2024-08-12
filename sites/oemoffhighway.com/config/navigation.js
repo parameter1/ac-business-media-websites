@@ -190,6 +190,7 @@ module.exports = {
         { href: '/events', label: 'Event Calendar' },
         { href: '/directory', label: 'Component Directory' },
         { href: '/media-center/whitepapers-ebooks', label: 'White Papers & E-Books' },
+        { href: '/minexpo-2024', label: 'MINExpo 2024' },
       ],
     },
     {
