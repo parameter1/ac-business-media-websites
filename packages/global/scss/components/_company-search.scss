@@ -46,3 +46,10 @@
     }
   }
 }
+
+.company-section-search {
+ > div.col-md-6 {
+  // input height + wrapping style/elemetns
+  height: calc(1.5em + .75rem + 2px);
+ }
+}
