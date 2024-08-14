@@ -117,7 +117,6 @@ $ const loadMore = !showOverlay; // && !idxFormId;
               enabled=requiresRegistration
               required-access-level-ids=accessLevels
             >
-            $ console.log('enableContextualGating: ', enableContextualGating)
               <if(enableContextualGating && idxFormId)>
                 <if(displayIdxForm)>
                   $ const body = getContentPreview({ body: content.body, selector: "p:lt(3)" });
