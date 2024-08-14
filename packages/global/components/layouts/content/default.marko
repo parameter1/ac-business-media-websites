@@ -14,6 +14,7 @@ $ const {
   config,
 } = out.global;
 
+$ const enableContextualGating = defaultValue(site.enableContexturalGating, false);
 <!-- update contentIdxFormStateDisplayBase on the req cookies being present -->
 <!-- @todo figure out how to do this ahead of time within the content route if possible -->
 $ contentIdxFormState.displayForm = !Boolean(get(req, `cookies.${get(contentIdxFormState, 'cookie.name')}`));
@@ -116,7 +117,8 @@ $ const loadMore = !showOverlay; // && !idxFormId;
               enabled=requiresRegistration
               required-access-level-ids=accessLevels
             >
-              <if(idxFormId)>
+            $ console.log('enableContextualGating: ', enableContextualGating)
+              <if(enableContextualGating && idxFormId)>
                 <if(displayIdxForm)>
                   $ const body = getContentPreview({ body: content.body, selector: "p:lt(3)" });
                   <marko-web-content-body block-name=blockName obj={ body } />
