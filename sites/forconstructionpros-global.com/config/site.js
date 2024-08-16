@@ -139,4 +139,7 @@ module.exports = {
     54468, // Pavement Maintenance
   ],
   specGuides,
+  mindful: {
+    namespace: 'acbm/default',
+  },
 };
