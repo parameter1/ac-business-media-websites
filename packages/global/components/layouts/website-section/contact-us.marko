@@ -1,6 +1,7 @@
 import convert from "@parameter1/base-cms-marko-web-native-x/utils/convert-story-to-content";
-import { getAsArray } from "@parameter1/base-cms-object-path";
+import { getAsArray, getAsObject } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import queryFragment from "../../../graphql/fragments/content-contact-us";
 
 $ const { pagination: p, nativeX: nxConfig, site, GAM } = out.global;
 
@@ -65,79 +66,46 @@ $ const perPage = 24;
     <else>
       <marko-web-website-section-description obj=section />
     </else>
-    <if(alias !== "premium-content" || !nxConfig.domainName)>
-      <global-section-feed-wrapper
-        aliases=aliases
-        alias=alias
-        flow=input.feedFlow
-        with-feed-ads=withFeedAds
-        with-ads=withAds
-        query-params=input.queryParams
-        above-the-fold=true
-        ad-name=input.adName
-      >
-        <@node ...input.node />
-        <if(withNativeX)>
-          <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
-        </if>
-        <@rail>
-          <contact-us-form config-name="notificationDefaults" title=site.get('contactUs.title') />
-        </@rail>
-        <@rail/>
-      </global-section-feed-wrapper>
-    </if>
-    <else>
-      <div class="row">
-        <div class="col-lg-8">
-          <marko-web-native-x-publisher-stories|{ nodes, pageInfo }|
-            domain-name=nxConfig.domainName
-          >
-            <marko-web-node-list
-              inner-justified=true
-              flush-x=true
-              flush-y=false
-              modifiers=["section-feed"]
-            >
-              <@nodes nodes=nodes>
-                <@slot|{ node }|>
-                  <theme-section-feed-content-node
-                    node=convert(node)
-                    display-image=true
-                    with-section=false
-                    lazyload=false
-                    with-dates=true
-                    ...input.node
-                  />
-                </@slot>
-              </@nodes>
-            </marko-web-node-list>
-          </marko-web-native-x-publisher-stories>
-        </div>
-        <div class="col-lg-4">
-          <marko-web-identity-x-context|{ hasUser }|>
-            <if(!hasUser)>
-              <div class="sticky-top mb-block">
-                <global-identity-x-newsletter-form-inline with-image=false type="inlineContent" />
-              </div>
-            </if>
-          </marko-web-identity-x-context>
-          <div class="mb-block">
-            <if(withAds)>
-              <theme-gam-define-display-ad
-                name="top-rotation"
-                position="section_page"
-                aliases=["premium-content"]
-                modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
-                class="mb-0"
+    <div class="row">
+      <div class="col-lg-8">
+        <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionId: id, limit: 100, queryFragment }>
+          <for|node| of=nodes>
+            $ const primaryImage = getAsObject(node, "primaryImage");
+            <marko-web-node image-position="left" flush-x=true>
+              <@image
+                src=primaryImage.src
+                alt=primaryImage.alt
+                fluid=false
+                ar=null
+                width=150
+                link={ href: node.canonicalPath }
+                use-placeholder=false
               />
-            </if>
-            <else>
-              <theme-client-side-most-popular-list-block class="sticky-top" limit=5 />
-            </else>
-          </div>
+              <@body>
+                <@title tag="h5">
+                  <marko-web-content-name tag=null obj=node link=true />
+                </@title>
+                <@text>
+                  <default-theme-content-contact-details obj=node />
+                </@text>
+              </@body>
+            </marko-web-node>
+          </for>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4">
+        <contact-us-form config-name="notificationDefaults" title=site.get('contactUs.title') />
+        <div class="mt-block">
+          <theme-gam-define-display-ad
+            name="top-rotation"
+            position="content_page"
+            aliases=aliases
+            modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+            class="mb-0"
+          />
         </div>
       </div>
-    </else>
+    </div>
   </@section>
 
   <for|s| of=sections>
