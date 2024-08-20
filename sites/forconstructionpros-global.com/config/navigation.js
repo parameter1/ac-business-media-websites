@@ -21,7 +21,6 @@ const secondary = [
   { href: '/directory', label: 'New Equipment Directory' },
   { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
   { href: '/videos', label: 'Video Network' },
-  { href: '/magazine', label: 'Magazines' },
   { href: '/events', label: 'Events' },
   { href: '/podcasts', label: 'Podcasts' },
   { href: '/premium-content', label: 'Premium Content' },
@@ -70,6 +69,22 @@ const mobileMenu = {
   ],
 };
 
+const tertiaryItems = [
+  {
+    href: '/page/Subscribe-Links',
+    label: 'Magazines',
+    // icon: 'book',
+    forceLabel: true,
+  },
+  // {
+  //   href: 'https://acbusiness.dragonforms.com/loading.do?omedasite=FCP_prefs_ProgReg',
+  //   label: 'FCP Mail',
+  //   icon: 'mail',
+  //   forceLabel: false,
+  //   target: '_blank',
+  // },
+];
+
 module.exports = {
   type: 'navbar-c',
   promos: [
@@ -88,9 +103,7 @@ module.exports = {
   secondary: {
     items: secondary,
   },
-  tertiary: {
-    items: [],
-  },
+  tertiary: { items: [...tertiaryItems, ...user.items] },
   contexts: [
     {
       when: ['/equipment', '/trucks'],
@@ -249,7 +262,6 @@ module.exports = {
     more: exclusives,
     items: [
       ...utilities,
-      { href: '/page/privacy-policy', label: 'Privacy Policy', target: '_blank' },
       { href: '/site-map', label: 'Site Map' },
     ],
   },
