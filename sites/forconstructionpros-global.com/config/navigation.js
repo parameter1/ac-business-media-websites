@@ -249,7 +249,6 @@ module.exports = {
     more: exclusives,
     items: [
       ...utilities,
-      { href: '/page/privacy-policy', label: 'Privacy Policy', target: '_blank' },
       { href: '/site-map', label: 'Site Map' },
     ],
   },
