@@ -21,7 +21,6 @@ const secondary = [
   { href: '/directory', label: 'New Equipment Directory' },
   { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
   { href: '/videos', label: 'Video Network' },
-  { href: '/magazine', label: 'Magazines' },
   { href: '/events', label: 'Events' },
   { href: '/podcasts', label: 'Podcasts' },
   { href: '/premium-content', label: 'Premium Content' },
