@@ -69,6 +69,22 @@ const mobileMenu = {
   ],
 };
 
+const tertiaryItems = [
+  {
+    href: '/page/Subscribe-Links',
+    label: 'Magazines',
+    // icon: 'book',
+    forceLabel: true,
+  },
+  // {
+  //   href: 'https://acbusiness.dragonforms.com/loading.do?omedasite=FCP_prefs_ProgReg',
+  //   label: 'FCP Mail',
+  //   icon: 'mail',
+  //   forceLabel: false,
+  //   target: '_blank',
+  // },
+];
+
 module.exports = {
   type: 'navbar-c',
   promos: [
@@ -87,9 +103,7 @@ module.exports = {
   secondary: {
     items: secondary,
   },
-  tertiary: {
-    items: [],
-  },
+  tertiary: { items: [...tertiaryItems, ...user.items] },
   contexts: [
     {
       when: ['/equipment', '/trucks'],
