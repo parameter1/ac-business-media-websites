@@ -11,7 +11,9 @@ formDefault.anonymousCta = 'Register on Forconstructionpros.com to download this
 module.exports = configureIdentityX({
   appId: '5e28a2d858e67b162e55ae3b',
   activeCustomFieldIds: [
-    '',
+    // Genral FCP
+    '66c4dd5510ae66087480bb09', // Primary Business
+    '66c4dedd10ae66008d80ea98', // Job Title
     // // asphalt
     // '66436fceafb6131c4a841f26',
     // '66437894235da5b2358f59e9',
