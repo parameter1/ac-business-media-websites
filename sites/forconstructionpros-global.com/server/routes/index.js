@@ -1,8 +1,9 @@
 // const directory = require('@ac-business-media/package-global/routes/directory');
+const dynamicPages = require('@ac-business-media/package-global/routes/dynamic-page');
 const nativeX = require('@ac-business-media/package-global/routes/native-x');
+
 const home = require('./home');
 const content = require('./content');
-const dynamicPages = require('./dynamic-page');
 const websiteSections = require('./website-section');
 const specguide = require('./spec-guide');
 
