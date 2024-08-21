@@ -22,6 +22,7 @@ module.exports = ({
     mobileNumber: 'Mobile Phone',
     organization: 'Company Name',
   },
+  consentPolicy = '<p class="mb-2">I accept that the data provided on this form will be processed, stored, and used in accordance with the terms set out in IRONMARKETS’ <a href="/page/privacy-policy" target="_blank">Privacy Policy</a>.</p>',
   ...rest
 } = {}) => {
   const config = new IdentityXConfiguration({
@@ -33,6 +34,7 @@ module.exports = ({
     gtmUserFields,
     defaultFieldLabels,
     onHookError: newrelic.noticeError.bind(newrelic),
+    consentPolicy,
     ...rest,
   });
   return config;
