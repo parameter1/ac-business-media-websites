@@ -152,7 +152,7 @@
     padding-right: 20px;
   }
   &__items--tertiary, &__items--user, &__items--seller, &__items--magazine {
-    font-size: 13px;
+    font-size: $theme-site-navbar-teriary-font-size;
     margin-top: initial;
     display: flex;
     flex-direction: row;

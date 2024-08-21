@@ -15,6 +15,7 @@ $dark: #212529;
 $info: #6c757d;
 
 $skin-block-header-overline-color: $dark;
+$theme-site-navbar-secondary-font-size: 12px !default;
 
 @import "@ac-business-media/package-global/scss/core";
 
@@ -138,10 +139,11 @@ $website-section-colors: (
 }
 
 .site-navbar {
+  $self: &;
   &__logo {
     height: 45px;
   }
-  $self: &;
+
   &--primary,
   &--secondary {
     @each $section, $color in $website-section-colors {
@@ -151,6 +153,12 @@ $website-section-colors: (
           color: $color;
         }
       }
+    }
+  }
+
+  &__items--tertiary {
+    #{ $self }__link {
+      padding-right: 0
     }
   }
 }
