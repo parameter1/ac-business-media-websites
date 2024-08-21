@@ -22,7 +22,6 @@ jobs:
           - { dir: oemoffhighway.com, stack: tauron, id: 54b5a261c99db54158ed0fc9, account: acbm, tenant: acbm_ooh, rancher_label: ac-business-media-oemoffhighway.com }
           - { dir: rentalproductnews.com, stack: tauron, id: 53ca8d671784f8066eb2c949, account: acbm, tenant: acbm_fcp, rancher_label: ac-business-media-rentalproductnews.com }
           - { dir: sdcexec.com, stack: tauron, id: 53c960451784f8066eb2c8a4, account: acbm, tenant: acbm_scn, rancher_label: ac-business-media-sdcexec.com }
-          - { dir: forconstructionpros.com, stack: tauron, id: 53ca8d671784f8066eb2c949, account: acbm, tenant: acbm_fcp, rancher_label: ac-business-media-forconstructionpros.com }
         ###############################################
         #^# Make sure this matches the site matrix! #^#
         ###############################################

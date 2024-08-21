@@ -12,6 +12,7 @@
     "stack": "tauron",
     "key": "fcp",
     "deploy": {
+      "production": true,
       "staging": true
     }
   },
