@@ -21,6 +21,7 @@ const secondary = [
   { href: '/directory', label: 'New Equipment Directory' },
   { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
   { href: '/videos', label: 'Video Network' },
+  { href: '/magazine', label: 'Magazine' },
   { href: '/events', label: 'Events' },
   { href: '/podcasts', label: 'Podcasts' },
   { href: '/premium-content', label: 'Premium Content' },
@@ -73,17 +74,19 @@ const tertiaryItems = [
   {
     href: '/page/Subscribe-Links',
     label: 'Magazines',
-    // icon: 'book',
+    icon: 'book',
     forceLabel: true,
   },
-  // {
-  //   href: 'https://acbusiness.dragonforms.com/loading.do?omedasite=FCP_prefs_ProgReg',
-  //   label: 'FCP Mail',
-  //   icon: 'mail',
-  //   forceLabel: false,
-  //   target: '_blank',
-  // },
+  {
+    href: 'https://acbusiness.dragonforms.com/loading.do?omedasite=FCP_prefs_ProgReg',
+    label: 'Newsletters',
+    icon: 'mail',
+    forceLabel: true,
+    target: '_blank',
+  },
 ];
+
+const tertiary = { items: [...tertiaryItems, ...user.items] };
 
 module.exports = {
   type: 'navbar-c',
@@ -98,17 +101,17 @@ module.exports = {
   mobileMenu,
   topics,
   primary: {
-    items: topics,
-  },
-  secondary: {
     items: secondary,
   },
-  tertiary: { items: [...tertiaryItems, ...user.items] },
+  secondary: {
+    items: topics,
+  },
+  tertiary,
   contexts: [
     {
       when: ['/equipment', '/trucks'],
       secondary: { items: topics },
-      tertiary: { items: [] },
+      tertiary,
       primary: {
         items: [
           { href: '/trucks', label: 'Trucks' },
@@ -123,7 +126,7 @@ module.exports = {
     {
       when: ['/rental'],
       secondary: { items: topics },
-      tertiary: { items: [] },
+      tertiary,
       primary: {
         items: [
           { href: '/rental/construction', label: 'Construction' },
@@ -150,7 +153,7 @@ module.exports = {
     {
       when: ['/concrete'],
       secondary: { items: topics },
-      tertiary: { items: [] },
+      tertiary,
       primary: {
         items: [
           { href: '/concrete/decorative', label: 'Decorative' },
@@ -165,7 +168,7 @@ module.exports = {
     {
       when: ['/asphalt'],
       secondary: { items: topics },
-      tertiary: { items: [] },
+      tertiary,
       primary: {
         items: [
           { href: '/asphalt/additives', label: 'Additives' },
@@ -179,7 +182,7 @@ module.exports = {
     {
       when: ['/business'],
       secondary: { items: topics },
-      tertiary: { items: [] },
+      tertiary,
       primary: {
         items: [
           { href: '/business/business-services', label: 'Services' },
@@ -192,7 +195,7 @@ module.exports = {
     {
       when: ['/construction-technology'],
       secondary: { items: topics },
-      tertiary: { items: [] },
+      tertiary,
       primary: {
         items: [
           { href: '/construction-technology/apps', label: 'Apps' },
@@ -206,7 +209,7 @@ module.exports = {
     {
       when: ['/pavement-maintenance'],
       secondary: { items: topics },
-      tertiary: { items: [] },
+      tertiary,
       primary: {
         items: [
           { href: '/pavement-maintenance/sweepers', label: 'Sweepers' },
@@ -218,7 +221,7 @@ module.exports = {
     {
       when: ['/profit-matters'],
       secondary: { items: topics },
-      tertiary: { items: [] },
+      tertiary,
       primary: {
         items: [
           { href: '/profit-matters?contentTypes=Blog', label: 'Blogs' },
