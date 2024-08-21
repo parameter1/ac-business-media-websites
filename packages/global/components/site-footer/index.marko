@@ -42,7 +42,6 @@ $ const consentPolicy = (identityX) ? identityX.config.get("consentPolicy") : nu
       <div class="row">
         <marko-web-element block-name=blockName name="section" attrs={ "aria-label": "Newsletter Sign-Up Form Footer"}>
           <if(!newsletterConfig.disabled && useIdxNewsletterSignup)>
-            $ console.log(newsletterBlockProps, newsletterSignupConfigName)
             <identity-x-newsletter-form-footer config-name=newsletterSignupConfigName consent-policy=consentPolicy ...newsletterBlockProps />
           </if>
           <else-if(!newsletterConfig.disabled && newsletterConfig.action)>
