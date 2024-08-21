@@ -82,6 +82,7 @@ module.exports = {
       tertiary: { items: tertiaryItems },
       primary: {
         items: [
+          { href: '/transportation/electrification', label: 'Electrification' },
           { href: '/3pl-4pl', label: '3PL/4PL' },
           { href: '/transportation/cold-chain', label: 'Cold Chain' },
           { href: '/transportation/last-mile', label: 'Last-Mile' },
@@ -217,7 +218,10 @@ module.exports = {
   menu: [
     {
       label: 'Topics',
-      items: topics,
+      items: [
+        ...topics,
+        { href: '/transportation/electrification', label: 'Electrification' },
+      ],
     },
     {
       label: 'Resources',
