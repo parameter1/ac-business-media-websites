@@ -75,6 +75,7 @@ module.exports = {
       tertiary: { items: tertiaryItems },
       primary: {
         items: [
+          { href: '/transportation/electrification', label: 'Electrification' },
           { href: '/transportation/3pl-4pl', label: '3PL/4PL' },
           { href: '/transportation/cold-chain', label: 'Cold Chain' },
           { href: '/transportation/last-mile', label: 'Last-Mile' },
@@ -82,8 +83,8 @@ module.exports = {
           { href: '/transportation/fleet-management', label: 'Fleet Management' },
           { href: '/transportation/automation', label: 'Automation' },
           { href: '/transportation/rail-intermodal', label: 'Rail & Intermodal' },
-          { href: '/transportation/air-cargo', label: 'Air Cargo' },
           { href: '/transportation/trucking', label: 'Trucking' },
+          { href: '/transportation/air-cargo', label: 'Air Cargo' },
           { href: '/transportation/ocean-ports-carriers', label: 'Ocean Ports & Carriers' },
         ],
       },
@@ -147,6 +148,7 @@ module.exports = {
           { href: '/sourcing-procurement/erp', label: 'ERP' },
           { href: '/sourcing-procurement/manufacturing', label: 'Manufacturing' },
           { href: '/sourcing-procurement/sourcing-solutions', label: 'Sourcing Solutions' },
+          { href: '/sourcing-procurement/reverse-logistics', label: 'Reverse Logistics' },
 
         ],
       },
@@ -230,6 +232,8 @@ module.exports = {
         { href: '/sustainability', label: 'Sustainability' },
         { href: '/sourcing-procurement', label: 'Procurement' },
         { href: '/professional-development', label: 'Prof Dev' },
+        { href: '/transportation/electrification', label: 'Electrification' },
+        { href: '/sourcing-procurement/reverse-logistics', label: 'Reverse Logistics' },
         { href: '/alexis-asks', label: 'Alexis Asks' },
         { href: 'https://www.womeninsupplychainforum.com/', label: 'WISC Forum', target: '_blank' },
       ],
