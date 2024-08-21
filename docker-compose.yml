@@ -147,9 +147,9 @@ services:
       - "9719:80"
       - "19719:19719"
 
-  fcp-g:
+  fcp:
     <<: *site-cmd
-    working_dir: /root/sites/forconstructionpros-global.com
+    working_dir: /root/sites/forconstructionpros.com
     environment:
       <<: *env
       PORT: 80
