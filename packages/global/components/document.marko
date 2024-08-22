@@ -6,7 +6,6 @@ $ const {
   req,
   nativeX,
   GAM,
-  contentMeterState,
 } = out.global;
 
 $ const omedaConfig = site.get('omeda');
@@ -110,15 +109,6 @@ $ const omedaConfig = site.get('omeda');
       </else>
       <global-site-menu has-user=hasUser reg-enabled=isEnabled />
     </marko-web-identity-x-context>
-    <if(contentMeterState && !contentMeterState.isLoggedIn)>
-      <theme-content-meter-block
-        views=contentMeterState.views
-        view-limit=contentMeterState.viewLimit
-        display-overlay=contentMeterState.displayOverlay
-        display-gate=contentMeterState.displayGate
-        dynamic-title="We hope you’ve enjoyed your articles."
-      />
-    </if>
     <marko-web-browser-component name="DynamicSiteMenuPositioner" />
     <${input.aboveContainer} />
   </@above-container>

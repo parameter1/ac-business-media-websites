@@ -143,3 +143,9 @@ $content-meter-mobile-breakpoint: 600px !default;
     }
   }
 }
+// account for fixed bottom leaderboard
+.marko-web-gam-fixed-ad-bottom--visible ~ .content-meter {
+  .content-meter__bar {
+    bottom: 90px;
+  }
+}
