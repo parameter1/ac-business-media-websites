@@ -1,7 +1,7 @@
 {
   "name": "@ac-business-media/forconstructionpros.com",
-  "version": "2.11.27",
-  "author": "Josh Worden <josh@limit0.io>",
+  "version": "2.11.28",
+  "author": "Brandon Krigbaum <brandon@parameter1.com>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/sites/forconstructionpros.com",
   "license": "MIT",
   "private": true,
@@ -13,12 +13,13 @@
     "key": "fcp",
     "deploy": {
       "production": true,
-      "staging": false
+      "staging": true
     }
   },
   "scripts": {
-    "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
-    "build": "basecms-website build",
+    "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages --purge-css-content-dir ../../packages --purge-css-content-dir ../../node_modules/@parameter1",
+    "build": "basecms-website build --purge-css-content-dir ../../packages --purge-css-content-dir ../../node_modules/@parameter1",
+    "build:css": "basecms-website build:css --purge-content-dir ../../packages --purge-content-dir ../../node_modules/@parameter1",
     "compile": "basecms-marko-compile compile",
     "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
     "lint:fix": "yarn lint --fix",
@@ -33,19 +34,15 @@
     "win32"
   ],
   "dependencies": {
-    "@ac-business-media/package-directory": "^2.11.23",
-    "@ac-business-media/package-leaders": "^2.11.27",
-    "@ac-business-media/refresh-theme": "^2.11.27",
+    "@ac-business-media/package-global": "^2.11.28",
     "@parameter1/base-cms-marko-core": "^4.55.4",
     "@parameter1/base-cms-marko-web": "^4.60.0",
-    "@parameter1/base-cms-marko-web-gam": "^4.55.1",
     "@parameter1/base-cms-marko-web-gtm": "^4.60.2",
+    "@parameter1/base-cms-marko-web-identity-x": "^4.61.0",
     "@parameter1/base-cms-marko-web-p1-events": "^4.60.1",
-    "@parameter1/base-cms-marko-web-theme-default": "^4.40.3",
+    "@parameter1/base-cms-marko-web-theme-monorail": "^4.61.0",
     "@parameter1/base-cms-object-path": "^4.40.3",
     "@parameter1/base-cms-utils": "^4.40.3",
-    "@parameter1/base-cms-web-cli": "^4.57.1",
-    "graphql": "^14.5.4",
-    "graphql-tag": "^2.10.1"
+    "@parameter1/base-cms-web-cli": "^4.57.1"
   }
 }

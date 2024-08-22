@@ -1,5 +1,5 @@
-const index = require('@ac-business-media/refresh-theme/templates/spec-guide');
-const guide = require('@ac-business-media/refresh-theme/templates/spec-guide/guide');
+const index = require('@ac-business-media/package-global/templates/spec-guide');
+const guide = require('@ac-business-media/package-global/templates/spec-guide/guide');
 
 const { keys } = Object;
 

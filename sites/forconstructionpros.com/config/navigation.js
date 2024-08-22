@@ -1,4 +1,11 @@
-const channels = [
+const user = require('@ac-business-media/package-global/config/user');
+
+const subscribe = {
+  href: '/subscribe',
+  label: 'Subscribe',
+};
+
+const topics = [
   { href: '/equipment', label: 'Equipment' },
   { href: '/rental', label: 'Rental' },
   { href: '/concrete', label: 'Concrete' },
@@ -6,20 +13,62 @@ const channels = [
   { href: '/pavement-maintenance', label: 'Pavement' },
   { href: '/construction-technology', label: 'Technology' },
   { href: '/business', label: 'Business' },
-  { href: 'https://www.pavexshow.com/', label: 'PAVE/X', target: '_blank' },
+  { href: '/infrastructure', label: 'Infrastructure' },
+  { href: '/sustainability', label: 'Sustainability' },
 ];
 
-const resources = [
+const secondary = [
   { href: '/directory', label: 'New Equipment Directory' },
   { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
   { href: '/videos', label: 'Video Network' },
-  { href: '/magazine', label: 'Magazines' },
+  { href: '/magazine', label: 'Magazine' },
   { href: '/events', label: 'Events' },
   { href: '/podcasts', label: 'Podcasts' },
   { href: '/premium-content', label: 'Premium Content' },
   { href: '/webinars', label: 'Webinars' },
-  { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
+  // { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
 ];
+
+const exclusives = [
+  { href: '/directory', label: 'New Equipment Directory' },
+  { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
+  { href: '/specguide', label: 'Spec Guides' },
+  { href: '/premium-content', label: 'Premium Content' },
+  { href: 'https://www.pavexshow.com/', label: 'PAVE/X', target: '_blank' },
+  { href: '/podcasts', label: 'Podcasts' },
+  { href: '/videos', label: 'Videos' },
+  { href: '/webinars', label: 'Webinars' },
+  // { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
+];
+
+const expertInsights = [
+  // { href: '/blogs', label: 'Blogs' },
+  { href: '/events', label: 'Events' },
+  { href: '/magazine', label: 'Magazine' },
+  { href: '/whitepapers', label: 'White Papers' },
+  { href: '/expert-columns', label: 'Expert Columns' },
+  { href: '/awards', label: 'Awards' },
+  { href: '/profit-matters', label: 'Profit Matters' },
+];
+
+const utilities = [
+  { href: '/contact-us', label: 'Contact Us' },
+  { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
+  { href: '/page/privacy-policy', label: 'Privacy Policy', target: '_blank' },
+  { href: '/page/terms-conditions', label: 'Terms & Conditions', target: '_blank' },
+];
+
+const mobileMenu = {
+  user,
+  primary: [
+    ...topics,
+  ],
+  secondary: [
+    ...secondary,
+    subscribe,
+    { href: '/', label: 'Advertise', target: '_blank' },
+  ],
+};
 
 const tertiaryItems = [
   {
@@ -30,29 +79,39 @@ const tertiaryItems = [
   },
   {
     href: 'https://acbusiness.dragonforms.com/loading.do?omedasite=FCP_prefs_ProgReg',
-    label: 'FCP Newsletter',
+    label: 'Newsletters',
     icon: 'mail',
     forceLabel: true,
     target: '_blank',
   },
-  {
-    href: '/search',
-    label: 'Search',
-    icon: 'search',
-    forceLabel: true,
-  },
 ];
 
-module.exports = {
-  secondary: { items: channels },
-  primary: { items: resources },
-  tertiary: { items: tertiaryItems },
+const tertiary = { items: [...tertiaryItems, ...user.items] };
 
+module.exports = {
+  type: 'navbar-c',
+  promos: [
+    {
+      title: subscribe.label,
+      callToAction: subscribe.label,
+      link: subscribe.href,
+    },
+  ],
+  user,
+  mobileMenu,
+  topics,
+  primary: {
+    items: secondary,
+  },
+  secondary: {
+    items: topics,
+  },
+  tertiary,
   contexts: [
     {
       when: ['/equipment', '/trucks'],
-      secondary: { items: channels },
-      tertiary: { items: tertiaryItems },
+      secondary: { items: topics },
+      tertiary,
       primary: {
         items: [
           { href: '/trucks', label: 'Trucks' },
@@ -66,8 +125,8 @@ module.exports = {
     },
     {
       when: ['/rental'],
-      secondary: { items: channels },
-      tertiary: { items: tertiaryItems },
+      secondary: { items: topics },
+      tertiary,
       primary: {
         items: [
           { href: '/rental/construction', label: 'Construction' },
@@ -93,8 +152,8 @@ module.exports = {
     },
     {
       when: ['/concrete'],
-      secondary: { items: channels },
-      tertiary: { items: tertiaryItems },
+      secondary: { items: topics },
+      tertiary,
       primary: {
         items: [
           { href: '/concrete/decorative', label: 'Decorative' },
@@ -108,8 +167,8 @@ module.exports = {
     },
     {
       when: ['/asphalt'],
-      secondary: { items: channels },
-      tertiary: { items: tertiaryItems },
+      secondary: { items: topics },
+      tertiary,
       primary: {
         items: [
           { href: '/asphalt/additives', label: 'Additives' },
@@ -122,8 +181,8 @@ module.exports = {
     },
     {
       when: ['/business'],
-      secondary: { items: channels },
-      tertiary: { items: tertiaryItems },
+      secondary: { items: topics },
+      tertiary,
       primary: {
         items: [
           { href: '/business/business-services', label: 'Services' },
@@ -135,8 +194,8 @@ module.exports = {
     },
     {
       when: ['/construction-technology'],
-      secondary: { items: channels },
-      tertiary: { items: tertiaryItems },
+      secondary: { items: topics },
+      tertiary,
       primary: {
         items: [
           { href: '/construction-technology/apps', label: 'Apps' },
@@ -149,8 +208,8 @@ module.exports = {
     },
     {
       when: ['/pavement-maintenance'],
-      secondary: { items: channels },
-      tertiary: { items: tertiaryItems },
+      secondary: { items: topics },
+      tertiary,
       primary: {
         items: [
           { href: '/pavement-maintenance/sweepers', label: 'Sweepers' },
@@ -161,8 +220,8 @@ module.exports = {
     },
     {
       when: ['/profit-matters'],
-      secondary: { items: channels },
-      tertiary: { items: tertiaryItems },
+      secondary: { items: topics },
+      tertiary,
       primary: {
         items: [
           { href: '/profit-matters?contentTypes=Blog', label: 'Blogs' },
@@ -175,61 +234,38 @@ module.exports = {
       },
     },
   ],
-
-  footer: {
-    items: [
-      { href: '/contact-us', label: 'Contact Us' },
-      { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
-      { href: '/page/privacy-policy', label: 'Privacy Policy', target: '_blank' },
-      { href: '/page/terms-conditions', label: 'Terms & Conditions', target: '_blank' },
-    ],
-  },
-  menu: [
-    {
+  toggleMenu: {
+    about: {
+      // label: 'About',
+      // items: utilities,
+    },
+    col1: {
       label: 'Topics',
       items: [
-        { href: '/equipment', label: 'Equipment' },
-        { href: '/rental', label: 'Rental' },
-        { href: '/concrete', label: 'Concrete' },
-        { href: '/asphalt', label: 'Asphalt' },
-        { href: '/pavement-maintenance', label: 'Pavement' },
-        { href: '/business', label: 'Business' },
-        { href: '/construction-technology', label: 'Technology' },
-        { href: '/infrastructure', label: 'Infrastructure' },
-        { href: '/new-equipment', label: 'New Equipment' },
-        { href: '/latest-news', label: 'Construction News' },
-        { href: '/sustainability', label: 'Sustainability' },
+        ...topics,
       ],
     },
-    {
+    col2: {
+      label: 'Exclusives',
+      items: [
+        ...exclusives,
+      ],
+    },
+    col3: {
+      label: 'Expert Insights',
+      items: expertInsights,
+    },
+    col4: {
       label: 'Resources',
-      items: [
-        { href: '/directory', label: 'New Equipment Directory' },
-        { href: 'https://ironpros.com', label: 'IRONPROS', target: '_blank' },
-        { href: '/specguide', label: 'Spec Guides' },
-        { href: '/video', label: 'Video Network' },
-        { href: '/magazine', label: 'Magazine' },
-        { href: '/events', label: 'Events' },
-        { href: '/podcasts', label: 'Podcasts' },
-        { href: '/premium-content', label: 'Premium Content' },
-        { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
-        { href: '/webinars', label: 'Webinars' },
-        { href: '/expert-columns', label: 'Expert Columns' },
-        { href: '/awards', label: 'Awards' },
-        { href: '/whitepapers', label: 'Whitepapers' },
-        { href: '/profit-matters', label: 'Profit Matters' },
-      ],
+      items: utilities,
     },
-    {
-      label: 'User Tools',
-      items: [
-        { href: 'https://acbusiness.dragonforms.com/loading.do?omedasite=FCP_prefs_ProgReg', label: 'Newsletters', target: '_blank' },
-        { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
-        { href: '/magazine', label: 'Current Issue' },
-        { href: '/contact-us', label: 'Contact Us' },
-        { href: '/page/privacy-policy', label: 'Privacy Policy', target: '_blank' },
-        { href: '/page/terms-conditions', label: 'Terms & Conditions', target: '_blank' },
-      ],
-    },
-  ],
+  },
+  footer: {
+    topics,
+    more: exclusives,
+    items: [
+      ...utilities,
+      { href: '/site-map', label: 'Site Map' },
+    ],
+  },
 };

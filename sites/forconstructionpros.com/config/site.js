@@ -1,34 +1,44 @@
-const omeda = require('@ac-business-media/refresh-theme/config/omeda');
-const specGuides = require('./spec-guides');
-const dragonForms = require('./dragon-forms');
-const events = require('./events');
+const corporate = require('@ac-business-media/package-global/config/corporate');
+const contentMeter = require('./content-meter');
 const gam = require('./gam');
+const identityX = require('./identity-x');
 const nativeX = require('./native-x');
 const navigation = require('./navigation');
-const identityX = require('./identity-x');
+const newsletter = require('./newsletter');
+const omeda = require('./omeda');
 const omedaIdentityX = require('./omeda-identity-x');
+const identityXOptInHooks = require('./identity-x-opt-in-hooks');
+const pageDetails = require('./page-details');
+const specGuides = require('./spec-guides');
 
 module.exports = {
-  // module configs
-  specGuides,
-  dragonForms,
-  events,
+  // Module configs
+  useLinkInjectedBody: process.env.USE_LINK_INJECTED_BODY || true,
+  contentMeter,
   gam,
+  identityX,
   nativeX,
   navigation,
-  identityX,
-  omeda: omeda({}),
-  idxNavItems: {
-    enable: false,
-  },
+  newsletter,
+  omeda,
   omedaIdentityX,
-  // theme configs
-  company: 'IRONMARKETS, LLC',
-  showCompanySectionFilters: true,
+  identityXOptInHooks,
+  wufoo: {
+    userName: 'acbm',
+  },
+  gcse: {
+    id: '003355913687346718228:la4zrhjf2r9',
+  },
+  // Site configs
+  useRecommendedSectionAlias: true,
+  idxNavItems: {
+    enable: process.env.IDX_NAV_ENABLE || false,
+  },
+  company: corporate.name,
   p1events: {
     tenant: 'acbm',
     enabled: true,
-    cookieDomain: process.env.NODE_ENV === 'production' ? 'forconstructionpros.com' : '',
+    cookieDomain: process.env.NODE_ENV === 'production' ? 'www.forconstructionpros.com' : '',
   },
   logos: {
     navbar: {
@@ -36,6 +46,10 @@ module.exports = {
       srcset: [
         'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=90&auto=format,compress 2x',
       ],
+      // src: 'https://s3.amazonaws.com/media.base.parameter1.com/files/base/acbm/fcp/image/static/logo/FCP-logo-high-res.png?h=45&auto=format,compress',
+      // srcset: [
+      //   'https://s3.amazonaws.com/media.base.parameter1.com/files/base/acbm/fcp/image/static/logo/FCP-logo-high-res.png?h=90&auto=format,compress 2x',
+      // ],
     },
     footer: {
       src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress',
@@ -43,7 +57,10 @@ module.exports = {
         'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=90&auto=format,compress 2x',
       ],
     },
+    corporate: corporate.logo,
   },
+  useSectionLogos: true,
+  tagline: ' ',
   socialMediaLinks: [
     { provider: 'facebook', href: 'https://www.facebook.com/ForConstructionPros', target: '_blank' },
     { provider: 'twitter', href: 'https://www.twitter.com/4ConstructnPros', target: '_blank' },
@@ -52,7 +69,7 @@ module.exports = {
     { provider: 'youtube', href: 'https://www.youtube.com/user/ForConstructionPros', target: '_blank' },
     { provider: 'flipboard', href: 'https://flipboard.com/@FCPnews', target: '_blank' },
   ],
-  socialMediaLinksByChannel: {
+  socialMediaLinksByAlias: {
     asphalt: [
       { provider: 'facebook', href: 'https://www.facebook.com/Asphalt.Contractor', target: '_blank' },
       { provider: 'twitter', href: 'https://twitter.com/AsphaltContrctr', target: '_blank' },
@@ -84,28 +101,9 @@ module.exports = {
       { provider: 'linkedin', href: 'https://www.linkedin.com/company/rental-magazine', target: '_blank' },
     ],
   },
-  radix: {
-    enabled: true,
-    url: 'https://radix.base.parameter1.com',
-    appId: '4448cfcb-e2da-40ff-8be6-671110964914',
-    submissionFieldIds: [
-      { name: 'comments', id: '580f6d056cdeea4730ddbb2c' },
-    ],
-  },
+  podcastLinks: [],
   gtm: {
     containerId: 'GTM-PNBSZL4',
-  },
-  mediaFuse: {
-    id: 6060,
-  },
-  gcse: {
-    id: '003355913687346718228:la4zrhjf2r9',
-  },
-  wufoo: {
-    userName: 'acbm',
-  },
-  magazines: {
-    description: '',
   },
   contactUs: {
     notificationDefaults: {
@@ -130,15 +128,8 @@ module.exports = {
     logo: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/logo/site_logo.png?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000',
   },
-  leaders: {
-    enabled: false,
-    title: 'Leaders in Construction',
-    alias: 'leaders/2021',
-    calloutValue: 'Leading Companies',
-    header: {
-      imgSrc: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/fcp-leaders.jpeg?h=85&auto=format,compress',
-    },
-  },
+  pageDetails,
+  showCompanySectionFilters: true,
   sectionSearchIds: [
     54289, // Asphalt
     54300, // Business
@@ -147,11 +138,8 @@ module.exports = {
     54330, // Equipment
     54468, // Pavement Maintenance
   ],
-  publishedContentMultisite: false,
-  useSectionLogos: true,
-  nativeXBlock: {
-    aliases: ['ironpros'],
-    headerImgSrc: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/IP_Newswire_image.jpg?h=90&auto=format,compress',
-    headerImgAlt: 'IronPros Newswire Block Header',
+  specGuides,
+  mindful: {
+    namespace: 'acbm/default',
   },
 };

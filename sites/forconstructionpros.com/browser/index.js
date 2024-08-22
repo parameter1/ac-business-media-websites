@@ -1,6 +1,6 @@
 import Browser from '@parameter1/base-cms-marko-web/browser';
-import RefreshThemeShared from '@ac-business-media/refresh-theme/browser';
+import Shared from '@ac-business-media/package-global/browser';
 
-RefreshThemeShared(Browser);
+Shared(Browser);
 
 export default Browser;

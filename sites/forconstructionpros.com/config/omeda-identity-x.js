@@ -1,15 +1,11 @@
-const configure = require('@ac-business-media/refresh-theme/config/omeda-identity-x');
-const configureOmeda = require('@ac-business-media/refresh-theme/config/omeda');
+const config = require('@ac-business-media/package-global/config/omeda-identity-x');
+const omedaConfig = require('./omeda');
 const idxConfig = require('./identity-x');
 
-module.exports = configure({
-  omedaConfig: configureOmeda({}),
+module.exports = config({
+  omedaConfig,
   idxConfig,
+  // @todo: rapidIdentProductId & siteId
   rapidIdentProductId: 15375,
   websiteBehaviorAttributeId: 451156,
-  onAuthenticationSuccess: {
-    autoSignupDeploymentTypes: [
-      { id: 4303, optedIn: true },
-    ],
-  },
 });

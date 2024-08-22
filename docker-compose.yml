@@ -132,21 +132,6 @@ services:
       - "9714:80"
       - "19714:19714"
 
-  fcp:
-    <<: *site-cmd
-    working_dir: /root/sites/forconstructionpros.com
-    environment:
-      <<: *env
-      PORT: 80
-      EXPOSED_PORT: 9716
-      LIVERELOAD_PORT: 19716
-      OMEDA_INPUT_ID: ${FCP_OMEDA_INPUT_ID-(unset)}
-      HOST: www-acbm-fcp.dev.parameter1.com
-    hostname: www-acbm-fcp.dev.parameter1.com
-    ports:
-      - "9716:80"
-      - "19716:19716"
-
   rental:
     <<: *site-cmd
     working_dir: /root/sites/rentalproductnews.com
@@ -162,17 +147,17 @@ services:
       - "9719:80"
       - "19719:19719"
 
-  fcp-g:
+  fcp:
     <<: *site-cmd
-    working_dir: /root/sites/forconstructionpros-global.com
+    working_dir: /root/sites/forconstructionpros.com
     environment:
       <<: *env
       PORT: 80
       EXPOSED_PORT: 9721
       LIVERELOAD_PORT: 19721
       OMEDA_INPUT_ID: ${FCP_OMEDA_INPUT_ID-(unset)}
-      HOST: www-acbm-fcp-g.dev.parameter1.com
-    hostname: www-acbm-fcp-g.dev.parameter1.com
+      HOST: www-acbm-fcp.dev.parameter1.com
+    hostname: www-acbm-fcp.dev.parameter1.com
     ports:
       - "9721:80"
       - "19721:19721"

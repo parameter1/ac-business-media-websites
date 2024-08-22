@@ -1,24 +1,15 @@
-const sharedPublicFiles = require('@ac-business-media/refresh-theme/routes/public-files');
-const content = require('./content');
-const dynamicPages = require('./dynamic-page');
+// const directory = require('@ac-business-media/package-global/routes/directory');
+const dynamicPages = require('@ac-business-media/package-global/routes/dynamic-page');
+const nativeX = require('@ac-business-media/package-global/routes/native-x');
+
 const home = require('./home');
-const magazine = require('./magazine');
-const search = require('./search');
-const specGuides = require('./spec-guide');
+const content = require('./content');
 const websiteSections = require('./website-section');
+const specguide = require('./spec-guide');
 
 module.exports = (app) => {
-  // Shared Public Files
-  sharedPublicFiles(app);
-
   // Homepage
   home(app);
-
-  // Magazine Pages
-  magazine(app);
-
-  // Spec Guides
-  specGuides(app);
 
   // Dynamic Pages
   dynamicPages(app);
@@ -26,8 +17,22 @@ module.exports = (app) => {
   // Content Pages
   content(app);
 
-  // Search
-  search(app);
+  specguide(app);
+
+  // // Directory Pages have to happen after content or they wont match
+  // directory(app, {
+  //   assignedToWebsiteSectionIds: [
+  //     54289, // Asphalt
+  //     54300, // Business
+  //     54436, // Concrete
+  //     54319, // Construction Technology
+  //     54330, // Equipment
+  //     54468, // Pavement Maintenance
+  //   ],
+  // });
+
+  // Native-X story rendering
+  nativeX(app);
 
   // Website Sections
   websiteSections(app);
