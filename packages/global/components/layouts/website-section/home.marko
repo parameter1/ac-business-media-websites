@@ -23,7 +23,7 @@ $ const latestTitle = defaultValue(input.latestTitle, "Latest News");
 $ const morePrefix = defaultValue(input.morePrefix, "More from");
 
 $ const promise = homePageTopStoriesLoader(apollo, {
-  featuredParams: { limit: 7 },
+  featuredParams: { limit: 6 },
 });
 <marko-web-resolve|{ resolved: sectionContent }| promise=promise>
   $ const { topStory, featured, ids } = sectionContent;
