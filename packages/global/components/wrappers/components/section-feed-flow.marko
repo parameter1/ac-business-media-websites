@@ -1,15 +1,16 @@
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import { getAsArray } from "@parameter1/base-cms-object-path";
-$ const { nativeX: nxConfig } = out.global;
+$ const { nativeX: nxConfig, site } = out.global;
 
 $ const { nodes, nativeX } = input;
-
+$ const defaultImageOption = site.getAsObject("sectionFeed.imageOptions");
+$ const defaultMobileImageOption = site.get("defaultAspectRatio") === "16:9" ? { w: 240, h: 135, ar: "16:9" } : {};
 $ const lazyload = defaultValue(input.lazyload, true);
 $ const adName = defaultValue(input.adName, "rotation");
 $ const withNativeXSection = defaultValue(input.withNativeXSection, true);
-$ const modifiers = ["section-feed-mobile-cards", ...getAsArray(input, 'modifiers')];
-$ const imageOptions = defaultValue(input.imageOptions, { w: 240, h: 135, ar: "16:9" });
-$ const mobileImageOptions = defaultValue(input.mobileImageOptions, { w: 240, h: 135, ar: "16:9" });
+$ const modifiers = [...site.getAsArray("sectionFeed.modifiers"), ...getAsArray(input, 'modifiers')];
+$ const imageOptions = defaultValue(input.imageOptions, defaultImageOption);
+$ const mobileImageOptions = defaultValue(input.mobileImageOptions, defaultMobileImageOption);
 
 <if(nodes && nodes.length)>
   <if(nativeX && nativeX.index)>
