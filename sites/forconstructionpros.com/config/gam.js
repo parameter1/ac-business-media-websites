@@ -7,7 +7,7 @@ const config = configureGAM({ basePath });
 config.setAliasAdUnits('default', [
   { name: 'top-leaderboard', templateName: 'LEADERBOARD', path: '/default/lb1' },
   { name: 'leaderboard', templateName: 'LEADERBOARD', path: '/default/lb1' },
-  { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: '/default/lb1' },
+  // { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: '/default/lb1' },
   { name: 'rotation', templateName: 'ROTATION', path: '/default/rail1' },
   { name: 'rotation-rail', templateName: 'ROTATION-RAIL', path: '/default/rail1' },
   { name: 'top-rotation', templateName: 'TOP-ROTATION', path: '/default/rail1' },

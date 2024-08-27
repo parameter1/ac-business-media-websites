@@ -65,6 +65,11 @@ const mobileMenu = {
   ],
   secondary: [
     ...secondary,
+    { href: '/events', label: 'Events' },
+    { href: '/whitepapers', label: 'White Papers' },
+    { href: '/expert-columns', label: 'Expert Columns' },
+    { href: '/awards', label: 'Awards' },
+    { href: '/profit-matters', label: 'Profit Matters' },
     subscribe,
     { href: '/', label: 'Advertise', target: '_blank' },
   ],

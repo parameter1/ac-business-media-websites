@@ -3,7 +3,7 @@ import { getAsArray, get } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 $ const { id, type, pageNode } = input;
-$ const { site, GAM } = out.global;
+$ const { site, GAM, contentMeterState } = out.global;
 $ const showCompanySectionFilter = site.get("showCompanySectionFilters") || false;
 
 $ const withAds = GAM ? defaultValue(input.withAds, true) : defaultValue(input.withAds, false);
@@ -131,6 +131,15 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
               id="reveal-ad"
             />
             <theme-fixed-ad-bottom aliases=aliases />
+            <if(contentMeterState && !contentMeterState.isLoggedIn)>
+              <theme-content-meter-block
+                views=contentMeterState.views
+                view-limit=contentMeterState.viewLimit
+                display-overlay=contentMeterState.displayOverlay
+                display-gate=contentMeterState.displayGate
+                dynamic-title="We hope you’ve enjoyed your articles."
+              />
+            </if>
           </if>
         </marko-web-resolve-page>
       </marko-web-page-container>
