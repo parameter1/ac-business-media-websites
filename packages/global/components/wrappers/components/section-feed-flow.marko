@@ -1,5 +1,5 @@
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
-
+import { getAsArray } from "@parameter1/base-cms-object-path";
 $ const { nativeX: nxConfig } = out.global;
 
 $ const { nodes, nativeX } = input;
@@ -7,32 +7,35 @@ $ const { nodes, nativeX } = input;
 $ const lazyload = defaultValue(input.lazyload, true);
 $ const adName = defaultValue(input.adName, "rotation");
 $ const withNativeXSection = defaultValue(input.withNativeXSection, true);
+$ const modifiers = ["section-feed-mobile-cards", ...getAsArray(input, 'modifiers')];
+$ const imageOptions = defaultValue(input.imageOptions, { w: 240, h: 135, ar: "16:9" });
+$ const mobileImageOptions = defaultValue(input.mobileImageOptions, { w: 240, h: 135, ar: "16:9" });
 
 <if(nodes && nodes.length)>
   <if(nativeX && nativeX.index)>
     $ const nodesBefore = nodes.slice(0, nativeX.index);
     $ const nodesAfter = nodes.slice(nativeX.index);
-    <theme-section-feed-flow ...input.flow nodes=nodesBefore header=input.header modifiers=input.modifiers>
+    <theme-section-feed-flow ...input.flow nodes=nodesBefore header=input.header modifiers=modifiers>
       <@node-list inner-justified=false ...input.nodeList />
-      <@node with-dates=false with-section ...input.node />
+      <@node with-dates=false with-section image-options=imageOptions mobile-image-options=mobileImageOptions ...input.node />
     </theme-section-feed-flow>
     <marko-web-native-x-retrieve|{ wasFound, hasCampaign, campaign, linkAttrs, containerAttrs }| ...nxConfig.getPlacement({ name: nativeX.name, aliases: nativeX.aliases }) section-name=nativeX.sectionName>
       <if(wasFound && hasCampaign)>
-        <theme-section-feed-flow ...input.flow nodes=[campaign] modifiers=input.modifiers>
+        <theme-section-feed-flow ...input.flow nodes=[campaign] modifiers=modifiers>
           <@node-list inner-justified=false ...input.nodeList />
-          <@node with-dates=false with-section=true ...input.node container-attrs=containerAttrs link-attrs=linkAttrs />
+          <@node with-dates=false with-section=true image-options=imageOptions mobile-image-options=mobileImageOptions ...input.node container-attrs=containerAttrs link-attrs=linkAttrs />
         </theme-section-feed-flow>
       </if>
     </marko-web-native-x-retrieve>
-    <theme-section-feed-flow ...input.flow nodes=nodesAfter modifiers=input.modifiers>
+    <theme-section-feed-flow ...input.flow nodes=nodesAfter modifiers=modifiers>
       <@node-list inner-justified=false ...input.nodeList />
-      <@node with-dates=false with-section ...input.node />
+      <@node with-dates=false with-section image-options=imageOptions mobile-image-options=mobileImageOptions ...input.node />
     </theme-section-feed-flow>
   </if>
   <else>
-    <theme-section-feed-flow ...input.flow nodes=nodes header=input.header modifiers=input.modifiers>
+    <theme-section-feed-flow ...input.flow nodes=nodes header=input.header modifiers=modifiers>
       <@node-list inner-justified=false ...input.nodeList />
-      <@node with-dates=false with-section ...input.node />
+      <@node with-dates=false with-section image-options=imageOptions mobile-image-options=mobileImageOptions ...input.node />
     </theme-section-feed-flow>
   </else>
   <if(input.withAds)>
