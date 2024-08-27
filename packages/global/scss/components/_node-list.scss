@@ -13,12 +13,6 @@
 
   &__node {
     padding: 1.25rem;
-    @media (min-width: 768px) {
-      .section-feed-content-node__image {
-        height: 139.5px;
-        width: 250px;
-      }
-    }
     .section-feed-content-node--text-ad-content-type {
       background-color: $gray-100;
       padding: 20px 0;
