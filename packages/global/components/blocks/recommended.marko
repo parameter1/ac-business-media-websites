@@ -18,6 +18,7 @@ $ const params = {
 <marko-web-query|{ nodes }| name="website-scheduled-content" params=params collapsible=false>
   <if(nodes.length === limit)>
     <theme-content-card-deck-block cols=limit title="Recommended" nodes=nodes with-native-x=true>
+      <@node image={ ar: "16:9" } ...input.node/>
       <@native-x ...getAsObject(input, "nativeX") />
     </theme-content-card-deck-block>
   </if>
@@ -33,6 +34,7 @@ $ const params = {
   <marko-web-query|{ nodes: homeSectionNodes }| name="website-scheduled-content" params=homeParams>
     $ nodes.push(...homeSectionNodes)
     <theme-content-card-deck-block cols=limit title="Recommended" nodes=nodes with-native-x=true>
+      <@node image={ ar: "16:9" } ...input.node />
       <@native-x ...getAsObject(input, "nativeX") />
     </theme-content-card-deck-block>
   </marko-web-query>

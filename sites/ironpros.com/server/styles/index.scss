@@ -64,6 +64,10 @@ $theme-header-font-family: "integralcf-demibold", sans-serif !default;
 
 $theme-section-header-font: $theme-header-font-family;
 
+$image-desktop-height: 167px !default;
+$image-mobile-width: 112px !default;
+$image-mobile-height: 112px !default;
+
 @import "@ac-business-media/package-global/scss/core";
 
 .node-list .node-list__header,

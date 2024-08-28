@@ -18,6 +18,15 @@
       padding: 20px 0;
       margin: -20px 0;
     }
+    @include media-breakpoint-down(sm) {
+      .section-feed-content-node--text-ad-content-type {
+        background-color: $gray-100;
+        padding: 0 0 20px 0;
+        .section-feed-content-node__contents {
+          padding: 0 20px;
+        }
+      }
+    }
   }
   &--latest-issue {
     #{ $self }__nodes {
