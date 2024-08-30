@@ -125,6 +125,19 @@ const factory = ({ useLinkInjectedBody = false, withMagazineSchedules = false } 
         alt
       }
     }
+    taxonomy {
+      edges {
+        node {
+          id
+          name
+        }
+      }
+    }
+    siteContext {
+      url
+      path
+      canonicalUrl
+    }
     ...ContentPageFragment
   }
   ${monorailFragment}
