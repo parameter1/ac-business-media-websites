@@ -38,5 +38,13 @@
   },
   "<global-node-carousel-block>": {
     "template": "./node-carousel.marko"
+  },
+  "<global-hero-card-block>": {
+    "template": "./hero-card-deck.marko",
+    "@alias": "string",
+    "@description": "string",
+    "@name": "string",
+    "@query-params": "object",
+    "@section": "object"
   }
 }
