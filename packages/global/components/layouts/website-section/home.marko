@@ -1,6 +1,6 @@
 import { getAsObject } from "@parameter1/base-cms-object-path";
 import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
-import { getAsArray } from "@parameter1/base-cms-object-path";
+import { get, getAsArray } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import clFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list";
 import shuffleArray from "../../../utils/shuffle-array";
@@ -137,6 +137,24 @@ $ const promise = homePageTopStoriesLoader(apollo, {
               aliases=aliases
             />
           </@section>
+
+        <if(get(config,"websiteContext.id") === "53ca8d671784f8066eb2c949")>
+          <@section>
+            $ console.log(get(config,"websiteContext.id"));
+            <global-hero-card-block
+              query-params={ includeContentTypes: ["Video"] }
+              section={ name: "Video Network", canonicalPath: "/videos"}
+            />
+          </@section>
+
+          <@section|{ aliases }|>
+            <theme-gam-define-display-ad
+              name="leaderboard"
+              position="section-page"
+              aliases=aliases
+            />
+          </@section>
+        </if>
 
           <@section>
             <global-section-feed-wrapper
