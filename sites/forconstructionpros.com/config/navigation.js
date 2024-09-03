@@ -139,6 +139,7 @@ module.exports = {
           { href: '/rental/lifting-equipment', label: 'Lifting Equipment' },
           { href: '/rental/power', label: 'Power' },
           { href: '/rental/rental-business', label: 'Rental Business' },
+          { href: '/rental/software', label: 'Software' },
           {
             href: '/page/Subscribe-Links',
             label: 'Rental Magazine ',
