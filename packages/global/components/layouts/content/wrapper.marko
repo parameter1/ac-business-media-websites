@@ -1,6 +1,8 @@
 import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
 import { getAsArray, get } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import buildStructuredData from "../../../utils/build-content-structured-data";
+import contentStructuredDataQueryFragment from "../../../graphql/fragments/content-structured-data"
 
 $ const { id, type, pageNode } = input;
 $ const { site, GAM, contentMeterState } = out.global;
@@ -13,7 +15,12 @@ $ const alias = get(input, "primarySection.alias");
 $ const loadMore = defaultValue(input.loadMore, true);
 $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
 
-<theme-content-page id=id type=type>
+<theme-content-page
+  id=id
+  type=`${type}`
+  build-structured-data=buildStructuredData
+  structured-data-query-fragment=contentStructuredDataQueryFragment
+>
   <@head>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
       <marko-web-p1-events-track-content node=content />
