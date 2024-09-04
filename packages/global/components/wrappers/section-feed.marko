@@ -1,7 +1,13 @@
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import { get } from "@parameter1/base-cms-object-path";
 import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
 
-$ const { pagination: p, req, GAM } = out.global;
+$ const {
+  config,
+  pagination: p,
+  req,
+  GAM
+} = out.global;
 
 $ const withPagination = defaultValue(input.withPagination, true);
 $ const perPage = 12;
@@ -74,18 +80,42 @@ $ const params = { ...queryParams, limit, skip };
             $ const adName = index === 0 ? input.adName || "top-rotation" : input.adName || "rotation";
             $ const flowInput = (index === 0 && aboveTheFold) ? { ...input.flow, lazyload: false } : input.flow;
             $ const nativeX = index === 0 ? input.nativeX : undefined;
-            <section-feed-flow
-              nodes=nodeGroup
-              header=header
-              modifiers=modifiers
-              node=input.node
-              node-list=input.nodeList
-              aliases=input.aliases
-              flow=flowInput
-              with-ads=(!isLast && withFeedAds)
-              ad-name=adName
-              native-x=nativeX
-           />
+            <if((input.alias === "expert-columns") && get(config, "websiteContext.id") === '53ca8d671784f8066eb2c949')>
+              <marko-web-query|{ nodes }| name="website-optioned-content" params={
+                queryFragment,
+                optionName: ["Standard", "Pinned"],
+                includeContentIds: [22106209]
+                }
+              >
+                $ const finalNodeGroup = isLast ? nodeGroup : [...nodes, ...nodeGroup];
+                <section-feed-flow
+                  nodes=finalNodeGroup
+                  header=header
+                  modifiers=modifiers
+                  node=input.node
+                  node-list=input.nodeList
+                  aliases=input.aliases
+                  flow=flowInput
+                  with-ads=(!isLast && withFeedAds)
+                  ad-name=adName
+                  native-x=nativeX
+              />
+              </marko-web-query>
+            </if>
+            <else>
+              <section-feed-flow
+                nodes=nodeGroup
+                header=header
+                modifiers=modifiers
+                node=input.node
+                node-list=input.nodeList
+                aliases=input.aliases
+                flow=flowInput
+                with-ads=(!isLast && withFeedAds)
+                ad-name=adName
+                native-x=nativeX
+              />
+            </else>
           </for>
           <if(withPagination)>
             <theme-section-feed-block|{ totalCount }| alias=input.alias query-name=queryName count-only=true>

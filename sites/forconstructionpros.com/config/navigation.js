@@ -65,6 +65,11 @@ const mobileMenu = {
   ],
   secondary: [
     ...secondary,
+    { href: '/events', label: 'Events' },
+    { href: '/whitepapers', label: 'White Papers' },
+    { href: '/expert-columns', label: 'Expert Columns' },
+    { href: '/awards', label: 'Awards' },
+    { href: '/profit-matters', label: 'Profit Matters' },
     subscribe,
     { href: '/', label: 'Advertise', target: '_blank' },
   ],
@@ -134,6 +139,7 @@ module.exports = {
           { href: '/rental/lifting-equipment', label: 'Lifting Equipment' },
           { href: '/rental/power', label: 'Power' },
           { href: '/rental/rental-business', label: 'Rental Business' },
+          { href: '/rental/software', label: 'Software' },
           {
             href: '/page/Subscribe-Links',
             label: 'Rental Magazine ',

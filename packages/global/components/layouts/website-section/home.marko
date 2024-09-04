@@ -1,6 +1,6 @@
 import { getAsObject } from "@parameter1/base-cms-object-path";
 import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
-import { getAsArray } from "@parameter1/base-cms-object-path";
+import { get, getAsArray } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import clFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list";
 import shuffleArray from "../../../utils/shuffle-array";
@@ -23,7 +23,7 @@ $ const latestTitle = defaultValue(input.latestTitle, "Latest News");
 $ const morePrefix = defaultValue(input.morePrefix, "More from");
 
 $ const promise = homePageTopStoriesLoader(apollo, {
-  featuredParams: { limit: 7 },
+  featuredParams: { limit: 6 },
 });
 <marko-web-resolve|{ resolved: sectionContent }| promise=promise>
   $ const { topStory, featured, ids } = sectionContent;
@@ -74,7 +74,7 @@ $ const promise = homePageTopStoriesLoader(apollo, {
                         modifiers=["top-story-hero-image"]
                         node=heroImageNode
                       >
-                        <@image fluid=true width=685 ar="3:2" lazyload=false />
+                        <@image fluid=true width=685 ar="16:9" lazyload=false />
                       </theme-content-node>
                     </marko-web-element>
                     <marko-web-element block-name="top-story" name="col" modifiers=["list"]>
@@ -109,7 +109,7 @@ $ const promise = homePageTopStoriesLoader(apollo, {
                     query-params={ limit: 2, skip: 8 }
                     view-more=false
                   >
-                    <@node with-section=false />
+                    <@node with-section=false image={ ar: "16:9" } />
                   </theme-content-card-deck-block>
                 </div>
               </div>
@@ -137,6 +137,24 @@ $ const promise = homePageTopStoriesLoader(apollo, {
               aliases=aliases
             />
           </@section>
+
+        <if(get(config,"websiteContext.id") === "53ca8d671784f8066eb2c949")>
+          <@section>
+            $ console.log(get(config,"websiteContext.id"));
+            <global-hero-card-block
+              query-params={ includeContentTypes: ["Video"] }
+              section={ name: "Video Network", canonicalPath: "/videos"}
+            />
+          </@section>
+
+          <@section|{ aliases }|>
+            <theme-gam-define-display-ad
+              name="leaderboard"
+              position="section-page"
+              aliases=aliases
+            />
+          </@section>
+        </if>
 
           <@section>
             <global-section-feed-wrapper
