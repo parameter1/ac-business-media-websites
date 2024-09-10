@@ -160,18 +160,15 @@ $ const promise = homePageTopStoriesLoader(apollo, {
             <global-section-feed-wrapper
               alias=section.alias
               aliases=aliases
-              with-pagination=false
+              with-pagination=true
               with-ads=withAds
               with-feed-ads=withFeedAds
               ad-name="rotation"
             >
               <@header>${i18n(morePrefix)} ${config.siteName()}</@header>
               <@query-params
-                alias=section.alias
-                limit=12
-                optionName=["Pinned", "Standard"]
+                sectionAlias=section.alias
                 excludeContentIds=sectionContent.ids
-                requires-image=true
               />
               <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
               <@rail>
