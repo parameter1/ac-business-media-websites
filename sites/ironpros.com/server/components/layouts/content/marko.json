@@ -68,5 +68,9 @@
     "@page-node": "object",
     "@load-more": "boolean",
     "@with-ads": "boolean"
+  },
+  "<site-company-logo>": {
+    "template": "./company-logo.marko",
+    "@content": "object"
   }
 }
