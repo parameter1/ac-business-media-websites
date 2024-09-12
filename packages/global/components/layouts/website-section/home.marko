@@ -7,7 +7,7 @@ import shuffleArray from "../../../utils/shuffle-array";
 
 import homePageTopStoriesLoader from "@ac-business-media/package-global/loaders/home-page-top-stories";
 
-$ const { config, site } = out.global;
+$ const { config, site, pagination: p } = out.global;
 
 $ const loader = getAsObject(input, "loader");
 $ const { id, alias, name, pageNode } = input;
@@ -49,86 +49,105 @@ $ const promise = homePageTopStoriesLoader(apollo, {
         />
         $ const aliases = hierarchyAliases(section);
         <marko-web-page-wrapper>
-          <@section class=["mt-3", "mb-3"]>
-            <div class="row top-stories-row">
-              $ const rowOneClass = (withFeatured) ? "col-lg-5" : "col-lg-6";
-              <div class=rowOneClass>
-                <if(topStory.nodes && topStory.nodes.length)>
-                  $ const topStoryNode = topStory.nodes[0];
-                  $ const heroImageNode = {
-                    id: topStoryNode.id,
-                    type: topStoryNode.type,
-                    siteContext: topStoryNode.siteContext,
-                    primaryImage: topStoryNode.primaryImage,
-                  };
-                  $ const featuredCardNodes = topStoryNode;
-                  $ const cardNodes = topStoryNode;
-                  <marko-web-element tag="h1" block-name="top-stories" name="header">Top Story</marko-web-element>
-                  <marko-web-element block-name="top-story" name="row">
-                    <marko-web-element block-name="top-story" name="col" modifiers=["hero"]>
-                      <theme-content-node
-                        image-position="top"
-                        card=true
-                        flush=true
-                        image-only=true
-                        modifiers=["top-story-hero-image"]
-                        node=heroImageNode
-                      >
-                        <@image fluid=true width=685 ar="16:9" lazyload=false />
-                      </theme-content-node>
+          <if(p.page === 1)>
+            <@section class=["mt-3", "mb-3"]>
+              <div class="row top-stories-row">
+                $ const rowOneClass = (withFeatured) ? "col-lg-5" : "col-lg-6";
+                <div class=rowOneClass>
+                  <if(topStory.nodes && topStory.nodes.length)>
+                    $ const topStoryNode = topStory.nodes[0];
+                    $ const heroImageNode = {
+                      id: topStoryNode.id,
+                      type: topStoryNode.type,
+                      siteContext: topStoryNode.siteContext,
+                      primaryImage: topStoryNode.primaryImage,
+                    };
+                    $ const featuredCardNodes = topStoryNode;
+                    $ const cardNodes = topStoryNode;
+                    <marko-web-element tag="h1" block-name="top-stories" name="header">Top Story</marko-web-element>
+                    <marko-web-element block-name="top-story" name="row">
+                      <marko-web-element block-name="top-story" name="col" modifiers=["hero"]>
+                        <theme-content-node
+                          image-position="top"
+                          card=true
+                          flush=true
+                          image-only=true
+                          modifiers=["top-story-hero-image"]
+                          node=heroImageNode
+                        >
+                          <@image fluid=true width=685 ar="16:9" lazyload=false />
+                        </theme-content-node>
+                      </marko-web-element>
+                      <marko-web-element block-name="top-story" name="col" modifiers=["list"]>
+                        <theme-content-node
+                          full-height=true
+                          card=true
+                          display-image=false
+                          flush=true
+                          with-dates=false
+                          modifiers=["top-story-hero"]
+                          node=topStoryNode
+                        />
+                      </marko-web-element>
                     </marko-web-element>
-                    <marko-web-element block-name="top-story" name="col" modifiers=["list"]>
-                      <theme-content-node
-                        full-height=true
-                        card=true
-                        display-image=false
-                        flush=true
-                        with-dates=false
-                        modifiers=["top-story-hero"]
-                        node=topStoryNode
-                      />
-                    </marko-web-element>
-                  </marko-web-element>
-                </if>
-              </div>
-              <div class="col-lg-4">
-                $ const featuredNodes = featured.nodes;
-                <theme-latest-content-list-block nodes=featuredNodes title=latestTitle >
-                  <@query-params exclude-content-ids=ids limit=7 />
-                  <!-- <@native-x indexes=[0] name="default" aliases=aliases /> -->
-                  <@node with-section=false with-dates=false display-image=false />
-                </theme-latest-content-list-block>
-              </div>
-              <div class="col-lg-3">
-                <!-- @todo set back to home/featured and { limit: 2 } -->
-                <div class="mb-3">
-                  <theme-content-card-deck-block
-                    title="Featured"
-                    alias="home"
-                    cols=1
-                    query-params={ limit: 2, skip: 8 }
-                    view-more=false
-                  >
-                    <@node with-section=false image={ ar: "16:9" } />
-                  </theme-content-card-deck-block>
+                  </if>
+                </div>
+                <div class="col-lg-4">
+                  $ const featuredNodes = featured.nodes;
+                  <theme-latest-content-list-block nodes=featuredNodes title=latestTitle >
+                    <@query-params exclude-content-ids=ids limit=7 />
+                    <!-- <@native-x indexes=[0] name="default" aliases=aliases /> -->
+                    <@node with-section=false with-dates=false display-image=false />
+                  </theme-latest-content-list-block>
+                </div>
+                <div class="col-lg-3">
+                  <!-- @todo set back to home/featured and { limit: 2 } -->
+                  <div class="mb-3">
+                    <theme-content-card-deck-block
+                      title="Featured"
+                      alias="home"
+                      cols=1
+                      query-params={ limit: 2, skip: 8 }
+                      view-more=false
+                    >
+                      <@node with-section=false image={ ar: "16:9" } />
+                    </theme-content-card-deck-block>
+                  </div>
                 </div>
               </div>
-            </div>
-          </@section>
+            </@section>
 
-          <@section|{ aliases }| modifiers=["first-sm"]>
-            <theme-gam-define-display-ad
-              name="top-leaderboard"
-              position="section-page"
-              aliases=aliases
-            />
-          </@section>
+            <@section|{ aliases }| modifiers=["first-sm"]>
+              <theme-gam-define-display-ad
+                name="top-leaderboard"
+                position="section-page"
+                aliases=aliases
+              />
+            </@section>
 
-          <@section>
-            <global-recommended-block section-alias=alias >
-              <@native-x indexes=[3] name="default" aliases=aliases />
-            </global-recommended-block>
-          </@section>
+            <@section>
+              <global-recommended-block section-alias=alias >
+                <@native-x indexes=[3] name="default" aliases=aliases />
+              </global-recommended-block>
+            </@section>
+
+            <@section|{ aliases }|>
+              <theme-gam-define-display-ad
+                name="leaderboard"
+                position="section-page"
+                aliases=aliases
+              />
+            </@section>
+
+            <if(get(config,"websiteContext.id") === "53ca8d671784f8066eb2c949")>
+              <@section>
+                <global-hero-card-block
+                  query-params={ includeContentTypes: ["Video"] }
+                  section={ name: "Video Network", canonicalPath: "/videos"}
+                />
+              </@section>
+            </if>
+          </if>
 
           <@section|{ aliases }|>
             <theme-gam-define-display-ad
@@ -138,40 +157,20 @@ $ const promise = homePageTopStoriesLoader(apollo, {
             />
           </@section>
 
-        <if(get(config,"websiteContext.id") === "53ca8d671784f8066eb2c949")>
-          <@section>
-            $ console.log(get(config,"websiteContext.id"));
-            <global-hero-card-block
-              query-params={ includeContentTypes: ["Video"] }
-              section={ name: "Video Network", canonicalPath: "/videos"}
-            />
-          </@section>
-
-          <@section|{ aliases }|>
-            <theme-gam-define-display-ad
-              name="leaderboard"
-              position="section-page"
-              aliases=aliases
-            />
-          </@section>
-        </if>
 
           <@section>
             <global-section-feed-wrapper
               alias=section.alias
               aliases=aliases
-              with-pagination=false
+              with-pagination=true
               with-ads=withAds
               with-feed-ads=withFeedAds
               ad-name="rotation"
             >
               <@header>${i18n(morePrefix)} ${config.siteName()}</@header>
               <@query-params
-                alias=section.alias
-                limit=12
-                optionName=["Pinned", "Standard"]
+                sectionAlias=section.alias
                 excludeContentIds=sectionContent.ids
-                requires-image=true
               />
               <@native-x index=[1] name="premium-content" aliases=aliases sectionName="Premium Content" />
               <@rail>

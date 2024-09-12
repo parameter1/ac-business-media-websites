@@ -7,13 +7,12 @@ module.exports = (app, siteConfig) => {
   const {
     contentTypes = ['Article', 'Blog', 'Company', 'Podcast', 'Product', 'Video', 'Whitepaper'],
     assignedToWebsiteSectionIds,
-    defaultSortField,
   } = getAsObject(siteConfig, 'search');
   const config = new MarkoWebSearchConfig({
     resultsPerPage: { default: 18 },
     contentTypes,
     assignedToWebsiteSectionIds,
-    defaultSortField,
+    defaultSortField: 'SCORE',
   });
   app.get('/search', (req, res, next) => {
     if (!get(req, 'query.searchQuery') && get(req, 'query.sortField')) {
