@@ -11,8 +11,6 @@ const identityXOptInHooks = require('./identity-x-opt-in-hooks');
 const pageDetails = require('./page-details');
 const specGuides = require('./spec-guides');
 
-console.log('enable: ', process.env.ENABLE_CONTEXT_GATING);
-
 module.exports = {
   // Module configs
   useLinkInjectedBody: process.env.USE_LINK_INJECTED_BODY || true,
