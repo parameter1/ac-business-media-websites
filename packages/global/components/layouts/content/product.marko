@@ -134,7 +134,7 @@ $ const displayInquiry = (content) => {
               query-params={ excludeContentTypes, excludeContentIds: [content.id] }
               class="mb-block"
             >
-              <@native-x indexes=[0,2] name="related-content" aliases=aliases />
+              <@native-x indexes=[0,2] name="related-content" aliases=aliases section-name="Sponsored Content" />
             </theme-latest-content-list-block>
           </div>
         </if>
@@ -161,7 +161,7 @@ $ const displayInquiry = (content) => {
         published=content.published
         with-native-x=true
       >
-        <@native-x index=3 name="related-content" aliases=aliases />
+        <@native-x index=3 name="related-content" aliases=aliases section-name="Sponsored Content" />
       </theme-related-stories-block>
     </if>
   </@section>
