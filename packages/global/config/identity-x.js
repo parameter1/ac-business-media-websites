@@ -17,6 +17,7 @@ module.exports = ({
     'countryCode',
     'postalCode',
   ],
+  additionalCustomFieldIds,
   gtmUserFields,
   defaultFieldLabels = {
     mobileNumber: 'Mobile Phone',
@@ -29,6 +30,7 @@ module.exports = ({
     appId,
     apiToken: process.env.IDENTITYX_API_TOKEN,
     hiddenFields,
+    additionalCustomFieldIds,
     requiredServerFields,
     requiredClientFields,
     gtmUserFields,
