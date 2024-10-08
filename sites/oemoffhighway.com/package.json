@@ -36,7 +36,7 @@
     "@parameter1/base-cms-marko-web": "^4.65.2",
     "@parameter1/base-cms-marko-web-gam": "^4.55.1",
     "@parameter1/base-cms-marko-web-gtm": "^4.60.2",
-    "@parameter1/base-cms-marko-web-p1-events": "^4.65.0",
+    "@parameter1/base-cms-marko-web-p1-events": "^4.65.4",
     "@parameter1/base-cms-marko-web-theme-default": "^4.40.3",
     "@parameter1/base-cms-object-path": "^4.40.3",
     "@parameter1/base-cms-utils": "^4.40.3",
