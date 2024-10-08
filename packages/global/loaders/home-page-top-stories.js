@@ -1,5 +1,5 @@
 const { websiteScheduledContent } = require('@parameter1/base-cms-web-common/block-loaders');
-const defaultFragment = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-list');
+const defaultFragment = require('../graphql/fragments/home-page-top-stories');
 
 const loadTopStoryContent = async (apolloClient, params = {}) => {
   const defaults = {
