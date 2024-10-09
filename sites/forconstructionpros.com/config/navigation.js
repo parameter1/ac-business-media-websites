@@ -70,8 +70,9 @@ const mobileMenu = {
     { href: '/expert-columns', label: 'Expert Columns' },
     { href: '/awards', label: 'Awards' },
     { href: '/profit-matters', label: 'Profit Matters' },
-    subscribe,
-    { href: '/', label: 'Advertise', target: '_blank' },
+    { href: '/page/Subscribe-Links', label: 'Magazines' },
+    { href: 'https://acbusiness.dragonforms.com/loading.do?omedasite=FCP_prefs_ProgReg', label: 'Newsletters' },
+    { href: 'https://www.constructionnetworkmediakit.com/', label: 'Advertise', target: '_blank' },
   ],
 };
 
