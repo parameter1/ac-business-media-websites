@@ -6,13 +6,13 @@ const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitem
 const contactUsHandler = require('@parameter1/base-cms-marko-web-contact-us');
 const identityX = require('@parameter1/base-cms-marko-web-identity-x');
 const omedaIdentityX = require('@parameter1/base-cms-marko-web-omeda-identity-x');
+const contentGating = require('@parameter1/base-cms-marko-web-theme-monorail/middleware/content-gating');
 
 const specGuideHandler = require('./routes/spec-guide');
 const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
 const sharedRoutes = require('./routes');
-const contentGating = require('./middleware/content-gating');
 const paginated = require('./middleware/paginated');
 // const omedaConfig = require('./config/omeda');
 const redirectHandler = require('./redirect-handler');
