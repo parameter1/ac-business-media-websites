@@ -647,6 +647,52 @@ label {
     }
   }
 }
+/*! critical:start|content.webinar */
+.page-attribution__wrapper {
+  display: flex;
+
+  .page-dates+.page-attribution {
+    border-left: 1px solid #000;
+    margin-left: .5rem;
+    padding-left: .5rem;
+  }
+
+  .page-attribution__content-sponsors {
+    &::before {
+      content: "Sponsored By: ";
+    }
+    .page-attribution__content-name:first-child:before {
+      content: "";
+    }
+  }
+
+
+  .page-attribution__content-authors {
+    &::before {
+      content: "By";
+    }
+  }
+  a {
+    color: $primary;
+  }
+
+  > div {
+    margin-left: .25rem;
+  }
+
+  > div:first-child {
+    margin-left: 0;
+  }
+
+  div:last-child {
+    margin-bottom: 0;
+  }
+
+  &:empty {
+    display: none;
+  }
+}
+/*! critical:end */
 
 /*! critical:start|website-section.webinars */
 .section-feed-content-node__body {
