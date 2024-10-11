@@ -145,7 +145,6 @@ module.exports = {
     54468, // Pavement Maintenance
   ],
   specGuides,
-  defaultAspectRatio: '16:9',
   mindful: {
     namespace: 'acbm/default',
   },
