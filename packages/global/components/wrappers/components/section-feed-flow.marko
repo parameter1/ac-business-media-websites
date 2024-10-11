@@ -4,7 +4,7 @@ $ const { nativeX: nxConfig, site } = out.global;
 
 $ const { nodes, nativeX } = input;
 $ const defaultImageOption = site.getAsObject("sectionFeed.imageOptions");
-$ const defaultMobileImageOption = site.get("defaultAspectRatio") === "16:9" ? { w: 240, h: 135, ar: "16:9" } : {};
+$ const defaultMobileImageOption = site.getAsObject("sectionFeed.mobileImageOptions");
 $ const lazyload = defaultValue(input.lazyload, true);
 $ const adName = defaultValue(input.adName, "rotation");
 $ const withNativeXSection = defaultValue(input.withNativeXSection, true);
