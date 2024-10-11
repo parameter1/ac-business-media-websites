@@ -26,13 +26,15 @@ $ const sections = getAsArray(input, "sections");
 
           <theme-content-attribution obj=content elements=["company"] />
 
-          <theme-page-dates|{ blockName }|>
-            <marko-web-content-starts tag="span" block-name=blockName obj=content />
-            <if(content.starts !== content.ends)>
-              <marko-web-content-ends tag="span" block-name=blockName obj=content />
-            </if>
-          </theme-page-dates>
-
+          <div class="page-attribution__wrapper">
+            <theme-page-dates|{ blockName }|>
+              <marko-web-content-starts tag="span" block-name=blockName obj=content />
+              <if(content.starts !== content.ends)>
+                <marko-web-content-ends tag="span" block-name=blockName obj=content />
+              </if>
+            </theme-page-dates>
+            <default-theme-content-attribution obj=content />
+          </div>
           <global-sponsored-section-logo alias=primarySection.alias modifiers=["content-page"] class="mt-3" />
         </div>
       </div>

@@ -113,6 +113,22 @@ const factory = ({ useLinkInjectedBody = false, withMagazineSchedules = false } 
     ... on ContentProduct {
       downloadUrl
     }
+    ... on ContentWebinar {
+      linkUrl
+      startDate
+      transcript
+      sponsors {
+        edges {
+          node {
+            id
+            name
+            siteContext {
+              path
+            }
+          }
+        }
+      }
+    }
     company {
       id
       labels
