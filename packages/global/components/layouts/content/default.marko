@@ -9,15 +9,15 @@ $ const {
   site,
   contentGatingHandler,
   contentMeterState,
-  contentIdxFormState,
+  contentAccessState,
   req,
 } = out.global;
 
 $ const enableContextualGating = site.get("enableContextualGating") || false;
-<!-- update contentIdxFormStateDisplayBase on the req cookies being present -->
+<!-- update contentAccessStateDisplayBase on the req cookies being present -->
 <!-- @todo figure out how to do this ahead of time within the content route if possible -->
-$ contentIdxFormState.setFormDisplay({ req });
-$ const { formId: idxFormId, displayForm: displayIdxForm, cookie: idxSuveyCookie } = contentIdxFormState;
+$ contentAccessState.setFormDisplay({ req });
+$ const { formId: idxFormId, displayForm: displayIdxForm, cookie: idxSuveyCookie } = contentAccessState;
 $ const showOverlay = shouldOverlay(contentMeterState);
 
 $ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStoryBlock, ...rest } = input;
