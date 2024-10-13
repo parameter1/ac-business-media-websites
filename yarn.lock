@@ -1270,10 +1270,10 @@
   resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-icons/-/base-cms-marko-web-icons-4.36.8.tgz#db479337f3bc3be9ad57fe8d18ffa5cba0008820"
   integrity sha512-+PrD1dPiHNkp1eqO0D7DghRp+OH8gxllIn+zvxnoRvDWiVGZixkSozU95tHkP+F8Yi3Z9QpBEhZjGAYSyHnyww==
 
-"@parameter1/base-cms-marko-web-identity-x@^4.68.2":
-  version "4.68.2"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-identity-x/-/base-cms-marko-web-identity-x-4.68.2.tgz#d7b90088b77f2b004ecc1b73350662b1cfca9fa2"
-  integrity sha512-5oGJhuNNEhqtDg6aB4W3voGicvtImcmhE01/yBYN6/xAl9sMHaFLqiOr/ajoDFshMmTvlKxLlXiuceSoO2lGfQ==
+"@parameter1/base-cms-marko-web-identity-x@^4.70.0":
+  version "4.70.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-identity-x/-/base-cms-marko-web-identity-x-4.70.0.tgz#83f1a2d56b6493e1303af306da9802373d83c9fa"
+  integrity sha512-OqkRYK4bPR3g9qTYBET5gQikIb1vZay1tBUE/dHvkWzNO5vqxO1noTizKMATkcwLw8JBwSIBA8/cHrSUGPqiHA==
   dependencies:
     "@parameter1/base-cms-marko-web-gtm" "^4.60.2"
     "@parameter1/base-cms-object-path" "^4.40.3"
@@ -1329,12 +1329,12 @@
     graphql-tag "^2.12.6"
     node-fetch "^2.6.9"
 
-"@parameter1/base-cms-marko-web-omeda-identity-x@^4.68.2":
-  version "4.68.2"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-omeda-identity-x/-/base-cms-marko-web-omeda-identity-x-4.68.2.tgz#3f80fa5988aa1ee1eff43cae686376892c483db6"
-  integrity sha512-pDWSptEGPpgCEZgMxhwRB2tTVoj7dhSPvaXsrJD4+6Fwj16aXVxUbEw9jj2E8lZC7pGNK01arX5xnfeOBuL2bQ==
+"@parameter1/base-cms-marko-web-omeda-identity-x@^4.70.0":
+  version "4.70.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-omeda-identity-x/-/base-cms-marko-web-omeda-identity-x-4.70.0.tgz#b906e1fe9991baa464319ea4eb5f1f0641501cfb"
+  integrity sha512-UlP4TN9n708/t2bA9Ni5sR6lsKqHRLrldhFffSvDaw/81xm+xcpOWyINW0y89vojIUVmHOq4shMjTWP9zmk5LQ==
   dependencies:
-    "@parameter1/base-cms-marko-web-identity-x" "^4.68.2"
+    "@parameter1/base-cms-marko-web-identity-x" "^4.70.0"
     "@parameter1/base-cms-marko-web-omeda" "^4.51.0"
     "@parameter1/base-cms-object-path" "^4.40.3"
     "@parameter1/base-cms-utils" "^4.40.3"
@@ -1446,10 +1446,10 @@
     graphql-tag "^2.12.6"
     object-path "^0.11.8"
 
-"@parameter1/base-cms-marko-web-theme-monorail@^4.68.2":
-  version "4.68.2"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.68.2.tgz#b2c86dc5485f24b39221f90e28cc01653c004d15"
-  integrity sha512-vX7J5uTGjd4mFUF47oBoyQhsVCKPG5PSlVo+A8RObnGp1ltkU3xur5AVU3+pUCIfyxo+kiQlF5k9qFCfODhStg==
+"@parameter1/base-cms-marko-web-theme-monorail@^4.70.0":
+  version "4.70.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.70.0.tgz#76cde81b3d85c871f85883a36d39b58877ccba67"
+  integrity sha512-toKBD5odmVHiC3f/UVwSzlrN2h5AlpN1kNJi4havnjUJ22vmo8H9AFfHOINiXlglD4OfTL9tRN4qBK0IV/c3eA==
   dependencies:
     "@parameter1/base-cms-dayjs" "^4.5.12"
     "@parameter1/base-cms-image" "^4.47.1"
@@ -1459,11 +1459,11 @@
     "@parameter1/base-cms-marko-web-gtm" "^4.60.2"
     "@parameter1/base-cms-marko-web-html-sitemap" "^4.40.3"
     "@parameter1/base-cms-marko-web-icons" "^4.36.8"
-    "@parameter1/base-cms-marko-web-identity-x" "^4.68.2"
+    "@parameter1/base-cms-marko-web-identity-x" "^4.70.0"
     "@parameter1/base-cms-marko-web-inquiry" "^4.40.3"
     "@parameter1/base-cms-marko-web-native-x" "^4.60.2"
     "@parameter1/base-cms-marko-web-omeda" "^4.51.0"
-    "@parameter1/base-cms-marko-web-omeda-identity-x" "^4.68.2"
+    "@parameter1/base-cms-marko-web-omeda-identity-x" "^4.70.0"
     "@parameter1/base-cms-marko-web-p1-events" "^4.65.4"
     "@parameter1/base-cms-marko-web-recaptcha" "^4.5.12"
     "@parameter1/base-cms-marko-web-reveal-ad" "^4.40.3"
@@ -1479,6 +1479,7 @@
     debug "^4.3.4"
     graphql-tag "^2.12.6"
     http-errors "^1.8.1"
+    js-cookie "^2.2.1"
     moment "^2.29.1"
     node-fetch "^2.6.9"
     ua-parser-js "^1.0.33"
@@ -6329,6 +6330,11 @@ js-beautify@^1.6.12:
     editorconfig "^0.15.3"
     glob "^8.0.3"
     nopt "^6.0.0"
+
+js-cookie@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
+  integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
 
 js-sdsl@^4.1.4:
   version "4.3.0"
