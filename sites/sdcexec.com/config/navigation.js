@@ -253,7 +253,7 @@ module.exports = {
         { href: '/videos', label: 'Videos' },
         { href: '/blogs', label: 'Expert Columnists' },
         { href: '/multimedia', label: 'Multimedia' },
-        { href: '/scn-summit', label: 'SCN Summit' },
+        { href: 'https://www.scnsummit.com/', label: 'SCN Summit', target: '_blank' },
         { href: '/20-year-anniversary', label: '20 Year Anniversary Coverage' },
       ],
     },
