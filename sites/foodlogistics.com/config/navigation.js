@@ -240,7 +240,7 @@ module.exports = {
         { href: '/webinars', label: 'Webinars' },
         { href: 'https://www.supplychainlearningcenter.com/', label: 'Supply Chain Learning Center', target: '_blank' },
         { href: '/multimedia', label: 'Multimedia' },
-        { href: '/scn-summit', label: 'SCN Summit' },
+        { href: 'https://www.scnsummit.com/', label: 'SCN Summit', target: '_blank' },
       ],
     },
     {
