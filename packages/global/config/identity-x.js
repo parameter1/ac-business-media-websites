@@ -5,20 +5,17 @@ module.exports = ({
   appId,
   hiddenFields = [
     'organizationTitle',
-    'phoneNumber',
   ],
   requiredServerFields = [
     'givenName',
     'familyName',
     'organization',
     'countryCode',
-    'mobileNumber',
   ],
   requiredClientFields = [
     'regionCode',
     'countryCode',
     'postalCode',
-    'mobileNumber',
   ],
   gtmUserFields,
   defaultFieldLabels = {
