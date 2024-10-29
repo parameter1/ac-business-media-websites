@@ -39,7 +39,7 @@ module.exports = {
     // Row 3
     [
       {
-        label: 'Phone Number',
+        label: 'Mobile Number',
         key: 'phoneNumber',
         type: 'built-in',
         required: true,
