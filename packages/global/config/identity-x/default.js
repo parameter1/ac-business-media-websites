@@ -39,8 +39,8 @@ module.exports = {
     // Row 3
     [
       {
-        label: 'Phone Number',
-        key: 'phoneNumber',
+        label: 'Mobile Number',
+        key: 'mobileNumber',
         type: 'built-in',
         required: true,
         width: 0.5,
