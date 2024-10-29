@@ -60,6 +60,10 @@ module.exports = (options = {}) => {
         set(app.locals, 'specGuides', specGuideConfig);
       }
 
+      // i18n
+      const i18n = (v) => v;
+      set(app.locals, 'i18n', options.i18n || i18n);
+
       const omedaIdentityXConfig = getAsObject(options, 'siteConfig.omedaIdentityX');
       omedaIdentityX(app, { ...omedaIdentityXConfig, idxRouteTemplates });
       idxNavItems({ site: app.locals.site });
