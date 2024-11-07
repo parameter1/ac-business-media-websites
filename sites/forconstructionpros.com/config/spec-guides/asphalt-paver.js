@@ -9,7 +9,7 @@ module.exports = {
   image: {
     src: 'https://img.forconstructionpros.com/files/base/acbm/fcp/image/static/asphalt-paver.jpg',
   },
-  downloadLink: '/21036185',
+  downloadLink: '/22925388',
   sheetSrc: 'https://content-sheets.googleapis.com/v4/spreadsheets/1Lx2srmVT5OTFf9y1TZjpCRnYFGWNlDp7J_eDzznuL8M/values/Sheet1',
   columns: {
     manufacturer: {
