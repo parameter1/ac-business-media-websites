@@ -77,14 +77,14 @@ $ const withPageHero = defaultValue(input.withPageHero, true);
           obj=obj
         />
         <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section modifiers=[`${channel.alias}`]>
-          <if(p.page > 1)>${value}: Page ${p.page}</if>
-          <else>${value}</else>
+          <if(p.page > 1)>$!{value}: Page ${p.page}</if>
+          <else>$!{value}</else>
         </marko-web-website-section-name>
       </if>
       <else>
         <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
-          <if(p.page > 1)>${value}: Page ${p.page}</if>
-          <else>${value}</else>
+          <if(p.page > 1)>$!{value}: Page ${p.page}</if>
+          <else>$!{value}</else>
         </marko-web-website-section-name>
       </else>
     </div>
