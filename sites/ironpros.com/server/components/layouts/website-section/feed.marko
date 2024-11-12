@@ -2,8 +2,6 @@ import { buildImgixUrl } from "@parameter1/base-cms-image";
 import convert from "@parameter1/base-cms-marko-web-native-x/utils/convert-story-to-content";
 import { getAsArray, getAsObject } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
-import { defaultValue } from "@parameter1/base-cms-marko-web/utils";
-import { getAsObject } from "@parameter1/base-cms-object-path";
 import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-card-deck-block";
 import sectionFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-info";
 $ const {
@@ -76,8 +74,8 @@ $ const withFeedAds = defaultValue(input.withFeedAds, false);
         </if>
 
         <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
-          <if(p.page > 1)>${value}: Page ${p.page}</if>
-          <else>${value}</else>
+          <if(p.page > 1)>$!{value}: Page ${p.page}</if>
+          <else>$!{value}</else>
         </marko-web-website-section-name>
 
         <if(input.afterName)>
