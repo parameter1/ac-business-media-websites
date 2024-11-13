@@ -42,7 +42,7 @@ module.exports = {
         label: 'Mobile Number',
         key: 'mobileNumber',
         type: 'built-in',
-        required: true,
+        required: false,
         width: 0.5,
       },
       {
