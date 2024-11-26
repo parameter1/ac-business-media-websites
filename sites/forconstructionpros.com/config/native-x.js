@@ -41,11 +41,6 @@ config
     { name: 'premium-content', id: '5b55e253dfcd9c00010676b5' },
     { name: 'related-content', id: '5b55e253dfcd9c00010676b5' },
   ])
-  .setAliasPlacements('profit-matters', [
-    { name: 'default', id: '5b55e2b5dfcd9c00010676b8' },
-    { name: 'premium-content', id: '5b55e2b5dfcd9c00010676b8' },
-    { name: 'related-content', id: '5b55e2b5dfcd9c00010676b8' },
-  ])
   .setAliasPlacements('rental', [
     { name: 'default', id: '5b55e29d2360050001b7734c' },
     { name: 'premium-content', id: '5b55e29d2360050001b7734c' },
