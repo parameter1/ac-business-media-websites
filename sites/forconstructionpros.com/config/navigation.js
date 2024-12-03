@@ -14,7 +14,7 @@ const topics = [
   { href: '/construction-technology', label: 'Technology' },
   { href: '/business', label: 'Business' },
   { href: '/infrastructure', label: 'Infrastructure' },
-  { href: '/sustainability', label: 'Sustainability' },
+  { href: '/workwear', label: 'Workwear' },
 ];
 
 const secondary = [
@@ -237,6 +237,26 @@ module.exports = {
           { href: '/profit-matters?contentTypes=Video', label: 'Videos' },
           { href: '/profit-matters?contentTypes=Article', label: 'Articles' },
           { href: '/profit-matters/on-site-series', label: 'Contractor’s Site Report' },
+        ],
+      },
+    },
+    {
+      when: ['/workwear'],
+      secondary: { items: topics },
+      tertiary,
+      primary: {
+        items: [
+          { href: '/workwear/accessories', label: 'Accessories' },
+          { href: '/workwear/boots-footwear', label: 'Boots & Footwear' },
+          { href: '/workwear/coveralls', label: 'Coveralls' },
+          { href: '/workwear/glasses', label: 'Glasses' },
+          { href: '/workwear/gloves', label: 'Gloves' },
+          { href: '/workwear/hard-hats-headwear', label: 'Hard Hats & Headwear' },
+          { href: '/workwear/high-visibility-apparel', label: 'High Visibility Apparel' },
+          { href: '/workwear/hoodies', label: 'Hoodies' },
+          { href: '/workwear/outerwear', label: 'Outerwear' },
+          { href: '/workwear/pants', label: 'Pants' },
+          { href: '/workwear/shirts', label: 'Shirts' },
         ],
       },
     },
