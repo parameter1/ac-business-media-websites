@@ -1,6 +1,6 @@
 {
   "name": "@ac-business-media/refresh-theme",
-  "version": "2.16.6",
+  "version": "2.17.4",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/parameter1/ac-business-media-websites/tree/master/packages/refresh-theme",
   "license": "MIT",
@@ -13,9 +13,9 @@
     "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
-    "@ac-business-media/package-common": "^2.16.6",
-    "@ac-business-media/package-directory": "^2.16.6",
-    "@ac-business-media/package-leaders": "^2.16.6",
+    "@ac-business-media/package-common": "^2.17.4",
+    "@ac-business-media/package-directory": "^2.17.4",
+    "@ac-business-media/package-leaders": "^2.17.4",
     "@parameter1/base-cms-inflector": "^4.74.0",
     "@parameter1/base-cms-marko-core": "^4.80.0",
     "@parameter1/base-cms-marko-web": "^4.80.0",
