@@ -130,25 +130,27 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
               </@section>
             </marko-web-page-wrapper>
           </if>
-          <if(withAds && !isSponsored)>
-            <theme-reveal-ad-handler
-              select-all-targets=true
-              path=GAM.getAdUnit({ name: "reskin", aliases }).path
-              id="reveal-ad"
-            />
-            <theme-fixed-ad-bottom aliases=aliases />
-            <if(contentMeterState && !contentMeterState.isLoggedIn)>
-              <theme-content-meter-block
-                views=contentMeterState.views
-                view-limit=contentMeterState.viewLimit
-                display-overlay=contentMeterState.displayOverlay
-                display-gate=contentMeterState.displayGate
-                dynamic-title="We hope you’ve enjoyed your articles."
-              />
-            </if>
-          </if>
+
         </marko-web-resolve-page>
       </marko-web-page-container>
     </if>
   </@below-page>
+  <@belowContainer>
+    <if(type !== "page")>
+      <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
+        $ const section = content.primarySection;
+        $ const labels = getAsArray(content, "labels");
+        $ const isSponsored = labels.includes("Sponsored");
+        $ const aliases = hierarchyAliases(section);
+        <if(withAds && !isSponsored)>
+          <theme-reveal-ad-handler
+            select-all-targets=true
+            path=GAM.getAdUnit({ name: "reskin", aliases }).path
+            id="reveal-ad"
+          />
+          <theme-fixed-ad-bottom aliases=aliases />
+        </if>
+      </marko-web-resolve-page>
+    </if>
+  </@belowContainer>
 </theme-content-page>
