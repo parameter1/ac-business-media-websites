@@ -35,7 +35,6 @@ const aliases = [
   { alias: 'construction-technology', prefix: 'construction-technology' },
   { alias: 'business', prefix: 'business' },
   { alias: 'conexpo', prefix: 'conexpo' },
-  { alias: 'profit-matters', prefix: 'profit-matters' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [

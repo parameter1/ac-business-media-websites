@@ -57,6 +57,8 @@ $content-meter-mobile-breakpoint: 600px !default;
     }
     position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     // footer zindex is set to 1500 ;)
     z-index: 1501;
     width: 100%;
